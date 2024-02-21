@@ -17,7 +17,20 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         
+        // MARK: - Place for Firebase configure
         FirebaseApp.configure()
+        
+        // MARK: - Place for layout For Navigation Controller
+        let appearance = UINavigationBarAppearance()
+        appearance.configureWithOpaqueBackground()
+        appearance.backgroundColor = ThemeColor.primary1
+        appearance.titleTextAttributes = [.foregroundColor: ThemeColor.tint1]
+        appearance.largeTitleTextAttributes = [.foregroundColor: ThemeColor.tint1]
+        
+        
+        UINavigationBar.appearance().scrollEdgeAppearance = appearance
+        UINavigationBar.appearance().standardAppearance = appearance
+        UINavigationBar.appearance().tintColor = ThemeColor.tint1
         
         return true
     }

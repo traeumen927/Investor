@@ -38,6 +38,9 @@
 		F195C7A02B833AA700BCF35C /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = F195C79F2B833AA700BCF35C /* Kingfisher */; };
 		F195C7A42B83722B00BCF35C /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = F195C7A32B83722B00BCF35C /* FirebaseAuth */; };
 		F195C7A62B83722B00BCF35C /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = F195C7A52B83722B00BCF35C /* FirebaseFirestore */; };
+		F1DB098F2B864B1500BBE7B5 /* TabNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1DB098E2B864B1500BBE7B5 /* TabNavigationController.swift */; };
+		F1DB09932B864D2C00BBE7B5 /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1DB09922B864D2C00BBE7B5 /* SettingViewController.swift */; };
+		F1DB09952B864D3900BBE7B5 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1DB09942B864D3900BBE7B5 /* HomeViewController.swift */; };
 		FDE8B1E51AACD63326E0D41D /* Pods_InvestorTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AB45874EFF3E490B3524923F /* Pods_InvestorTests.framework */; };
 /* End PBXBuildFile section */
 
@@ -90,6 +93,9 @@
 		F191CD192B833673004F8659 /* InvestorUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = InvestorUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		F191CD1D2B833673004F8659 /* InvestorUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InvestorUITests.swift; sourceTree = "<group>"; };
 		F191CD1F2B833673004F8659 /* InvestorUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InvestorUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		F1DB098E2B864B1500BBE7B5 /* TabNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabNavigationController.swift; sourceTree = "<group>"; };
+		F1DB09922B864D2C00BBE7B5 /* SettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewController.swift; sourceTree = "<group>"; };
+		F1DB09942B864D3900BBE7B5 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -170,6 +176,8 @@
 			isa = PBXGroup;
 			children = (
 				F10483622B84D00F007D532A /* AuthViewController.swift */,
+				F1DB09942B864D3900BBE7B5 /* HomeViewController.swift */,
+				F1DB09922B864D2C00BBE7B5 /* SettingViewController.swift */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -208,6 +216,7 @@
 			isa = PBXGroup;
 			children = (
 				F121ABA62B84E5AF001DB314 /* AuthNavigationController.swift */,
+				F1DB098E2B864B1500BBE7B5 /* TabNavigationController.swift */,
 			);
 			path = NavigationController;
 			sourceTree = "<group>";
@@ -508,12 +517,15 @@
 				F121ABA22B84D387001DB314 /* GIDSignInButton.swift in Sources */,
 				F121ABA72B84E5AF001DB314 /* AuthNavigationController.swift in Sources */,
 				F191CCFD2B833673004F8659 /* AppDelegate.swift in Sources */,
+				F1DB09952B864D3900BBE7B5 /* HomeViewController.swift in Sources */,
+				F1DB09932B864D2C00BBE7B5 /* SettingViewController.swift in Sources */,
 				F10483582B84CD85007D532A /* String.swift in Sources */,
 				F191CCFF2B833673004F8659 /* SceneDelegate.swift in Sources */,
 				F10483522B84CD3E007D532A /* UIResponder.swift in Sources */,
 				F121ABA42B84D5CB001DB314 /* AuthViewModel.swift in Sources */,
 				F10483502B84CD24007D532A /* UIColor.swift in Sources */,
 				F10483562B84CD73007D532A /* UILabel.swift in Sources */,
+				F1DB098F2B864B1500BBE7B5 /* TabNavigationController.swift in Sources */,
 				F10483542B84CD52007D532A /* Double.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
