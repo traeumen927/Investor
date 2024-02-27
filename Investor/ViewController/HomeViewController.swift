@@ -6,11 +6,14 @@
 //
 
 import UIKit
+import RxSwift
+import RxCocoa
 
 class HomeViewController: UIViewController, BarbuttonConfigurable {
     
     var rightBarButtonItems: [UIBarButtonItem]?
     
+    var disposeBag = DisposeBag()
     
     private lazy var searchButton: UIBarButtonItem = {
         let button = UIBarButtonItem(barButtonSystemItem: .search, target: self, action: nil)
@@ -22,10 +25,21 @@ class HomeViewController: UIViewController, BarbuttonConfigurable {
         super.viewDidLoad()
 
         layout()
+        bind()
     }
     
     private func layout() {
         self.view.backgroundColor = ThemeColor.background
         self.rightBarButtonItems = [searchButton]
+    }
+    
+    private func bind() {
+        self.searchButton.rx.tap
+            .subscribe(onNext: { [weak self] _ in
+                let searchViewController = SearchViewController()
+                let nc = UINavigationController(rootViewController: searchViewController)
+                nc.modalPresentationStyle = .formSheet
+                self?.parentViewController?.present(nc, animated: true)
+            }).disposed(by: disposeBag)
     }
 }

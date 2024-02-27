@@ -37,7 +37,7 @@ class AuthNavigationController: UINavigationController {
         let tabBarController = MainTabBarController()
 
         let tabBarNavigation = TabNavigationController(rootViewController: tabBarController)
-        tabBarNavigation.modalPresentationStyle = .fullScreen
+        tabBarNavigation.modalPresentationStyle = .overCurrentContext
         self.present(tabBarNavigation, animated: true)
     }
 }

@@ -24,6 +24,11 @@
 		F121ABA72B84E5AF001DB314 /* AuthNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F121ABA62B84E5AF001DB314 /* AuthNavigationController.swift */; };
 		F16381D22B8E12590026E260 /* BarbuttonConfigurable.swift in Sources */ = {isa = PBXBuildFile; fileRef = F16381D12B8E12590026E260 /* BarbuttonConfigurable.swift */; };
 		F16381D52B8E154B0026E260 /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F16381D42B8E154B0026E260 /* MainTabBarController.swift */; };
+		F16381D72B8E1B0F0026E260 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F16381D62B8E1B0F0026E260 /* SearchViewController.swift */; };
+		F16381DA2B8E20E60026E260 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = F16381D92B8E20E60026E260 /* Alamofire */; };
+		F16381DC2B8E212E0026E260 /* ApiService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F16381DB2B8E212E0026E260 /* ApiService.swift */; };
+		F16381DF2B8E2A8D0026E260 /* Search.swift in Sources */ = {isa = PBXBuildFile; fileRef = F16381DE2B8E2A8D0026E260 /* Search.swift */; };
+		F16381E12B8E2DC20026E260 /* ApiKey.plist in Resources */ = {isa = PBXBuildFile; fileRef = F16381E02B8E2DC20026E260 /* ApiKey.plist */; };
 		F191CCFD2B833673004F8659 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F191CCFC2B833673004F8659 /* AppDelegate.swift */; };
 		F191CCFF2B833673004F8659 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F191CCFE2B833673004F8659 /* SceneDelegate.swift */; };
 		F191CD062B833673004F8659 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F191CD052B833673004F8659 /* Assets.xcassets */; };
@@ -86,6 +91,10 @@
 		F121ABA62B84E5AF001DB314 /* AuthNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthNavigationController.swift; sourceTree = "<group>"; };
 		F16381D12B8E12590026E260 /* BarbuttonConfigurable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BarbuttonConfigurable.swift; sourceTree = "<group>"; };
 		F16381D42B8E154B0026E260 /* MainTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
+		F16381D62B8E1B0F0026E260 /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
+		F16381DB2B8E212E0026E260 /* ApiService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiService.swift; sourceTree = "<group>"; };
+		F16381DE2B8E2A8D0026E260 /* Search.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Search.swift; sourceTree = "<group>"; };
+		F16381E02B8E2DC20026E260 /* ApiKey.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = ApiKey.plist; sourceTree = "<group>"; };
 		F191CCF92B833673004F8659 /* Investor.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Investor.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F191CCFC2B833673004F8659 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F191CCFE2B833673004F8659 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -119,6 +128,7 @@
 				C66C21B728A3220BD1C974B9 /* Pods_Investor.framework in Frameworks */,
 				F195C7922B833A2100BCF35C /* SnapKit in Frameworks */,
 				F195C79B2B833A6E00BCF35C /* RxSwift in Frameworks */,
+				F16381DA2B8E20E60026E260 /* Alamofire in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -164,6 +174,7 @@
 		F10483472B84CCC3007D532A /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				F16381DE2B8E2A8D0026E260 /* Search.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -182,6 +193,7 @@
 				F10483622B84D00F007D532A /* AuthViewController.swift */,
 				F1DB09942B864D3900BBE7B5 /* HomeViewController.swift */,
 				F1DB09922B864D2C00BBE7B5 /* SettingViewController.swift */,
+				F16381D62B8E1B0F0026E260 /* SearchViewController.swift */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -189,6 +201,7 @@
 		F104834A2B84CCD5007D532A /* Service */ = {
 			isa = PBXGroup;
 			children = (
+				F16381DB2B8E212E0026E260 /* ApiService.swift */,
 			);
 			path = Service;
 			sourceTree = "<group>";
@@ -280,6 +293,7 @@
 				F191CD072B833673004F8659 /* LaunchScreen.storyboard */,
 				F191CD0A2B833673004F8659 /* Info.plist */,
 				F10483592B84CEA5007D532A /* GoogleService-Info.plist */,
+				F16381E02B8E2DC20026E260 /* ApiKey.plist */,
 			);
 			path = Investor;
 			sourceTree = "<group>";
@@ -340,6 +354,7 @@
 				F195C7A52B83722B00BCF35C /* FirebaseFirestore */,
 				F104835C2B84CF5E007D532A /* GoogleSignIn */,
 				F104835E2B84CF5E007D532A /* GoogleSignInSwift */,
+				F16381D92B8E20E60026E260 /* Alamofire */,
 			);
 			productName = Investor;
 			productReference = F191CCF92B833673004F8659 /* Investor.app */;
@@ -421,6 +436,7 @@
 				F195C79E2B833AA600BCF35C /* XCRemoteSwiftPackageReference "Kingfisher" */,
 				F195C7A22B83722B00BCF35C /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
 				F104835B2B84CF5E007D532A /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS" */,
+				F16381D82B8E20E60026E260 /* XCRemoteSwiftPackageReference "Alamofire" */,
 			);
 			productRefGroup = F191CCFA2B833673004F8659 /* Products */;
 			projectDirPath = "";
@@ -439,6 +455,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				F191CD092B833673004F8659 /* LaunchScreen.storyboard in Resources */,
+				F16381E12B8E2DC20026E260 /* ApiKey.plist in Resources */,
 				F191CD062B833673004F8659 /* Assets.xcassets in Resources */,
 				F104835A2B84CEA5007D532A /* GoogleService-Info.plist in Resources */,
 			);
@@ -546,9 +563,12 @@
 				F191CCFF2B833673004F8659 /* SceneDelegate.swift in Sources */,
 				F10483522B84CD3E007D532A /* UIResponder.swift in Sources */,
 				F121ABA42B84D5CB001DB314 /* AuthViewModel.swift in Sources */,
+				F16381D72B8E1B0F0026E260 /* SearchViewController.swift in Sources */,
 				F10483502B84CD24007D532A /* UIColor.swift in Sources */,
+				F16381DC2B8E212E0026E260 /* ApiService.swift in Sources */,
 				F10483562B84CD73007D532A /* UILabel.swift in Sources */,
 				F1DB098F2B864B1500BBE7B5 /* TabNavigationController.swift in Sources */,
+				F16381DF2B8E2A8D0026E260 /* Search.swift in Sources */,
 				F10483542B84CD52007D532A /* Double.swift in Sources */,
 				F16381D52B8E154B0026E260 /* MainTabBarController.swift in Sources */,
 			);
@@ -905,6 +925,14 @@
 				minimumVersion = 7.0.0;
 			};
 		};
+		F16381D82B8E20E60026E260 /* XCRemoteSwiftPackageReference "Alamofire" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Alamofire/Alamofire.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.8.1;
+			};
+		};
 		F195C7902B833A2100BCF35C /* XCRemoteSwiftPackageReference "SnapKit" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/SnapKit/SnapKit";
@@ -949,6 +977,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = F104835B2B84CF5E007D532A /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS" */;
 			productName = GoogleSignInSwift;
+		};
+		F16381D92B8E20E60026E260 /* Alamofire */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = F16381D82B8E20E60026E260 /* XCRemoteSwiftPackageReference "Alamofire" */;
+			productName = Alamofire;
 		};
 		F195C7912B833A2100BCF35C /* SnapKit */ = {
 			isa = XCSwiftPackageProductDependency;
