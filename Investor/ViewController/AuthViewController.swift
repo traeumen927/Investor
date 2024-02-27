@@ -27,14 +27,6 @@ class AuthViewController: UIViewController {
         return button
     }()
     
-    // MARK: 로그아웃 버튼(임시)
-    lazy var logoutButton: UIButton = {
-        let button = UIButton()
-        button.setTitle("로그아웃", for: .normal)
-        button.titleLabel?.textColor = ThemeColor.tint1
-        return button
-    }()
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -46,18 +38,11 @@ class AuthViewController: UIViewController {
         
         self.view.backgroundColor = ThemeColor.background
         self.view.addSubview(googleButton)
-        self.view.addSubview(logoutButton)
         
         googleButton.snp.makeConstraints { make in
             make.leading.equalToSuperview().offset(12)
             make.trailing.equalToSuperview().offset(-12)
             make.centerY.equalToSuperview()
-        }
-        
-        logoutButton.snp.makeConstraints { make in
-            make.top.equalTo(googleButton.snp.bottom).offset(8)
-            make.centerX.equalToSuperview()
-            make.height.equalTo(36)
         }
     }
     
@@ -87,13 +72,6 @@ class AuthViewController: UIViewController {
                     self.signIn(with: credential)
                 }
             }).disposed(by: disposeBag)
-        
-        
-        logoutButton.rx.tap
-            .subscribe(onNext: { [weak self] _ in
-                guard let self = self else { return }
-                self.signOut()
-            }).disposed(by: disposeBag)
     }
     
     // MARK: 로그인
@@ -103,16 +81,6 @@ class AuthViewController: UIViewController {
                 print("error: \(error!.localizedDescription)")
                 return
             }
-        }
-    }
-    
-    
-    // MARK: 로그아웃
-    private func signOut() {
-        do {
-            try Auth.auth().signOut()
-        } catch let signOutError as NSError {
-            print("Error signing out: %@", signOutError)
         }
     }
 }

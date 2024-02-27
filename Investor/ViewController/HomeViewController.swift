@@ -7,7 +7,16 @@
 
 import UIKit
 
-class HomeViewController: UIViewController {
+class HomeViewController: UIViewController, BarbuttonConfigurable {
+    
+    var rightBarButtonItems: [UIBarButtonItem]?
+    
+    
+    private lazy var searchButton: UIBarButtonItem = {
+        let button = UIBarButtonItem(barButtonSystemItem: .search, target: self, action: nil)
+        button.tintColor = ThemeColor.tint1
+        return button
+    }()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -17,5 +26,6 @@ class HomeViewController: UIViewController {
     
     private func layout() {
         self.view.backgroundColor = ThemeColor.background
+        self.rightBarButtonItems = [searchButton]
     }
 }

@@ -13,7 +13,9 @@ import SnapKit
 
 
 
-class SettingViewController: UIViewController {
+class SettingViewController: UIViewController, BarbuttonConfigurable {
+    
+    var rightBarButtonItems: [UIBarButtonItem]?
     
     private var disposebag = DisposeBag()
     
