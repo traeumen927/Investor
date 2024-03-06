@@ -31,6 +31,11 @@ struct ApiService {
         AF.request(url, method: .get, parameters: parameters)
             .validate(statusCode: 200..<300)
             .responseDecodable(of: T.self) { response in
+                
+                if let data = response.data, let utf8Text = String(data: data, encoding: .utf8) {
+                    print("Original Response Data: \(utf8Text)")
+                }
+                
                 completion(response.result)
             }
     }

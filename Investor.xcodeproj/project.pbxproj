@@ -22,6 +22,8 @@
 		F121ABA22B84D387001DB314 /* GIDSignInButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = F121ABA12B84D387001DB314 /* GIDSignInButton.swift */; };
 		F121ABA42B84D5CB001DB314 /* AuthViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F121ABA32B84D5CB001DB314 /* AuthViewModel.swift */; };
 		F121ABA72B84E5AF001DB314 /* AuthNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F121ABA62B84E5AF001DB314 /* AuthNavigationController.swift */; };
+		F14498BE2B90B13D0082A907 /* SearchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F14498BD2B90B13D0082A907 /* SearchViewModel.swift */; };
+		F155627D2B98C26F005DBECC /* MatchCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F155627C2B98C26F005DBECC /* MatchCell.swift */; };
 		F16381D22B8E12590026E260 /* BarbuttonConfigurable.swift in Sources */ = {isa = PBXBuildFile; fileRef = F16381D12B8E12590026E260 /* BarbuttonConfigurable.swift */; };
 		F16381D52B8E154B0026E260 /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F16381D42B8E154B0026E260 /* MainTabBarController.swift */; };
 		F16381D72B8E1B0F0026E260 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F16381D62B8E1B0F0026E260 /* SearchViewController.swift */; };
@@ -89,6 +91,8 @@
 		F121ABA12B84D387001DB314 /* GIDSignInButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GIDSignInButton.swift; sourceTree = "<group>"; };
 		F121ABA32B84D5CB001DB314 /* AuthViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthViewModel.swift; sourceTree = "<group>"; };
 		F121ABA62B84E5AF001DB314 /* AuthNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthNavigationController.swift; sourceTree = "<group>"; };
+		F14498BD2B90B13D0082A907 /* SearchViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewModel.swift; sourceTree = "<group>"; };
+		F155627C2B98C26F005DBECC /* MatchCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchCell.swift; sourceTree = "<group>"; };
 		F16381D12B8E12590026E260 /* BarbuttonConfigurable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BarbuttonConfigurable.swift; sourceTree = "<group>"; };
 		F16381D42B8E154B0026E260 /* MainTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
 		F16381D62B8E1B0F0026E260 /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
@@ -167,6 +171,7 @@
 		F10483462B84CCBD007D532A /* cell */ = {
 			isa = PBXGroup;
 			children = (
+				F155627C2B98C26F005DBECC /* MatchCell.swift */,
 			);
 			path = cell;
 			sourceTree = "<group>";
@@ -183,6 +188,7 @@
 			isa = PBXGroup;
 			children = (
 				F121ABA32B84D5CB001DB314 /* AuthViewModel.swift */,
+				F14498BD2B90B13D0082A907 /* SearchViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -566,9 +572,11 @@
 				F16381D72B8E1B0F0026E260 /* SearchViewController.swift in Sources */,
 				F10483502B84CD24007D532A /* UIColor.swift in Sources */,
 				F16381DC2B8E212E0026E260 /* ApiService.swift in Sources */,
+				F14498BE2B90B13D0082A907 /* SearchViewModel.swift in Sources */,
 				F10483562B84CD73007D532A /* UILabel.swift in Sources */,
 				F1DB098F2B864B1500BBE7B5 /* TabNavigationController.swift in Sources */,
 				F16381DF2B8E2A8D0026E260 /* Search.swift in Sources */,
+				F155627D2B98C26F005DBECC /* MatchCell.swift in Sources */,
 				F10483542B84CD52007D532A /* Double.swift in Sources */,
 				F16381D52B8E154B0026E260 /* MainTabBarController.swift in Sources */,
 			);
