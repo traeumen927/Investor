@@ -26,6 +26,7 @@ class HomeViewController: UIViewController, BarbuttonConfigurable {
 
         layout()
         bind()
+        wsTest()
     }
     
     private func layout() {
@@ -42,4 +43,14 @@ class HomeViewController: UIViewController, BarbuttonConfigurable {
                 self?.parentViewController?.present(nc, animated: true)
             }).disposed(by: disposeBag)
     }
+    
+    
+    private func wsTest() {
+        // SocketService를 사용하여 WebSocket 통신 설정
+        UpbitSocketService.shared.connect()
+
+        UpbitSocketService.shared.subscribeToTicker(symbol: "KRW-BTC")
+    }
 }
+
+

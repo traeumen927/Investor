@@ -22,6 +22,8 @@
 		F121ABA22B84D387001DB314 /* GIDSignInButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = F121ABA12B84D387001DB314 /* GIDSignInButton.swift */; };
 		F121ABA42B84D5CB001DB314 /* AuthViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F121ABA32B84D5CB001DB314 /* AuthViewModel.swift */; };
 		F121ABA72B84E5AF001DB314 /* AuthNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F121ABA62B84E5AF001DB314 /* AuthNavigationController.swift */; };
+		F13CF5812B99F67D002BCA38 /* UpbitSocketService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F13CF5802B99F67D002BCA38 /* UpbitSocketService.swift */; };
+		F13CF5842B99F775002BCA38 /* Starscream in Frameworks */ = {isa = PBXBuildFile; productRef = F13CF5832B99F775002BCA38 /* Starscream */; };
 		F14498BE2B90B13D0082A907 /* SearchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F14498BD2B90B13D0082A907 /* SearchViewModel.swift */; };
 		F155627D2B98C26F005DBECC /* MatchCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F155627C2B98C26F005DBECC /* MatchCell.swift */; };
 		F16381D22B8E12590026E260 /* BarbuttonConfigurable.swift in Sources */ = {isa = PBXBuildFile; fileRef = F16381D12B8E12590026E260 /* BarbuttonConfigurable.swift */; };
@@ -91,6 +93,7 @@
 		F121ABA12B84D387001DB314 /* GIDSignInButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GIDSignInButton.swift; sourceTree = "<group>"; };
 		F121ABA32B84D5CB001DB314 /* AuthViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthViewModel.swift; sourceTree = "<group>"; };
 		F121ABA62B84E5AF001DB314 /* AuthNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthNavigationController.swift; sourceTree = "<group>"; };
+		F13CF5802B99F67D002BCA38 /* UpbitSocketService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpbitSocketService.swift; sourceTree = "<group>"; };
 		F14498BD2B90B13D0082A907 /* SearchViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewModel.swift; sourceTree = "<group>"; };
 		F155627C2B98C26F005DBECC /* MatchCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchCell.swift; sourceTree = "<group>"; };
 		F16381D12B8E12590026E260 /* BarbuttonConfigurable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BarbuttonConfigurable.swift; sourceTree = "<group>"; };
@@ -127,6 +130,7 @@
 				F195C7992B833A6E00BCF35C /* RxCocoa-Dynamic in Frameworks */,
 				F195C7A62B83722B00BCF35C /* FirebaseFirestore in Frameworks */,
 				F195C7942B833A2100BCF35C /* SnapKit-Dynamic in Frameworks */,
+				F13CF5842B99F775002BCA38 /* Starscream in Frameworks */,
 				F195C7A42B83722B00BCF35C /* FirebaseAuth in Frameworks */,
 				F195C7A02B833AA700BCF35C /* Kingfisher in Frameworks */,
 				C66C21B728A3220BD1C974B9 /* Pods_Investor.framework in Frameworks */,
@@ -208,6 +212,7 @@
 			isa = PBXGroup;
 			children = (
 				F16381DB2B8E212E0026E260 /* ApiService.swift */,
+				F13CF5802B99F67D002BCA38 /* UpbitSocketService.swift */,
 			);
 			path = Service;
 			sourceTree = "<group>";
@@ -361,6 +366,7 @@
 				F104835C2B84CF5E007D532A /* GoogleSignIn */,
 				F104835E2B84CF5E007D532A /* GoogleSignInSwift */,
 				F16381D92B8E20E60026E260 /* Alamofire */,
+				F13CF5832B99F775002BCA38 /* Starscream */,
 			);
 			productName = Investor;
 			productReference = F191CCF92B833673004F8659 /* Investor.app */;
@@ -443,6 +449,7 @@
 				F195C7A22B83722B00BCF35C /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
 				F104835B2B84CF5E007D532A /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS" */,
 				F16381D82B8E20E60026E260 /* XCRemoteSwiftPackageReference "Alamofire" */,
+				F13CF5822B99F775002BCA38 /* XCRemoteSwiftPackageReference "Starscream" */,
 			);
 			productRefGroup = F191CCFA2B833673004F8659 /* Products */;
 			projectDirPath = "";
@@ -577,6 +584,7 @@
 				F1DB098F2B864B1500BBE7B5 /* TabNavigationController.swift in Sources */,
 				F16381DF2B8E2A8D0026E260 /* Search.swift in Sources */,
 				F155627D2B98C26F005DBECC /* MatchCell.swift in Sources */,
+				F13CF5812B99F67D002BCA38 /* UpbitSocketService.swift in Sources */,
 				F10483542B84CD52007D532A /* Double.swift in Sources */,
 				F16381D52B8E154B0026E260 /* MainTabBarController.swift in Sources */,
 			);
@@ -933,6 +941,14 @@
 				minimumVersion = 7.0.0;
 			};
 		};
+		F13CF5822B99F775002BCA38 /* XCRemoteSwiftPackageReference "Starscream" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/daltoniam/Starscream.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 4.0.6;
+			};
+		};
 		F16381D82B8E20E60026E260 /* XCRemoteSwiftPackageReference "Alamofire" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/Alamofire/Alamofire.git";
@@ -985,6 +1001,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = F104835B2B84CF5E007D532A /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS" */;
 			productName = GoogleSignInSwift;
+		};
+		F13CF5832B99F775002BCA38 /* Starscream */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = F13CF5822B99F775002BCA38 /* XCRemoteSwiftPackageReference "Starscream" */;
+			productName = Starscream;
 		};
 		F16381D92B8E20E60026E260 /* Alamofire */ = {
 			isa = XCSwiftPackageProductDependency;

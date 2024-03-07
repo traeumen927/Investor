@@ -28,7 +28,7 @@ class MatchCell: UITableViewCell {
     
     // MARK: 회사명
     private let nameLabel: UILabel = {
-        let label = UILabel()
+        let label = UILabel()   
         label.font = UIFont.systemFont(ofSize: 10, weight: .regular)
         label.textColor = ThemeColor.tint2
         return label
