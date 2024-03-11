@@ -6,21 +6,22 @@
 //
 
 import UIKit
+import Alamofire
 
 class MainTabBarController: UITabBarController {
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         layout()
         configure()
     }
     
     private func layout() {
         self.title = "Investor"
-        self.tabBar.backgroundColor = ThemeColor.primary1
         self.tabBar.tintColor = ThemeColor.tint1
         self.tabBar.unselectedItemTintColor = ThemeColor.tintDisable
+        self.tabBar.isTranslucent = false
     }
     
     private func configure() {
@@ -41,6 +42,14 @@ class MainTabBarController: UITabBarController {
             return
         }
         self.navigationItem.rightBarButtonItems = viewController.rightBarButtonItems
+        
+        // MARK: 실시간 코인정보 웹소켓 연결
+        //UpbitSocketService.shared.connect()
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        // MARK: 실시간 코인정보 웹소켓 연결 해제
+        UpbitSocketService.shared.disconnect()
     }
 }
 

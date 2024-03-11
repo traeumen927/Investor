@@ -7,6 +7,7 @@
 
 import Foundation
 import Starscream
+import RxSwift
 
 class UpbitSocketService {
     
@@ -18,6 +19,9 @@ class UpbitSocketService {
     
     private let urlString = "wss://api.upbit.com/websocket/v1"
     
+    // MARK: 실시간 코인 정보 Subject
+    private let tickerSubject = PublishSubject<Ticker>()
+    
     init() {
         guard let url = URL(string: urlString) else {
             fatalError("Invalid URL")
@@ -28,22 +32,23 @@ class UpbitSocketService {
         socket?.delegate = self
     }
     
-    func subscribeToTicker(symbol: String) {
+    // MARK: 실시간 코인 정보 요청(Socket.write), 비트코인(원화) -> ["KRW-BTC"] / 모든 마켓에 대한 정보 -> [] (빈배열)
+    private func subscribeToTicker(symbol: [String]) {
         
         guard let socket = self.socket else {
             print("WebSocket is not initialized")
             return
         }
-        
         let tickerSubscription: [[String: Any]] = [
-            ["ticket": "sadfasdfs"],
-            ["type": "ticker", "codes": ["KRW-BTC"]]
+            ["ticket": uuid.uuidString],
+            ["type": "ticker", "codes": symbol]
         ]
         
         let jsonData = try! JSONSerialization.data(withJSONObject: tickerSubscription)
         socket.write(data: jsonData)
     }
     
+    // MARK: 웹소켓 연결
     func connect() {
         guard let socket = self.socket else {
             print("WebSocket is not initialized")
@@ -52,6 +57,7 @@ class UpbitSocketService {
         socket.connect()
     }
     
+    // MARK: 웹소켓 연결해제
     func disconnect() {
         guard let socket = self.socket else {
             print("WebSocket is not initialized")
@@ -64,23 +70,26 @@ class UpbitSocketService {
 
 // MARK: - Place for WebSocketDelegate
 extension UpbitSocketService: WebSocketDelegate {
-    func didReceive(event: Starscream.WebSocketEvent, client: any Starscream.WebSocketClient) {
+    func didReceive(event: WebSocketEvent, client: WebSocketClient) {
         switch event {
             
         case .connected(let headers):
             print("websocket is connected: \(headers)")
-            
-            subscribeToTicker(symbol: "KRW-BTC")
+            subscribeToTicker(symbol: [])
         case .disconnected(let reason, let code):
             print("websocket is disconnected: \(reason) with code: \(code)")
         case .text(let string):
             print("Received text: \(string)")
         case .binary(let data):
-            print("Received data: \(data.count)")
-            
-            if let message = String(data: data, encoding: .utf8) {
-                print("Received message: \(message)")
+            if let ticker: Ticker = Ticker.parseData(data) {
+                tickerSubject.onNext(ticker)
+                print("ticker: \(ticker)")
             }
+            /*
+             if let message = String(data: data, encoding: .utf8) {
+             print("Received message: \(message)")
+             }
+             */
         case .ping(_):
             print("ping")
             break

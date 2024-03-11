@@ -25,12 +25,10 @@
 		F13CF5812B99F67D002BCA38 /* UpbitSocketService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F13CF5802B99F67D002BCA38 /* UpbitSocketService.swift */; };
 		F13CF5842B99F775002BCA38 /* Starscream in Frameworks */ = {isa = PBXBuildFile; productRef = F13CF5832B99F775002BCA38 /* Starscream */; };
 		F14498BE2B90B13D0082A907 /* SearchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F14498BD2B90B13D0082A907 /* SearchViewModel.swift */; };
-		F155627D2B98C26F005DBECC /* MatchCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F155627C2B98C26F005DBECC /* MatchCell.swift */; };
+		F155627D2B98C26F005DBECC /* MarketCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F155627C2B98C26F005DBECC /* MarketCell.swift */; };
 		F16381D22B8E12590026E260 /* BarbuttonConfigurable.swift in Sources */ = {isa = PBXBuildFile; fileRef = F16381D12B8E12590026E260 /* BarbuttonConfigurable.swift */; };
 		F16381D52B8E154B0026E260 /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F16381D42B8E154B0026E260 /* MainTabBarController.swift */; };
-		F16381D72B8E1B0F0026E260 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F16381D62B8E1B0F0026E260 /* SearchViewController.swift */; };
 		F16381DA2B8E20E60026E260 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = F16381D92B8E20E60026E260 /* Alamofire */; };
-		F16381DC2B8E212E0026E260 /* ApiService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F16381DB2B8E212E0026E260 /* ApiService.swift */; };
 		F16381DF2B8E2A8D0026E260 /* Search.swift in Sources */ = {isa = PBXBuildFile; fileRef = F16381DE2B8E2A8D0026E260 /* Search.swift */; };
 		F16381E12B8E2DC20026E260 /* ApiKey.plist in Resources */ = {isa = PBXBuildFile; fileRef = F16381E02B8E2DC20026E260 /* ApiKey.plist */; };
 		F191CCFD2B833673004F8659 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F191CCFC2B833673004F8659 /* AppDelegate.swift */; };
@@ -49,6 +47,12 @@
 		F195C7A02B833AA700BCF35C /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = F195C79F2B833AA700BCF35C /* Kingfisher */; };
 		F195C7A42B83722B00BCF35C /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = F195C7A32B83722B00BCF35C /* FirebaseAuth */; };
 		F195C7A62B83722B00BCF35C /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = F195C7A52B83722B00BCF35C /* FirebaseFirestore */; };
+		F19BAAF62B9EEFE20082E6C3 /* Ticker.swift in Sources */ = {isa = PBXBuildFile; fileRef = F19BAAF52B9EEFE20082E6C3 /* Ticker.swift */; };
+		F19BAAF82B9EF2B90082E6C3 /* Decodable.swift in Sources */ = {isa = PBXBuildFile; fileRef = F19BAAF72B9EF2B90082E6C3 /* Decodable.swift */; };
+		F19BAAFA2B9EFD8B0082E6C3 /* UpbitApiService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F19BAAF92B9EFD8B0082E6C3 /* UpbitApiService.swift */; };
+		F19BAAFD2B9F044D0082E6C3 /* MarketInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = F19BAAFC2B9F044D0082E6C3 /* MarketInfo.swift */; };
+		F19BAB002B9F0DEC0082E6C3 /* MarketType.swift in Sources */ = {isa = PBXBuildFile; fileRef = F19BAAFF2B9F0DEC0082E6C3 /* MarketType.swift */; };
+		F19BAB022B9F1B250082E6C3 /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F19BAB012B9F1B240082E6C3 /* HomeViewModel.swift */; };
 		F1DB098F2B864B1500BBE7B5 /* TabNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1DB098E2B864B1500BBE7B5 /* TabNavigationController.swift */; };
 		F1DB09932B864D2C00BBE7B5 /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1DB09922B864D2C00BBE7B5 /* SettingViewController.swift */; };
 		F1DB09952B864D3900BBE7B5 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1DB09942B864D3900BBE7B5 /* HomeViewController.swift */; };
@@ -95,11 +99,9 @@
 		F121ABA62B84E5AF001DB314 /* AuthNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthNavigationController.swift; sourceTree = "<group>"; };
 		F13CF5802B99F67D002BCA38 /* UpbitSocketService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpbitSocketService.swift; sourceTree = "<group>"; };
 		F14498BD2B90B13D0082A907 /* SearchViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewModel.swift; sourceTree = "<group>"; };
-		F155627C2B98C26F005DBECC /* MatchCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchCell.swift; sourceTree = "<group>"; };
+		F155627C2B98C26F005DBECC /* MarketCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarketCell.swift; sourceTree = "<group>"; };
 		F16381D12B8E12590026E260 /* BarbuttonConfigurable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BarbuttonConfigurable.swift; sourceTree = "<group>"; };
 		F16381D42B8E154B0026E260 /* MainTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
-		F16381D62B8E1B0F0026E260 /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
-		F16381DB2B8E212E0026E260 /* ApiService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiService.swift; sourceTree = "<group>"; };
 		F16381DE2B8E2A8D0026E260 /* Search.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Search.swift; sourceTree = "<group>"; };
 		F16381E02B8E2DC20026E260 /* ApiKey.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = ApiKey.plist; sourceTree = "<group>"; };
 		F191CCF92B833673004F8659 /* Investor.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Investor.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -113,6 +115,12 @@
 		F191CD192B833673004F8659 /* InvestorUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = InvestorUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		F191CD1D2B833673004F8659 /* InvestorUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InvestorUITests.swift; sourceTree = "<group>"; };
 		F191CD1F2B833673004F8659 /* InvestorUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InvestorUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		F19BAAF52B9EEFE20082E6C3 /* Ticker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Ticker.swift; sourceTree = "<group>"; };
+		F19BAAF72B9EF2B90082E6C3 /* Decodable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Decodable.swift; sourceTree = "<group>"; };
+		F19BAAF92B9EFD8B0082E6C3 /* UpbitApiService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpbitApiService.swift; sourceTree = "<group>"; };
+		F19BAAFC2B9F044D0082E6C3 /* MarketInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarketInfo.swift; sourceTree = "<group>"; };
+		F19BAAFF2B9F0DEC0082E6C3 /* MarketType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarketType.swift; sourceTree = "<group>"; };
+		F19BAB012B9F1B240082E6C3 /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
 		F1DB098E2B864B1500BBE7B5 /* TabNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabNavigationController.swift; sourceTree = "<group>"; };
 		F1DB09922B864D2C00BBE7B5 /* SettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewController.swift; sourceTree = "<group>"; };
 		F1DB09942B864D3900BBE7B5 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
@@ -175,7 +183,7 @@
 		F10483462B84CCBD007D532A /* cell */ = {
 			isa = PBXGroup;
 			children = (
-				F155627C2B98C26F005DBECC /* MatchCell.swift */,
+				F155627C2B98C26F005DBECC /* MarketCell.swift */,
 			);
 			path = cell;
 			sourceTree = "<group>";
@@ -184,6 +192,8 @@
 			isa = PBXGroup;
 			children = (
 				F16381DE2B8E2A8D0026E260 /* Search.swift */,
+				F19BAAF52B9EEFE20082E6C3 /* Ticker.swift */,
+				F19BAAFC2B9F044D0082E6C3 /* MarketInfo.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -192,6 +202,7 @@
 			isa = PBXGroup;
 			children = (
 				F121ABA32B84D5CB001DB314 /* AuthViewModel.swift */,
+				F19BAB012B9F1B240082E6C3 /* HomeViewModel.swift */,
 				F14498BD2B90B13D0082A907 /* SearchViewModel.swift */,
 			);
 			path = ViewModel;
@@ -203,7 +214,6 @@
 				F10483622B84D00F007D532A /* AuthViewController.swift */,
 				F1DB09942B864D3900BBE7B5 /* HomeViewController.swift */,
 				F1DB09922B864D2C00BBE7B5 /* SettingViewController.swift */,
-				F16381D62B8E1B0F0026E260 /* SearchViewController.swift */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -211,7 +221,7 @@
 		F104834A2B84CCD5007D532A /* Service */ = {
 			isa = PBXGroup;
 			children = (
-				F16381DB2B8E212E0026E260 /* ApiService.swift */,
+				F19BAAF92B9EFD8B0082E6C3 /* UpbitApiService.swift */,
 				F13CF5802B99F67D002BCA38 /* UpbitSocketService.swift */,
 			);
 			path = Service;
@@ -227,6 +237,7 @@
 				F10483552B84CD73007D532A /* UILabel.swift */,
 				F10483572B84CD85007D532A /* String.swift */,
 				F121ABA12B84D387001DB314 /* GIDSignInButton.swift */,
+				F19BAAF72B9EF2B90082E6C3 /* Decodable.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -290,6 +301,7 @@
 		F191CCFB2B833673004F8659 /* Investor */ = {
 			isa = PBXGroup;
 			children = (
+				F19BAAFE2B9F0DE50082E6C3 /* Enum */,
 				F16381D02B8E123C0026E260 /* Protocol */,
 				F104834C2B84CCE4007D532A /* LifeCycle */,
 				F104834B2B84CCDC007D532A /* Extension */,
@@ -324,6 +336,14 @@
 				F191CD1F2B833673004F8659 /* InvestorUITestsLaunchTests.swift */,
 			);
 			path = InvestorUITests;
+			sourceTree = "<group>";
+		};
+		F19BAAFE2B9F0DE50082E6C3 /* Enum */ = {
+			isa = PBXGroup;
+			children = (
+				F19BAAFF2B9F0DEC0082E6C3 /* MarketType.swift */,
+			);
+			path = Enum;
 			sourceTree = "<group>";
 		};
 		F914FBE008C4BFAA2DF82810 /* Frameworks */ = {
@@ -565,27 +585,31 @@
 			buildActionMask = 2147483647;
 			files = (
 				F104834E2B84CD0F007D532A /* CALayer.swift in Sources */,
+				F19BAB002B9F0DEC0082E6C3 /* MarketType.swift in Sources */,
+				F19BAAF62B9EEFE20082E6C3 /* Ticker.swift in Sources */,
 				F10483632B84D00F007D532A /* AuthViewController.swift in Sources */,
 				F121ABA22B84D387001DB314 /* GIDSignInButton.swift in Sources */,
 				F121ABA72B84E5AF001DB314 /* AuthNavigationController.swift in Sources */,
 				F191CCFD2B833673004F8659 /* AppDelegate.swift in Sources */,
 				F1DB09952B864D3900BBE7B5 /* HomeViewController.swift in Sources */,
 				F1DB09932B864D2C00BBE7B5 /* SettingViewController.swift in Sources */,
+				F19BAAF82B9EF2B90082E6C3 /* Decodable.swift in Sources */,
 				F10483582B84CD85007D532A /* String.swift in Sources */,
 				F16381D22B8E12590026E260 /* BarbuttonConfigurable.swift in Sources */,
 				F191CCFF2B833673004F8659 /* SceneDelegate.swift in Sources */,
+				F19BAAFA2B9EFD8B0082E6C3 /* UpbitApiService.swift in Sources */,
 				F10483522B84CD3E007D532A /* UIResponder.swift in Sources */,
 				F121ABA42B84D5CB001DB314 /* AuthViewModel.swift in Sources */,
-				F16381D72B8E1B0F0026E260 /* SearchViewController.swift in Sources */,
+				F19BAB022B9F1B250082E6C3 /* HomeViewModel.swift in Sources */,
 				F10483502B84CD24007D532A /* UIColor.swift in Sources */,
-				F16381DC2B8E212E0026E260 /* ApiService.swift in Sources */,
 				F14498BE2B90B13D0082A907 /* SearchViewModel.swift in Sources */,
 				F10483562B84CD73007D532A /* UILabel.swift in Sources */,
 				F1DB098F2B864B1500BBE7B5 /* TabNavigationController.swift in Sources */,
 				F16381DF2B8E2A8D0026E260 /* Search.swift in Sources */,
-				F155627D2B98C26F005DBECC /* MatchCell.swift in Sources */,
+				F155627D2B98C26F005DBECC /* MarketCell.swift in Sources */,
 				F13CF5812B99F67D002BCA38 /* UpbitSocketService.swift in Sources */,
 				F10483542B84CD52007D532A /* Double.swift in Sources */,
+				F19BAAFD2B9F044D0082E6C3 /* MarketInfo.swift in Sources */,
 				F16381D52B8E154B0026E260 /* MainTabBarController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -21,16 +21,24 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         FirebaseApp.configure()
         
         // MARK: - Place for layout For Navigation Controller
-        let appearance = UINavigationBarAppearance()
-        appearance.configureWithOpaqueBackground()
-        appearance.backgroundColor = ThemeColor.primary1
-        appearance.titleTextAttributes = [.foregroundColor: ThemeColor.tint1]
-        appearance.largeTitleTextAttributes = [.foregroundColor: ThemeColor.tint1]
+        let naviAppearance = UINavigationBarAppearance()
+        naviAppearance.configureWithOpaqueBackground()
+        naviAppearance.backgroundColor = ThemeColor.primary1
+        naviAppearance.titleTextAttributes = [.foregroundColor: ThemeColor.tint1]
+        naviAppearance.largeTitleTextAttributes = [.foregroundColor: ThemeColor.tint1]
         
-        
-        UINavigationBar.appearance().scrollEdgeAppearance = appearance
-        UINavigationBar.appearance().standardAppearance = appearance
+        UINavigationBar.appearance().scrollEdgeAppearance = naviAppearance
+        UINavigationBar.appearance().standardAppearance = naviAppearance
         UINavigationBar.appearance().tintColor = ThemeColor.tint1
+        
+        
+        // MARK: - Place for layout For TabBar Controller
+        let tabBarAppearance = UITabBarAppearance()
+        tabBarAppearance.configureWithTransparentBackground()
+        tabBarAppearance.backgroundColor = ThemeColor.primary1
+        
+        UITabBar.appearance().scrollEdgeAppearance = tabBarAppearance
+        UITabBar.appearance().standardAppearance = tabBarAppearance
         
         return true
     }
