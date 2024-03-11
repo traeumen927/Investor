@@ -24,7 +24,6 @@
 		F121ABA72B84E5AF001DB314 /* AuthNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F121ABA62B84E5AF001DB314 /* AuthNavigationController.swift */; };
 		F13CF5812B99F67D002BCA38 /* UpbitSocketService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F13CF5802B99F67D002BCA38 /* UpbitSocketService.swift */; };
 		F13CF5842B99F775002BCA38 /* Starscream in Frameworks */ = {isa = PBXBuildFile; productRef = F13CF5832B99F775002BCA38 /* Starscream */; };
-		F14498BE2B90B13D0082A907 /* SearchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F14498BD2B90B13D0082A907 /* SearchViewModel.swift */; };
 		F155627D2B98C26F005DBECC /* MarketCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F155627C2B98C26F005DBECC /* MarketCell.swift */; };
 		F16381D22B8E12590026E260 /* BarbuttonConfigurable.swift in Sources */ = {isa = PBXBuildFile; fileRef = F16381D12B8E12590026E260 /* BarbuttonConfigurable.swift */; };
 		F16381D52B8E154B0026E260 /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F16381D42B8E154B0026E260 /* MainTabBarController.swift */; };
@@ -51,7 +50,6 @@
 		F19BAAF82B9EF2B90082E6C3 /* Decodable.swift in Sources */ = {isa = PBXBuildFile; fileRef = F19BAAF72B9EF2B90082E6C3 /* Decodable.swift */; };
 		F19BAAFA2B9EFD8B0082E6C3 /* UpbitApiService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F19BAAF92B9EFD8B0082E6C3 /* UpbitApiService.swift */; };
 		F19BAAFD2B9F044D0082E6C3 /* MarketInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = F19BAAFC2B9F044D0082E6C3 /* MarketInfo.swift */; };
-		F19BAB002B9F0DEC0082E6C3 /* MarketType.swift in Sources */ = {isa = PBXBuildFile; fileRef = F19BAAFF2B9F0DEC0082E6C3 /* MarketType.swift */; };
 		F19BAB022B9F1B250082E6C3 /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F19BAB012B9F1B240082E6C3 /* HomeViewModel.swift */; };
 		F1DB098F2B864B1500BBE7B5 /* TabNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1DB098E2B864B1500BBE7B5 /* TabNavigationController.swift */; };
 		F1DB09932B864D2C00BBE7B5 /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1DB09922B864D2C00BBE7B5 /* SettingViewController.swift */; };
@@ -98,7 +96,6 @@
 		F121ABA32B84D5CB001DB314 /* AuthViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthViewModel.swift; sourceTree = "<group>"; };
 		F121ABA62B84E5AF001DB314 /* AuthNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthNavigationController.swift; sourceTree = "<group>"; };
 		F13CF5802B99F67D002BCA38 /* UpbitSocketService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpbitSocketService.swift; sourceTree = "<group>"; };
-		F14498BD2B90B13D0082A907 /* SearchViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewModel.swift; sourceTree = "<group>"; };
 		F155627C2B98C26F005DBECC /* MarketCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarketCell.swift; sourceTree = "<group>"; };
 		F16381D12B8E12590026E260 /* BarbuttonConfigurable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BarbuttonConfigurable.swift; sourceTree = "<group>"; };
 		F16381D42B8E154B0026E260 /* MainTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
@@ -119,7 +116,6 @@
 		F19BAAF72B9EF2B90082E6C3 /* Decodable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Decodable.swift; sourceTree = "<group>"; };
 		F19BAAF92B9EFD8B0082E6C3 /* UpbitApiService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpbitApiService.swift; sourceTree = "<group>"; };
 		F19BAAFC2B9F044D0082E6C3 /* MarketInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarketInfo.swift; sourceTree = "<group>"; };
-		F19BAAFF2B9F0DEC0082E6C3 /* MarketType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarketType.swift; sourceTree = "<group>"; };
 		F19BAB012B9F1B240082E6C3 /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
 		F1DB098E2B864B1500BBE7B5 /* TabNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabNavigationController.swift; sourceTree = "<group>"; };
 		F1DB09922B864D2C00BBE7B5 /* SettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewController.swift; sourceTree = "<group>"; };
@@ -203,7 +199,6 @@
 			children = (
 				F121ABA32B84D5CB001DB314 /* AuthViewModel.swift */,
 				F19BAB012B9F1B240082E6C3 /* HomeViewModel.swift */,
-				F14498BD2B90B13D0082A907 /* SearchViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -341,7 +336,6 @@
 		F19BAAFE2B9F0DE50082E6C3 /* Enum */ = {
 			isa = PBXGroup;
 			children = (
-				F19BAAFF2B9F0DEC0082E6C3 /* MarketType.swift */,
 			);
 			path = Enum;
 			sourceTree = "<group>";
@@ -585,7 +579,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				F104834E2B84CD0F007D532A /* CALayer.swift in Sources */,
-				F19BAB002B9F0DEC0082E6C3 /* MarketType.swift in Sources */,
 				F19BAAF62B9EEFE20082E6C3 /* Ticker.swift in Sources */,
 				F10483632B84D00F007D532A /* AuthViewController.swift in Sources */,
 				F121ABA22B84D387001DB314 /* GIDSignInButton.swift in Sources */,
@@ -602,7 +595,6 @@
 				F121ABA42B84D5CB001DB314 /* AuthViewModel.swift in Sources */,
 				F19BAB022B9F1B250082E6C3 /* HomeViewModel.swift in Sources */,
 				F10483502B84CD24007D532A /* UIColor.swift in Sources */,
-				F14498BE2B90B13D0082A907 /* SearchViewModel.swift in Sources */,
 				F10483562B84CD73007D532A /* UILabel.swift in Sources */,
 				F1DB098F2B864B1500BBE7B5 /* TabNavigationController.swift in Sources */,
 				F16381DF2B8E2A8D0026E260 /* Search.swift in Sources */,

@@ -24,7 +24,8 @@ class HomeViewModel {
             guard let self = self else { return }
             switch result {
             case .success(let markets):
-                self.marketListSubject.onNext(markets)
+                let krwMarkets = markets.filter { $0.market.hasPrefix("KRW-")}
+                self.marketListSubject.onNext(krwMarkets)
             case .failure(let error):
                 print("API 요청 실패: \(error)")
             }

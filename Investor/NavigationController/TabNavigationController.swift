@@ -14,7 +14,11 @@ class TabNavigationController: UINavigationController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        layout()
+    }
+    
+    private func layout() {
+        self.navigationBar.isTranslucent = false
     }
     
     override func viewWillAppear(_ animated: Bool) {
