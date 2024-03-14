@@ -9,6 +9,7 @@ import UIKit
 import RxSwift
 import RxCocoa
 import Alamofire
+import RxDataSources
 
 class HomeViewController: UIViewController, BarbuttonConfigurable {
     
@@ -18,8 +19,10 @@ class HomeViewController: UIViewController, BarbuttonConfigurable {
     
     private var disposeBag = DisposeBag()
     
-    // MARK: 거래가능 마켓 코드 리스트
-    private var marketList = [MarketInfo]()
+    // MARK: 거래가능 마켓 코드 리스트 + 실시간 Ticker
+    private var combinedData: [(MarketInfo, Ticker)] = []
+    
+    
     
     
     // MARK: right Bar Button Item
@@ -34,14 +37,12 @@ class HomeViewController: UIViewController, BarbuttonConfigurable {
         let view = UITableView()
         view.backgroundColor = .clear
         view.separatorStyle = .none
-        view.delegate = self
-        view.dataSource = self
         return view
     }()
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         layout()
         bind()
     }
@@ -61,37 +62,14 @@ class HomeViewController: UIViewController, BarbuttonConfigurable {
     }
     
     private func bind() {
-        
-        // MARK: right Bar Button Item Tapped
-        self.searchButton.rx.tap
-            .subscribe(onNext: { [weak self] _ in
-                guard let self = self else { return }
-            }).disposed(by: disposeBag)
-        
-        
-        // MARK: 거래 가능 코인 목록 구독
-        self.viewModel.marketListSubject
+        //        // MARK: 실시간 코인정보 MarketCell에 바인딩
+        viewModel.combinedData
             .observe(on: MainScheduler.instance)
-            .subscribe(onNext: { [weak self] markets in
-                guard let self = self else { return }
-                self.marketList = markets
-                self.tableView.reloadData()
-            }).disposed(by: disposeBag)
-    }
-}
-
-
-// MARK: - Place for extension SearchViewController with tableView
-extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return self.marketList.count
-    }
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: MarketCell.cellId, for: indexPath) as! MarketCell
-        
-        cell.configure(with: marketList[indexPath.row])
-        
-        return cell
+            .bind(to: tableView.rx.items) { tableView, row, item in
+                let cell = tableView.dequeueReusableCell(withIdentifier: MarketCell.cellId, for: IndexPath(row: row, section: 0)) as! MarketCell
+                cell.configure(market: item.0, ticker: item.1)
+                return cell
+            }
+            .disposed(by: disposeBag)
     }
 }

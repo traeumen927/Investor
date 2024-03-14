@@ -25,6 +25,7 @@
 		F13CF5812B99F67D002BCA38 /* UpbitSocketService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F13CF5802B99F67D002BCA38 /* UpbitSocketService.swift */; };
 		F13CF5842B99F775002BCA38 /* Starscream in Frameworks */ = {isa = PBXBuildFile; productRef = F13CF5832B99F775002BCA38 /* Starscream */; };
 		F155627D2B98C26F005DBECC /* MarketCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F155627C2B98C26F005DBECC /* MarketCell.swift */; };
+		F15DA0F52BA3464300A9F90B /* RxDataSources in Frameworks */ = {isa = PBXBuildFile; productRef = F15DA0F42BA3464300A9F90B /* RxDataSources */; };
 		F16381D22B8E12590026E260 /* BarbuttonConfigurable.swift in Sources */ = {isa = PBXBuildFile; fileRef = F16381D12B8E12590026E260 /* BarbuttonConfigurable.swift */; };
 		F16381D52B8E154B0026E260 /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F16381D42B8E154B0026E260 /* MainTabBarController.swift */; };
 		F16381DA2B8E20E60026E260 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = F16381D92B8E20E60026E260 /* Alamofire */; };
@@ -130,6 +131,7 @@
 				F195C7972B833A6E00BCF35C /* RxCocoa in Frameworks */,
 				F195C79D2B833A6E00BCF35C /* RxSwift-Dynamic in Frameworks */,
 				F104835D2B84CF5E007D532A /* GoogleSignIn in Frameworks */,
+				F15DA0F52BA3464300A9F90B /* RxDataSources in Frameworks */,
 				F104835F2B84CF5E007D532A /* GoogleSignInSwift in Frameworks */,
 				F195C7992B833A6E00BCF35C /* RxCocoa-Dynamic in Frameworks */,
 				F195C7A62B83722B00BCF35C /* FirebaseFirestore in Frameworks */,
@@ -381,6 +383,7 @@
 				F104835E2B84CF5E007D532A /* GoogleSignInSwift */,
 				F16381D92B8E20E60026E260 /* Alamofire */,
 				F13CF5832B99F775002BCA38 /* Starscream */,
+				F15DA0F42BA3464300A9F90B /* RxDataSources */,
 			);
 			productName = Investor;
 			productReference = F191CCF92B833673004F8659 /* Investor.app */;
@@ -464,6 +467,7 @@
 				F104835B2B84CF5E007D532A /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS" */,
 				F16381D82B8E20E60026E260 /* XCRemoteSwiftPackageReference "Alamofire" */,
 				F13CF5822B99F775002BCA38 /* XCRemoteSwiftPackageReference "Starscream" */,
+				F15DA0F32BA3464300A9F90B /* XCRemoteSwiftPackageReference "RxDataSources" */,
 			);
 			productRefGroup = F191CCFA2B833673004F8659 /* Products */;
 			projectDirPath = "";
@@ -965,6 +969,14 @@
 				minimumVersion = 4.0.6;
 			};
 		};
+		F15DA0F32BA3464300A9F90B /* XCRemoteSwiftPackageReference "RxDataSources" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/RxSwiftCommunity/RxDataSources.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.0.2;
+			};
+		};
 		F16381D82B8E20E60026E260 /* XCRemoteSwiftPackageReference "Alamofire" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/Alamofire/Alamofire.git";
@@ -1022,6 +1034,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = F13CF5822B99F775002BCA38 /* XCRemoteSwiftPackageReference "Starscream" */;
 			productName = Starscream;
+		};
+		F15DA0F42BA3464300A9F90B /* RxDataSources */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = F15DA0F32BA3464300A9F90B /* XCRemoteSwiftPackageReference "RxDataSources" */;
+			productName = RxDataSources;
 		};
 		F16381D92B8E20E60026E260 /* Alamofire */ = {
 			isa = XCSwiftPackageProductDependency;

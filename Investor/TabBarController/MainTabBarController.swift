@@ -44,7 +44,7 @@ class MainTabBarController: UITabBarController {
         self.navigationItem.rightBarButtonItems = viewController.rightBarButtonItems
         
         // MARK: 실시간 코인정보 웹소켓 연결
-        //UpbitSocketService.shared.connect()
+        UpbitSocketService.shared.connect()
     }
     
     override func viewWillDisappear(_ animated: Bool) {

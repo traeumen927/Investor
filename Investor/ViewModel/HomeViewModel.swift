@@ -13,22 +13,16 @@ import Alamofire
 class HomeViewModel {
     
     private let disposeBag = DisposeBag()
-    let marketListSubject = PublishSubject<[MarketInfo]>()
+    
+    private let upbitSocketService = UpbitSocketService.shared
+    
+    // MARK: Outputs
+    let combinedData = PublishSubject<[(MarketInfo, Ticker)]>()
     
     init() {
-        allMarkets()
-    }
-    
-    private func allMarkets() {
-        UpbitApiService.request(endpoint: .allMarkets) { [weak self] (result: Result<[MarketInfo], AFError>) in
-            guard let self = self else { return }
-            switch result {
-            case .success(let markets):
-                let krwMarkets = markets.filter { $0.market.hasPrefix("KRW-")}
-                self.marketListSubject.onNext(krwMarkets)
-            case .failure(let error):
-                print("API 요청 실패: \(error)")
-            }
-        }
+        // MARK: 거래 가능 마켓 + 실시간 정보 Ticker
+        upbitSocketService.combinedDataSubject
+            .bind(to: combinedData)
+            .disposed(by: disposeBag)
     }
 }
