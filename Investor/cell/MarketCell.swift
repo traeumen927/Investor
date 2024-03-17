@@ -73,9 +73,15 @@ class MarketCell: UITableViewCell {
         }
     }
     
-    func configure(market: MarketInfo, ticker: Ticker) {
-        self.korLabel.text = market.koreanName
-        self.engLabel.text = "\(ticker.trade_price)"
-        self.symbolLabel.text = market.market
+    func configure(with marketTicker: MarketTicker) {
+        self.korLabel.text = marketTicker.marketInfo.koreanName
+        self.engLabel.text = "\(marketTicker.socketTicker?.trade_price ?? marketTicker.apiTicker.trade_price)"
+        self.symbolLabel.text = marketTicker.marketInfo.market
+        
+        
+    }
+    
+    func update(with marketTicker: MarketTicker) {
+        self.engLabel.text = "수정!!"
     }
 }

@@ -22,15 +22,12 @@ class UpbitSocketService {
     
     private let urlString = "wss://api.upbit.com/websocket/v1"
     
-    // MARK: 거래가능한 원화마켓 목록
-    private let marketListSubject = BehaviorSubject<[MarketInfo]>(value: [])
     
-    // MARK: 실시간 코인 정보 Subject
-    private let tickerSubject = PublishSubject<Ticker>()
+    // MARK: 거래가능 마켓 + 요청당시 Ticker
+    let marketTickerSubject: BehaviorSubject<[MarketTicker]> = BehaviorSubject<[MarketTicker]>(value: [])
     
-    // MARK: 거래가능 마켓 + 실시간 Ticker Combined Subject
-    let combinedDataSubject = PublishSubject<[(MarketInfo, Ticker)]>()
-    
+    // MARK: 실시간 현재가 Ticker
+    let socketTickerSubject: PublishSubject<SocketTicker> = PublishSubject<SocketTicker>()
     
     
     init() {
@@ -41,61 +38,59 @@ class UpbitSocketService {
         request.timeoutInterval = 5
         socket = WebSocket(request: request)
         socket?.delegate = self
-        
-        bind()
     }
     
-    private func bind() {
-        // MARK: 거래 가능한 마켓 정보 -> 실시간 코인정보 웹소켓 요청
-        Observable.combineLatest(marketListSubject, tickerSubject)
-            .scan([]) { combinedData, next -> [(MarketInfo, Ticker)] in
-                let (marketInfos, ticker) = next
-                var updatedCombinedData = combinedData
-                
-                // marketListSubject의 각 MarketInfo에 대해 해당하는 Ticker를 찾아서 combinedData를 업데이트합니다.
-                for marketInfo in marketInfos {
-                    if ticker.code == marketInfo.market {
-                        // 이미 combinedData에 해당 MarketInfo가 있는지 확인합니다.
-                        if let existingIndex = updatedCombinedData.firstIndex(where: { $0.0.market == marketInfo.market }) {
-                            // 이미 존재하는 경우 해당 요소를 업데이트합니다.
-                            updatedCombinedData[existingIndex] = (marketInfo, ticker)
-                        } else {
-                            // 존재하지 않는 경우 새로운 요소를 추가합니다.
-                            updatedCombinedData.append((marketInfo, ticker))
+    // MARK: 거래가능 마켓 + 요청 시점 현재가(Ticker)조회
+    private func fetchMarketTickers() {
+        // MARK: 거래가능 마켓 조회
+        UpbitApiService.request(endpoint: .allMarkets) { [weak self] (result: Result<[MarketInfo], AFError>) in
+                guard let self = self else { return }
+                switch result {
+                case .success(let markets):
+                    let krwMarkets = markets.filter { $0.market.hasPrefix("KRW-")}
+                    let marketCodes = krwMarkets.map { $0.market }
+        
+                    // MARK: 거래가능 마켓의 현재가(Ticker)조회
+                    UpbitApiService.request(endpoint: .ticker(markets: marketCodes)) { [weak self] (result: Result<[ApiTicker], AFError>) in
+                        guard let self = self else { return }
+                        switch result {
+                        case .success(let tickers):
+                            var marketTickers: [MarketTicker] = []
+                            for marketInfo in krwMarkets {
+                                if let ticker = tickers.first(where: { $0.market == marketInfo.market }) {
+                                    let marketTicker = MarketTicker(marketInfo: marketInfo, apiTicker: ticker)
+                                    marketTickers.append(marketTicker)
+                                }
+                            }
+                            // MARK: 거래가능 마켓 + 현재가 리스트 방출
+                            self.marketTickerSubject.onNext(marketTickers)
+                            
+                            // MARK: 마켓의 실시간 현재가(Ticker) 웹소켓 요청
+                            self.subscribeToTicker(symbol: marketCodes)
+                        case .failure(let error):
+                            print("Error fetching tickers: \(error)")
                         }
                     }
+                case .failure(let error):
+                    print("API 요청 실패: \(error)")
                 }
-                return updatedCombinedData
             }
-            .subscribe(onNext: { combinedData in
-                self.combinedDataSubject.onNext(combinedData)
-            })
-            .disposed(by: disposeBag)
     }
     
-    // MARK: 소켓이 연결 된 후 거래 가능한 마켓 정보 가져옴
-    private func fetchMarkets() {
-        UpbitApiService.request(endpoint: .allMarkets) { [weak self] (result: Result<[MarketInfo], AFError>) in
-            guard let self = self else { return }
-            switch result {
-            case .success(let markets):
-                let krwMarkets = markets.filter { $0.market.hasPrefix("KRW-")}
-                self.marketListSubject.onNext(krwMarkets)
-                
-                // MarketInfo 배열에서 market 속성만 추출하여 필터링 및 배열로 변환 ["KRW-BTC", "KRW-ETH", ...]
-                let symbolList = krwMarkets.map { $0.market }
-                
-                // 실시간 코인 정보 요청
-                self.subscribeToTicker(symbol: symbolList)
-                
-            case .failure(let error):
-                print("API 요청 실패: \(error)")
-            }
-        }
+    // MARK: 실시간 Ticker 정보를 기존의 MarketTicker에 업데이트(보류)
+    private func updateMarketTicker(with socketTicker: SocketTicker) {
+        self.marketTickerSubject
+            .take(1)
+            .subscribe(onNext: { [weak self] marketTickers in
+                guard let self = self else { return }
+                var updateTickers = marketTickers
+                // MARK: socketTicker와 일치하는 marketTicker 업데이트
+                if let index = updateTickers.firstIndex(where: { $0.marketInfo.market == socketTicker.code }) {
+                    //updateTickers[index].socketTicker = socketTicker
+                    marketTickerSubject.onNext(updateTickers)
+                }
+            }).disposed(by: disposeBag)
     }
-    
-    
-
     
     // MARK: 실시간 코인 정보 요청(Socket.write), 비트코인(원화) -> ["KRW-BTC"] / 모든 마켓에 대한 정보 -> [] (빈배열)
     private func subscribeToTicker(symbol: [String]) {
@@ -105,12 +100,12 @@ class UpbitSocketService {
         }
         let tickerSubscription: [[String: Any]] = [
             ["ticket": uuid.uuidString],
-            ["type": "ticker", "codes": symbol]
+            ["type": "ticker", "codes": symbol, "isOnlyRealtime": true]
         ]
         let jsonData = try! JSONSerialization.data(withJSONObject: tickerSubscription)
         socket.write(data: jsonData)
     }
-    
+        
     // MARK: 웹소켓 연결
     func connect() {
         guard let socket = self.socket else {
@@ -141,7 +136,7 @@ extension UpbitSocketService: WebSocketDelegate {
             print("websocket is connected: \(headers)")
             
             // MARK: 소켓이 연결되면 모든 마켓 정보를 가져옵니다.
-            fetchMarkets()
+            fetchMarketTickers()
             
             // MARK: 소켓이 연결 해제됨
         case .disconnected(let reason, let code):
@@ -153,15 +148,14 @@ extension UpbitSocketService: WebSocketDelegate {
             
             // MARK: 이진(binary) 데이터를 받음
         case .binary(let data):
-            if let ticker: Ticker = Ticker.parseData(data) {
-                tickerSubject.onNext(ticker)
-                //print("ticker: \(ticker)")
+            if let ticker: SocketTicker = SocketTicker.parseData(data) {
+                self.socketTickerSubject.onNext(ticker)
             }
-            /*
-             if let message = String(data: data, encoding: .utf8) {
-             print("Received message: \(message)")
-             }
-             */
+            
+//             if let message = String(data: data, encoding: .utf8) {
+//             print("Received message: \(message)")
+//             }
+             
             
             // MARK: 핑 메세지를 받음
         case .ping(_):

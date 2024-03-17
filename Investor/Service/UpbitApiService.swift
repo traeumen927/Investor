@@ -60,15 +60,26 @@ extension UpbitApiService {
         // MARK: 거래 가능한 모든 마켓 코드 조회
         case allMarkets
         
+        // MARK: 요청 당시 종목의 스냅샷 조회
+        case ticker(markets: [String])
+        
+        
         var path: String {
             switch self {
             case .allMarkets :
                 return "/market/all?isDetails=true"
+            case .ticker:
+                return "/ticker"
             }
         }
         
         var parameters: Parameters? {
-            return nil
+            switch self {
+            case .allMarkets:
+                return nil
+            case .ticker(let markets):
+                return ["markets": markets.joined(separator: ",")]
+            }
         }
         
         var headers: HTTPHeaders? {
