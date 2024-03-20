@@ -37,5 +37,4 @@ struct ThemeColor {
     static let positive = UIColor(hexString: "c84a31")
     static let stable = UIColor(hexString: "bcb8b1")
     static let negative = UIColor(hexString: "1261c4")
-    
 }
