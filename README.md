@@ -4,7 +4,7 @@ Coin trading app using Swift-based Upbit’s REST API and websocket service
 The target api used https://docs.upbit.com/reference
 
 <p align="center">
-  <img src="https://github.com/traeumen927/Investor/assets/18188727/a954f25f-8004-4a44-8396-dc604237a08f" width="30%">
+  <img src="https://github.com/traeumen927/Investor/assets/18188727/463507ab-2903-4d04-b608-d47fbfe8c30a" width="30%">
 </p>
 
 
