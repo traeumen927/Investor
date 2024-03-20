@@ -27,7 +27,7 @@ struct SocketTicker: Decodable {
     ///누적 거래대금(UTC 0시 기준)
     let acc_trade_price: Double
     ///EVEN : 보합 RISE : 상승 FALL : 하락
-    let change: String
+    let change: ChangeType
     ///변화액의 절대값
     let change_price: Double
     ///부호가 있는 변화액
@@ -123,7 +123,8 @@ struct SocketTicker: Decodable {
         trade_price = try container.decode(Double.self, forKey: .trade_price)
         prev_closing_price = try container.decode(Double.self, forKey: .prev_closing_price)
         acc_trade_price = try container.decode(Double.self, forKey: .acc_trade_price)
-        change = try container.decode(String.self, forKey: .change)
+        let changeString = try container.decode(String.self, forKey: .change)
+        change = ChangeType(rawValue: changeString) ?? .even
         change_price = try container.decode(Double.self, forKey: .change_price)
         signed_change_price = try container.decode(Double.self, forKey: .signed_change_price)
         change_rate = try container.decode(Double.self, forKey: .change_rate)

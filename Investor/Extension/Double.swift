@@ -9,7 +9,7 @@ import Foundation
 
 extension Double {
     // MARK: Double의 소수점 자릿수 제한
-    func roundedString(toDecimalPlaces places: Int) -> String {
+    func roundedString(places: Int) -> String {
         let formatter = NumberFormatter()
         formatter.minimumFractionDigits = 0
         formatter.maximumFractionDigits = places

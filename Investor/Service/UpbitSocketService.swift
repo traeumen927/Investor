@@ -77,20 +77,6 @@ class UpbitSocketService {
             }
     }
     
-    // MARK: 실시간 Ticker 정보를 기존의 MarketTicker에 업데이트(보류)
-    private func updateMarketTicker(with socketTicker: SocketTicker) {
-        self.marketTickerSubject
-            .take(1)
-            .subscribe(onNext: { [weak self] marketTickers in
-                guard let self = self else { return }
-                var updateTickers = marketTickers
-                // MARK: socketTicker와 일치하는 marketTicker 업데이트
-                if let index = updateTickers.firstIndex(where: { $0.marketInfo.market == socketTicker.code }) {
-                    //updateTickers[index].socketTicker = socketTicker
-                    marketTickerSubject.onNext(updateTickers)
-                }
-            }).disposed(by: disposeBag)
-    }
     
     // MARK: 실시간 코인 정보 요청(Socket.write), 비트코인(원화) -> ["KRW-BTC"] / 모든 마켓에 대한 정보 -> [] (빈배열)
     private func subscribeToTicker(symbol: [String]) {
@@ -151,11 +137,6 @@ extension UpbitSocketService: WebSocketDelegate {
             if let ticker: SocketTicker = SocketTicker.parseData(data) {
                 self.socketTickerSubject.onNext(ticker)
             }
-            
-//             if let message = String(data: data, encoding: .utf8) {
-//             print("Received message: \(message)")
-//             }
-             
             
             // MARK: 핑 메세지를 받음
         case .ping(_):

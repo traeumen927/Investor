@@ -36,10 +36,11 @@ class HomeViewController: UIViewController, BarbuttonConfigurable {
         layout.scrollDirection = .vertical
         layout.minimumLineSpacing = 0
         layout.minimumInteritemSpacing = 0
-        layout.itemSize = CGSize(width: UIScreen.main.bounds.width, height: 100) // 가로 너비 전체
+        layout.itemSize = CGSize(width: UIScreen.main.bounds.width, height: 70)
         
         let view = UICollectionView(frame: .zero, collectionViewLayout: layout)
         view.backgroundColor = .clear
+        view.showsVerticalScrollIndicator = false
         view.delegate = self
         view.dataSource = self
         return view
@@ -103,7 +104,12 @@ class HomeViewController: UIViewController, BarbuttonConfigurable {
                 self.marketTickerList[index].socketTicker = newTicker
             }
         }
-        self.collectionView.reloadItems(at: indexPathsToReload)
+        
+        // MARK: 변경 애니메이션 없이 items 업데이트
+        UIView.performWithoutAnimation {
+            self.collectionView.reloadItems(at: indexPathsToReload)
+        }
+        
     }
 }
 

@@ -19,6 +19,9 @@
 		F104835D2B84CF5E007D532A /* GoogleSignIn in Frameworks */ = {isa = PBXBuildFile; productRef = F104835C2B84CF5E007D532A /* GoogleSignIn */; };
 		F104835F2B84CF5E007D532A /* GoogleSignInSwift in Frameworks */ = {isa = PBXBuildFile; productRef = F104835E2B84CF5E007D532A /* GoogleSignInSwift */; };
 		F10483632B84D00F007D532A /* AuthViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F10483622B84D00F007D532A /* AuthViewController.swift */; };
+		F1079F0C2BAABE9400E7AFEE /* PercentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1079F0B2BAABE9400E7AFEE /* PercentView.swift */; };
+		F1079F0E2BAB035800E7AFEE /* ChangeType.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1079F0D2BAB035800E7AFEE /* ChangeType.swift */; };
+		F1079F102BAB0F4000E7AFEE /* DailyChangeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1079F0F2BAB0F4000E7AFEE /* DailyChangeView.swift */; };
 		F11733E32BA6DA080023E90D /* MarketTicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = F11733E22BA6DA080023E90D /* MarketTicker.swift */; };
 		F121ABA22B84D387001DB314 /* GIDSignInButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = F121ABA12B84D387001DB314 /* GIDSignInButton.swift */; };
 		F121ABA42B84D5CB001DB314 /* AuthViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F121ABA32B84D5CB001DB314 /* AuthViewModel.swift */; };
@@ -95,6 +98,9 @@
 		F10483572B84CD85007D532A /* String.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = String.swift; sourceTree = "<group>"; };
 		F10483592B84CEA5007D532A /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		F10483622B84D00F007D532A /* AuthViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthViewController.swift; sourceTree = "<group>"; };
+		F1079F0B2BAABE9400E7AFEE /* PercentView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PercentView.swift; sourceTree = "<group>"; };
+		F1079F0D2BAB035800E7AFEE /* ChangeType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangeType.swift; sourceTree = "<group>"; };
+		F1079F0F2BAB0F4000E7AFEE /* DailyChangeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyChangeView.swift; sourceTree = "<group>"; };
 		F11733E22BA6DA080023E90D /* MarketTicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarketTicker.swift; sourceTree = "<group>"; };
 		F121ABA12B84D387001DB314 /* GIDSignInButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GIDSignInButton.swift; sourceTree = "<group>"; };
 		F121ABA32B84D5CB001DB314 /* AuthViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthViewModel.swift; sourceTree = "<group>"; };
@@ -253,6 +259,15 @@
 			path = LifeCycle;
 			sourceTree = "<group>";
 		};
+		F1079F0A2BAABE7900E7AFEE /* CustomView */ = {
+			isa = PBXGroup;
+			children = (
+				F1079F0B2BAABE9400E7AFEE /* PercentView.swift */,
+				F1079F0F2BAB0F4000E7AFEE /* DailyChangeView.swift */,
+			);
+			path = CustomView;
+			sourceTree = "<group>";
+		};
 		F121ABA52B84E588001DB314 /* NavigationController */ = {
 			isa = PBXGroup;
 			children = (
@@ -314,6 +329,7 @@
 				F10483492B84CCCF007D532A /* ViewController */,
 				F10483482B84CCCA007D532A /* ViewModel */,
 				F10483472B84CCC3007D532A /* Model */,
+				F1079F0A2BAABE7900E7AFEE /* CustomView */,
 				F10483462B84CCBD007D532A /* cell */,
 				F191CD052B833673004F8659 /* Assets.xcassets */,
 				F191CD072B833673004F8659 /* LaunchScreen.storyboard */,
@@ -344,6 +360,7 @@
 		F19BAAFE2B9F0DE50082E6C3 /* Enum */ = {
 			isa = PBXGroup;
 			children = (
+				F1079F0D2BAB035800E7AFEE /* ChangeType.swift */,
 			);
 			path = Enum;
 			sourceTree = "<group>";
@@ -592,6 +609,7 @@
 				F19BAAF62B9EEFE20082E6C3 /* ApiTiker.swift in Sources */,
 				F10483632B84D00F007D532A /* AuthViewController.swift in Sources */,
 				F121ABA22B84D387001DB314 /* GIDSignInButton.swift in Sources */,
+				F1079F0C2BAABE9400E7AFEE /* PercentView.swift in Sources */,
 				F121ABA72B84E5AF001DB314 /* AuthNavigationController.swift in Sources */,
 				F191CCFD2B833673004F8659 /* AppDelegate.swift in Sources */,
 				F1DB09952B864D3900BBE7B5 /* HomeViewController.swift in Sources */,
@@ -605,6 +623,8 @@
 				F10483522B84CD3E007D532A /* UIResponder.swift in Sources */,
 				F121ABA42B84D5CB001DB314 /* AuthViewModel.swift in Sources */,
 				F19BAB022B9F1B250082E6C3 /* HomeViewModel.swift in Sources */,
+				F1079F102BAB0F4000E7AFEE /* DailyChangeView.swift in Sources */,
+				F1079F0E2BAB035800E7AFEE /* ChangeType.swift in Sources */,
 				F10483502B84CD24007D532A /* UIColor.swift in Sources */,
 				F10483562B84CD73007D532A /* UILabel.swift in Sources */,
 				F1DB098F2B864B1500BBE7B5 /* TabNavigationController.swift in Sources */,
