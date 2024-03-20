@@ -259,5 +259,25 @@ extension UpbitApiService {
         }
     }
 }
+```
 
+
+``` swift
+// MARK: 사용법
+ViewController: UIViewColroller {
+
+...
+private let upbitSocketService = UpbitSocketService.shared
+
+// MARK: 거래 가능 마켓 + 요청당시 현재가 정보 Ticker 바인딩
+upbitSocketService.marketTickerSubject
+    .bind(to: self.marketTickerSubject)
+    .disposed(by: disposeBag)
+// MARK: 실시간 현재가 Ticker 바인딩
+upbitSocketService.socketTickerSubject
+    .bind(to: self.socketTickerSubject)
+    .disposed(by: disposeBag)
+...
+
+}
 ```
