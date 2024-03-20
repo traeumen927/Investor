@@ -8,80 +8,59 @@
 import UIKit
 import SnapKit
 
-class MarketCell: UITableViewCell {
+class MarketCell: UICollectionViewCell {
+    static let cellId = "MarketCell"
     
-    // MARK: 코인 한글명
-    private let korLabel: UILabel = {
+    private let titleLabel: UILabel = {
         let label = UILabel()
-        label.font = UIFont.systemFont(ofSize: 14, weight: .bold)
-        label.textColor = ThemeColor.tint1
+        label.font = UIFont.systemFont(ofSize: 16, weight: .bold)
+        label.textColor = .black
         return label
     }()
     
-    // MARK: 코인 영문명
-    private let engLabel: UILabel = {
+    private let priceLabel: UILabel = {
         let label = UILabel()
-        label.font = UIFont.systemFont(ofSize: 10, weight: .regular)
-        label.textColor = ThemeColor.tintDisable
+        label.font = UIFont.systemFont(ofSize: 14, weight: .regular)
+        label.textColor = .gray
         return label
     }()
     
-    // MARK: 코인 심볼
-    private let symbolLabel: UILabel = {
-        let label = UILabel()
-        label.font = UIFont.systemFont(ofSize: 10, weight: .regular)
-        label.textColor = ThemeColor.tint2
-        return label
-    }()
-   
-    
-    static let cellId = "cell"
-    
-    override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
-        super.init(style: style, reuseIdentifier: reuseIdentifier)
+    override init(frame: CGRect) {
+        super.init(frame: frame)
         
-        self.layout()
+        setupUI()
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
-    private func layout() {
+    override func prepareForReuse() {
+        super.prepareForReuse()
         
-        self.backgroundColor = .clear
-        self.selectionStyle = .none
+        self.titleLabel.text = nil
+        self.priceLabel.text = nil
+    }
+    
+    private func setupUI() {
+        addSubview(titleLabel)
+        addSubview(priceLabel)
         
-        [korLabel, engLabel, symbolLabel].forEach(self.contentView.addSubview(_:))
+        [titleLabel, priceLabel].forEach(self.contentView.addSubview(_:))
         
-        korLabel.snp.makeConstraints { make in
-            make.top.equalToSuperview().offset(8)
-            make.leading.equalToSuperview().offset(12)
+        titleLabel.snp.makeConstraints { make in
+            make.leading.equalToSuperview().offset(8)
+            make.centerY.equalToSuperview()
         }
         
-        engLabel.snp.makeConstraints { make in
-            make.bottom.equalTo(self.korLabel.snp.bottom)
-            make.leading.equalTo(self.korLabel.snp.trailing).offset(4)
-            make.trailing.lessThanOrEqualToSuperview().offset(-12)
-        }
-        
-        symbolLabel.snp.makeConstraints { make in
-            make.top.equalTo(self.korLabel.snp.bottom).offset(4)
-            make.leading.equalToSuperview().offset(12)
-            make.trailing.equalToSuperview().offset(-12)
-            make.bottom.equalToSuperview().offset(-8)
+        priceLabel.snp.makeConstraints { make in
+            make.trailing.equalToSuperview().offset(-8)
+            make.centerY.equalToSuperview()
         }
     }
     
     func configure(with marketTicker: MarketTicker) {
-        self.korLabel.text = marketTicker.marketInfo.koreanName
-        self.engLabel.text = "\(marketTicker.socketTicker?.trade_price ?? marketTicker.apiTicker.trade_price)"
-        self.symbolLabel.text = marketTicker.marketInfo.market
-        
-        
-    }
-    
-    func update(with marketTicker: MarketTicker) {
-        self.engLabel.text = "수정!!"
+        titleLabel.text = marketTicker.marketInfo.market
+        priceLabel.text = "\(marketTicker.socketTicker?.trade_price ?? marketTicker.apiTicker.trade_price)"
     }
 }
