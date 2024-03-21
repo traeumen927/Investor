@@ -23,10 +23,17 @@ class DetailViewController: UIViewController {
         return view
     }()
     
+    // MARK: 세로 방향 스택뷰
     private let stackView: UIStackView = {
         let view = UIStackView()
         view.axis = .vertical
         view.spacing = 20
+        return view
+    }()
+    
+    // MARK: 스택뷰 하위뷰 - 차트뷰
+    private let chartBlockView: ChartBlockView = {
+       let view = ChartBlockView()
         return view
     }()
     
@@ -62,5 +69,6 @@ class DetailViewController: UIViewController {
             make.edges.equalToSuperview()
             make.width.equalToSuperview()
         }
+        [chartBlockView].forEach(stackView.addArrangedSubview(_:))
     }
 }
