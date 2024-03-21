@@ -124,4 +124,11 @@ extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSour
         cell.configure(with: self.marketTickerList[indexPath.item])
         return cell
     }
+    
+    // MARK: Select cell Item
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let detailViewController = DetailViewController(market: self.marketTickerList[indexPath.row].marketInfo)
+        let navigationViewController = UINavigationController(rootViewController: detailViewController)
+        self.parentViewController?.present(navigationViewController, animated: true)
+    }
 }

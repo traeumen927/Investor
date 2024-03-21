@@ -59,6 +59,8 @@
 		F1DB098F2B864B1500BBE7B5 /* TabNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1DB098E2B864B1500BBE7B5 /* TabNavigationController.swift */; };
 		F1DB09932B864D2C00BBE7B5 /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1DB09922B864D2C00BBE7B5 /* SettingViewController.swift */; };
 		F1DB09952B864D3900BBE7B5 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1DB09942B864D3900BBE7B5 /* HomeViewController.swift */; };
+		F1DEB8C52BAC08A800FFDC53 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1DEB8C42BAC08A800FFDC53 /* DetailViewController.swift */; };
+		F1DEB8C72BAC08B400FFDC53 /* DetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1DEB8C62BAC08B400FFDC53 /* DetailViewModel.swift */; };
 		F1EE176D2BA4286100412195 /* TickerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1EE176C2BA4286100412195 /* TickerProtocol.swift */; };
 		FDE8B1E51AACD63326E0D41D /* Pods_InvestorTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AB45874EFF3E490B3524923F /* Pods_InvestorTests.framework */; };
 /* End PBXBuildFile section */
@@ -130,6 +132,8 @@
 		F1DB098E2B864B1500BBE7B5 /* TabNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabNavigationController.swift; sourceTree = "<group>"; };
 		F1DB09922B864D2C00BBE7B5 /* SettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewController.swift; sourceTree = "<group>"; };
 		F1DB09942B864D3900BBE7B5 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
+		F1DEB8C42BAC08A800FFDC53 /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
+		F1DEB8C62BAC08B400FFDC53 /* DetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewModel.swift; sourceTree = "<group>"; };
 		F1EE176C2BA4286100412195 /* TickerProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TickerProtocol.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -212,6 +216,7 @@
 			children = (
 				F121ABA32B84D5CB001DB314 /* AuthViewModel.swift */,
 				F19BAB012B9F1B240082E6C3 /* HomeViewModel.swift */,
+				F1DEB8C62BAC08B400FFDC53 /* DetailViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -222,6 +227,7 @@
 				F10483622B84D00F007D532A /* AuthViewController.swift */,
 				F1DB09942B864D3900BBE7B5 /* HomeViewController.swift */,
 				F1DB09922B864D2C00BBE7B5 /* SettingViewController.swift */,
+				F1DEB8C42BAC08A800FFDC53 /* DetailViewController.swift */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -620,10 +626,12 @@
 				F191CCFF2B833673004F8659 /* SceneDelegate.swift in Sources */,
 				F19BAAFA2B9EFD8B0082E6C3 /* UpbitApiService.swift in Sources */,
 				F1EE176D2BA4286100412195 /* TickerProtocol.swift in Sources */,
+				F1DEB8C72BAC08B400FFDC53 /* DetailViewModel.swift in Sources */,
 				F10483522B84CD3E007D532A /* UIResponder.swift in Sources */,
 				F121ABA42B84D5CB001DB314 /* AuthViewModel.swift in Sources */,
 				F19BAB022B9F1B250082E6C3 /* HomeViewModel.swift in Sources */,
 				F1079F102BAB0F4000E7AFEE /* DailyChangeView.swift in Sources */,
+				F1DEB8C52BAC08A800FFDC53 /* DetailViewController.swift in Sources */,
 				F1079F0E2BAB035800E7AFEE /* ChangeType.swift in Sources */,
 				F10483502B84CD24007D532A /* UIColor.swift in Sources */,
 				F10483562B84CD73007D532A /* UILabel.swift in Sources */,
