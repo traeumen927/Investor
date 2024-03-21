@@ -127,8 +127,9 @@ extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSour
     
     // MARK: Select cell Item
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let detailViewController = DetailViewController(market: self.marketTickerList[indexPath.row].marketInfo)
-        let navigationViewController = UINavigationController(rootViewController: detailViewController)
+        let viewModel = DetailViewModel(marketInfo: self.marketTickerList[indexPath.row].marketInfo)
+        let controller = DetailViewController(viewModel: viewModel)
+        let navigationViewController = UINavigationController(rootViewController: controller)
         self.parentViewController?.present(navigationViewController, animated: true)
     }
 }

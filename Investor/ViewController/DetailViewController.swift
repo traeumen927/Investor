@@ -12,9 +12,7 @@ import SnapKit
 class DetailViewController: UIViewController {
     
     private let disposeBag = DisposeBag()
-    private let viewModel = DetailViewModel()
-    
-    var market: MarketInfo
+    private let viewModel: DetailViewModel
     
     // MARK: 세로 방향 스크롤뷰
     private let scrollView: UIScrollView = {
@@ -38,8 +36,8 @@ class DetailViewController: UIViewController {
     }()
     
     
-    init(market: MarketInfo) {
-        self.market = market
+    init(viewModel: DetailViewModel) {
+        self.viewModel = viewModel
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -51,12 +49,12 @@ class DetailViewController: UIViewController {
         super.viewDidLoad()
         
         layout()
+        bind()
     }
     
     private func layout() {
-        
         self.view.backgroundColor = ThemeColor.background
-        self.title = self.market.koreanName
+        
         
         self.view.addSubview(scrollView)
         self.scrollView.addSubview(stackView)
@@ -70,5 +68,22 @@ class DetailViewController: UIViewController {
             make.width.equalToSuperview()
         }
         [chartBlockView].forEach(stackView.addArrangedSubview(_:))
+    }
+    
+    private func bind() {
+        self.viewModel.fetchData()
+        
+        // MARK: 네비게이션 title 구독
+        self.viewModel.marketSubject
+            .subscribe(onNext: {[weak self] name in
+                guard let self = self else { return }
+                self.title = name
+            }).disposed(by: disposeBag)
+        
+        // MARK: 캔들정보 구독
+        self.viewModel.candlesSubject
+            .subscribe(onNext: { [weak self] candles in
+                guard let self = self else { return }
+            }).disposed(by: disposeBag)
     }
 }

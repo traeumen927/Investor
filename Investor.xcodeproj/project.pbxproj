@@ -65,6 +65,9 @@
 		F1DEB8CB2BAC156F00FFDC53 /* BlockView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1DEB8CA2BAC156F00FFDC53 /* BlockView.swift */; };
 		F1DEB8CE2BAC191800FFDC53 /* DGCharts in Frameworks */ = {isa = PBXBuildFile; productRef = F1DEB8CD2BAC191800FFDC53 /* DGCharts */; };
 		F1DEB8D02BAC191800FFDC53 /* DGChartsDynamic in Frameworks */ = {isa = PBXBuildFile; productRef = F1DEB8CF2BAC191800FFDC53 /* DGChartsDynamic */; };
+		F1DEB8D22BAC1D6100FFDC53 /* CandleType.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1DEB8D12BAC1D6100FFDC53 /* CandleType.swift */; };
+		F1DEB8D42BAC446500FFDC53 /* Candle.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1DEB8D32BAC446500FFDC53 /* Candle.swift */; };
+		F1DEB8D62BAC4BFB00FFDC53 /* UnitType.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1DEB8D52BAC4BFB00FFDC53 /* UnitType.swift */; };
 		F1EE176D2BA4286100412195 /* TickerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1EE176C2BA4286100412195 /* TickerProtocol.swift */; };
 		FDE8B1E51AACD63326E0D41D /* Pods_InvestorTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AB45874EFF3E490B3524923F /* Pods_InvestorTests.framework */; };
 /* End PBXBuildFile section */
@@ -140,6 +143,9 @@
 		F1DEB8C62BAC08B400FFDC53 /* DetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewModel.swift; sourceTree = "<group>"; };
 		F1DEB8C82BAC0EBF00FFDC53 /* ChartBlockView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartBlockView.swift; sourceTree = "<group>"; };
 		F1DEB8CA2BAC156F00FFDC53 /* BlockView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlockView.swift; sourceTree = "<group>"; };
+		F1DEB8D12BAC1D6100FFDC53 /* CandleType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CandleType.swift; sourceTree = "<group>"; };
+		F1DEB8D32BAC446500FFDC53 /* Candle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Candle.swift; sourceTree = "<group>"; };
+		F1DEB8D52BAC4BFB00FFDC53 /* UnitType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnitType.swift; sourceTree = "<group>"; };
 		F1EE176C2BA4286100412195 /* TickerProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TickerProtocol.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -215,6 +221,7 @@
 				F19BAAFC2B9F044D0082E6C3 /* MarketInfo.swift */,
 				F19BAAF52B9EEFE20082E6C3 /* ApiTiker.swift */,
 				F14F5B5A2BA702EF00EE06A8 /* SocketTicker.swift */,
+				F1DEB8D32BAC446500FFDC53 /* Candle.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -377,6 +384,8 @@
 			isa = PBXGroup;
 			children = (
 				F1079F0D2BAB035800E7AFEE /* ChangeType.swift */,
+				F1DEB8D12BAC1D6100FFDC53 /* CandleType.swift */,
+				F1DEB8D52BAC4BFB00FFDC53 /* UnitType.swift */,
 			);
 			path = Enum;
 			sourceTree = "<group>";
@@ -632,6 +641,7 @@
 				F1079F0C2BAABE9400E7AFEE /* PercentView.swift in Sources */,
 				F121ABA72B84E5AF001DB314 /* AuthNavigationController.swift in Sources */,
 				F191CCFD2B833673004F8659 /* AppDelegate.swift in Sources */,
+				F1DEB8D22BAC1D6100FFDC53 /* CandleType.swift in Sources */,
 				F1DB09952B864D3900BBE7B5 /* HomeViewController.swift in Sources */,
 				F1DB09932B864D2C00BBE7B5 /* SettingViewController.swift in Sources */,
 				F19BAAF82B9EF2B90082E6C3 /* Decodable.swift in Sources */,
@@ -641,6 +651,7 @@
 				F19BAAFA2B9EFD8B0082E6C3 /* UpbitApiService.swift in Sources */,
 				F1DEB8C92BAC0EBF00FFDC53 /* ChartBlockView.swift in Sources */,
 				F1EE176D2BA4286100412195 /* TickerProtocol.swift in Sources */,
+				F1DEB8D42BAC446500FFDC53 /* Candle.swift in Sources */,
 				F1DEB8C72BAC08B400FFDC53 /* DetailViewModel.swift in Sources */,
 				F10483522B84CD3E007D532A /* UIResponder.swift in Sources */,
 				F121ABA42B84D5CB001DB314 /* AuthViewModel.swift in Sources */,
@@ -650,6 +661,7 @@
 				F1079F0E2BAB035800E7AFEE /* ChangeType.swift in Sources */,
 				F10483502B84CD24007D532A /* UIColor.swift in Sources */,
 				F10483562B84CD73007D532A /* UILabel.swift in Sources */,
+				F1DEB8D62BAC4BFB00FFDC53 /* UnitType.swift in Sources */,
 				F1DB098F2B864B1500BBE7B5 /* TabNavigationController.swift in Sources */,
 				F14F5B5B2BA702EF00EE06A8 /* SocketTicker.swift in Sources */,
 				F155627D2B98C26F005DBECC /* MarketCell.swift in Sources */,
