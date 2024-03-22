@@ -7,9 +7,22 @@
 
 import Foundation
 
-enum CandleType: String {
+enum CandleType: String, CaseIterable {
     case months = "months"
     case weeks = "weeks"
     case days = "days"
     case minutes = "minutes"
+    
+    var displayName: String {
+        switch self {
+        case .months:
+            return "월"
+        case .weeks:
+            return "주"
+        case .days:
+            return "일"
+        case .minutes:
+            return "분"
+        }
+    }
 }

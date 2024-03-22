@@ -8,8 +8,19 @@
 import UIKit
 import SnapKit
 import DGCharts
+import RxSwift
+import RxCocoa
+
+protocol ChartBlockViewDelegate {
+    // MARK: 세그먼트의 값이 변경됨
+    func segementedChanged(type: CandleType)
+}
 
 class ChartBlockView: BlockView {
+    
+    let disposeBag = DisposeBag()
+    
+    var delegate: ChartBlockViewDelegate?
     
     // MARK: 현재가 라벨
     private let priceLabel: UILabel = {
@@ -24,25 +35,61 @@ class ChartBlockView: BlockView {
     private let changeLabel: UILabel = {
         let label = UILabel()
         label.textColor = ThemeColor.stable
-        label.font = UIFont.systemFont(ofSize: 12, weight: .regular)
+        label.font = UIFont.systemFont(ofSize: 14, weight: .regular)
         label.text = "0%"
         return label
+    }()
+    
+    // MARK: 캔들 차트
+    private let candleChart: CandleStickChartView = {
+        let chart = CandleStickChartView()
+        chart.noDataText = "데이터가 없습니다."
+        chart.noDataFont = UIFont.systemFont(ofSize: 20, weight: .bold)
+        chart.noDataTextColor = ThemeColor.tintDisable
+        chart.rightAxis.enabled = false
+        chart.leftAxis.enabled = true
+        
+        chart.xAxis.labelPosition = .bottom
+        chart.xAxis.drawGridLinesEnabled = false
+        chart.xAxis.labelTextColor = ThemeColor.tint1
+        
+        
+        chart.leftAxis.drawGridLinesEnabled = false
+        chart.leftAxis.labelTextColor = ThemeColor.tint1
+        
+        chart.doubleTapToZoomEnabled = false
+        chart.highlightPerTapEnabled = false
+        
+        chart.legend.enabled = false
+        
+        
+        return chart
+    }()
+    
+    // MARK: 캔들 단위 선택 세그먼트 컨트롤
+    private let candleSegment: UISegmentedControl = {
+        let items = CandleType.allCases.map { $0.displayName }
+        let view = UISegmentedControl(items: items)
+        view.selectedSegmentIndex = 0
+        return view
     }()
     
     
     override init(frame: CGRect) {
         super.init(frame: frame)
         layout()
+        bind()
     }
     
     required init?(coder: NSCoder) {
         super.init(coder: coder)
         layout()
+        bind()
     }
     
     private func layout() {
-        [priceLabel, changeLabel].forEach(contentView.addSubview(_:))
-
+        [priceLabel, changeLabel, candleChart, candleSegment].forEach(contentView.addSubview(_:))
+        
         
         priceLabel.snp.makeConstraints { make in
             make.top.equalToSuperview().offset(12)
@@ -54,7 +101,98 @@ class ChartBlockView: BlockView {
             make.top.equalTo(priceLabel.snp.bottom).offset(4)
             make.leading.equalToSuperview().offset(12)
             make.trailing.equalToSuperview().offset(-12)
+        }
+        
+        candleChart.snp.makeConstraints { make in
+            make.top.equalTo(changeLabel.snp.bottom).offset(24)
+            make.leading.equalToSuperview().offset(12)
+            make.trailing.equalToSuperview().offset(-12)
+            make.height.equalTo(300)
+        }
+        
+        candleSegment.snp.makeConstraints { make in
+            make.top.equalTo(candleChart.snp.bottom).offset(12)
+            make.leading.equalToSuperview().offset(12)
+            make.trailing.equalToSuperview().offset(-12)
             make.bottom.equalToSuperview().offset(-12)
         }
+    }
+    
+    func bind() {
+        // MARK: 변경된 세그먼트의 값 대리자 전달
+        candleSegment.rx.selectedSegmentIndex
+            .asDriver()
+            .drive(onNext: { [weak self] index in
+                guard let self = self else { return }
+                let selectedType = CandleType.allCases[index]
+                self.delegate?.segementedChanged(type: selectedType)
+            }).disposed(by: disposeBag)
+    }
+    
+    // MARK: 최초 캔들 configure
+    func configure(with candles: [Candle]) {
+        
+        let entries = candles.enumerated().map { (index, candle) in
+            let xValue = Double(candles.count - index)
+            return CandleChartDataEntry(x: xValue,
+                                        shadowH: candle.high_price,
+                                        shadowL: candle.low_price,
+                                        open: candle.opening_price,
+                                        close: candle.trade_price)
+        }
+        
+        // MARK: 캔들 데이터셋
+        let dataSet = CandleChartDataSet(entries: entries)
+        
+        // MARK: CandleChart에 들어갈 데이터 설정
+        let data = CandleChartData(dataSet: dataSet)
+        self.candleChart.data = data
+        
+        // MARK: - Place for 차트 스타일 지정
+        
+        // MARK: 상승 캔들 색상 및 채우기
+        dataSet.increasingColor = ThemeColor.positive
+        dataSet.increasingFilled = true
+        
+        // MARK: 하락 캔들 색상 및 채우기
+        dataSet.decreasingColor = ThemeColor.negative
+        dataSet.decreasingFilled = true
+        
+        // MARK: 보합 캔들 색상
+        dataSet.neutralColor = ThemeColor.stable
+        
+        // MARK: 그림자 색상을 캔들의 색상과 동일하게 유지
+        dataSet.shadowColorSameAsCandle = true
+        dataSet.shadowWidth = 1.5
+        
+        // MARK: 차트에 값들을 표시할지에 대한 여부
+        dataSet.drawValuesEnabled = false
+        
+        // MARK: 차트에서 하이라이트 효과를 사용할지에 대한 여부
+        dataSet.highlightEnabled = false
+        
+        dataSet.accessibilityLabel = nil
+        dataSet.label = nil
+    }
+    
+    func getSegementIndex() {
+        // MARK: 최초 1회 세그먼트 Init Index 대리자 전달
+        self.delegate?.segementedChanged(type: CandleType.allCases[self.candleSegment.selectedSegmentIndex])
+    }
+    
+    // MARK: 캔들 실시간 업데이트
+    func update(ticker: ApiTicker) {
+        self.setColor(with: ticker.change.color)
+        
+        let changePrice = ticker.signed_change_price.formattedStringWithCommaAndDecimal(places: 2)
+        let changeRate = ticker.signed_change_rate * 100
+        
+        self.priceLabel.text =  "₩\(ticker.trade_price.formattedStringWithCommaAndDecimal(places: 2))"
+        self.changeLabel.text = "\(changeRate.formattedStringWithCommaAndDecimal(places: 2))%(\(changePrice))"
+    }
+    
+    private func setColor(with color: UIColor) {
+        self.priceLabel.textColor = color
+        self.changeLabel.textColor = color
     }
 }

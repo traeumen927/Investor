@@ -31,7 +31,7 @@ class DetailViewController: UIViewController {
     
     // MARK: 스택뷰 하위뷰 - 차트뷰
     private let chartBlockView: ChartBlockView = {
-       let view = ChartBlockView()
+        let view = ChartBlockView()
         return view
     }()
     
@@ -72,6 +72,8 @@ class DetailViewController: UIViewController {
     
     private func bind() {
         self.viewModel.fetchData()
+        self.chartBlockView.delegate = self
+        self.chartBlockView.getSegementIndex()
         
         // MARK: 네비게이션 title 구독
         self.viewModel.marketSubject
@@ -80,10 +82,27 @@ class DetailViewController: UIViewController {
                 self.title = name
             }).disposed(by: disposeBag)
         
+        // MARK: 현재가 구독
+        self.viewModel.apiTickerSubejct
+            .observe(on: MainScheduler.instance)
+            .subscribe(onNext: {[weak self] ticker in
+                guard let self = self else { return }
+                self.chartBlockView.update(ticker: ticker)
+            }).disposed(by: disposeBag)
+        
         // MARK: 캔들정보 구독
         self.viewModel.candlesSubject
             .subscribe(onNext: { [weak self] candles in
                 guard let self = self else { return }
+                self.chartBlockView.configure(with: candles)
             }).disposed(by: disposeBag)
+    }
+}
+
+
+// MARK: - Place for ChartBlockViewDelegate
+extension DetailViewController: ChartBlockViewDelegate {
+    func segementedChanged(type: CandleType) {
+        self.viewModel.fetchCandles(candleType: type)
     }
 }
