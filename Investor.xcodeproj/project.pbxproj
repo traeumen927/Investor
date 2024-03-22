@@ -59,6 +59,15 @@
 		F1DB098F2B864B1500BBE7B5 /* TabNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1DB098E2B864B1500BBE7B5 /* TabNavigationController.swift */; };
 		F1DB09932B864D2C00BBE7B5 /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1DB09922B864D2C00BBE7B5 /* SettingViewController.swift */; };
 		F1DB09952B864D3900BBE7B5 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1DB09942B864D3900BBE7B5 /* HomeViewController.swift */; };
+		F1DEB8C52BAC08A800FFDC53 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1DEB8C42BAC08A800FFDC53 /* DetailViewController.swift */; };
+		F1DEB8C72BAC08B400FFDC53 /* DetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1DEB8C62BAC08B400FFDC53 /* DetailViewModel.swift */; };
+		F1DEB8C92BAC0EBF00FFDC53 /* ChartBlockView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1DEB8C82BAC0EBF00FFDC53 /* ChartBlockView.swift */; };
+		F1DEB8CB2BAC156F00FFDC53 /* BlockView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1DEB8CA2BAC156F00FFDC53 /* BlockView.swift */; };
+		F1DEB8CE2BAC191800FFDC53 /* DGCharts in Frameworks */ = {isa = PBXBuildFile; productRef = F1DEB8CD2BAC191800FFDC53 /* DGCharts */; };
+		F1DEB8D02BAC191800FFDC53 /* DGChartsDynamic in Frameworks */ = {isa = PBXBuildFile; productRef = F1DEB8CF2BAC191800FFDC53 /* DGChartsDynamic */; };
+		F1DEB8D22BAC1D6100FFDC53 /* CandleType.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1DEB8D12BAC1D6100FFDC53 /* CandleType.swift */; };
+		F1DEB8D42BAC446500FFDC53 /* Candle.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1DEB8D32BAC446500FFDC53 /* Candle.swift */; };
+		F1DEB8D62BAC4BFB00FFDC53 /* UnitType.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1DEB8D52BAC4BFB00FFDC53 /* UnitType.swift */; };
 		F1EE176D2BA4286100412195 /* TickerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1EE176C2BA4286100412195 /* TickerProtocol.swift */; };
 		FDE8B1E51AACD63326E0D41D /* Pods_InvestorTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AB45874EFF3E490B3524923F /* Pods_InvestorTests.framework */; };
 /* End PBXBuildFile section */
@@ -130,6 +139,13 @@
 		F1DB098E2B864B1500BBE7B5 /* TabNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabNavigationController.swift; sourceTree = "<group>"; };
 		F1DB09922B864D2C00BBE7B5 /* SettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewController.swift; sourceTree = "<group>"; };
 		F1DB09942B864D3900BBE7B5 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
+		F1DEB8C42BAC08A800FFDC53 /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
+		F1DEB8C62BAC08B400FFDC53 /* DetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewModel.swift; sourceTree = "<group>"; };
+		F1DEB8C82BAC0EBF00FFDC53 /* ChartBlockView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartBlockView.swift; sourceTree = "<group>"; };
+		F1DEB8CA2BAC156F00FFDC53 /* BlockView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlockView.swift; sourceTree = "<group>"; };
+		F1DEB8D12BAC1D6100FFDC53 /* CandleType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CandleType.swift; sourceTree = "<group>"; };
+		F1DEB8D32BAC446500FFDC53 /* Candle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Candle.swift; sourceTree = "<group>"; };
+		F1DEB8D52BAC4BFB00FFDC53 /* UnitType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnitType.swift; sourceTree = "<group>"; };
 		F1EE176C2BA4286100412195 /* TickerProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TickerProtocol.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -146,10 +162,12 @@
 				F195C7992B833A6E00BCF35C /* RxCocoa-Dynamic in Frameworks */,
 				F195C7A62B83722B00BCF35C /* FirebaseFirestore in Frameworks */,
 				F195C7942B833A2100BCF35C /* SnapKit-Dynamic in Frameworks */,
+				F1DEB8CE2BAC191800FFDC53 /* DGCharts in Frameworks */,
 				F13CF5842B99F775002BCA38 /* Starscream in Frameworks */,
 				F195C7A42B83722B00BCF35C /* FirebaseAuth in Frameworks */,
 				F195C7A02B833AA700BCF35C /* Kingfisher in Frameworks */,
 				C66C21B728A3220BD1C974B9 /* Pods_Investor.framework in Frameworks */,
+				F1DEB8D02BAC191800FFDC53 /* DGChartsDynamic in Frameworks */,
 				F195C7922B833A2100BCF35C /* SnapKit in Frameworks */,
 				F195C79B2B833A6E00BCF35C /* RxSwift in Frameworks */,
 				F16381DA2B8E20E60026E260 /* Alamofire in Frameworks */,
@@ -203,6 +221,7 @@
 				F19BAAFC2B9F044D0082E6C3 /* MarketInfo.swift */,
 				F19BAAF52B9EEFE20082E6C3 /* ApiTiker.swift */,
 				F14F5B5A2BA702EF00EE06A8 /* SocketTicker.swift */,
+				F1DEB8D32BAC446500FFDC53 /* Candle.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -212,6 +231,7 @@
 			children = (
 				F121ABA32B84D5CB001DB314 /* AuthViewModel.swift */,
 				F19BAB012B9F1B240082E6C3 /* HomeViewModel.swift */,
+				F1DEB8C62BAC08B400FFDC53 /* DetailViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -222,6 +242,7 @@
 				F10483622B84D00F007D532A /* AuthViewController.swift */,
 				F1DB09942B864D3900BBE7B5 /* HomeViewController.swift */,
 				F1DB09922B864D2C00BBE7B5 /* SettingViewController.swift */,
+				F1DEB8C42BAC08A800FFDC53 /* DetailViewController.swift */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -264,6 +285,8 @@
 			children = (
 				F1079F0B2BAABE9400E7AFEE /* PercentView.swift */,
 				F1079F0F2BAB0F4000E7AFEE /* DailyChangeView.swift */,
+				F1DEB8CA2BAC156F00FFDC53 /* BlockView.swift */,
+				F1DEB8C82BAC0EBF00FFDC53 /* ChartBlockView.swift */,
 			);
 			path = CustomView;
 			sourceTree = "<group>";
@@ -361,6 +384,8 @@
 			isa = PBXGroup;
 			children = (
 				F1079F0D2BAB035800E7AFEE /* ChangeType.swift */,
+				F1DEB8D12BAC1D6100FFDC53 /* CandleType.swift */,
+				F1DEB8D52BAC4BFB00FFDC53 /* UnitType.swift */,
 			);
 			path = Enum;
 			sourceTree = "<group>";
@@ -407,6 +432,8 @@
 				F16381D92B8E20E60026E260 /* Alamofire */,
 				F13CF5832B99F775002BCA38 /* Starscream */,
 				F15DA0F42BA3464300A9F90B /* RxDataSources */,
+				F1DEB8CD2BAC191800FFDC53 /* DGCharts */,
+				F1DEB8CF2BAC191800FFDC53 /* DGChartsDynamic */,
 			);
 			productName = Investor;
 			productReference = F191CCF92B833673004F8659 /* Investor.app */;
@@ -491,6 +518,7 @@
 				F16381D82B8E20E60026E260 /* XCRemoteSwiftPackageReference "Alamofire" */,
 				F13CF5822B99F775002BCA38 /* XCRemoteSwiftPackageReference "Starscream" */,
 				F15DA0F32BA3464300A9F90B /* XCRemoteSwiftPackageReference "RxDataSources" */,
+				F1DEB8CC2BAC191800FFDC53 /* XCRemoteSwiftPackageReference "Charts" */,
 			);
 			productRefGroup = F191CCFA2B833673004F8659 /* Products */;
 			projectDirPath = "";
@@ -605,6 +633,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F1DEB8CB2BAC156F00FFDC53 /* BlockView.swift in Sources */,
 				F104834E2B84CD0F007D532A /* CALayer.swift in Sources */,
 				F19BAAF62B9EEFE20082E6C3 /* ApiTiker.swift in Sources */,
 				F10483632B84D00F007D532A /* AuthViewController.swift in Sources */,
@@ -612,6 +641,7 @@
 				F1079F0C2BAABE9400E7AFEE /* PercentView.swift in Sources */,
 				F121ABA72B84E5AF001DB314 /* AuthNavigationController.swift in Sources */,
 				F191CCFD2B833673004F8659 /* AppDelegate.swift in Sources */,
+				F1DEB8D22BAC1D6100FFDC53 /* CandleType.swift in Sources */,
 				F1DB09952B864D3900BBE7B5 /* HomeViewController.swift in Sources */,
 				F1DB09932B864D2C00BBE7B5 /* SettingViewController.swift in Sources */,
 				F19BAAF82B9EF2B90082E6C3 /* Decodable.swift in Sources */,
@@ -619,14 +649,19 @@
 				F16381D22B8E12590026E260 /* BarbuttonConfigurable.swift in Sources */,
 				F191CCFF2B833673004F8659 /* SceneDelegate.swift in Sources */,
 				F19BAAFA2B9EFD8B0082E6C3 /* UpbitApiService.swift in Sources */,
+				F1DEB8C92BAC0EBF00FFDC53 /* ChartBlockView.swift in Sources */,
 				F1EE176D2BA4286100412195 /* TickerProtocol.swift in Sources */,
+				F1DEB8D42BAC446500FFDC53 /* Candle.swift in Sources */,
+				F1DEB8C72BAC08B400FFDC53 /* DetailViewModel.swift in Sources */,
 				F10483522B84CD3E007D532A /* UIResponder.swift in Sources */,
 				F121ABA42B84D5CB001DB314 /* AuthViewModel.swift in Sources */,
 				F19BAB022B9F1B250082E6C3 /* HomeViewModel.swift in Sources */,
 				F1079F102BAB0F4000E7AFEE /* DailyChangeView.swift in Sources */,
+				F1DEB8C52BAC08A800FFDC53 /* DetailViewController.swift in Sources */,
 				F1079F0E2BAB035800E7AFEE /* ChangeType.swift in Sources */,
 				F10483502B84CD24007D532A /* UIColor.swift in Sources */,
 				F10483562B84CD73007D532A /* UILabel.swift in Sources */,
+				F1DEB8D62BAC4BFB00FFDC53 /* UnitType.swift in Sources */,
 				F1DB098F2B864B1500BBE7B5 /* TabNavigationController.swift in Sources */,
 				F14F5B5B2BA702EF00EE06A8 /* SocketTicker.swift in Sources */,
 				F155627D2B98C26F005DBECC /* MarketCell.swift in Sources */,
@@ -1045,6 +1080,14 @@
 				minimumVersion = 10.21.0;
 			};
 		};
+		F1DEB8CC2BAC191800FFDC53 /* XCRemoteSwiftPackageReference "Charts" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/danielgindi/Charts.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.1.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -1117,6 +1160,16 @@
 			isa = XCSwiftPackageProductDependency;
 			package = F195C7A22B83722B00BCF35C /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
 			productName = FirebaseFirestore;
+		};
+		F1DEB8CD2BAC191800FFDC53 /* DGCharts */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = F1DEB8CC2BAC191800FFDC53 /* XCRemoteSwiftPackageReference "Charts" */;
+			productName = DGCharts;
+		};
+		F1DEB8CF2BAC191800FFDC53 /* DGChartsDynamic */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = F1DEB8CC2BAC191800FFDC53 /* XCRemoteSwiftPackageReference "Charts" */;
+			productName = DGChartsDynamic;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

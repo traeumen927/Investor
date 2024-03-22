@@ -61,14 +61,29 @@ extension UpbitApiService {
         
         // MARK: 요청 당시 종목의 스냅샷 조회
         case ticker(markets: [String])
+              
+        // MARK: 일, 주, 월 단위 캔들 조회
+        case candles(market:String, candle: CandleType, count: Int)
+        
+        // MARK: 분단위 캔들 조회
+        case candlesMinutes(market:String, candle: CandleType, unit: UnitType, count: Int)
+        
         
         
         var path: String {
             switch self {
             case .allMarkets :
                 return "/market/all?isDetails=true"
+                
             case .ticker:
                 return "/ticker"
+                
+            case .candles(_, let candle, _):
+                    
+                return "/candles/\(candle.rawValue)"
+                
+            case .candlesMinutes(_, let candle, let unit, _):
+                return "/candles/\(candle.rawValue)/\(unit.rawValue)"
             }
         }
         
@@ -76,8 +91,13 @@ extension UpbitApiService {
             switch self {
             case .allMarkets:
                 return nil
+                
             case .ticker(let markets):
                 return ["markets": markets.joined(separator: ",")]
+                
+            case .candles(let market, _, let count),
+                    .candlesMinutes(let market, _, _, let count):
+                return ["market": market, "count": count]
             }
         }
         

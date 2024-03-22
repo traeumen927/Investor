@@ -14,18 +14,6 @@ class DailyChangeView: UIView {
     // MARK: 등락폭 표시의 최대치(30%)
     private let maxRate:Double = 30
     
-    // MARK: 최고점 뷰 Constraint
-    private var riseViewHeightConstraint: Constraint?
-    
-    // MARK: 최저점 뷰 Constraint
-    private var fallViewHeightConstraint: Constraint?
-    
-    // MARK: 최고점 선 Constraint
-    private var riseRowHeightConstraint: Constraint?
-    
-    // MARK: 최저점 선 Constraint
-    private var fallRowHeightConstraint: Constraint?
-    
     // MARK: 중앙 선(가로)
     private let evenRow: UIView = {
         let view = UIView()
@@ -73,7 +61,7 @@ class DailyChangeView: UIView {
     }
     
     private func layout() {
-        self.backgroundColor = ThemeColor.primary1
+        self.backgroundColor = ThemeColor.primary2
         
         let riseContentView = UIView()
         let fallContentView = UIView()

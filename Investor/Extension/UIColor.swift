@@ -28,13 +28,13 @@ extension UIColor {
 }
 
 struct ThemeColor {
-    static let primary1 = UIColor(hexString: "1c2541")
-    static let primary2 = UIColor(hexString: "1b3b6f")
+    static let primary1 = UIColor(hexString: "2b2d42")
+    static let primary2 = UIColor(hexString: "e0e1dd")
     static let tint1 = UIColor(hexString: "f8f9fa")
-    static let tint2 = UIColor(hexString: "ced4da")
+    static let tint2 = UIColor(hexString: "001d3d")
     static let tintDisable = UIColor(hexString: "495057")
-    static let background = UIColor(hexString: "0b132b")
+    static let background = UIColor(hexString: "f8f9fa")
     static let positive = UIColor(hexString: "c84a31")
-    static let stable = UIColor(hexString: "bcb8b1")
+    static let stable = UIColor(hexString: "6c757d")
     static let negative = UIColor(hexString: "1261c4")
 }
