@@ -21,16 +21,7 @@ class MarketCell: UICollectionViewCell {
     private let marketKorLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont.systemFont(ofSize: 14, weight: .bold)
-        label.textColor = .white
-        label.numberOfLines = 0
-        return label
-    }()
-    
-    // MARK: 코인 영문명
-    private let marketEngLabel: UILabel = {
-        let label = UILabel()
-        label.font = UIFont.systemFont(ofSize: 14, weight: .bold)
-        label.textColor = .white
+        label.textColor = ThemeColor.tint2
         label.numberOfLines = 0
         return label
     }()
@@ -46,7 +37,7 @@ class MarketCell: UICollectionViewCell {
     private let changePriceLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont.systemFont(ofSize: 12, weight: .regular)
-        label.textColor = .white
+        label.textColor = ThemeColor.stable
         label.numberOfLines = 0
         label.textAlignment = .right
         return label
@@ -94,7 +85,6 @@ class MarketCell: UICollectionViewCell {
         super.prepareForReuse()
         
         self.marketKorLabel.text = nil
-        self.marketEngLabel.text = nil
         self.priceLabel.text = nil
     }
     

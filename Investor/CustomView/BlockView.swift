@@ -13,7 +13,7 @@ class BlockView: UIView {
     // MARK: 각 BlockView들의 값들이 표현되는 뷰
     let contentView: UIView = {
         let view = UIView()
-        view.backgroundColor = ThemeColor.primary1
+        view.backgroundColor = ThemeColor.primary2
         view.layer.cornerRadius = 8
         return view
     }()

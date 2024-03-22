@@ -22,7 +22,7 @@ class SettingViewController: UIViewController, BarbuttonConfigurable {
     lazy var logoutButton: UIButton = {
         let button = UIButton()
         button.setTitle("logout", for: .normal)
-        button.titleLabel?.textColor = ThemeColor.tint1
+        button.setTitleColor(ThemeColor.tint2, for: .normal)
         return button
     }()
     

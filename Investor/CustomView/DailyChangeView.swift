@@ -61,7 +61,7 @@ class DailyChangeView: UIView {
     }
     
     private func layout() {
-        self.backgroundColor = ThemeColor.primary1
+        self.backgroundColor = ThemeColor.primary2
         
         let riseContentView = UIView()
         let fallContentView = UIView()

@@ -51,11 +51,11 @@ class ChartBlockView: BlockView {
         
         chart.xAxis.labelPosition = .bottom
         chart.xAxis.drawGridLinesEnabled = false
-        chart.xAxis.labelTextColor = ThemeColor.tint1
+        chart.xAxis.labelTextColor = ThemeColor.tint2
         
         
         chart.leftAxis.drawGridLinesEnabled = false
-        chart.leftAxis.labelTextColor = ThemeColor.tint1
+        chart.leftAxis.labelTextColor = ThemeColor.tint2
         
         chart.doubleTapToZoomEnabled = false
         chart.highlightPerTapEnabled = false
