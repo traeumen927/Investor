@@ -21,7 +21,7 @@
 		F10483632B84D00F007D532A /* AuthViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F10483622B84D00F007D532A /* AuthViewController.swift */; };
 		F1079F0C2BAABE9400E7AFEE /* PercentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1079F0B2BAABE9400E7AFEE /* PercentView.swift */; };
 		F1079F0E2BAB035800E7AFEE /* ChangeType.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1079F0D2BAB035800E7AFEE /* ChangeType.swift */; };
-		F1079F102BAB0F4000E7AFEE /* DailyChangeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1079F0F2BAB0F4000E7AFEE /* DailyChangeView.swift */; };
+		F1079F102BAB0F4000E7AFEE /* SingleCandleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1079F0F2BAB0F4000E7AFEE /* SingleCandleView.swift */; };
 		F11733E32BA6DA080023E90D /* MarketTicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = F11733E22BA6DA080023E90D /* MarketTicker.swift */; };
 		F121ABA22B84D387001DB314 /* GIDSignInButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = F121ABA12B84D387001DB314 /* GIDSignInButton.swift */; };
 		F121ABA42B84D5CB001DB314 /* AuthViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F121ABA32B84D5CB001DB314 /* AuthViewModel.swift */; };
@@ -68,6 +68,14 @@
 		F1DEB8D22BAC1D6100FFDC53 /* CandleType.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1DEB8D12BAC1D6100FFDC53 /* CandleType.swift */; };
 		F1DEB8D42BAC446500FFDC53 /* Candle.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1DEB8D32BAC446500FFDC53 /* Candle.swift */; };
 		F1DEB8D62BAC4BFB00FFDC53 /* UnitType.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1DEB8D52BAC4BFB00FFDC53 /* UnitType.swift */; };
+		F1E3F3B22BB00FF000F633B6 /* ChatBlockView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1E3F3B12BB00FF000F633B6 /* ChatBlockView.swift */; };
+		F1E3F3B42BB0189000F633B6 /* ChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1E3F3B32BB0189000F633B6 /* ChatViewController.swift */; };
+		F1E3F3B62BB018A200F633B6 /* ChatViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1E3F3B52BB018A200F633B6 /* ChatViewModel.swift */; };
+		F1E3F3B82BB01C5700F633B6 /* InputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1E3F3B72BB01C5700F633B6 /* InputView.swift */; };
+		F1E3F3BA2BB024A100F633B6 /* UserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1E3F3B92BB024A100F633B6 /* UserService.swift */; };
+		F1E3F3BC2BB02E5E00F633B6 /* FireStoreService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1E3F3BB2BB02E5E00F633B6 /* FireStoreService.swift */; };
+		F1E3F3BE2BB04D1300F633B6 /* Chat.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1E3F3BD2BB04D1300F633B6 /* Chat.swift */; };
+		F1E3F3C02BB053DB00F633B6 /* ChatCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1E3F3BF2BB053DB00F633B6 /* ChatCell.swift */; };
 		F1EE176D2BA4286100412195 /* TickerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1EE176C2BA4286100412195 /* TickerProtocol.swift */; };
 		FDE8B1E51AACD63326E0D41D /* Pods_InvestorTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AB45874EFF3E490B3524923F /* Pods_InvestorTests.framework */; };
 /* End PBXBuildFile section */
@@ -109,7 +117,7 @@
 		F10483622B84D00F007D532A /* AuthViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthViewController.swift; sourceTree = "<group>"; };
 		F1079F0B2BAABE9400E7AFEE /* PercentView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PercentView.swift; sourceTree = "<group>"; };
 		F1079F0D2BAB035800E7AFEE /* ChangeType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangeType.swift; sourceTree = "<group>"; };
-		F1079F0F2BAB0F4000E7AFEE /* DailyChangeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyChangeView.swift; sourceTree = "<group>"; };
+		F1079F0F2BAB0F4000E7AFEE /* SingleCandleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SingleCandleView.swift; sourceTree = "<group>"; };
 		F11733E22BA6DA080023E90D /* MarketTicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarketTicker.swift; sourceTree = "<group>"; };
 		F121ABA12B84D387001DB314 /* GIDSignInButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GIDSignInButton.swift; sourceTree = "<group>"; };
 		F121ABA32B84D5CB001DB314 /* AuthViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthViewModel.swift; sourceTree = "<group>"; };
@@ -146,6 +154,14 @@
 		F1DEB8D12BAC1D6100FFDC53 /* CandleType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CandleType.swift; sourceTree = "<group>"; };
 		F1DEB8D32BAC446500FFDC53 /* Candle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Candle.swift; sourceTree = "<group>"; };
 		F1DEB8D52BAC4BFB00FFDC53 /* UnitType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnitType.swift; sourceTree = "<group>"; };
+		F1E3F3B12BB00FF000F633B6 /* ChatBlockView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatBlockView.swift; sourceTree = "<group>"; };
+		F1E3F3B32BB0189000F633B6 /* ChatViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatViewController.swift; sourceTree = "<group>"; };
+		F1E3F3B52BB018A200F633B6 /* ChatViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatViewModel.swift; sourceTree = "<group>"; };
+		F1E3F3B72BB01C5700F633B6 /* InputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputView.swift; sourceTree = "<group>"; };
+		F1E3F3B92BB024A100F633B6 /* UserService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserService.swift; sourceTree = "<group>"; };
+		F1E3F3BB2BB02E5E00F633B6 /* FireStoreService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FireStoreService.swift; sourceTree = "<group>"; };
+		F1E3F3BD2BB04D1300F633B6 /* Chat.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Chat.swift; sourceTree = "<group>"; };
+		F1E3F3BF2BB053DB00F633B6 /* ChatCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatCell.swift; sourceTree = "<group>"; };
 		F1EE176C2BA4286100412195 /* TickerProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TickerProtocol.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -210,6 +226,7 @@
 			isa = PBXGroup;
 			children = (
 				F155627C2B98C26F005DBECC /* MarketCell.swift */,
+				F1E3F3BF2BB053DB00F633B6 /* ChatCell.swift */,
 			);
 			path = cell;
 			sourceTree = "<group>";
@@ -222,6 +239,7 @@
 				F19BAAF52B9EEFE20082E6C3 /* ApiTiker.swift */,
 				F14F5B5A2BA702EF00EE06A8 /* SocketTicker.swift */,
 				F1DEB8D32BAC446500FFDC53 /* Candle.swift */,
+				F1E3F3BD2BB04D1300F633B6 /* Chat.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -232,6 +250,7 @@
 				F121ABA32B84D5CB001DB314 /* AuthViewModel.swift */,
 				F19BAB012B9F1B240082E6C3 /* HomeViewModel.swift */,
 				F1DEB8C62BAC08B400FFDC53 /* DetailViewModel.swift */,
+				F1E3F3B52BB018A200F633B6 /* ChatViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -243,6 +262,7 @@
 				F1DB09942B864D3900BBE7B5 /* HomeViewController.swift */,
 				F1DB09922B864D2C00BBE7B5 /* SettingViewController.swift */,
 				F1DEB8C42BAC08A800FFDC53 /* DetailViewController.swift */,
+				F1E3F3B32BB0189000F633B6 /* ChatViewController.swift */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -250,8 +270,10 @@
 		F104834A2B84CCD5007D532A /* Service */ = {
 			isa = PBXGroup;
 			children = (
+				F1E3F3BB2BB02E5E00F633B6 /* FireStoreService.swift */,
 				F19BAAF92B9EFD8B0082E6C3 /* UpbitApiService.swift */,
 				F13CF5802B99F67D002BCA38 /* UpbitSocketService.swift */,
+				F1E3F3B92BB024A100F633B6 /* UserService.swift */,
 			);
 			path = Service;
 			sourceTree = "<group>";
@@ -284,9 +306,11 @@
 			isa = PBXGroup;
 			children = (
 				F1079F0B2BAABE9400E7AFEE /* PercentView.swift */,
-				F1079F0F2BAB0F4000E7AFEE /* DailyChangeView.swift */,
+				F1079F0F2BAB0F4000E7AFEE /* SingleCandleView.swift */,
 				F1DEB8CA2BAC156F00FFDC53 /* BlockView.swift */,
 				F1DEB8C82BAC0EBF00FFDC53 /* ChartBlockView.swift */,
+				F1E3F3B12BB00FF000F633B6 /* ChatBlockView.swift */,
+				F1E3F3B72BB01C5700F633B6 /* InputView.swift */,
 			);
 			path = CustomView;
 			sourceTree = "<group>";
@@ -641,30 +665,38 @@
 				F1079F0C2BAABE9400E7AFEE /* PercentView.swift in Sources */,
 				F121ABA72B84E5AF001DB314 /* AuthNavigationController.swift in Sources */,
 				F191CCFD2B833673004F8659 /* AppDelegate.swift in Sources */,
+				F1E3F3BC2BB02E5E00F633B6 /* FireStoreService.swift in Sources */,
 				F1DEB8D22BAC1D6100FFDC53 /* CandleType.swift in Sources */,
 				F1DB09952B864D3900BBE7B5 /* HomeViewController.swift in Sources */,
 				F1DB09932B864D2C00BBE7B5 /* SettingViewController.swift in Sources */,
 				F19BAAF82B9EF2B90082E6C3 /* Decodable.swift in Sources */,
 				F10483582B84CD85007D532A /* String.swift in Sources */,
 				F16381D22B8E12590026E260 /* BarbuttonConfigurable.swift in Sources */,
+				F1E3F3BA2BB024A100F633B6 /* UserService.swift in Sources */,
 				F191CCFF2B833673004F8659 /* SceneDelegate.swift in Sources */,
+				F1E3F3BE2BB04D1300F633B6 /* Chat.swift in Sources */,
 				F19BAAFA2B9EFD8B0082E6C3 /* UpbitApiService.swift in Sources */,
 				F1DEB8C92BAC0EBF00FFDC53 /* ChartBlockView.swift in Sources */,
 				F1EE176D2BA4286100412195 /* TickerProtocol.swift in Sources */,
+				F1E3F3B62BB018A200F633B6 /* ChatViewModel.swift in Sources */,
 				F1DEB8D42BAC446500FFDC53 /* Candle.swift in Sources */,
 				F1DEB8C72BAC08B400FFDC53 /* DetailViewModel.swift in Sources */,
 				F10483522B84CD3E007D532A /* UIResponder.swift in Sources */,
 				F121ABA42B84D5CB001DB314 /* AuthViewModel.swift in Sources */,
+				F1E3F3B42BB0189000F633B6 /* ChatViewController.swift in Sources */,
 				F19BAB022B9F1B250082E6C3 /* HomeViewModel.swift in Sources */,
-				F1079F102BAB0F4000E7AFEE /* DailyChangeView.swift in Sources */,
+				F1079F102BAB0F4000E7AFEE /* SingleCandleView.swift in Sources */,
 				F1DEB8C52BAC08A800FFDC53 /* DetailViewController.swift in Sources */,
 				F1079F0E2BAB035800E7AFEE /* ChangeType.swift in Sources */,
 				F10483502B84CD24007D532A /* UIColor.swift in Sources */,
 				F10483562B84CD73007D532A /* UILabel.swift in Sources */,
+				F1E3F3B22BB00FF000F633B6 /* ChatBlockView.swift in Sources */,
 				F1DEB8D62BAC4BFB00FFDC53 /* UnitType.swift in Sources */,
 				F1DB098F2B864B1500BBE7B5 /* TabNavigationController.swift in Sources */,
 				F14F5B5B2BA702EF00EE06A8 /* SocketTicker.swift in Sources */,
 				F155627D2B98C26F005DBECC /* MarketCell.swift in Sources */,
+				F1E3F3C02BB053DB00F633B6 /* ChatCell.swift in Sources */,
+				F1E3F3B82BB01C5700F633B6 /* InputView.swift in Sources */,
 				F13CF5812B99F67D002BCA38 /* UpbitSocketService.swift in Sources */,
 				F10483542B84CD52007D532A /* Double.swift in Sources */,
 				F19BAAFD2B9F044D0082E6C3 /* MarketInfo.swift in Sources */,

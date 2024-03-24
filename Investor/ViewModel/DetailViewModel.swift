@@ -12,10 +12,7 @@ import Alamofire
 class DetailViewModel {
     
     // MARK: 선택한 코인
-    private var marketInfo: MarketInfo
-    
-    // MARK: 코인 한글명
-    let marketSubject = BehaviorSubject(value: "")
+    var marketInfo: MarketInfo
     
     let apiTickerSubejct = PublishSubject<ApiTicker>()
     
@@ -24,7 +21,6 @@ class DetailViewModel {
     
     init(marketInfo: MarketInfo) {
         self.marketInfo = marketInfo
-        self.marketSubject.onNext(marketInfo.koreanName)
     }
     
     func fetchData() {

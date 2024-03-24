@@ -35,6 +35,12 @@ class DetailViewController: UIViewController {
         return view
     }()
     
+    // MARK: 스택뷰 하위뷰 - 채팅뷰
+    private let chatBlockView: ChatBlockView = {
+        let view = ChatBlockView()
+        return view
+    }()
+    
     
     init(viewModel: DetailViewModel) {
         self.viewModel = viewModel
@@ -54,7 +60,7 @@ class DetailViewController: UIViewController {
     
     private func layout() {
         self.view.backgroundColor = ThemeColor.background
-        
+        self.title = self.viewModel.marketInfo.koreanName
         
         self.view.addSubview(scrollView)
         self.scrollView.addSubview(stackView)
@@ -67,20 +73,14 @@ class DetailViewController: UIViewController {
             make.edges.equalToSuperview()
             make.width.equalToSuperview()
         }
-        [chartBlockView].forEach(stackView.addArrangedSubview(_:))
+        [chartBlockView, chatBlockView].forEach(stackView.addArrangedSubview(_:))
     }
     
     private func bind() {
         self.viewModel.fetchData()
         self.chartBlockView.delegate = self
+        self.chatBlockView.delegate = self
         self.chartBlockView.getSegementIndex()
-        
-        // MARK: 네비게이션 title 구독
-        self.viewModel.marketSubject
-            .subscribe(onNext: {[weak self] name in
-                guard let self = self else { return }
-                self.title = name
-            }).disposed(by: disposeBag)
         
         // MARK: 현재가 구독
         self.viewModel.apiTickerSubejct
@@ -102,7 +102,18 @@ class DetailViewController: UIViewController {
 
 // MARK: - Place for ChartBlockViewDelegate
 extension DetailViewController: ChartBlockViewDelegate {
+    // MARK: 캔들차트의 분기 단위가 변경됨
     func segementedChanged(type: CandleType) {
         self.viewModel.fetchCandles(candleType: type)
+    }
+}
+
+
+extension DetailViewController: ChatBlockViewDelegate {
+    // MARK: 종목 토론방 페이지로 이동
+    func enterChatButtonTapped() {
+        let viewModel = ChatViewModel(marketInfo: self.viewModel.marketInfo)
+        let viewController = ChatViewController(viewModel: viewModel)
+        self.navigationController?.pushViewController(viewController, animated: true)
     }
 }
