@@ -47,7 +47,6 @@ class ChatViewModel {
             .collection("ChatRooms")
             .document(marketInfo.market)
             .collection("Messages")
-            .order(by: "timestamp")
         
         self.listener = messageRef.addSnapshotListener({ snapshot, error in
             if let error = error {
@@ -61,14 +60,44 @@ class ChatViewModel {
             var chats = [Chat]()
             
             for document in snapshot.documents {
-                if let sender = document["sender"] as? String,
-                   let message = document["message"] as? String,
-                   let timestamp = document["timestamp"] as? Timestamp {
-                    let chat = Chat(sender: sender, message: message, timeStamp: timestamp.dateValue())
-                    chats.append(chat)
+                let data = document.data()
+                
+                if let userRef = data["sender"] as? DocumentReference {
+                    userRef.getDocument { (userDocument, userError) in
+                        if let userDocument = userDocument, userDocument.exists {
+                            
+                            if let userData = userDocument.data(),
+                               let displayName = userData["displayName"] as? String,
+                               let photoUrl = userData["photoUrl"] as? String,
+                               let message = data["message"] as? String,
+                               let timeStamp = data["timestamp"] as? Timestamp {
+                            
+                                let chat = Chat(photoUrl: photoUrl, displayName: displayName, message: message, timeStamp: timeStamp.dateValue())
+                                chats.append(chat)
+                                if chats.count == snapshot.documents.count {
+                                    chats.sort(by: {$0.timeStamp < $1.timeStamp})
+                                    self.chatsSubject.onNext(chats)
+                                }
+                            }
+                        }
+                        else {
+                            print("User document not found for: \(userRef)")
+                        }
+                    }
                 }
             }
-            self.chatsSubject.onNext(chats)
+            
+//            var chats = [Chat]()
+//            
+//            for document in snapshot.documents {
+//                if let sender = document["sender"] as? String,
+//                   let message = document["message"] as? String,
+//                   let timestamp = document["timestamp"] as? Timestamp {
+//                    let chat = Chat(sender: sender, message: message, timeStamp: timestamp.dateValue())
+//                    chats.append(chat)
+//                }
+//            }
+//            self.chatsSubject.onNext(chats)
         })
     }
     

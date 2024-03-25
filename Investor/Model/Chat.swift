@@ -8,7 +8,8 @@
 import Foundation
 
 struct Chat {
-    let sender: String
+    let photoUrl: String
+    let displayName: String
     let message: String
     let timeStamp: Date
 }

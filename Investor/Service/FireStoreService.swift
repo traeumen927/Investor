@@ -60,10 +60,11 @@ class FireStoreService {
             
         case .message(let market, let message, let sender):
             let collection = db.collection("ChatRooms").document(market).collection("Messages")
+            let userRef = db.collection("Users").document(sender)
             let timestamp = Date()
             
             collection.addDocument(data: [
-                "sender": sender,
+                "sender": userRef,
                 "message": message,
                 "timestamp": timestamp
             ]) { error in

@@ -77,6 +77,8 @@ class DetailViewModel {
             .order(by: "timestamp", descending: true)
             .limit(to: 1)
         
+        
+        
         self.listener = messageRef.addSnapshotListener({ snapshot, error in
             if let error = error {
                 print("error: \(error.localizedDescription)")
@@ -87,11 +89,27 @@ class DetailViewModel {
             }
             var chats = [Chat]()
             
-            if let sender = recent["sender"] as? String,
-               let message = recent["message"] as? String,
-               let timestamp = recent["timestamp"] as? Timestamp {
-                let chat = Chat(sender: sender, message: message, timeStamp: timestamp.dateValue())
-                self.chatsSubject.onNext(chat)
+            if let userRef = recent["sender"] as? DocumentReference {
+                userRef.getDocument { (userDocument, userError) in
+                    if let userDocument = userDocument, userDocument.exists {
+                        
+                        if let userData = userDocument.data(),
+                           let displayName = userData["displayName"] as? String,
+                           let photoUrl = userData["photoUrl"] as? String,
+                           let message = recent["message"] as? String,
+                           let timeStamp = recent["timestamp"] as? Timestamp {
+                        
+                            let chat = Chat(photoUrl: photoUrl, displayName: displayName, message: message, timeStamp: timeStamp.dateValue())
+                            chats.append(chat)
+                            if chats.count == snapshot.documents.count {
+                                self.chatsSubject.onNext(chat)
+                            }
+                        }
+                    }
+                    else {
+                        print("User document not found for: \(userRef)")
+                    }
+                }
             }
         })
     }

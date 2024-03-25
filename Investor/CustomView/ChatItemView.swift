@@ -7,6 +7,7 @@
 
 import UIKit
 import SnapKit
+import Kingfisher
 
 // MARK: 채팅 Row를 구성하는 View
 class ChatItemView: UIView {
@@ -16,6 +17,8 @@ class ChatItemView: UIView {
         let view = UIImageView()
         view.image = UIImage(systemName: "person.circle.fill")?.withRenderingMode(.alwaysTemplate)
         view.tintColor = ThemeColor.tintDisable
+        view.layer.cornerRadius = 24.0
+        view.layer.masksToBounds = true
         return view
     }()
     
@@ -107,7 +110,13 @@ class ChatItemView: UIView {
     
     func configure(with chat: Chat) {
         messageLabel.text = chat.message
-        profileLabel.text = chat.sender
+        profileLabel.text = chat.displayName
         dateLabel.text = chat.timeStamp.formattedString()
+        
+        if let url = URL(string: chat.photoUrl) {
+            profileView.kf.setImage(with: url)
+        } else {
+            self.profileView.image = UIImage(systemName: "person.circle.fill")?.withRenderingMode(.alwaysTemplate)
+        }
     }
 }
