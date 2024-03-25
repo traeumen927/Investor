@@ -113,6 +113,16 @@ class ChatViewController: UIViewController {
             self.view.frame.origin.y = 0
         }
     }
+    
+    // MARK: 종목토론방 진입시 채팅 리스너 부여
+    override func viewWillAppear(_ animated: Bool) {
+        self.viewModel.addListener()
+    }
+    
+    // MARK: 종목토론방 이탈시 채팅 리스너 제거
+    override func viewWillDisappear(_ animated: Bool) {
+        self.viewModel.removeListener()
+    }
 }
 
 // MARK: - Place for InputViewDelegate

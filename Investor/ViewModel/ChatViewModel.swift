@@ -16,7 +16,7 @@ class ChatViewModel {
     private var listener: ListenerRegistration?
     
     // MARK: 채팅목록 Subject
-    let chatsSubject = PublishSubject<[Chat]>()
+    let chatsSubject: BehaviorSubject<[Chat]> = BehaviorSubject(value: [])
     
     // MARK: 선택한 코인
     var marketInfo: MarketInfo
@@ -24,7 +24,6 @@ class ChatViewModel {
     
     init(marketInfo: MarketInfo) {
         self.marketInfo = marketInfo
-        self.bind()
     }
     
     // MARK: 종목 토론방 채팅 입력
@@ -41,8 +40,9 @@ class ChatViewModel {
         }
     }
     
-    private func bind() {
-        // MARK: FireStore 리스너 연결
+    
+    // MARK: 채팅방 정보 리스너 연결
+    func addListener() {
         let messageRef = Firestore.firestore()
             .collection("ChatRooms")
             .document(marketInfo.market)
@@ -72,7 +72,8 @@ class ChatViewModel {
         })
     }
     
-    private func removeListener() {
+    // MARK: 채팅방 정보 리스너 제거
+    func removeListener() {
         self.listener?.remove()
     }
 }

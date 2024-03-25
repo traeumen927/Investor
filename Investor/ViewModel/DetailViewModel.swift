@@ -8,6 +8,7 @@
 import Foundation
 import RxSwift
 import Alamofire
+import FirebaseFirestore
 
 class DetailViewModel {
     
@@ -18,6 +19,12 @@ class DetailViewModel {
     
     // MARK: 캔들 배열
     let candlesSubject = PublishSubject<[Candle]>()
+    
+    // MARK: 실시간 종목토론방 리스너
+    private var listener: ListenerRegistration?
+    
+    // MARK: 채팅목록 Subject(가장 최신 채팅 1개)
+    let chatsSubject = ReplaySubject<Chat>.create(bufferSize: 1)
     
     init(marketInfo: MarketInfo) {
         self.marketInfo = marketInfo
@@ -59,5 +66,38 @@ class DetailViewModel {
                 print("Error fetching tickers: \(error)")
             }
         }
+    }
+    
+    // MARK: 채팅방 정보 리스너 연결
+    func addListener() {
+        let messageRef = Firestore.firestore()
+            .collection("ChatRooms")
+            .document(marketInfo.market)
+            .collection("Messages")
+            .order(by: "timestamp", descending: true)
+            .limit(to: 1)
+        
+        self.listener = messageRef.addSnapshotListener({ snapshot, error in
+            if let error = error {
+                print("error: \(error.localizedDescription)")
+            }
+            
+            guard let snapshot = snapshot, let recent = snapshot.documents.first else {
+                return
+            }
+            var chats = [Chat]()
+            
+            if let sender = recent["sender"] as? String,
+               let message = recent["message"] as? String,
+               let timestamp = recent["timestamp"] as? Timestamp {
+                let chat = Chat(sender: sender, message: message, timeStamp: timestamp.dateValue())
+                self.chatsSubject.onNext(chat)
+            }
+        })
+    }
+    
+    // MARK: 채팅방 정보 리스너 제거
+    func removeListener() {
+        self.listener?.remove()
     }
 }

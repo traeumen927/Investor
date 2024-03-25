@@ -41,6 +41,14 @@ class ChatBlockView: BlockView {
         return button
     }()
     
+    // MARK: 가장 최신 채팅 정보
+    private let chatItemView: ChatItemView = {
+        let view = ChatItemView()
+        view.backgroundColor = ThemeColor.tint1
+        view.layer.cornerRadius = 8
+        return view
+    }()
+    
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -56,15 +64,22 @@ class ChatBlockView: BlockView {
     
     
     private func layout() {
-        [titleLabel, enterChatButton].forEach(self.contentView.addSubview(_:))
+        self.isHidden = true
+        
+        [titleLabel, chatItemView, enterChatButton].forEach(self.contentView.addSubview(_:))
         
         titleLabel.snp.makeConstraints { make in
             make.top.equalToSuperview().offset(12)
             make.leading.trailing.equalToSuperview().inset(12)
         }
         
-        enterChatButton.snp.makeConstraints { make in
+        chatItemView.snp.makeConstraints { make in
             make.top.equalTo(titleLabel.snp.bottom).offset(12)
+            make.leading.trailing.equalToSuperview().inset(12)
+        }
+        
+        enterChatButton.snp.makeConstraints { make in
+            make.top.equalTo(chatItemView.snp.bottom).offset(12)
             make.leading.trailing.bottom.equalToSuperview().inset(8)
             make.height.equalTo(48)
         }
@@ -76,6 +91,11 @@ class ChatBlockView: BlockView {
                 guard let self = self else { return }
                 self.delegate?.enterChatButtonTapped()
             }).disposed(by: disposeBag)
+    }
+    
+    func configure(with chat: Chat) {
+        self.chatItemView.configure(with: chat)
+        self.isHidden = false
     }
 }
 

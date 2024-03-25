@@ -77,7 +77,12 @@ class DetailViewController: UIViewController {
     }
     
     private func bind() {
+        // MARK: 캔들정보 조회
         self.viewModel.fetchData()
+        
+        // MARK: 종목토론방 조회
+        self.viewModel.addListener()
+        
         self.chartBlockView.delegate = self
         self.chatBlockView.delegate = self
         self.chartBlockView.getSegementIndex()
@@ -96,6 +101,24 @@ class DetailViewController: UIViewController {
                 guard let self = self else { return }
                 self.chartBlockView.configure(with: candles)
             }).disposed(by: disposeBag)
+        
+        // MARK: 채팅정보 구독 (distinctUntilChanged로 viewcontroller 진입 및 이탈시 중복 데이터 방출 방지)
+        self.viewModel.chatsSubject
+            .distinctUntilChanged { $0.timeStamp == $1.timeStamp }
+            .subscribe(onNext: { [weak self] chat in
+                guard let self = self else { return }
+                self.chatBlockView.configure(with: chat)
+            }).disposed(by: disposeBag)
+    }
+    
+    // MARK: 종목토론방 진입시 채팅 리스너 부여
+    override func viewWillAppear(_ animated: Bool) {
+        self.viewModel.addListener()
+    }
+    
+    // MARK: 종목토론방 이탈시 채팅 리스너 제거
+    override func viewWillDisappear(_ animated: Bool) {
+        self.viewModel.removeListener()
     }
 }
 

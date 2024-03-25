@@ -66,27 +66,10 @@ class ChatItemView: UIView {
         layout()
     }
     
-    override func layoutSubviews() {
-        super.layoutSubviews()
-        
-        let viewWidth = self.bounds.size.width
-        print(viewWidth)
-        messageLabel.snp.remakeConstraints { make in
-            make.top.equalToSuperview().offset(8)
-            make.leading.equalToSuperview().offset(8)
-            make.trailing.equalToSuperview().offset(-8)
-            make.bottom.equalToSuperview().offset(-8)
-            make.width.lessThanOrEqualTo(viewWidth * 0.8)
-        }
-    }
-    
-    
     private func layout() {
-        self.addSubview(profileView)
-        self.addSubview(profileLabel)
-        self.addSubview(bubbleView)
-        self.addSubview(dateLabel)
         bubbleView.addSubview(messageLabel)
+        [profileView, profileLabel, bubbleView, dateLabel].forEach(addSubview(_:))
+        
         
         profileView.snp.makeConstraints { make in
             make.top.equalToSuperview().offset(8)
@@ -112,7 +95,7 @@ class ChatItemView: UIView {
             make.leading.equalToSuperview().offset(8)
             make.trailing.equalToSuperview().offset(-8)
             make.bottom.equalToSuperview().offset(-8)
-            make.width.lessThanOrEqualTo(self.bounds.size.width * 0.8)
+            make.width.lessThanOrEqualTo(self.snp.width).multipliedBy(0.6)
         }
         
         dateLabel.snp.makeConstraints { make in
