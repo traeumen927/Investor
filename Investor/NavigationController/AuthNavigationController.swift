@@ -20,7 +20,6 @@ class AuthNavigationController: UINavigationController {
     override func viewWillAppear(_ animated: Bool) {
         handle = Auth.auth().addStateDidChangeListener({ auth, user in
             guard user != nil else {
-                print("user nil")
                 return
             }
             self.presentTabBarController()

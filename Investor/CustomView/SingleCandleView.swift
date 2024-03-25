@@ -1,5 +1,5 @@
 //
-//  DailyChangeView.swift
+//  SingleCandleView.swift
 //  Investor
 //
 //  Created by 홍정연 on 3/20/24.
@@ -9,7 +9,7 @@ import UIKit
 import SnapKit
 
 // MARK: 개장시간 기준 하루동안의 등락폭을 시각적으로 표현하는 뷰
-class DailyChangeView: UIView {
+class SingleCandleView: UIView {
     
     // MARK: 등락폭 표시의 최대치(30%)
     private let maxRate:Double = 30

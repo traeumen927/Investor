@@ -12,8 +12,8 @@ class MarketCell: UICollectionViewCell {
     static let cellId = "MarketCell"
     
     // MARK: 개장시간 기준 하루동안의 등락폭을 시각적으로 표현하는 뷰
-    private let dailyChangeView: DailyChangeView = {
-        let view = DailyChangeView()
+    private let singleCandleView: SingleCandleView = {
+        let view = SingleCandleView()
         return view
     }()
     
@@ -104,7 +104,7 @@ class MarketCell: UICollectionViewCell {
         [nameView, priceView, changeView].forEach(stackView.addArrangedSubview(_:))
         
         nameView.addSubview(marketKorLabel)
-        nameView.addSubview(dailyChangeView)
+        nameView.addSubview(singleCandleView)
         priceView.addSubview(priceLabel)
         changeView.addSubview(changeRateView)
         changeView.addSubview(changePriceLabel)
@@ -138,7 +138,7 @@ class MarketCell: UICollectionViewCell {
         }
         
         // MARK: 당일 등락뷰
-        dailyChangeView.snp.makeConstraints { make in
+        singleCandleView.snp.makeConstraints { make in
             make.top.equalToSuperview().offset(8)
             make.bottom.equalToSuperview().offset(-8)
             make.leading.equalToSuperview().offset(12)
@@ -147,7 +147,7 @@ class MarketCell: UICollectionViewCell {
         
         // MARK: 코인명(한글)
         marketKorLabel.snp.makeConstraints { make in
-            make.leading.equalTo(dailyChangeView.snp.trailing).offset(8)
+            make.leading.equalTo(singleCandleView.snp.trailing).offset(8)
             make.trailing.equalToSuperview().offset(-12)
             make.centerY.equalToSuperview()
         }
@@ -187,7 +187,7 @@ class MarketCell: UICollectionViewCell {
             changeRateView.setPercentage(socketTicker.signed_change_rate * 100)
             changePriceLabel.text = "\(socketTicker.signed_change_price.formattedStringWithCommaAndDecimal(places: 2))"
             changePriceLabel.textColor = socketTicker.change.color
-            dailyChangeView.update(change: socketTicker.change, market: socketTicker.code, rate: socketTicker.change_rate, highPrice: socketTicker.high_price, lowPrice: socketTicker.low_price, closingPrice: socketTicker.prev_closing_price)
+            singleCandleView.update(change: socketTicker.change, market: socketTicker.code, rate: socketTicker.change_rate, highPrice: socketTicker.high_price, lowPrice: socketTicker.low_price, closingPrice: socketTicker.prev_closing_price)
         }
         else { // MARK: 실시간 Ticker 없다면, 마지막 요청 Api Ticker 정보 사용
             let apiTicker = marketTicker.apiTicker
@@ -196,7 +196,7 @@ class MarketCell: UICollectionViewCell {
             changeRateView.setPercentage(apiTicker.signed_change_rate * 100)
             changePriceLabel.text = "\(apiTicker.signed_change_price.formattedStringWithCommaAndDecimal(places: 2))"
             changePriceLabel.textColor = apiTicker.change.color
-            dailyChangeView.update(change: apiTicker.change, market: apiTicker.market, rate: apiTicker.change_rate, highPrice: apiTicker.high_price, lowPrice: apiTicker.low_price, closingPrice: apiTicker.prev_closing_price)
+            singleCandleView.update(change: apiTicker.change, market: apiTicker.market, rate: apiTicker.change_rate, highPrice: apiTicker.high_price, lowPrice: apiTicker.low_price, closingPrice: apiTicker.prev_closing_price)
         }
     }
 }

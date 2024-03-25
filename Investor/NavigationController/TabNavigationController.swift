@@ -23,11 +23,14 @@ class TabNavigationController: UINavigationController {
     
     override func viewWillAppear(_ animated: Bool) {
         handle = Auth.auth().addStateDidChangeListener({ auth, user in
-            guard user == nil else {
-                print("user")
+            guard let user = user else {
+                // MARK: 로그아웃 -> 유저 서비스 정보 초기화
+                UserService.shared.logoutUser()
+                self.dismiss(animated: true)
                 return
             }
-            self.dismiss(animated: true)
+            // MARK: 로그인 -> 유저 서비스 정보 저장
+            UserService.shared.saveUser(user: user)
         })
     }
     
