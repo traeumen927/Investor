@@ -20,13 +20,12 @@ class FireStoreService {
     
     func request(endpoint: EndPoint, completion: @escaping (Result<Void, Error>) -> Void) {
         switch endpoint {
-        case .message(let market, let message, let sender, let name):
+        case .message(let market, let message, let sender):
             let collection = db.collection("ChatRooms").document(market).collection("Messages")
             let timestamp = Date()
             
             collection.addDocument(data: [
                 "sender": sender,
-                "name":name,
                 "message": message,
                 "timestamp": timestamp
             ]) { error in
@@ -42,7 +41,7 @@ class FireStoreService {
 
 extension FireStoreService {
     enum EndPoint {
-        case message(market: String, message: String, sender: String, name: String)
+        case message(market: String, message: String, sender: String)
     }
 
 }

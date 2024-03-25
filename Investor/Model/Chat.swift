@@ -9,7 +9,6 @@ import Foundation
 
 struct Chat {
     let sender: String
-    let name: String
     let message: String
     let timeStamp: Date
 }

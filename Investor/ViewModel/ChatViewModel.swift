@@ -30,7 +30,7 @@ class ChatViewModel {
     // MARK: 종목 토론방 채팅 입력
     func chatEntered(chat: String) {
         guard let user = UserService.shared.getUser() else {return}
-        FireStoreService.shared.request(endpoint: .message(market: marketInfo.market, message: chat, sender: user.uid, name: user.displayName ?? user.uid)) { result in
+        FireStoreService.shared.request(endpoint: .message(market: marketInfo.market, message: chat, sender: user.uid)) { result in
             switch result {
                 
             case .success():
@@ -62,10 +62,9 @@ class ChatViewModel {
             
             for document in snapshot.documents {
                 if let sender = document["sender"] as? String,
-                   let name = document["name"] as? String,
                    let message = document["message"] as? String,
                    let timestamp = document["timestamp"] as? Timestamp {
-                    let chat = Chat(sender: sender, name: name, message: message, timeStamp: timestamp.dateValue())
+                    let chat = Chat(sender: sender, message: message, timeStamp: timestamp.dateValue())
                     chats.append(chat)
                 }
             }

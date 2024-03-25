@@ -77,6 +77,8 @@
 		F1E3F3BE2BB04D1300F633B6 /* Chat.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1E3F3BD2BB04D1300F633B6 /* Chat.swift */; };
 		F1E3F3C02BB053DB00F633B6 /* ChatCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1E3F3BF2BB053DB00F633B6 /* ChatCell.swift */; };
 		F1EE176D2BA4286100412195 /* TickerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1EE176C2BA4286100412195 /* TickerProtocol.swift */; };
+		F1F834F22BB15190001EBBFD /* Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1F834F12BB15190001EBBFD /* Date.swift */; };
+		F1F834F42BB155A4001EBBFD /* ChatItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1F834F32BB155A4001EBBFD /* ChatItemView.swift */; };
 		FDE8B1E51AACD63326E0D41D /* Pods_InvestorTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AB45874EFF3E490B3524923F /* Pods_InvestorTests.framework */; };
 /* End PBXBuildFile section */
 
@@ -163,6 +165,8 @@
 		F1E3F3BD2BB04D1300F633B6 /* Chat.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Chat.swift; sourceTree = "<group>"; };
 		F1E3F3BF2BB053DB00F633B6 /* ChatCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatCell.swift; sourceTree = "<group>"; };
 		F1EE176C2BA4286100412195 /* TickerProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TickerProtocol.swift; sourceTree = "<group>"; };
+		F1F834F12BB15190001EBBFD /* Date.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Date.swift; sourceTree = "<group>"; };
+		F1F834F32BB155A4001EBBFD /* ChatItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatItemView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -289,6 +293,7 @@
 				F10483572B84CD85007D532A /* String.swift */,
 				F121ABA12B84D387001DB314 /* GIDSignInButton.swift */,
 				F19BAAF72B9EF2B90082E6C3 /* Decodable.swift */,
+				F1F834F12BB15190001EBBFD /* Date.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -311,6 +316,7 @@
 				F1DEB8C82BAC0EBF00FFDC53 /* ChartBlockView.swift */,
 				F1E3F3B12BB00FF000F633B6 /* ChatBlockView.swift */,
 				F1E3F3B72BB01C5700F633B6 /* InputView.swift */,
+				F1F834F32BB155A4001EBBFD /* ChatItemView.swift */,
 			);
 			path = CustomView;
 			sourceTree = "<group>";
@@ -680,6 +686,8 @@
 				F1EE176D2BA4286100412195 /* TickerProtocol.swift in Sources */,
 				F1E3F3B62BB018A200F633B6 /* ChatViewModel.swift in Sources */,
 				F1DEB8D42BAC446500FFDC53 /* Candle.swift in Sources */,
+				F1F834F22BB15190001EBBFD /* Date.swift in Sources */,
+				F1F834F42BB155A4001EBBFD /* ChatItemView.swift in Sources */,
 				F1DEB8C72BAC08B400FFDC53 /* DetailViewModel.swift in Sources */,
 				F10483522B84CD3E007D532A /* UIResponder.swift in Sources */,
 				F121ABA42B84D5CB001DB314 /* AuthViewModel.swift in Sources */,
