@@ -57,13 +57,14 @@ class MarketViewController: UIViewController {
     
     private func bind() {
         // MARK: 거래가능 마켓 + 요청당시 현재가 불러오기
-        self.viewModel.marketTickerSubject
+        self.viewModel.marketTickerRelay
             .observe(on: MainScheduler.instance)
             .subscribe(onNext: { [weak self] marketTicker in
                 guard let self = self else { return }
                 self.marketTickerList = marketTicker
                 self.collectionView.reloadData()
             }).disposed(by: disposeBag)
+        
         
         // MARK: 이후 변동되는 실시간 현재가 Ticker 가져오기
         self.viewModel.socketTickerSubject
@@ -94,6 +95,16 @@ class MarketViewController: UIViewController {
         UIView.performWithoutAnimation {
             self.collectionView.reloadItems(at: indexPathsToReload)
         }
+    }
+    
+    // MARK: 웹소켓 연결
+    override func viewWillAppear(_ animated: Bool) {
+        self.viewModel.connectWebSocket()
+    }
+    
+    // MARK: 웹소켓 연결 해제
+    override func viewWillDisappear(_ animated: Bool) {
+        self.viewModel.disconnectWebSocket()
     }
 }
 

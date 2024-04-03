@@ -55,6 +55,13 @@
 		F1E0A6912BBD28D400C2CFCE /* SingleCandleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1E0A68F2BBD28CF00C2CFCE /* SingleCandleView.swift */; };
 		F1E0A6922BBD291A00C2CFCE /* UpbitSocketService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1E0A6842BBD284C00C2CFCE /* UpbitSocketService.swift */; };
 		F1E0A6932BBD291C00C2CFCE /* UpbitApiService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1E0A6832BBD284C00C2CFCE /* UpbitApiService.swift */; };
+		F1E0A69D2BBD2D1500C2CFCE /* ChatBlockView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1E0A6982BBD2D1500C2CFCE /* ChatBlockView.swift */; };
+		F1E0A69E2BBD2D1500C2CFCE /* ChartBlockView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1E0A6992BBD2D1500C2CFCE /* ChartBlockView.swift */; };
+		F1E0A69F2BBD2D1500C2CFCE /* InputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1E0A69A2BBD2D1500C2CFCE /* InputView.swift */; };
+		F1E0A6A02BBD2D1500C2CFCE /* BlockView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1E0A69B2BBD2D1500C2CFCE /* BlockView.swift */; };
+		F1E0A6A12BBD2D1500C2CFCE /* ChatItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1E0A69C2BBD2D1500C2CFCE /* ChatItemView.swift */; };
+		F1E0A6A72BBD2D3100C2CFCE /* FireStoreService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1E0A6A62BBD2D3100C2CFCE /* FireStoreService.swift */; };
+		F1E0A6A92BBD2D4F00C2CFCE /* TickerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1E0A6A82BBD2D4F00C2CFCE /* TickerProtocol.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -115,6 +122,17 @@
 		F1E0A68C2BBD28B100C2CFCE /* MarketCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarketCell.swift; sourceTree = "<group>"; };
 		F1E0A68E2BBD28CF00C2CFCE /* PercentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PercentView.swift; sourceTree = "<group>"; };
 		F1E0A68F2BBD28CF00C2CFCE /* SingleCandleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SingleCandleView.swift; sourceTree = "<group>"; };
+		F1E0A6942BBD2D0800C2CFCE /* ChatViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatViewController.swift; sourceTree = "<group>"; };
+		F1E0A6952BBD2D0800C2CFCE /* DetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
+		F1E0A6982BBD2D1500C2CFCE /* ChatBlockView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatBlockView.swift; sourceTree = "<group>"; };
+		F1E0A6992BBD2D1500C2CFCE /* ChartBlockView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChartBlockView.swift; sourceTree = "<group>"; };
+		F1E0A69A2BBD2D1500C2CFCE /* InputView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InputView.swift; sourceTree = "<group>"; };
+		F1E0A69B2BBD2D1500C2CFCE /* BlockView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BlockView.swift; sourceTree = "<group>"; };
+		F1E0A69C2BBD2D1500C2CFCE /* ChatItemView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatItemView.swift; sourceTree = "<group>"; };
+		F1E0A6A22BBD2D2400C2CFCE /* DetailViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailViewModel.swift; sourceTree = "<group>"; };
+		F1E0A6A32BBD2D2400C2CFCE /* ChatViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatViewModel.swift; sourceTree = "<group>"; };
+		F1E0A6A62BBD2D3100C2CFCE /* FireStoreService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FireStoreService.swift; sourceTree = "<group>"; };
+		F1E0A6A82BBD2D4F00C2CFCE /* TickerProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TickerProtocol.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -225,6 +243,11 @@
 		F1E0A64F2BBD223400C2CFCE /* CustomView */ = {
 			isa = PBXGroup;
 			children = (
+				F1E0A69B2BBD2D1500C2CFCE /* BlockView.swift */,
+				F1E0A6992BBD2D1500C2CFCE /* ChartBlockView.swift */,
+				F1E0A6982BBD2D1500C2CFCE /* ChatBlockView.swift */,
+				F1E0A69C2BBD2D1500C2CFCE /* ChatItemView.swift */,
+				F1E0A69A2BBD2D1500C2CFCE /* InputView.swift */,
 				F1E0A68E2BBD28CF00C2CFCE /* PercentView.swift */,
 				F1E0A68F2BBD28CF00C2CFCE /* SingleCandleView.swift */,
 			);
@@ -234,11 +257,11 @@
 		F1E0A6502BBD229200C2CFCE /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				F1E0A6792BBD283700C2CFCE /* ApiTiker.swift */,
 				F1E0A6772BBD283600C2CFCE /* Candle.swift */,
 				F1E0A67A2BBD283700C2CFCE /* Chat.swift */,
 				F1E0A67C2BBD283700C2CFCE /* MarketInfo.swift */,
 				F1E0A67B2BBD283700C2CFCE /* MarketTicker.swift */,
+				F1E0A6792BBD283700C2CFCE /* ApiTiker.swift */,
 				F1E0A6782BBD283700C2CFCE /* SocketTicker.swift */,
 			);
 			path = Model;
@@ -249,6 +272,8 @@
 			children = (
 				F1E0A6712BBD254C00C2CFCE /* MarketViewModel.swift */,
 				F1E0A6752BBD257700C2CFCE /* SettingViewModel.swift */,
+				F1E0A6A32BBD2D2400C2CFCE /* ChatViewModel.swift */,
+				F1E0A6A22BBD2D2400C2CFCE /* DetailViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -258,6 +283,8 @@
 			children = (
 				F1E0A66F2BBD252D00C2CFCE /* MarketViewController.swift */,
 				F1E0A6732BBD256C00C2CFCE /* SettingViewController.swift */,
+				F1E0A6942BBD2D0800C2CFCE /* ChatViewController.swift */,
+				F1E0A6952BBD2D0800C2CFCE /* DetailViewController.swift */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -265,6 +292,7 @@
 		F1E0A6532BBD22A500C2CFCE /* Service */ = {
 			isa = PBXGroup;
 			children = (
+				F1E0A6A62BBD2D3100C2CFCE /* FireStoreService.swift */,
 				F1E0A6832BBD284C00C2CFCE /* UpbitApiService.swift */,
 				F1E0A6842BBD284C00C2CFCE /* UpbitSocketService.swift */,
 			);
@@ -298,6 +326,7 @@
 		F1E0A6572BBD22C500C2CFCE /* Protocol */ = {
 			isa = PBXGroup;
 			children = (
+				F1E0A6A82BBD2D4F00C2CFCE /* TickerProtocol.swift */,
 			);
 			path = Protocol;
 			sourceTree = "<group>";
@@ -479,17 +508,24 @@
 				F1E0A6742BBD256C00C2CFCE /* SettingViewController.swift in Sources */,
 				F1E0A6722BBD254C00C2CFCE /* MarketViewModel.swift in Sources */,
 				F1E0A6632BBD23E800C2CFCE /* Decodable.swift in Sources */,
+				F1E0A6A12BBD2D1500C2CFCE /* ChatItemView.swift in Sources */,
+				F1E0A6A02BBD2D1500C2CFCE /* BlockView.swift in Sources */,
 				F1E0A6662BBD23EF00C2CFCE /* UIColor.swift in Sources */,
 				F1E0A6912BBD28D400C2CFCE /* SingleCandleView.swift in Sources */,
 				F1E0A6812BBD284300C2CFCE /* MarketTicker.swift in Sources */,
 				F1E0A5F22BBD1F8500C2CFCE /* AppDelegate.swift in Sources */,
 				F1E0A6762BBD257700C2CFCE /* SettingViewModel.swift in Sources */,
+				F1E0A69E2BBD2D1500C2CFCE /* ChartBlockView.swift in Sources */,
+				F1E0A6A92BBD2D4F00C2CFCE /* TickerProtocol.swift in Sources */,
 				F1E0A67F2BBD283E00C2CFCE /* Chat.swift in Sources */,
 				F1E0A5F42BBD1F8500C2CFCE /* SceneDelegate.swift in Sources */,
 				F1E0A6882BBD285A00C2CFCE /* CandleType.swift in Sources */,
+				F1E0A69D2BBD2D1500C2CFCE /* ChatBlockView.swift in Sources */,
+				F1E0A6A72BBD2D3100C2CFCE /* FireStoreService.swift in Sources */,
 				F1E0A6932BBD291C00C2CFCE /* UpbitApiService.swift in Sources */,
 				F1E0A68D2BBD28B400C2CFCE /* MarketCell.swift in Sources */,
 				F1E0A6682BBD23F400C2CFCE /* UIResponder.swift in Sources */,
+				F1E0A69F2BBD2D1500C2CFCE /* InputView.swift in Sources */,
 				F1E0A68B2BBD285F00C2CFCE /* UnitType.swift in Sources */,
 				F1E0A6802BBD284100C2CFCE /* MarketInfo.swift in Sources */,
 				F1E0A6652BBD23ED00C2CFCE /* String.swift in Sources */,

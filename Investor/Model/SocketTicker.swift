@@ -9,7 +9,7 @@ import Foundation
 
 import Foundation
 
-struct SocketTicker: Decodable {
+struct SocketTicker: Decodable, TickerProtocol {
     ///타입, 현재가 ticker (Socket Ticker Only)
     let type: String
     ///마켓코드 (ex. KRW-BTC) (Socket Ticker Only)

@@ -8,7 +8,7 @@
 import Foundation
 
 
-struct ApiTicker: Decodable {
+struct ApiTicker: Decodable, TickerProtocol {
     ///종목 구분 코드 (Api Ticker Only)
     let market: String
     ///최근 거래 일자(UTC) 포맷: yyyyMMdd
