@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import FirebaseCore
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -13,7 +14,30 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        // Override point for customization after application launch.
+        
+        // MARK: - Place for Firebase configure
+        FirebaseApp.configure()
+        
+        // MARK: - Place for layout For Navigation Controller
+        let naviAppearance = UINavigationBarAppearance()
+        naviAppearance.configureWithOpaqueBackground()
+        naviAppearance.backgroundColor = ThemeColor.primary1
+        naviAppearance.titleTextAttributes = [.foregroundColor: ThemeColor.tint1]
+        naviAppearance.largeTitleTextAttributes = [.foregroundColor: ThemeColor.tint1]
+        
+        UINavigationBar.appearance().scrollEdgeAppearance = naviAppearance
+        UINavigationBar.appearance().standardAppearance = naviAppearance
+        UINavigationBar.appearance().tintColor = ThemeColor.tint1
+        
+        
+        // MARK: - Place for layout For TabBar Controller
+        let tabBarAppearance = UITabBarAppearance()
+        tabBarAppearance.configureWithTransparentBackground()
+        tabBarAppearance.backgroundColor = ThemeColor.primary1
+        
+        UITabBar.appearance().scrollEdgeAppearance = tabBarAppearance
+        UITabBar.appearance().standardAppearance = tabBarAppearance
+        
         return true
     }
 

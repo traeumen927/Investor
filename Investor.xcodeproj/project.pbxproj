@@ -29,6 +29,18 @@
 		F1E0A6492BBD21AF00C2CFCE /* RxSwift in Frameworks */ = {isa = PBXBuildFile; productRef = F1E0A6482BBD21AF00C2CFCE /* RxSwift */; };
 		F1E0A64C2BBD222200C2CFCE /* ApiKey.plist in Resources */ = {isa = PBXBuildFile; fileRef = F1E0A64B2BBD222000C2CFCE /* ApiKey.plist */; };
 		F1E0A64D2BBD222800C2CFCE /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = F1E0A64A2BBD222000C2CFCE /* GoogleService-Info.plist */; };
+		F1E0A6612BBD23E300C2CFCE /* CALayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1E0A6602BBD23DF00C2CFCE /* CALayer.swift */; };
+		F1E0A6622BBD23E500C2CFCE /* Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1E0A65E2BBD23DF00C2CFCE /* Date.swift */; };
+		F1E0A6632BBD23E800C2CFCE /* Decodable.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1E0A6592BBD23DF00C2CFCE /* Decodable.swift */; };
+		F1E0A6642BBD23EA00C2CFCE /* Double.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1E0A65C2BBD23DF00C2CFCE /* Double.swift */; };
+		F1E0A6652BBD23ED00C2CFCE /* String.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1E0A65A2BBD23DF00C2CFCE /* String.swift */; };
+		F1E0A6662BBD23EF00C2CFCE /* UIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1E0A65B2BBD23DF00C2CFCE /* UIColor.swift */; };
+		F1E0A6672BBD23F200C2CFCE /* UILabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1E0A65D2BBD23DF00C2CFCE /* UILabel.swift */; };
+		F1E0A6682BBD23F400C2CFCE /* UIResponder.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1E0A65F2BBD23DF00C2CFCE /* UIResponder.swift */; };
+		F1E0A6702BBD252D00C2CFCE /* MarketViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1E0A66F2BBD252D00C2CFCE /* MarketViewController.swift */; };
+		F1E0A6722BBD254C00C2CFCE /* MarketViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1E0A6712BBD254C00C2CFCE /* MarketViewModel.swift */; };
+		F1E0A6742BBD256C00C2CFCE /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1E0A6732BBD256C00C2CFCE /* SettingViewController.swift */; };
+		F1E0A6762BBD257700C2CFCE /* SettingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1E0A6752BBD257700C2CFCE /* SettingViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -63,6 +75,18 @@
 		F1E0A6142BBD1F8600C2CFCE /* InvestorUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InvestorUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		F1E0A64A2BBD222000C2CFCE /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		F1E0A64B2BBD222000C2CFCE /* ApiKey.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = ApiKey.plist; sourceTree = "<group>"; };
+		F1E0A6592BBD23DF00C2CFCE /* Decodable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Decodable.swift; sourceTree = "<group>"; };
+		F1E0A65A2BBD23DF00C2CFCE /* String.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = String.swift; sourceTree = "<group>"; };
+		F1E0A65B2BBD23DF00C2CFCE /* UIColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColor.swift; sourceTree = "<group>"; };
+		F1E0A65C2BBD23DF00C2CFCE /* Double.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Double.swift; sourceTree = "<group>"; };
+		F1E0A65D2BBD23DF00C2CFCE /* UILabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UILabel.swift; sourceTree = "<group>"; };
+		F1E0A65E2BBD23DF00C2CFCE /* Date.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Date.swift; sourceTree = "<group>"; };
+		F1E0A65F2BBD23DF00C2CFCE /* UIResponder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIResponder.swift; sourceTree = "<group>"; };
+		F1E0A6602BBD23DF00C2CFCE /* CALayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CALayer.swift; sourceTree = "<group>"; };
+		F1E0A66F2BBD252D00C2CFCE /* MarketViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarketViewController.swift; sourceTree = "<group>"; };
+		F1E0A6712BBD254C00C2CFCE /* MarketViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarketViewModel.swift; sourceTree = "<group>"; };
+		F1E0A6732BBD256C00C2CFCE /* SettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewController.swift; sourceTree = "<group>"; };
+		F1E0A6752BBD257700C2CFCE /* SettingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -186,6 +210,8 @@
 		F1E0A6512BBD229A00C2CFCE /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
+				F1E0A6712BBD254C00C2CFCE /* MarketViewModel.swift */,
+				F1E0A6752BBD257700C2CFCE /* SettingViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -193,6 +219,8 @@
 		F1E0A6522BBD229E00C2CFCE /* ViewController */ = {
 			isa = PBXGroup;
 			children = (
+				F1E0A66F2BBD252D00C2CFCE /* MarketViewController.swift */,
+				F1E0A6732BBD256C00C2CFCE /* SettingViewController.swift */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -207,6 +235,14 @@
 		F1E0A6552BBD22B500C2CFCE /* Extension */ = {
 			isa = PBXGroup;
 			children = (
+				F1E0A6602BBD23DF00C2CFCE /* CALayer.swift */,
+				F1E0A65E2BBD23DF00C2CFCE /* Date.swift */,
+				F1E0A6592BBD23DF00C2CFCE /* Decodable.swift */,
+				F1E0A65C2BBD23DF00C2CFCE /* Double.swift */,
+				F1E0A65A2BBD23DF00C2CFCE /* String.swift */,
+				F1E0A65B2BBD23DF00C2CFCE /* UIColor.swift */,
+				F1E0A65D2BBD23DF00C2CFCE /* UILabel.swift */,
+				F1E0A65F2BBD23DF00C2CFCE /* UIResponder.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -390,9 +426,21 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F1E0A6672BBD23F200C2CFCE /* UILabel.swift in Sources */,
 				F1E0A5F62BBD1F8500C2CFCE /* ViewController.swift in Sources */,
+				F1E0A6622BBD23E500C2CFCE /* Date.swift in Sources */,
+				F1E0A6612BBD23E300C2CFCE /* CALayer.swift in Sources */,
+				F1E0A6702BBD252D00C2CFCE /* MarketViewController.swift in Sources */,
+				F1E0A6742BBD256C00C2CFCE /* SettingViewController.swift in Sources */,
+				F1E0A6722BBD254C00C2CFCE /* MarketViewModel.swift in Sources */,
+				F1E0A6632BBD23E800C2CFCE /* Decodable.swift in Sources */,
+				F1E0A6662BBD23EF00C2CFCE /* UIColor.swift in Sources */,
 				F1E0A5F22BBD1F8500C2CFCE /* AppDelegate.swift in Sources */,
+				F1E0A6762BBD257700C2CFCE /* SettingViewModel.swift in Sources */,
 				F1E0A5F42BBD1F8500C2CFCE /* SceneDelegate.swift in Sources */,
+				F1E0A6682BBD23F400C2CFCE /* UIResponder.swift in Sources */,
+				F1E0A6652BBD23ED00C2CFCE /* String.swift in Sources */,
+				F1E0A6642BBD23EA00C2CFCE /* Double.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
