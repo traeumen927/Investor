@@ -2,7 +2,7 @@
 //  InvestorTests.swift
 //  InvestorTests
 //
-//  Created by 홍정연 on 2/19/24.
+//  Created by 홍정연 on 4/3/24.
 //
 
 import XCTest
