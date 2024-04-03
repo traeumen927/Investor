@@ -41,6 +41,20 @@
 		F1E0A6722BBD254C00C2CFCE /* MarketViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1E0A6712BBD254C00C2CFCE /* MarketViewModel.swift */; };
 		F1E0A6742BBD256C00C2CFCE /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1E0A6732BBD256C00C2CFCE /* SettingViewController.swift */; };
 		F1E0A6762BBD257700C2CFCE /* SettingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1E0A6752BBD257700C2CFCE /* SettingViewModel.swift */; };
+		F1E0A67D2BBD283A00C2CFCE /* ApiTiker.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1E0A6792BBD283700C2CFCE /* ApiTiker.swift */; };
+		F1E0A67E2BBD283C00C2CFCE /* Candle.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1E0A6772BBD283600C2CFCE /* Candle.swift */; };
+		F1E0A67F2BBD283E00C2CFCE /* Chat.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1E0A67A2BBD283700C2CFCE /* Chat.swift */; };
+		F1E0A6802BBD284100C2CFCE /* MarketInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1E0A67C2BBD283700C2CFCE /* MarketInfo.swift */; };
+		F1E0A6812BBD284300C2CFCE /* MarketTicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1E0A67B2BBD283700C2CFCE /* MarketTicker.swift */; };
+		F1E0A6822BBD284500C2CFCE /* SocketTicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1E0A6782BBD283700C2CFCE /* SocketTicker.swift */; };
+		F1E0A6882BBD285A00C2CFCE /* CandleType.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1E0A6872BBD285800C2CFCE /* CandleType.swift */; };
+		F1E0A6892BBD285C00C2CFCE /* ChangeType.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1E0A6852BBD285800C2CFCE /* ChangeType.swift */; };
+		F1E0A68B2BBD285F00C2CFCE /* UnitType.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1E0A6862BBD285800C2CFCE /* UnitType.swift */; };
+		F1E0A68D2BBD28B400C2CFCE /* MarketCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1E0A68C2BBD28B100C2CFCE /* MarketCell.swift */; };
+		F1E0A6902BBD28D200C2CFCE /* PercentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1E0A68E2BBD28CF00C2CFCE /* PercentView.swift */; };
+		F1E0A6912BBD28D400C2CFCE /* SingleCandleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1E0A68F2BBD28CF00C2CFCE /* SingleCandleView.swift */; };
+		F1E0A6922BBD291A00C2CFCE /* UpbitSocketService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1E0A6842BBD284C00C2CFCE /* UpbitSocketService.swift */; };
+		F1E0A6932BBD291C00C2CFCE /* UpbitApiService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1E0A6832BBD284C00C2CFCE /* UpbitApiService.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -87,6 +101,20 @@
 		F1E0A6712BBD254C00C2CFCE /* MarketViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarketViewModel.swift; sourceTree = "<group>"; };
 		F1E0A6732BBD256C00C2CFCE /* SettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewController.swift; sourceTree = "<group>"; };
 		F1E0A6752BBD257700C2CFCE /* SettingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewModel.swift; sourceTree = "<group>"; };
+		F1E0A6772BBD283600C2CFCE /* Candle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Candle.swift; sourceTree = "<group>"; };
+		F1E0A6782BBD283700C2CFCE /* SocketTicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocketTicker.swift; sourceTree = "<group>"; };
+		F1E0A6792BBD283700C2CFCE /* ApiTiker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiTiker.swift; sourceTree = "<group>"; };
+		F1E0A67A2BBD283700C2CFCE /* Chat.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Chat.swift; sourceTree = "<group>"; };
+		F1E0A67B2BBD283700C2CFCE /* MarketTicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarketTicker.swift; sourceTree = "<group>"; };
+		F1E0A67C2BBD283700C2CFCE /* MarketInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarketInfo.swift; sourceTree = "<group>"; };
+		F1E0A6832BBD284C00C2CFCE /* UpbitApiService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpbitApiService.swift; sourceTree = "<group>"; };
+		F1E0A6842BBD284C00C2CFCE /* UpbitSocketService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpbitSocketService.swift; sourceTree = "<group>"; };
+		F1E0A6852BBD285800C2CFCE /* ChangeType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangeType.swift; sourceTree = "<group>"; };
+		F1E0A6862BBD285800C2CFCE /* UnitType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnitType.swift; sourceTree = "<group>"; };
+		F1E0A6872BBD285800C2CFCE /* CandleType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CandleType.swift; sourceTree = "<group>"; };
+		F1E0A68C2BBD28B100C2CFCE /* MarketCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarketCell.swift; sourceTree = "<group>"; };
+		F1E0A68E2BBD28CF00C2CFCE /* PercentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PercentView.swift; sourceTree = "<group>"; };
+		F1E0A68F2BBD28CF00C2CFCE /* SingleCandleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SingleCandleView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -189,6 +217,7 @@
 		F1E0A64E2BBD223000C2CFCE /* Cell */ = {
 			isa = PBXGroup;
 			children = (
+				F1E0A68C2BBD28B100C2CFCE /* MarketCell.swift */,
 			);
 			path = Cell;
 			sourceTree = "<group>";
@@ -196,6 +225,8 @@
 		F1E0A64F2BBD223400C2CFCE /* CustomView */ = {
 			isa = PBXGroup;
 			children = (
+				F1E0A68E2BBD28CF00C2CFCE /* PercentView.swift */,
+				F1E0A68F2BBD28CF00C2CFCE /* SingleCandleView.swift */,
 			);
 			path = CustomView;
 			sourceTree = "<group>";
@@ -203,6 +234,12 @@
 		F1E0A6502BBD229200C2CFCE /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				F1E0A6792BBD283700C2CFCE /* ApiTiker.swift */,
+				F1E0A6772BBD283600C2CFCE /* Candle.swift */,
+				F1E0A67A2BBD283700C2CFCE /* Chat.swift */,
+				F1E0A67C2BBD283700C2CFCE /* MarketInfo.swift */,
+				F1E0A67B2BBD283700C2CFCE /* MarketTicker.swift */,
+				F1E0A6782BBD283700C2CFCE /* SocketTicker.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -228,6 +265,8 @@
 		F1E0A6532BBD22A500C2CFCE /* Service */ = {
 			isa = PBXGroup;
 			children = (
+				F1E0A6832BBD284C00C2CFCE /* UpbitApiService.swift */,
+				F1E0A6842BBD284C00C2CFCE /* UpbitSocketService.swift */,
 			);
 			path = Service;
 			sourceTree = "<group>";
@@ -266,6 +305,9 @@
 		F1E0A6582BBD22CD00C2CFCE /* Enum */ = {
 			isa = PBXGroup;
 			children = (
+				F1E0A6872BBD285800C2CFCE /* CandleType.swift */,
+				F1E0A6852BBD285800C2CFCE /* ChangeType.swift */,
+				F1E0A6862BBD285800C2CFCE /* UnitType.swift */,
 			);
 			path = Enum;
 			sourceTree = "<group>";
@@ -426,8 +468,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F1E0A6892BBD285C00C2CFCE /* ChangeType.swift in Sources */,
+				F1E0A67E2BBD283C00C2CFCE /* Candle.swift in Sources */,
 				F1E0A6672BBD23F200C2CFCE /* UILabel.swift in Sources */,
 				F1E0A5F62BBD1F8500C2CFCE /* ViewController.swift in Sources */,
+				F1E0A67D2BBD283A00C2CFCE /* ApiTiker.swift in Sources */,
 				F1E0A6622BBD23E500C2CFCE /* Date.swift in Sources */,
 				F1E0A6612BBD23E300C2CFCE /* CALayer.swift in Sources */,
 				F1E0A6702BBD252D00C2CFCE /* MarketViewController.swift in Sources */,
@@ -435,12 +480,23 @@
 				F1E0A6722BBD254C00C2CFCE /* MarketViewModel.swift in Sources */,
 				F1E0A6632BBD23E800C2CFCE /* Decodable.swift in Sources */,
 				F1E0A6662BBD23EF00C2CFCE /* UIColor.swift in Sources */,
+				F1E0A6912BBD28D400C2CFCE /* SingleCandleView.swift in Sources */,
+				F1E0A6812BBD284300C2CFCE /* MarketTicker.swift in Sources */,
 				F1E0A5F22BBD1F8500C2CFCE /* AppDelegate.swift in Sources */,
 				F1E0A6762BBD257700C2CFCE /* SettingViewModel.swift in Sources */,
+				F1E0A67F2BBD283E00C2CFCE /* Chat.swift in Sources */,
 				F1E0A5F42BBD1F8500C2CFCE /* SceneDelegate.swift in Sources */,
+				F1E0A6882BBD285A00C2CFCE /* CandleType.swift in Sources */,
+				F1E0A6932BBD291C00C2CFCE /* UpbitApiService.swift in Sources */,
+				F1E0A68D2BBD28B400C2CFCE /* MarketCell.swift in Sources */,
 				F1E0A6682BBD23F400C2CFCE /* UIResponder.swift in Sources */,
+				F1E0A68B2BBD285F00C2CFCE /* UnitType.swift in Sources */,
+				F1E0A6802BBD284100C2CFCE /* MarketInfo.swift in Sources */,
 				F1E0A6652BBD23ED00C2CFCE /* String.swift in Sources */,
 				F1E0A6642BBD23EA00C2CFCE /* Double.swift in Sources */,
+				F1E0A6922BBD291A00C2CFCE /* UpbitSocketService.swift in Sources */,
+				F1E0A6902BBD28D200C2CFCE /* PercentView.swift in Sources */,
+				F1E0A6822BBD284500C2CFCE /* SocketTicker.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
