@@ -130,10 +130,6 @@ struct UpbitApiService {
         AF.request(url, method: .get, parameters: endpoint.parameters, headers: endpoint.headers)
             .validate(statusCode: 200..<300)
             .responseDecodable(of: T.self) { response in
-                
-                if let data = response.data, let utf8Text = String(data: data, encoding: .utf8) {
-                    //print("Original Response Data: \(utf8Text)")
-                }
                 completion(response.result)
             }
     }
