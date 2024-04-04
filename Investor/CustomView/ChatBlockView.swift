@@ -64,8 +64,6 @@ class ChatBlockView: BlockView {
     
     
     private func layout() {
-        self.isHidden = true
-        
         [titleLabel, chatItemView, enterChatButton].forEach(self.contentView.addSubview(_:))
         
         titleLabel.snp.makeConstraints { make in
@@ -95,7 +93,6 @@ class ChatBlockView: BlockView {
     
     func configure(with chat: Chat) {
         self.chatItemView.configure(with: chat)
-        self.isHidden = false
     }
 }
 

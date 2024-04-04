@@ -181,7 +181,7 @@ class ChartBlockView: BlockView {
     }
     
     // MARK: 캔들 실시간 업데이트
-    func update(ticker: ApiTicker) {
+    func update(ticker: TickerProtocol) {
         self.setColor(with: ticker.change.color)
         
         let changePrice = ticker.signed_change_price.formattedStringWithCommaAndDecimal(places: 2)

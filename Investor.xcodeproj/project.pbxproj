@@ -7,9 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		F13B73CF2BBE799B00C96F19 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F13B73CE2BBE799B00C96F19 /* DetailViewController.swift */; };
+		F13B73D12BBE79BC00C96F19 /* DetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F13B73D02BBE79BC00C96F19 /* DetailViewModel.swift */; };
 		F1E0A5F22BBD1F8500C2CFCE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1E0A5F12BBD1F8500C2CFCE /* AppDelegate.swift */; };
 		F1E0A5F42BBD1F8500C2CFCE /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1E0A5F32BBD1F8500C2CFCE /* SceneDelegate.swift */; };
-		F1E0A5F62BBD1F8500C2CFCE /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1E0A5F52BBD1F8500C2CFCE /* ViewController.swift */; };
 		F1E0A5FB2BBD1F8600C2CFCE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F1E0A5FA2BBD1F8600C2CFCE /* Assets.xcassets */; };
 		F1E0A5FE2BBD1F8600C2CFCE /* Base in Resources */ = {isa = PBXBuildFile; fileRef = F1E0A5FD2BBD1F8600C2CFCE /* Base */; };
 		F1E0A6092BBD1F8600C2CFCE /* InvestorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1E0A6082BBD1F8600C2CFCE /* InvestorTests.swift */; };
@@ -82,10 +83,11 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		F13B73CE2BBE799B00C96F19 /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
+		F13B73D02BBE79BC00C96F19 /* DetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewModel.swift; sourceTree = "<group>"; };
 		F1E0A5EE2BBD1F8500C2CFCE /* Investor.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Investor.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F1E0A5F12BBD1F8500C2CFCE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F1E0A5F32BBD1F8500C2CFCE /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		F1E0A5F52BBD1F8500C2CFCE /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		F1E0A5FA2BBD1F8600C2CFCE /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		F1E0A5FD2BBD1F8600C2CFCE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		F1E0A5FF2BBD1F8600C2CFCE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -123,13 +125,11 @@
 		F1E0A68E2BBD28CF00C2CFCE /* PercentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PercentView.swift; sourceTree = "<group>"; };
 		F1E0A68F2BBD28CF00C2CFCE /* SingleCandleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SingleCandleView.swift; sourceTree = "<group>"; };
 		F1E0A6942BBD2D0800C2CFCE /* ChatViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatViewController.swift; sourceTree = "<group>"; };
-		F1E0A6952BBD2D0800C2CFCE /* DetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		F1E0A6982BBD2D1500C2CFCE /* ChatBlockView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatBlockView.swift; sourceTree = "<group>"; };
 		F1E0A6992BBD2D1500C2CFCE /* ChartBlockView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChartBlockView.swift; sourceTree = "<group>"; };
 		F1E0A69A2BBD2D1500C2CFCE /* InputView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InputView.swift; sourceTree = "<group>"; };
 		F1E0A69B2BBD2D1500C2CFCE /* BlockView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BlockView.swift; sourceTree = "<group>"; };
 		F1E0A69C2BBD2D1500C2CFCE /* ChatItemView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatItemView.swift; sourceTree = "<group>"; };
-		F1E0A6A22BBD2D2400C2CFCE /* DetailViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailViewModel.swift; sourceTree = "<group>"; };
 		F1E0A6A32BBD2D2400C2CFCE /* ChatViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatViewModel.swift; sourceTree = "<group>"; };
 		F1E0A6A62BBD2D3100C2CFCE /* FireStoreService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FireStoreService.swift; sourceTree = "<group>"; };
 		F1E0A6A82BBD2D4F00C2CFCE /* TickerProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TickerProtocol.swift; sourceTree = "<group>"; };
@@ -205,7 +205,6 @@
 				F1E0A6502BBD229200C2CFCE /* Model */,
 				F1E0A64F2BBD223400C2CFCE /* CustomView */,
 				F1E0A64E2BBD223000C2CFCE /* Cell */,
-				F1E0A5F52BBD1F8500C2CFCE /* ViewController.swift */,
 				F1E0A5FA2BBD1F8600C2CFCE /* Assets.xcassets */,
 				F1E0A5FC2BBD1F8600C2CFCE /* LaunchScreen.storyboard */,
 				F1E0A5FF2BBD1F8600C2CFCE /* Info.plist */,
@@ -273,7 +272,7 @@
 				F1E0A6712BBD254C00C2CFCE /* MarketViewModel.swift */,
 				F1E0A6752BBD257700C2CFCE /* SettingViewModel.swift */,
 				F1E0A6A32BBD2D2400C2CFCE /* ChatViewModel.swift */,
-				F1E0A6A22BBD2D2400C2CFCE /* DetailViewModel.swift */,
+				F13B73D02BBE79BC00C96F19 /* DetailViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -284,7 +283,7 @@
 				F1E0A66F2BBD252D00C2CFCE /* MarketViewController.swift */,
 				F1E0A6732BBD256C00C2CFCE /* SettingViewController.swift */,
 				F1E0A6942BBD2D0800C2CFCE /* ChatViewController.swift */,
-				F1E0A6952BBD2D0800C2CFCE /* DetailViewController.swift */,
+				F13B73CE2BBE799B00C96F19 /* DetailViewController.swift */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -500,10 +499,10 @@
 				F1E0A6892BBD285C00C2CFCE /* ChangeType.swift in Sources */,
 				F1E0A67E2BBD283C00C2CFCE /* Candle.swift in Sources */,
 				F1E0A6672BBD23F200C2CFCE /* UILabel.swift in Sources */,
-				F1E0A5F62BBD1F8500C2CFCE /* ViewController.swift in Sources */,
 				F1E0A67D2BBD283A00C2CFCE /* ApiTiker.swift in Sources */,
 				F1E0A6622BBD23E500C2CFCE /* Date.swift in Sources */,
 				F1E0A6612BBD23E300C2CFCE /* CALayer.swift in Sources */,
+				F13B73D12BBE79BC00C96F19 /* DetailViewModel.swift in Sources */,
 				F1E0A6702BBD252D00C2CFCE /* MarketViewController.swift in Sources */,
 				F1E0A6742BBD256C00C2CFCE /* SettingViewController.swift in Sources */,
 				F1E0A6722BBD254C00C2CFCE /* MarketViewModel.swift in Sources */,
@@ -515,6 +514,7 @@
 				F1E0A6812BBD284300C2CFCE /* MarketTicker.swift in Sources */,
 				F1E0A5F22BBD1F8500C2CFCE /* AppDelegate.swift in Sources */,
 				F1E0A6762BBD257700C2CFCE /* SettingViewModel.swift in Sources */,
+				F13B73CF2BBE799B00C96F19 /* DetailViewController.swift in Sources */,
 				F1E0A69E2BBD2D1500C2CFCE /* ChartBlockView.swift in Sources */,
 				F1E0A6A92BBD2D4F00C2CFCE /* TickerProtocol.swift in Sources */,
 				F1E0A67F2BBD283E00C2CFCE /* Chat.swift in Sources */,

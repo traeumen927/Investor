@@ -17,7 +17,7 @@ class MarketViewModel {
     private let upbitSocketService = UpbitSocketService.shared
     
     // MARK: 거래 가능 마켓 + 요청당시 Ticker
-    let marketTickerRelay: BehaviorRelay<[MarketTicker]> = BehaviorRelay(value: [])
+    let marketTickerSubject = PublishSubject<[MarketTicker]>()
     
     // MARK: 실시간 현재가 Ticker
     let socketTickerSubject = PublishSubject<SocketTicker>()
@@ -69,7 +69,7 @@ class MarketViewModel {
                 }
                 
                 // MARK: 거래 가능 마켓 + 현재가 방출
-                self.marketTickerRelay.accept(marketTickers)
+                self.marketTickerSubject.onNext(marketTickers)
                 
                 // MARK: 현재 조회된 목록의 실시간 Ticker 요청
                 self.upbitSocketService.subscribeToTicker(symbol: marketCodes)

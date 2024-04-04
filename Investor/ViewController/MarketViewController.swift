@@ -18,6 +18,20 @@ class MarketViewController: UIViewController {
     private var marketTickerList: [MarketTicker] = [MarketTicker]()
     
     
+    // MARK: 검색창
+    private lazy var searchBar: UISearchBar = {
+      let view = UISearchBar()
+        view.placeholder = "코인명을 검색해주세요."
+        view.showsCancelButton = true
+        view.searchTextField.textColor = ThemeColor.primary1
+        view.searchTextField.backgroundColor = ThemeColor.background
+        view.returnKeyType = .search
+        view.searchTextField.autocorrectionType = .no
+        view.searchTextField.spellCheckingType = .no
+        return view
+    }()
+    
+    
     // MARK: 거래 가능 코인 목록
     private lazy var collectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
@@ -27,6 +41,7 @@ class MarketViewController: UIViewController {
         layout.itemSize = CGSize(width: UIScreen.main.bounds.width, height: 70)
         
         let view = UICollectionView(frame: .zero, collectionViewLayout: layout)
+        view.register(MarketCell.self, forCellWithReuseIdentifier: MarketCell.cellId)
         view.backgroundColor = .clear
         view.showsVerticalScrollIndicator = false
         view.delegate = self
@@ -45,8 +60,11 @@ class MarketViewController: UIViewController {
     private func layout() {
         self.view.backgroundColor = ThemeColor.background
         
-        collectionView.register(MarketCell.self, forCellWithReuseIdentifier: MarketCell.cellId)
+        // MARK: 검색창 배치
+        self.navigationItem.titleView = self.searchBar
         
+        
+        // MARK: 컬렉션뷰 배치
         self.view.addSubview(collectionView)
         collectionView.snp.makeConstraints { make in
             make.top.equalTo(self.view.safeAreaLayoutGuide)
@@ -56,8 +74,17 @@ class MarketViewController: UIViewController {
     }
     
     private func bind() {
+        // MARK: UISearchBar의 취소 버튼 이벤트 감지
+        self.searchBar.rx.cancelButtonClicked
+            .observe(on: MainScheduler.instance)
+            .subscribe(onNext: { [weak self] in
+                guard let self = self else { return }
+                self.navigationController?.view.endEditing(true)
+            }).disposed(by: disposeBag)
+        
+        
         // MARK: 거래가능 마켓 + 요청당시 현재가 불러오기
-        self.viewModel.marketTickerRelay
+        self.viewModel.marketTickerSubject
             .observe(on: MainScheduler.instance)
             .subscribe(onNext: { [weak self] marketTicker in
                 guard let self = self else { return }
@@ -66,7 +93,7 @@ class MarketViewController: UIViewController {
             }).disposed(by: disposeBag)
         
         
-        // MARK: 이후 변동되는 실시간 현재가 Ticker 가져오기
+        // MARK: 이후 변동되는 실시간 현재가 Ticker 가져오기, 0.3초마다 or 30개의 변동이 있을 때마다 cell 업데이트 진행
         self.viewModel.socketTickerSubject
             .observe(on: MainScheduler.instance)
             .buffer(timeSpan: .milliseconds(3000), count: 30, scheduler: MainScheduler.instance)
@@ -80,20 +107,20 @@ class MarketViewController: UIViewController {
     // MARK: 새로운 Tiker정보로 해당 row 업데이트
     private func updateRow(with newTickers: [SocketTicker]) {
         // MARK: 변경될 티커들의 인덱스 배열
-        var indexPathsToReload: [IndexPath] = []
+        var requiredReloadIndexes: [IndexPath] = []
         
         // MARK: 변경될 티커의 인덱스 조회
         for newTicker in newTickers {
             if let index = self.marketTickerList.firstIndex(where: { $0.marketInfo.market == newTicker.code }) {
                 let indexPath = IndexPath(row: index, section: 0)
-                indexPathsToReload.append(indexPath)
+                requiredReloadIndexes.append(indexPath)
                 self.marketTickerList[index].socketTicker = newTicker
             }
         }
         
         // MARK: 변경 애니메이션 없이 items 업데이트
         UIView.performWithoutAnimation {
-            self.collectionView.reloadItems(at: indexPathsToReload)
+            self.collectionView.reloadItems(at: requiredReloadIndexes)
         }
     }
     
@@ -122,6 +149,11 @@ extension MarketViewController: UICollectionViewDelegate, UICollectionViewDataSo
     
     // MARK: Select cell Item
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        
+        // MARK: 거래소 셀 선택시 해당 코인 디테일 페이지 진입
+        let viewModel = DetailViewModel(marketTicker: self.marketTickerList[indexPath.item])
+        let viewController = DetailViewController(viewModel: viewModel)
+        // MARK: detailViewController 진입시 하단 탭바 숨김
+        viewController.hidesBottomBarWhenPushed = true
+        self.navigationController?.pushViewController(viewController, animated: true)
     }
 }

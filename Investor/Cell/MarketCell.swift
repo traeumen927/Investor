@@ -95,8 +95,10 @@ class MarketCell: UICollectionViewCell {
         
         // MARK: 코인 이름 영역뷰
         let nameView = UIView()
+        
         // MARK: 코인 가격 영역뷰
         let priceView = UIView()
+        
         // MARK: 코인 변동액/률 영역뷰
         let changeView = UIView()
         
