@@ -11,7 +11,8 @@ import DGCharts
 import RxSwift
 import RxCocoa
 
-protocol ChartBlockViewDelegate {
+
+protocol ChartBlockViewDelegate: AnyObject {
     // MARK: 세그먼트의 값이 변경됨
     func segementedChanged(type: CandleType)
 }
@@ -19,8 +20,9 @@ protocol ChartBlockViewDelegate {
 class ChartBlockView: BlockView {
     
     let disposeBag = DisposeBag()
-    
-    var delegate: ChartBlockViewDelegate?
+
+    // MARK: 약한 순환참조
+    weak var delegate: ChartBlockViewDelegate?
     
     // MARK: 현재가 라벨
     private let priceLabel: UILabel = {

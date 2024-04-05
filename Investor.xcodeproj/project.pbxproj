@@ -275,9 +275,9 @@
 			isa = PBXGroup;
 			children = (
 				F1E0A6712BBD254C00C2CFCE /* MarketViewModel.swift */,
+				F13B73D02BBE79BC00C96F19 /* DetailViewModel.swift */,
 				F1E0A6752BBD257700C2CFCE /* SettingViewModel.swift */,
 				F1E0A6A32BBD2D2400C2CFCE /* ChatViewModel.swift */,
-				F13B73D02BBE79BC00C96F19 /* DetailViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -286,9 +286,9 @@
 			isa = PBXGroup;
 			children = (
 				F1E0A66F2BBD252D00C2CFCE /* MarketViewController.swift */,
+				F13B73CE2BBE799B00C96F19 /* DetailViewController.swift */,
 				F1E0A6732BBD256C00C2CFCE /* SettingViewController.swift */,
 				F1E0A6942BBD2D0800C2CFCE /* ChatViewController.swift */,
-				F13B73CE2BBE799B00C96F19 /* DetailViewController.swift */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
