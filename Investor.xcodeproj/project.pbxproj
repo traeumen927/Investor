@@ -12,6 +12,8 @@
 		F13B73D22BBE868100C96F19 /* ChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1E0A6942BBD2D0800C2CFCE /* ChatViewController.swift */; };
 		F13B73D32BBE868400C96F19 /* ChatViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1E0A6A32BBD2D2400C2CFCE /* ChatViewModel.swift */; };
 		F13B73D52BBE89B000C96F19 /* ChatCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F13B73D42BBE89B000C96F19 /* ChatCell.swift */; };
+		F182FE9E2BC0354A00428E05 /* DateValueFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F182FE9D2BC0354A00428E05 /* DateValueFormatter.swift */; };
+		F182FEA02BC03C5500428E05 /* DateAxisValueFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F182FE9F2BC03C5500428E05 /* DateAxisValueFormatter.swift */; };
 		F1E0A5F22BBD1F8500C2CFCE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1E0A5F12BBD1F8500C2CFCE /* AppDelegate.swift */; };
 		F1E0A5F42BBD1F8500C2CFCE /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1E0A5F32BBD1F8500C2CFCE /* SceneDelegate.swift */; };
 		F1E0A5FB2BBD1F8600C2CFCE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F1E0A5FA2BBD1F8600C2CFCE /* Assets.xcassets */; };
@@ -89,6 +91,8 @@
 		F13B73CE2BBE799B00C96F19 /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		F13B73D02BBE79BC00C96F19 /* DetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewModel.swift; sourceTree = "<group>"; };
 		F13B73D42BBE89B000C96F19 /* ChatCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatCell.swift; sourceTree = "<group>"; };
+		F182FE9D2BC0354A00428E05 /* DateValueFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateValueFormatter.swift; sourceTree = "<group>"; };
+		F182FE9F2BC03C5500428E05 /* DateAxisValueFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateAxisValueFormatter.swift; sourceTree = "<group>"; };
 		F1E0A5EE2BBD1F8500C2CFCE /* Investor.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Investor.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F1E0A5F12BBD1F8500C2CFCE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F1E0A5F32BBD1F8500C2CFCE /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -267,6 +271,8 @@
 				F1E0A67B2BBD283700C2CFCE /* MarketTicker.swift */,
 				F1E0A6792BBD283700C2CFCE /* ApiTiker.swift */,
 				F1E0A6782BBD283700C2CFCE /* SocketTicker.swift */,
+				F182FE9D2BC0354A00428E05 /* DateValueFormatter.swift */,
+				F182FE9F2BC03C5500428E05 /* DateAxisValueFormatter.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -503,6 +509,7 @@
 			files = (
 				F1E0A6892BBD285C00C2CFCE /* ChangeType.swift in Sources */,
 				F1E0A67E2BBD283C00C2CFCE /* Candle.swift in Sources */,
+				F182FE9E2BC0354A00428E05 /* DateValueFormatter.swift in Sources */,
 				F1E0A6672BBD23F200C2CFCE /* UILabel.swift in Sources */,
 				F1E0A67D2BBD283A00C2CFCE /* ApiTiker.swift in Sources */,
 				F1E0A6622BBD23E500C2CFCE /* Date.swift in Sources */,
@@ -515,6 +522,7 @@
 				F1E0A6A12BBD2D1500C2CFCE /* ChatItemView.swift in Sources */,
 				F1E0A6A02BBD2D1500C2CFCE /* BlockView.swift in Sources */,
 				F13B73D32BBE868400C96F19 /* ChatViewModel.swift in Sources */,
+				F182FEA02BC03C5500428E05 /* DateAxisValueFormatter.swift in Sources */,
 				F1E0A6662BBD23EF00C2CFCE /* UIColor.swift in Sources */,
 				F1E0A6912BBD28D400C2CFCE /* SingleCandleView.swift in Sources */,
 				F1E0A6812BBD284300C2CFCE /* MarketTicker.swift in Sources */,

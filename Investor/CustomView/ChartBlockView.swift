@@ -127,6 +127,8 @@ class ChartBlockView: BlockView {
             .drive(onNext: { [weak self] index in
                 guard let self = self else { return }
                 let selectedType = CandleType.allCases[index]
+                
+                // MARK: 대리자에게 세그먼트의 index가 변경되었음을 알림
                 self.delegate?.segementedChanged(type: selectedType)
             }).disposed(by: disposeBag)
     }
@@ -149,6 +151,18 @@ class ChartBlockView: BlockView {
         // MARK: CandleChart에 들어갈 데이터 설정
         let data = CandleChartData(dataSet: dataSet)
         self.candleChart.data = data
+        
+        
+        // MARK: xAxis에 들어갈 Date 포멧 설정 -> 세그먼트 인덱스에 맞게 매칭
+        let segmentIndex = self.candleSegment.selectedSegmentIndex
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = CandleType.allCases[segmentIndex].chartDateFormat
+        
+        // MARK: candles 배열에서 timestamp를 추출해서 date배열로 변환
+        let dates = candles.map { Date(timeIntervalSince1970: TimeInterval($0.timestamp)) }
+        
+        let xAxis = self.candleChart.xAxis
+        xAxis.valueFormatter = DateAxisValueFormatter(dates: dates, dateFormatter: dateFormatter)
         
         // MARK: - Place for 차트 스타일 지정
         
@@ -191,6 +205,11 @@ class ChartBlockView: BlockView {
         
         self.priceLabel.text =  "₩\(ticker.trade_price.formattedStringWithCommaAndDecimal(places: 2))"
         self.changeLabel.text = "\(changeRate.formattedStringWithCommaAndDecimal(places: 2))%(\(changePrice))"
+        
+        
+        // MARK: 기존의 캔들 데이터, 첫번째 데이터(가장 최근) 추출
+        guard let dataSet = self.candleChart.data?.dataSets.first as? CandleChartDataSet, let recentEntry = dataSet.first else { return}
+        
     }
     
     private func setColor(with color: UIColor) {
