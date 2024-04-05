@@ -79,6 +79,7 @@ class DetailViewController: UIViewController {
     
     private func bind() {
         self.chartBlockView.delegate = self
+        self.chatBlockView.delegate = self
         
         // MARK: 차트블록의 선택된 캔들 주기 타입을 가져옴
         chartBlockView.getSegementIndex()
@@ -94,6 +95,25 @@ class DetailViewController: UIViewController {
                 // MARK: 차트 블록의 캔들 차트 정보 업데이트
                 self.chartBlockView.configure(with: candles)
             }).disposed(by: disposeBag)
+        
+        
+        // MARK: 종목 토론방 채팅 데이터 구독
+        self.viewModel.chatsSubject
+            .subscribe(onNext: { [weak self] chats in
+                guard let self = self else { return }
+                // MARK: 챗 블록의 최신 채팅 기록 업데이트
+                self.chatBlockView.configure(with: chats.last)
+            }).disposed(by: disposeBag)
+    }
+    
+    // MARK: 종목토론방 리스너 연결
+    override func viewWillAppear(_ animated: Bool) {
+        self.viewModel.addListener()
+    }
+    
+    // MARK: 종목토론방 리스너 해제
+    override func viewWillDisappear(_ animated: Bool) {
+        self.viewModel.removeListener()
     }
 }
 
@@ -108,8 +128,10 @@ extension DetailViewController: ChartBlockViewDelegate {
 
 // MARK: - Place for Extension ChatBlockViewDelegate
 extension DetailViewController: ChatBlockViewDelegate {
-    // MARK: 의견 작성하기 버튼이 클릭됨(채팅방 입장)
+    // MARK: 챗 블록에서 의견 작성하기 버튼이 클릭됨(채팅방 입장)
     func enterChatButtonTapped() {
-        
+        let viewModel = ChatViewModel(marketInfo: self.viewModel.marketTicker.marketInfo)
+        let viewController = ChatViewController(viewModel: viewModel)
+        self.navigationController?.pushViewController(viewController, animated: true)
     }
 }

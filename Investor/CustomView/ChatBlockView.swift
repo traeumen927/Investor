@@ -49,6 +49,23 @@ class ChatBlockView: BlockView {
         return view
     }()
     
+    // MARK: 채팅정보를 가져올 동안 채팅 데이터의 상태를 표시할 뷰
+    private let loadingView: UIView = {
+        let view = UIView()
+        view.backgroundColor = ThemeColor.background
+        view.layer.cornerRadius = 8
+        return view
+    }()
+    
+    // MARK: 채팅정보를 가져올 동안 채팅 데이터의 상태를 표시할 라벨
+    private let loadingLabel: UILabel = {
+        let label = UILabel()
+        label.textColor = ThemeColor.tint2
+        label.font = UIFont.systemFont(ofSize: 14 ,weight: .bold)
+        label.text = "채팅 데이터를 불러오는 중입니다."
+        label.textAlignment = .center
+        return label
+    }()
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -64,7 +81,8 @@ class ChatBlockView: BlockView {
     
     
     private func layout() {
-        [titleLabel, chatItemView, enterChatButton].forEach(self.contentView.addSubview(_:))
+        [titleLabel, chatItemView, loadingView, enterChatButton].forEach(self.contentView.addSubview(_:))
+        loadingView.addSubview(loadingLabel)
         
         titleLabel.snp.makeConstraints { make in
             make.top.equalToSuperview().offset(12)
@@ -74,6 +92,15 @@ class ChatBlockView: BlockView {
         chatItemView.snp.makeConstraints { make in
             make.top.equalTo(titleLabel.snp.bottom).offset(12)
             make.leading.trailing.equalToSuperview().inset(12)
+        }
+        
+        loadingView.snp.makeConstraints { make in
+            make.edges.equalTo(chatItemView)
+        }
+        
+        loadingLabel.snp.makeConstraints { make in
+            make.leading.trailing.equalToSuperview().inset(8)
+            make.centerY.equalToSuperview()
         }
         
         enterChatButton.snp.makeConstraints { make in
@@ -91,7 +118,12 @@ class ChatBlockView: BlockView {
             }).disposed(by: disposeBag)
     }
     
-    func configure(with chat: Chat) {
+    func configure(with chat: Chat?) {
+        self.loadingView.isHidden = chat != nil
+        self.loadingLabel.text = chat == nil ? "채팅 내역이 없습니다." : ""
+        
+        // MARK: Chat Item Configure
+        guard let chat = chat else { return }
         self.chatItemView.configure(with: chat)
     }
 }
