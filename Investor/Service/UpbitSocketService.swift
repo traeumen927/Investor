@@ -12,9 +12,6 @@ import Alamofire
 
 class UpbitSocketService {
     
-    // MARK: UpbitSocket Service SingleTon
-    static let shared = UpbitSocketService()
-    
     private var socket: WebSocket?
     
     private let uuid = UUID()

@@ -16,12 +16,10 @@ class DetailViewModel {
     private let disposeBag = DisposeBag()
     
     // MARK: 업비트 웹 소켓 서비스
-    private let upbitSocketService = UpbitSocketService.shared
+    private let upbitSocketService = UpbitSocketService()
     
     // MARK: 종목토론방 리스너
     private var listener: ListenerRegistration?
-    
-    
     
     
     // MARK: - Place for Input
@@ -183,12 +181,12 @@ class DetailViewModel {
     
     // MARK: 웹소켓 연결
     func connectWebSocket() {
-        //self.upbitSocketService.connect()
+        self.upbitSocketService.connect()
     }
     
     // MARK: 웹소켓 해제
     func disconnectWebSocket() {
-        //self.upbitSocketService.disconnect()
+        self.upbitSocketService.disconnect()
     }
     
     

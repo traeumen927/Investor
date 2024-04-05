@@ -15,7 +15,7 @@ class MarketViewModel {
     private let disposeBag = DisposeBag()
     
     // MARK: 업비트 웹 소켓 서비스
-    private let upbitSocketService = UpbitSocketService.shared
+    private let upbitSocketService = UpbitSocketService()
     
     // MARK: - Place for Output
     // MARK: 거래 가능 마켓 + 요청당시 Ticker
