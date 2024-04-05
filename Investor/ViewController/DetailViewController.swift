@@ -2,12 +2,12 @@
 //  DetailViewController.swift
 //  Investor
 //
-//  Created by 홍정연 on 3/21/24.
+//  Created by 홍정연 on 4/4/24.
 //
 
 import UIKit
-import RxSwift
 import SnapKit
+import RxSwift
 
 class DetailViewController: UIViewController {
     
@@ -59,8 +59,8 @@ class DetailViewController: UIViewController {
     }
     
     private func layout() {
+        self.title = self.viewModel.marketTicker.marketInfo.koreanName
         self.view.backgroundColor = ThemeColor.background
-        self.title = self.viewModel.marketInfo.koreanName
         
         self.view.addSubview(scrollView)
         self.scrollView.addSubview(stackView)
@@ -73,69 +73,64 @@ class DetailViewController: UIViewController {
             make.edges.equalToSuperview()
             make.width.equalToSuperview()
         }
+        
         [chartBlockView, chatBlockView].forEach(stackView.addArrangedSubview(_:))
     }
     
     private func bind() {
-        // MARK: 캔들정보 조회
-        self.viewModel.fetchData()
-        
-        // MARK: 종목토론방 조회
-        self.viewModel.addListener()
-        
         self.chartBlockView.delegate = self
         self.chatBlockView.delegate = self
-        self.chartBlockView.getSegementIndex()
         
-        // MARK: 현재가 구독
-        self.viewModel.apiTickerSubejct
-            .observe(on: MainScheduler.instance)
-            .subscribe(onNext: {[weak self] ticker in
-                guard let self = self else { return }
-                self.chartBlockView.update(ticker: ticker)
-            }).disposed(by: disposeBag)
+        // MARK: 차트블록의 선택된 캔들 주기 타입을 가져옴
+        chartBlockView.getSegementIndex()
+        
+        // MARK: 페이지 진입 직전 ticker 기반으로, 차트블록의 현재가 및 변동률 데이터 업데이트
+        chartBlockView.update(ticker: self.viewModel.marketTicker.socketTicker ?? self.viewModel.marketTicker.apiTicker)
+        
         
         // MARK: 캔들정보 구독
         self.viewModel.candlesSubject
             .subscribe(onNext: { [weak self] candles in
                 guard let self = self else { return }
+                // MARK: 차트 블록의 캔들 차트 정보 업데이트
                 self.chartBlockView.configure(with: candles)
             }).disposed(by: disposeBag)
         
-        // MARK: 채팅정보 구독 (distinctUntilChanged로 viewcontroller 진입 및 이탈시 중복 데이터 방출 방지)
+        
+        // MARK: 종목 토론방 채팅 데이터 구독
         self.viewModel.chatsSubject
-            .distinctUntilChanged { $0.timeStamp == $1.timeStamp }
-            .subscribe(onNext: { [weak self] chat in
+            .subscribe(onNext: { [weak self] chats in
                 guard let self = self else { return }
-                self.chatBlockView.configure(with: chat)
+                // MARK: 챗 블록의 최신 채팅 기록 업데이트
+                self.chatBlockView.configure(with: chats.last)
             }).disposed(by: disposeBag)
     }
     
-    // MARK: 종목토론방 진입시 채팅 리스너 부여
+    // MARK: 종목토론방 리스너 연결
     override func viewWillAppear(_ animated: Bool) {
         self.viewModel.addListener()
     }
     
-    // MARK: 종목토론방 이탈시 채팅 리스너 제거
+    // MARK: 종목토론방 리스너 해제
     override func viewWillDisappear(_ animated: Bool) {
         self.viewModel.removeListener()
     }
 }
 
-
-// MARK: - Place for ChartBlockViewDelegate
+// MARK: - Place for Extension ChartBlockViewDelegate
 extension DetailViewController: ChartBlockViewDelegate {
-    // MARK: 캔들차트의 분기 단위가 변경됨
+    // MARK: 차트 블록에서 캔들 주기가 변경됨
     func segementedChanged(type: CandleType) {
         self.viewModel.fetchCandles(candleType: type)
     }
 }
 
 
+// MARK: - Place for Extension ChatBlockViewDelegate
 extension DetailViewController: ChatBlockViewDelegate {
-    // MARK: 종목 토론방 페이지로 이동
+    // MARK: 챗 블록에서 의견 작성하기 버튼이 클릭됨(채팅방 입장)
     func enterChatButtonTapped() {
-        let viewModel = ChatViewModel(marketInfo: self.viewModel.marketInfo)
+        let viewModel = ChatViewModel(marketInfo: self.viewModel.marketTicker.marketInfo)
         let viewController = ChatViewController(viewModel: viewModel)
         self.navigationController?.pushViewController(viewController, animated: true)
     }

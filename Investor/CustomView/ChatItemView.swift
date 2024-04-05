@@ -27,6 +27,7 @@ class ChatItemView: UIView {
         let label = UILabel()
         label.numberOfLines = 1
         label.textColor = ThemeColor.tint2
+        label.text = "익명의 토론자"
         label.font = UIFont.systemFont(ofSize: 14, weight: .regular)
         return label
     }()
@@ -45,6 +46,7 @@ class ChatItemView: UIView {
         let label = UILabel()
         label.numberOfLines = 0
         label.textColor = ThemeColor.tint1
+        label.text = "......"
         label.font = UIFont.systemFont(ofSize: 16, weight: .regular)
         return label
     }()
@@ -78,6 +80,7 @@ class ChatItemView: UIView {
             make.top.equalToSuperview().offset(8)
             make.leading.equalToSuperview().offset(12)
             make.width.height.equalTo(48)
+            make.bottom.lessThanOrEqualToSuperview().offset(-8)
         }
         
         profileLabel.snp.makeConstraints { make in
@@ -108,15 +111,18 @@ class ChatItemView: UIView {
         }
     }
     
+    // MARK: 채팅 데이터 삽입
     func configure(with chat: Chat) {
+        
+        // MARK: 작성자 sender를 이용해서 SHA256 해시 값 생성
+        let hashedUserId = chat.sender.sha256()
+        
         messageLabel.text = chat.message
-        profileLabel.text = chat.displayName
+        profileLabel.text = "익명의 토론자\(hashedUserId.prefix(5))"
         dateLabel.text = chat.timeStamp.formattedString()
         
-        if let url = URL(string: chat.photoUrl) {
-            profileView.kf.setImage(with: url)
-        } else {
-            self.profileView.image = UIImage(systemName: "person.circle.fill")?.withRenderingMode(.alwaysTemplate)
-        }
+        
+        // MARK: 프로필 색상을 SHA 256기반으로 Sender에 매칭된 색상으로 설정
+        self.profileView.image = UIImage(systemName: "person.circle.fill")?.withTintColor(UIColor.colorForUserId(userId: chat.sender), renderingMode: .alwaysOriginal)
     }
 }

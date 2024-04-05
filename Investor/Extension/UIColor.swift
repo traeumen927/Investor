@@ -6,7 +6,7 @@
 //
 
 import UIKit
-
+import CryptoKit
 
 extension UIColor {
     // MARK: HexString to UIColor 변환
@@ -26,6 +26,22 @@ extension UIColor {
             (a, r, g, b) = (255, 0, 0, 0)
         }
         self.init(red: CGFloat(r) / 255, green: CGFloat(g) / 255, blue: CGFloat(b) / 255, alpha: CGFloat(a) / 255)
+    }
+    
+    
+    // MARK: SHA-256 기반 String에 매칭된 색상 추출
+    static func colorForUserId(userId: String) -> UIColor {
+        // MARK:  SHA-256 해시 생성
+        let inputData = Data(userId.utf8)
+        let hashedData = SHA256.hash(data: inputData)
+        
+        // MARK:  해시된 값을 바이트 배열로 변환하여 RGB 색상 값 생성
+        var colorComponents: [CGFloat] = []
+        for byte in hashedData {
+            colorComponents.append(CGFloat(byte) / 255.0) // MARK:  각 바이트 값을 [0, 1] 범위로 정규화하여 사용
+        }
+        
+        return UIColor(red: colorComponents[0], green: colorComponents[1], blue: colorComponents[2], alpha: 1.0)
     }
 }
 
