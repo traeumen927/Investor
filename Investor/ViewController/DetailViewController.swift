@@ -98,6 +98,14 @@ class DetailViewController: UIViewController {
             }).disposed(by: disposeBag)
         
         
+        // MARK: Upbit Api Error 구독
+        self.viewModel.errorSubject
+            .subscribe(onNext: { [weak self] error in
+                guard let _ = self else { return }
+                print(error)
+            }).disposed(by: disposeBag)
+        
+        
         // MARK: 선택 종목 실시간 Ticker 구독
         self.viewModel.socketTickerSubject
             .observe(on: MainScheduler.instance)

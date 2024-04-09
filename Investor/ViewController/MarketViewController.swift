@@ -93,6 +93,14 @@ class MarketViewController: UIViewController {
             }).disposed(by: disposeBag)
         
         
+        // MARK: Upbit Api Error 구독
+        self.viewModel.errorSubject
+            .subscribe(onNext: { [weak self] error in
+                guard let _ = self else { return }
+                print(error)
+            }).disposed(by: disposeBag)
+        
+        
         // MARK: 이후 변동되는 실시간 현재가 Ticker 가져오기, 0.3초마다 or 30개의 변동이 있을 때마다 cell 업데이트 진행
         self.viewModel.socketTickerSubject
             .observe(on: MainScheduler.instance)

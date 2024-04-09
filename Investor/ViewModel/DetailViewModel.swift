@@ -37,6 +37,9 @@ class DetailViewModel {
     // MARK: 실시간 현재가 Ticker
     let socketTickerSubject = PublishSubject<SocketTicker>()
     
+    // MARK: 에러 description Subejct
+    let errorSubject = PublishSubject<String>()
+    
     
     
     
@@ -63,14 +66,14 @@ class DetailViewModel {
             endpoint = .candles(market: self.marketTicker.marketInfo.market, candle: candleType, count: 20)
         }
         
-        UpbitApiService.request(endpoint: endpoint) { [weak self] (result: Result<[Candle], AFError>) in
+        UpbitApiService.request(endpoint: endpoint) { [weak self] (result: Result<[Candle], UpbitApiError>) in
             guard let self = self else { return }
             
             switch result {
             case .success(let candles):
                 self.candlesSubject.onNext(candles)
             case .failure(let error):
-                print("Error fetching tickers: \(error)")
+                self.errorSubject.onNext(error.message)
             }
         }
     }

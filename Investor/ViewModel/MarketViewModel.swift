@@ -24,6 +24,9 @@ class MarketViewModel {
     // MARK: 실시간 현재가 Ticker
     let socketTickerSubject = PublishSubject<SocketTicker>()
     
+    // MARK: 에러 description Subejct
+    let errorSubject = PublishSubject<String>()
+    
     
     init() {
         // MARK: 웹소켓 이벤트 구독
@@ -35,16 +38,15 @@ class MarketViewModel {
     
     // MARK: 현재 업비트에서 거래 가능한 목록 불러오기
     private func fetchAllMarkets() {
-        UpbitApiService.request(endpoint: .allMarkets) { [weak self] (result: Result<[MarketInfo], AFError>) in
+        UpbitApiService.request(endpoint: .allMarkets) { [weak self] (result: Result<[MarketInfo], UpbitApiError>) in
             guard let self = self else { return }
             switch result {
             case .success(let markets):
                 // MARK: 원화 마켓 정보
                 let krwMarkets = markets.filter { $0.market.hasPrefix("KRW-")}
-                
                 self.fetchMarketTicker(with: krwMarkets)
             case .failure(let error):
-                print("API 요청 실패: \(error)")
+                self.errorSubject.onNext(error.message)
             }
         }
     }
@@ -55,7 +57,7 @@ class MarketViewModel {
         // MARK: 원화 마켓 코드만 담긴 배열 -> ["KRW-BTC", "KRW-ETH", ...]
         let marketCodes = markets.map { $0.market }
         
-        UpbitApiService.request(endpoint: .ticker(markets: marketCodes)) { [weak self] (result: Result<[ApiTicker], AFError>) in
+        UpbitApiService.request(endpoint: .ticker(markets: marketCodes)) { [weak self] (result: Result<[ApiTicker], UpbitApiError>) in
             guard let self = self else { return }
             switch result {
                 
@@ -76,7 +78,7 @@ class MarketViewModel {
                 // MARK: 현재 조회된 목록의 실시간 Ticker 요청
                 self.upbitSocketService.subscribeToTicker(symbol: marketCodes)
             case .failure(let error):
-                print("Error fetching tickers: \(error)")
+                self.errorSubject.onNext(error.message)
             }
         }
     }

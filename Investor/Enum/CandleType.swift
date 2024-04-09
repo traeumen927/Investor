@@ -28,7 +28,7 @@ enum CandleType: String, CaseIterable {
     }
     
     
-    // MARK: 차트의 Date Format String
+    // MARK: 차트의 Date Format String  
     var chartDateFormat: String {
         switch self {
         case .months:
