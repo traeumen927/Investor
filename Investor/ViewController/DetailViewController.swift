@@ -14,35 +14,28 @@ class DetailViewController: UIViewController {
     private let disposeBag = DisposeBag()
     private let viewModel: DetailViewModel
     
-    // MARK: 세로 방향 스크롤뷰
-    private let scrollView: UIScrollView = {
-        let view = UIScrollView()
-        view.showsVerticalScrollIndicator = false
+    // MARK: pageViewController 구성요소
+    private var pages: [UIViewController]
+    
+    // MARK: 페이지 Index SegmentedControl
+    private lazy var pageSegmentedControl: UISegmentedControl = {
+        let items = self.pages.map { $0.title ?? "page" }
+        let view = UISegmentedControl(items: items)
+        view.selectedSegmentIndex = 0
         return view
     }()
     
-    // MARK: 세로 방향 스택뷰
-    private let stackView: UIStackView = {
-        let view = UIStackView()
-        view.axis = .vertical
-        view.spacing = 20
-        return view
-    }()
-    
-    // MARK: 스택뷰 하위뷰 - 차트뷰
-    private let chartBlockView: ChartBlockView = {
-        let view = ChartBlockView()
-        return view
-    }()
-    
-    // MARK: 스택뷰 하위뷰 - 채팅뷰
-    private let chatBlockView: ChatBlockView = {
-        let view = ChatBlockView()
+    // MARK: 해당 코인에 대한 ViewController들이 담길 pageviewController
+    private lazy var pageViewController: UIPageViewController = {
+        let view = UIPageViewController(transitionStyle: .scroll, navigationOrientation: .horizontal)
+        view.dataSource = self
+        view.delegate = self
         return view
     }()
     
     
-    init(viewModel: DetailViewModel) {
+    init(pages: [UIViewController], viewModel: DetailViewModel) {
+        self.pages = pages
         self.viewModel = viewModel
         super.init(nibName: nil, bundle: nil)
     }
@@ -62,80 +55,40 @@ class DetailViewController: UIViewController {
         self.title = self.viewModel.marketTicker.marketInfo.koreanName
         self.view.backgroundColor = ThemeColor.background
         
-        self.view.addSubview(scrollView)
-        self.scrollView.addSubview(stackView)
+        // MARK: Page SegmentedControl, viewController 삽입
+        self.addChild(pageViewController)
+        [pageSegmentedControl, pageViewController.view].forEach(self.view.addSubview(_:))
+        pageViewController.didMove(toParent: self)
         
-        scrollView.snp.makeConstraints { make in
-            make.edges.equalToSuperview()
+        self.pageSegmentedControl.snp.makeConstraints { make in
+            make.top.equalTo(self.view.safeAreaLayoutGuide)
+            make.leading.trailing.equalToSuperview()
         }
         
-        stackView.snp.makeConstraints { make in
-            make.edges.equalToSuperview()
-            make.width.equalToSuperview()
+        self.pageViewController.view.snp.makeConstraints { make in
+            make.top.equalTo(self.pageSegmentedControl.snp.bottom)
+            make.leading.trailing.bottom.equalToSuperview()
         }
-        
-        [chartBlockView, chatBlockView].forEach(stackView.addArrangedSubview(_:))
     }
     
     private func bind() {
-        self.chartBlockView.delegate = self
-        self.chatBlockView.delegate = self
-        
-        // MARK: 차트블록의 선택된 캔들 주기 타입을 가져옴
-        chartBlockView.getSegementIndex()
-        
-        // MARK: 페이지 진입 직전 ticker 기반으로, 차트블록의 현재가 및 변동률 데이터 업데이트
-        chartBlockView.update(ticker: self.viewModel.marketTicker.socketTicker ?? self.viewModel.marketTicker.apiTicker)
+                
+        // MARK: 첫 페이지 설정
+        if let firstPage = pages.first {
+            pageViewController.setViewControllers([firstPage], direction: .forward, animated: true)
+        }
         
         
-        // MARK: 캔들정보 구독
-        self.viewModel.candlesSubject
-            .observe(on: MainScheduler.instance)
-            .subscribe(onNext: { [weak self] candles in
+        // MARK: 세그먼트컨트롤의 인덱스 구독 -> 선택된 pageViewController 이동
+        pageSegmentedControl.rx.selectedSegmentIndex
+            .subscribe(onNext: { [weak self] index in
                 guard let self = self else { return }
-                // MARK: 차트 블록의 캔들 차트 정보 업데이트
-                self.chartBlockView.configure(with: candles)
-            }).disposed(by: disposeBag)
-        
-        
-        // MARK: Upbit Api Error 구독
-        self.viewModel.errorSubject
-            .subscribe(onNext: { [weak self] error in
-                guard let _ = self else { return }
-                print(error)
-            }).disposed(by: disposeBag)
-        
-        
-        // MARK: 선택 종목 실시간 Ticker 구독
-        self.viewModel.socketTickerSubject
-            .observe(on: MainScheduler.instance)
-            .subscribe(onNext: { [weak self] ticker in
-                guard let self = self else { return }
-                // MARK: 차트 블록의 실시간 가격 정보 업데이트
-                self.chartBlockView.update(ticker: ticker)
-            }).disposed(by: disposeBag)
-        
-        
-        // MARK: 종목 토론방 채팅 데이터 구독
-        self.viewModel.chatsSubject
-            .observe(on: MainScheduler.instance)
-            .subscribe(onNext: { [weak self] chats in
-                guard let self = self else { return }
-                // MARK: 챗 블록의 최신 채팅 기록 업데이트
-                self.chatBlockView.configure(with: chats.last)
-            }).disposed(by: disposeBag)
-    }
-    
-    // MARK: viewWillAppear -> 종목토론방 리스너 연결, 웹소켓 연결
-    override func viewWillAppear(_ animated: Bool) {
-        self.viewModel.addListener()
-        self.viewModel.connectWebSocket()
-    }
-    
-    // MARK: viewWillDisappear -> 종목토론방 리스너 해제, 웹소켓 해제
-    override func viewWillDisappear(_ animated: Bool) {
-        self.viewModel.removeListener()
-        self.viewModel.disconnectWebSocket()
+                if index >= 0 && index < self.pages.count {
+                    let selectedPage = self.pages[index]
+                    self.pageViewController.setViewControllers([selectedPage], direction: .forward, animated: false, completion: nil)
+                }
+            })
+            .disposed(by: disposeBag)
     }
     
     deinit {
@@ -143,21 +96,29 @@ class DetailViewController: UIViewController {
     }
 }
 
-// MARK: - Place for Extension ChartBlockViewDelegate
-extension DetailViewController: ChartBlockViewDelegate {
-    // MARK: 차트 블록에서 캔들 주기가 변경됨
-    func segementedChanged(type: CandleType) {
-        self.viewModel.fetchCandles(candleType: type)
+
+extension DetailViewController: UIPageViewControllerDataSource, UIPageViewControllerDelegate {
+    // MARK: 이전페이지
+    func pageViewController(_ pageViewController: UIPageViewController, viewControllerBefore viewController: UIViewController) -> UIViewController? {
+        guard let index = pages.firstIndex(of: viewController), index > 0 else {
+            return nil
+        }
+        return pages[index - 1]
     }
-}
-
-
-// MARK: - Place for Extension ChatBlockViewDelegate
-extension DetailViewController: ChatBlockViewDelegate {
-    // MARK: 챗 블록에서 의견 작성하기 버튼이 클릭됨(채팅방 입장)
-    func enterChatButtonTapped() {
-        let viewModel = ChatViewModel(marketInfo: self.viewModel.marketTicker.marketInfo)
-        let viewController = ChatViewController(viewModel: viewModel)
-        self.navigationController?.pushViewController(viewController, animated: true)
+    
+    // MARK: 다음페이지
+    func pageViewController(_ pageViewController: UIPageViewController, viewControllerAfter viewController: UIViewController) -> UIViewController? {
+        guard let index = pages.firstIndex(of: viewController), index < pages.count - 1 else {
+            return nil
+        }
+        return pages[index + 1]
+    }
+    
+    // MARK: 페이지 뷰 컨트롤러의 페이지 변경 시 세그먼트 컨트롤의 선택 인덱스 변경
+    func pageViewController(_ pageViewController: UIPageViewController, didFinishAnimating finished: Bool, previousViewControllers: [UIViewController], transitionCompleted completed: Bool) {
+        guard completed, let currentViewController = pageViewController.viewControllers?.first, let index = pages.firstIndex(of: currentViewController) else {
+            return
+        }
+        pageSegmentedControl.selectedSegmentIndex = index
     }
 }
