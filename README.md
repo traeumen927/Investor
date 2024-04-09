@@ -124,14 +124,21 @@ struct UpbitApiService {
     
     
     // MARK: 요청처리
-    static func request<T: Decodable>(endpoint: EndPoint, completion: @escaping (Result<T, AFError>) -> Void) {
+    static func request<T: Decodable>(endpoint: EndPoint, completion: @escaping (Result<T, UpbitApiError>) -> Void) {
         let url = baseURL + endpoint.path
         
         
         AF.request(url, method: .get, parameters: endpoint.parameters, headers: endpoint.headers)
             .validate(statusCode: 200..<300)
             .responseDecodable(of: T.self) { response in
-                completion(response.result)
+                
+                switch response.result {
+                    
+                case .success(let value):
+                    completion(.success(value))
+                case .failure(let error):
+                    completion(.failure(UpbitApiError(afError: error)))
+                }
             }
     }
 }
@@ -145,7 +152,7 @@ extension UpbitApiService {
         
         // MARK: 요청 당시 종목의 스냅샷 조회
         case ticker(markets: [String])
-              
+        
         // MARK: 일, 주, 월 단위 캔들 조회
         case candles(market:String, candle: CandleType, count: Int)
         
@@ -163,7 +170,7 @@ extension UpbitApiService {
                 return "/ticker"
                 
             case .candles(_, let candle, _):
-                    
+                
                 return "/candles/\(candle.rawValue)"
                 
             case .candlesMinutes(_, let candle, let unit, _):
@@ -189,5 +196,39 @@ extension UpbitApiService {
             return nil
         }
     }
+}  
+
+// MARK: Upbit API 에러 타입
+enum UpbitApiError: Error {
+    case networkError(message: String)
+    case decodingError(message: String)
+    case serverError(message: String)
+    
+    var message: String {
+        switch self {
+        case .networkError(let message), .decodingError(let message), .serverError(let message):
+            return message
+        }
+    }
+    
+    init(afError: AFError) {
+        switch afError {
+        case .sessionTaskFailed(let error):
+            if let urlError = error as? URLError, urlError.code == .notConnectedToInternet {
+                self = .networkError(message: error.localizedDescription)
+            } else {
+                self = .serverError(message: afError.localizedDescription)
+            }
+        case .responseSerializationFailed(let reason):
+            if case .decodingFailed = reason {
+                self = .decodingError(message: afError.localizedDescription)
+            } else {
+                self = .serverError(message: afError.localizedDescription)
+            }
+        default:
+            self = .serverError(message: afError.localizedDescription)
+        }
+    }
 }
+
 ```
