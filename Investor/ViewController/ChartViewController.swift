@@ -1,29 +1,20 @@
 //
-//  ChartBlockView.swift
+//  ChartViewController.swift
 //  Investor
 //
-//  Created by 홍정연 on 3/21/24.
+//  Created by 홍정연 on 4/9/24.
 //
 
 import UIKit
+import RxSwift
 import SnapKit
 import DGCharts
-import RxSwift
-import RxCocoa
 
+class ChartViewController: UIViewController {
 
-protocol ChartBlockViewDelegate: AnyObject {
-    // MARK: 세그먼트의 값이 변경됨
-    func segementedChanged(type: CandleType)
-}
-
-class ChartBlockView: BlockView {
+    private let disposeBag = DisposeBag()
+    private let viewModel: ChartViewModel
     
-    let disposeBag = DisposeBag()
-
-    // MARK: 약한 순환참조
-    weak var delegate: ChartBlockViewDelegate?
-
     // MARK: 현재가 라벨
     private let priceLabel: UILabel = {
         let label = UILabel()
@@ -77,24 +68,33 @@ class ChartBlockView: BlockView {
     }()
     
     
-    override init(frame: CGRect) {
-        super.init(frame: frame)
-        layout()
-        bind()
+    init(viewModel: ChartViewModel) {
+        self.viewModel = viewModel
+        super.init(nibName: nil, bundle: nil)
     }
     
     required init?(coder: NSCoder) {
-        super.init(coder: coder)
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+
         layout()
         bind()
     }
     
+    
     private func layout() {
-        [priceLabel, changeLabel, candleChart, candleSegment].forEach(contentView.addSubview(_:))
+        [candleSegment, priceLabel, changeLabel, candleChart].forEach(self.view.addSubview(_:))
         
+        candleSegment.snp.makeConstraints { make in
+            make.top.leading.equalToSuperview().offset(12)
+            make.trailing.equalToSuperview().offset(-12)
+        }
         
         priceLabel.snp.makeConstraints { make in
-            make.top.equalToSuperview().offset(12)
+            make.top.equalTo(self.candleSegment.snp.bottom).offset(12)
             make.leading.equalToSuperview().offset(12)
             make.trailing.equalToSuperview().offset(-12)
         }
@@ -109,28 +109,48 @@ class ChartBlockView: BlockView {
             make.top.equalTo(changeLabel.snp.bottom).offset(24)
             make.leading.equalToSuperview().offset(12)
             make.trailing.equalToSuperview().offset(-12)
-            make.height.equalTo(300)
+            make.bottom.equalTo(self.view.safeAreaLayoutGuide).offset(-48)
         }
         
-        candleSegment.snp.makeConstraints { make in
-            make.top.equalTo(candleChart.snp.bottom).offset(12)
-            make.leading.equalToSuperview().offset(12)
-            make.trailing.equalToSuperview().offset(-12)
-            make.bottom.equalToSuperview().offset(-12)
-        }
+        
     }
     
-    func bind() {
-        // MARK: 변경된 세그먼트의 값 대리자 전달
+    private func bind() {
+        // MARK: 변경된 세그먼트의 값 구독
         candleSegment.rx.selectedSegmentIndex
             .asDriver()
             .drive(onNext: { [weak self] index in
                 guard let self = self else { return }
                 let selectedType = CandleType.allCases[index]
-                
-                // MARK: 대리자에게 세그먼트의 index가 변경되었음을 알림
-                self.delegate?.segementedChanged(type: selectedType)
+                self.viewModel.fetchCandles(candleType: selectedType)
             }).disposed(by: disposeBag)
+        
+        // MARK: 실시간 Ticker 구독
+        self.viewModel.tickerSubject
+            .observe(on: MainScheduler.instance)
+            .subscribe(onNext: { [weak self] ticker in
+                guard let self = self else { return }
+                self.update(ticker: ticker)
+            }).disposed(by: disposeBag)
+        
+        
+        // MARK: candle 구독
+        self.viewModel.candlesSubject
+            .observe(on: MainScheduler.instance)
+            .subscribe(onNext: { [weak self] candle in
+                guard let self = self else { return }
+                self.configure(with: candle)
+            }).disposed(by: disposeBag)
+        
+        
+        // MARK: Upbit Api Error 구독
+        self.viewModel.errorSubject
+            .subscribe(onNext: { [weak self] error in
+                guard let _ = self else { return }
+                print(error)
+            }).disposed(by: disposeBag)
+        
+    
     }
     
     // MARK: 최초 캔들 configure
@@ -192,13 +212,9 @@ class ChartBlockView: BlockView {
         dataSet.label = nil
     }
     
-    func getSegementIndex() {
-        // MARK: 최초 1회 세그먼트 Init Index 대리자 전달
-        self.delegate?.segementedChanged(type: CandleType.allCases[self.candleSegment.selectedSegmentIndex])
-    }
     
-    // MARK: 캔들 실시간 업데이트
-    func update(ticker: TickerProtocol) {
+    // MARK: 현재가, 변동률 업데이트
+    private func update(ticker: TickerProtocol) {
         // MARK: 상승, 보합, 하락에 대한 색상 업데이트
         self.setColor(with: ticker.change.color)
         
@@ -216,5 +232,19 @@ class ChartBlockView: BlockView {
     private func setColor(with color: UIColor) {
         self.priceLabel.textColor = color
         self.changeLabel.textColor = color
+    }
+    
+    // MARK: viewWillAppear -> 종목토론방 리스너 연결, 웹소켓 연결
+    override func viewWillAppear(_ animated: Bool) {
+        self.viewModel.connectWebSocket()
+    }
+    
+    // MARK: viewWillDisappear -> 종목토론방 리스너 해제, 웹소켓 해제
+    override func viewWillDisappear(_ animated: Bool) {
+        self.viewModel.disconnectWebSocket()
+    }
+    
+    deinit {
+        print("deinit \(String(describing: self))")
     }
 }

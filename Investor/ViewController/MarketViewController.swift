@@ -157,9 +157,10 @@ extension MarketViewController: UICollectionViewDelegate, UICollectionViewDataSo
     
     // MARK: Select cell Item
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let marketTicker = self.marketTickerList[indexPath.item]
         // MARK: 거래소 셀 선택시 해당 코인 디테일 페이지 진입
-        let viewModel = DetailViewModel(marketTicker: self.marketTickerList[indexPath.item])
-        let viewController = DetailViewController(viewModel: viewModel)
+        let viewModel = DetailViewModel(marketTicker: marketTicker)
+        let viewController = DetailViewController(pages: PageService.create(marketTicker: marketTicker), viewModel: viewModel)
         // MARK: detailViewController 진입시 하단 탭바 숨김
         viewController.hidesBottomBarWhenPushed = true
         self.navigationController?.pushViewController(viewController, animated: true)
