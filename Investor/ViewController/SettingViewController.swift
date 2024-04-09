@@ -21,7 +21,7 @@ class SettingViewController: UIViewController {
     }
     
     private func layout() {
-        self.view.backgroundColor = ThemeColor.background
+        self.view.backgroundColor = ThemeColor.background1
     }
     
 

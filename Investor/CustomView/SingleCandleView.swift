@@ -61,7 +61,7 @@ class SingleCandleView: UIView {
     }
     
     private func layout() {
-        self.backgroundColor = ThemeColor.primary2
+        self.backgroundColor = ThemeColor.background2
         
         let riseContentView = UIView()
         let fallContentView = UIView()

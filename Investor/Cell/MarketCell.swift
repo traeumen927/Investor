@@ -21,7 +21,7 @@ class MarketCell: UICollectionViewCell {
     private let marketKorLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont.systemFont(ofSize: 14, weight: .bold)
-        label.textColor = ThemeColor.tint2
+        label.textColor = ThemeColor.tintDark
         label.numberOfLines = 0
         return label
     }()

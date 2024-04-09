@@ -22,12 +22,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let naviAppearance = UINavigationBarAppearance()
         naviAppearance.configureWithOpaqueBackground()
         naviAppearance.backgroundColor = ThemeColor.primary1
-        naviAppearance.titleTextAttributes = [.foregroundColor: ThemeColor.tint1]
-        naviAppearance.largeTitleTextAttributes = [.foregroundColor: ThemeColor.tint1]
+        naviAppearance.titleTextAttributes = [.foregroundColor: ThemeColor.tintLight]
+        naviAppearance.largeTitleTextAttributes = [.foregroundColor: ThemeColor.tintLight]
         
         UINavigationBar.appearance().scrollEdgeAppearance = naviAppearance
         UINavigationBar.appearance().standardAppearance = naviAppearance
-        UINavigationBar.appearance().tintColor = ThemeColor.tint1
+        UINavigationBar.appearance().tintColor = ThemeColor.tintLight
         
         
         // MARK: - Place for layout For TabBar Controller

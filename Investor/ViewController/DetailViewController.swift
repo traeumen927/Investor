@@ -22,6 +22,10 @@ class DetailViewController: UIViewController {
         let items = self.pages.map { $0.title ?? "page" }
         let view = UISegmentedControl(items: items)
         view.selectedSegmentIndex = 0
+        view.selectedSegmentTintColor = ThemeColor.primary1
+        view.backgroundColor = ThemeColor.background2
+        view.setTitleTextAttributes([NSAttributedString.Key.foregroundColor: ThemeColor.tintLight], for: .selected)
+        view.setTitleTextAttributes([NSAttributedString.Key.foregroundColor: ThemeColor.tintDark], for: .normal)
         return view
     }()
     
@@ -53,7 +57,7 @@ class DetailViewController: UIViewController {
     
     private func layout() {
         self.title = self.viewModel.marketTicker.marketInfo.koreanName
-        self.view.backgroundColor = ThemeColor.background
+        self.view.backgroundColor = ThemeColor.background1
         
         // MARK: Page SegmentedControl, viewController 삽입
         self.addChild(pageViewController)

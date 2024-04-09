@@ -43,17 +43,38 @@ extension UIColor {
         
         return UIColor(red: colorComponents[0], green: colorComponents[1], blue: colorComponents[2], alpha: 1.0)
     }
+
 }
 
 // MARK: 앱에서 사용하는 컬러 목록
 struct ThemeColor {
-    static let primary1 = UIColor(hexString: "2b2d42")
-    static let primary2 = UIColor(hexString: "e0e1dd")
-    static let tint1 = UIColor(hexString: "f8f9fa")
-    static let tint2 = UIColor(hexString: "001d3d")
+    ///대표색상1
+    static let primary1 = UIColor(hexString: "191919")
+    
+    ///대표색상2
+    static let primary2 = UIColor(hexString: "343a40")
+    
+    ///밝은 틴트색상
+    static let tintLight = UIColor(hexString: "f8f9fa")
+    
+    ///짙은 틴트색상
+    static let tintDark = UIColor(hexString: "212529")
+    
+    ///비활성화색상
     static let tintDisable = UIColor(hexString: "495057")
-    static let background = UIColor(hexString: "f8f9fa")
+    
+    ///배경색상1
+    static let background1 = UIColor(hexString: "f8f9fa")
+    
+    ///배경색상2
+    static let background2 = UIColor(hexString: "e0e1dd")
+    
+    ///상승색상
     static let positive = UIColor(hexString: "c84a31")
+    
+    ///보합색상
     static let stable = UIColor(hexString: "6c757d")
+    
+    ///하락색상
     static let negative = UIColor(hexString: "1261c4")
 }

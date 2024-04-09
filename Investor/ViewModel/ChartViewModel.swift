@@ -52,10 +52,10 @@ class ChartViewModel {
         
         // MARK: 캔들 타입이 분
         if candleType == .minutes {
-            endpoint = .candlesMinutes(market: self.marketTicker.marketInfo.market, candle: candleType, unit: .minuteOne, count: 20)
+            endpoint = .candlesMinutes(market: self.marketTicker.marketInfo.market, candle: candleType, unit: .minuteOne, count: 50)
         } else {
             // MARK: 캔들 타입이 월,주,일
-            endpoint = .candles(market: self.marketTicker.marketInfo.market, candle: candleType, count: 20)
+            endpoint = .candles(market: self.marketTicker.marketInfo.market, candle: candleType, count: 50)
         }
         
         UpbitApiService.request(endpoint: endpoint) { [weak self] (result: Result<[Candle], UpbitApiError>) in

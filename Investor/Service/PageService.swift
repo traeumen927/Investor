@@ -15,13 +15,13 @@ struct PageService {
         // MARK: 캔들차트
         let chartViewModel = ChartViewModel(marketTicker: marketTicker)
         let chartViewController = ChartViewController(viewModel: chartViewModel)
-        chartViewController.title = "차트"
+        chartViewController.title = "📈 차트"
         
         
         // MARK: 실시간 익명 종목토론방
         let chatViewModel = ChatViewModel(marketInfo: marketTicker.marketInfo)
         let chatViewController = ChatViewController(viewModel: chatViewModel)
-        chatViewController.title = "종목토론방"
+        chatViewController.title = "💬 종목토론방"
         
         pages.append(chartViewController)
         pages.append(chatViewController)
