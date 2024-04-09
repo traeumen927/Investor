@@ -10,7 +10,7 @@ import SnapKit
 import RxSwift
 import RxCocoa
 
-protocol ChatBlockViewDelegate {
+protocol ChatBlockViewDelegate: AnyObject {
     // MARK: 채팅방 입장
     func enterChatButtonTapped()
 }
@@ -19,7 +19,8 @@ class ChatBlockView: BlockView {
     
     private let disposeBag = DisposeBag()
     
-    var delegate: ChatBlockViewDelegate?
+    // MARK: 약한 순환참조
+    weak var delegate: ChatBlockViewDelegate?
     
     // MARK: 블럭상단 제목
     private let titleLabel: UILabel = {

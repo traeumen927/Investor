@@ -14,13 +14,18 @@ class MarketViewModel {
     
     private let disposeBag = DisposeBag()
     
-    private let upbitSocketService = UpbitSocketService.shared
+    // MARK: 업비트 웹 소켓 서비스
+    private let upbitSocketService = UpbitSocketService()
     
+    // MARK: - Place for Output
     // MARK: 거래 가능 마켓 + 요청당시 Ticker
     let marketTickerSubject = PublishSubject<[MarketTicker]>()
     
     // MARK: 실시간 현재가 Ticker
     let socketTickerSubject = PublishSubject<SocketTicker>()
+    
+    // MARK: 에러 description Subejct
+    let errorSubject = PublishSubject<String>()
     
     
     init() {
@@ -33,16 +38,15 @@ class MarketViewModel {
     
     // MARK: 현재 업비트에서 거래 가능한 목록 불러오기
     private func fetchAllMarkets() {
-        UpbitApiService.request(endpoint: .allMarkets) { [weak self] (result: Result<[MarketInfo], AFError>) in
+        UpbitApiService.request(endpoint: .allMarkets) { [weak self] (result: Result<[MarketInfo], UpbitApiError>) in
             guard let self = self else { return }
             switch result {
             case .success(let markets):
                 // MARK: 원화 마켓 정보
                 let krwMarkets = markets.filter { $0.market.hasPrefix("KRW-")}
-                
                 self.fetchMarketTicker(with: krwMarkets)
             case .failure(let error):
-                print("API 요청 실패: \(error)")
+                self.errorSubject.onNext(error.message)
             }
         }
     }
@@ -53,7 +57,7 @@ class MarketViewModel {
         // MARK: 원화 마켓 코드만 담긴 배열 -> ["KRW-BTC", "KRW-ETH", ...]
         let marketCodes = markets.map { $0.market }
         
-        UpbitApiService.request(endpoint: .ticker(markets: marketCodes)) { [weak self] (result: Result<[ApiTicker], AFError>) in
+        UpbitApiService.request(endpoint: .ticker(markets: marketCodes)) { [weak self] (result: Result<[ApiTicker], UpbitApiError>) in
             guard let self = self else { return }
             switch result {
                 
@@ -74,7 +78,7 @@ class MarketViewModel {
                 // MARK: 현재 조회된 목록의 실시간 Ticker 요청
                 self.upbitSocketService.subscribeToTicker(symbol: marketCodes)
             case .failure(let error):
-                print("Error fetching tickers: \(error)")
+                self.errorSubject.onNext(error.message)
             }
         }
     }
@@ -91,22 +95,25 @@ class MarketViewModel {
     
     // MARK: WebSocketDelegate에서 발생하는 WebSocket Event 처리
     private func didReceiveEvent(event: WebSocketEvent) {
+        
+        let className = String(describing: self)
+    
         switch event {
             
             // MARK: 소켓이 연결됨
         case .connected(let headers):
-            print("websocket is connected: \(headers)")
+            print("\(className): websocket is connected: \(headers)")
             
             // MARK: 현재 거래 가능한 마켓 조회
             self.fetchAllMarkets()
             
             // MARK: 소켓이 연결 해제됨
         case .disconnected(let reason, let code):
-            print("websocket is disconnected: \(reason) with code: \(code)")
+            print("\(className): websocket is disconnected: \(reason) with code: \(code)")
             
             // MARK: 텍스트 메세지를 받음
         case .text(let string):
-            print("Received text: \(string)")
+            print("\(className): Received text: \(string)")
             
             // MARK: 이진(binary) 데이터를 받음
         case .binary(let data):
@@ -116,37 +123,37 @@ class MarketViewModel {
             
             // MARK: 핑 메세지를 받음
         case .ping(_):
-            print("ping")
+            print("\(className): ping")
             break
             
             // MARK: 퐁 메세지를 받음
         case .pong(_):
-            print("pong")
+            print("\(className): pong")
             break
             
             // MARK: 연결의 안정성이 변경됨
         case .viabilityChanged(_):
-            print("viabilityChanged")
+            print("\(className): viabilityChanged")
             break
             
             // MARK: 재연결이 제안됨
         case .reconnectSuggested(_):
-            print("reconnectSuggested")
+            print("\(className): reconnectSuggested")
             break
             
             // MARK: 소켓이 취소됨
         case .cancelled:
-            print("cancelled")
+            print("\(className): cancelled")
             break
             
             // MARK: 에러가 발생함
         case .error(let error):
-            print("error: \(error!.localizedDescription)")
+            print("\(className): error: \(error!.localizedDescription)")
             break
             
             // MARK: 피어가 연결을 종료함
         case .peerClosed:
-            print("peerClosed")
+            print("\(className): peerClosed")
             break
         }
     }

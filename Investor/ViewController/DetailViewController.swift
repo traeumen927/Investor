@@ -90,6 +90,7 @@ class DetailViewController: UIViewController {
         
         // MARK: 캔들정보 구독
         self.viewModel.candlesSubject
+            .observe(on: MainScheduler.instance)
             .subscribe(onNext: { [weak self] candles in
                 guard let self = self else { return }
                 // MARK: 차트 블록의 캔들 차트 정보 업데이트
@@ -97,8 +98,27 @@ class DetailViewController: UIViewController {
             }).disposed(by: disposeBag)
         
         
+        // MARK: Upbit Api Error 구독
+        self.viewModel.errorSubject
+            .subscribe(onNext: { [weak self] error in
+                guard let _ = self else { return }
+                print(error)
+            }).disposed(by: disposeBag)
+        
+        
+        // MARK: 선택 종목 실시간 Ticker 구독
+        self.viewModel.socketTickerSubject
+            .observe(on: MainScheduler.instance)
+            .subscribe(onNext: { [weak self] ticker in
+                guard let self = self else { return }
+                // MARK: 차트 블록의 실시간 가격 정보 업데이트
+                self.chartBlockView.update(ticker: ticker)
+            }).disposed(by: disposeBag)
+        
+        
         // MARK: 종목 토론방 채팅 데이터 구독
         self.viewModel.chatsSubject
+            .observe(on: MainScheduler.instance)
             .subscribe(onNext: { [weak self] chats in
                 guard let self = self else { return }
                 // MARK: 챗 블록의 최신 채팅 기록 업데이트
@@ -106,14 +126,20 @@ class DetailViewController: UIViewController {
             }).disposed(by: disposeBag)
     }
     
-    // MARK: 종목토론방 리스너 연결
+    // MARK: viewWillAppear -> 종목토론방 리스너 연결, 웹소켓 연결
     override func viewWillAppear(_ animated: Bool) {
         self.viewModel.addListener()
+        self.viewModel.connectWebSocket()
     }
     
-    // MARK: 종목토론방 리스너 해제
+    // MARK: viewWillDisappear -> 종목토론방 리스너 해제, 웹소켓 해제
     override func viewWillDisappear(_ animated: Bool) {
         self.viewModel.removeListener()
+        self.viewModel.disconnectWebSocket()
+    }
+    
+    deinit {
+        print("deinit \(String(describing: self))")
     }
 }
 

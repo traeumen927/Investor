@@ -12,9 +12,6 @@ import Alamofire
 
 class UpbitSocketService {
     
-    // MARK: UpbitSocket Service SingleTon
-    static let shared = UpbitSocketService()
-    
     private var socket: WebSocket?
     
     private let uuid = UUID()
@@ -74,7 +71,7 @@ class UpbitSocketService {
 // MARK: - Place for WebSocketDelegate
 extension UpbitSocketService: WebSocketDelegate {
     func didReceive(event: WebSocketEvent, client: WebSocketClient) {
-        // MARK: Socket Evnet 방출
+        // MARK: Socket Event 방출
         self.socketEventSubejct.onNext(WebSocketEventWrapper(event: event))
     }
 }

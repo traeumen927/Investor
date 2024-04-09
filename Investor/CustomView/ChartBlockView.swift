@@ -11,7 +11,8 @@ import DGCharts
 import RxSwift
 import RxCocoa
 
-protocol ChartBlockViewDelegate {
+
+protocol ChartBlockViewDelegate: AnyObject {
     // MARK: 세그먼트의 값이 변경됨
     func segementedChanged(type: CandleType)
 }
@@ -19,9 +20,10 @@ protocol ChartBlockViewDelegate {
 class ChartBlockView: BlockView {
     
     let disposeBag = DisposeBag()
-    
-    var delegate: ChartBlockViewDelegate?
-    
+
+    // MARK: 약한 순환참조
+    weak var delegate: ChartBlockViewDelegate?
+
     // MARK: 현재가 라벨
     private let priceLabel: UILabel = {
         let label = UILabel()
@@ -125,6 +127,8 @@ class ChartBlockView: BlockView {
             .drive(onNext: { [weak self] index in
                 guard let self = self else { return }
                 let selectedType = CandleType.allCases[index]
+                
+                // MARK: 대리자에게 세그먼트의 index가 변경되었음을 알림
                 self.delegate?.segementedChanged(type: selectedType)
             }).disposed(by: disposeBag)
     }
@@ -132,6 +136,7 @@ class ChartBlockView: BlockView {
     // MARK: 최초 캔들 configure
     func configure(with candles: [Candle]) {
         
+        // MARK: 캔들 차트를 구성할 데이터 요소
         let entries = candles.enumerated().map { (index, candle) in
             let xValue = Double(candles.count - index)
             return CandleChartDataEntry(x: xValue,
@@ -148,8 +153,20 @@ class ChartBlockView: BlockView {
         let data = CandleChartData(dataSet: dataSet)
         self.candleChart.data = data
         
-        // MARK: - Place for 차트 스타일 지정
         
+        // MARK: xAxis에 들어갈 Date 포멧 설정 -> 세그먼트 인덱스에 맞게 매칭
+        let segmentIndex = self.candleSegment.selectedSegmentIndex
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = CandleType.allCases[segmentIndex].chartDateFormat
+        
+        // MARK: candles 배열에서 timestamp를 추출해서 date배열로 변환
+        let dates = candles.map { Date(timeIntervalSince1970: TimeInterval($0.timestamp / 1000)) }
+        
+        // MARK: x축 라벨에 date 형식의 값 바인딩
+        let xAxis = self.candleChart.xAxis
+        xAxis.valueFormatter = DateAxisValueFormatter(dates: dates.reversed(), dateFormatter: dateFormatter)
+        
+        // MARK: - Place for 차트 스타일 지정
         // MARK: 상승 캔들 색상 및 채우기
         dataSet.increasingColor = ThemeColor.positive
         dataSet.increasingFilled = true
@@ -182,15 +199,20 @@ class ChartBlockView: BlockView {
     
     // MARK: 캔들 실시간 업데이트
     func update(ticker: TickerProtocol) {
+        // MARK: 상승, 보합, 하락에 대한 색상 업데이트
         self.setColor(with: ticker.change.color)
         
         let changePrice = ticker.signed_change_price.formattedStringWithCommaAndDecimal(places: 2)
         let changeRate = ticker.signed_change_rate * 100
         
+        // MARK: 현재가 업데이트
         self.priceLabel.text =  "₩\(ticker.trade_price.formattedStringWithCommaAndDecimal(places: 2))"
+        
+        // MARK: 변동률 업데이트
         self.changeLabel.text = "\(changeRate.formattedStringWithCommaAndDecimal(places: 2))%(\(changePrice))"
     }
     
+    // MARK: 상승, 보합, 하락에 대한 색상 업데이트
     private func setColor(with color: UIColor) {
         self.priceLabel.textColor = color
         self.changeLabel.textColor = color
