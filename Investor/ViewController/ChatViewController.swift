@@ -24,6 +24,7 @@ class ChatViewController: UIViewController {
         view.dataSource = self
         view.register(ChatCell.self, forCellReuseIdentifier: ChatCell.cellId)
         view.separatorStyle = .none
+        view.backgroundColor = .clear
         
         return view
     }()

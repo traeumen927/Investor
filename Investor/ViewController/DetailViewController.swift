@@ -29,6 +29,13 @@ class DetailViewController: UIViewController {
         return view
     }()
     
+    // MARK: SegmentedControl 배경 뷰
+    private lazy var segmentedBackgroundView: UIView = {
+        let view = UIView()
+        view.backgroundColor = ThemeColor.background1
+        return view
+    }()
+    
     // MARK: 해당 코인에 대한 ViewController들이 담길 pageviewController
     private lazy var pageViewController: UIPageViewController = {
         let view = UIPageViewController(transitionStyle: .scroll, navigationOrientation: .horizontal)
@@ -61,12 +68,16 @@ class DetailViewController: UIViewController {
         
         // MARK: Page SegmentedControl, viewController 삽입
         self.addChild(pageViewController)
-        [pageSegmentedControl, pageViewController.view].forEach(self.view.addSubview(_:))
+        [segmentedBackgroundView, pageViewController.view].forEach(self.view.addSubview(_:))
+        segmentedBackgroundView.addSubview(pageSegmentedControl)
         pageViewController.didMove(toParent: self)
         
+        self.segmentedBackgroundView.snp.makeConstraints { make in
+            make.top.equalTo(self.view.safeAreaLayoutGuide)
+            make.leading.trailing.equalToSuperview()
+        }
         self.pageSegmentedControl.snp.makeConstraints { make in
-            make.top.equalTo(self.view.safeAreaLayoutGuide).offset(8)
-            make.leading.trailing.equalToSuperview().inset(8)
+            make.top.leading.trailing.bottom.equalToSuperview().inset(8)
         }
         
         self.pageViewController.view.snp.makeConstraints { make in
@@ -76,7 +87,7 @@ class DetailViewController: UIViewController {
     }
     
     private func bind() {
-                
+        
         // MARK: 첫 페이지 설정
         if let firstPage = pages.first {
             pageViewController.setViewControllers([firstPage], direction: .forward, animated: true)

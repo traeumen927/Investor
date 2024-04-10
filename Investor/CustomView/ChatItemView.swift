@@ -72,6 +72,8 @@ class ChatItemView: UIView {
     }
     
     private func layout() {
+        self.backgroundColor = ThemeColor.background1
+        
         bubbleView.addSubview(messageLabel)
         [profileView, profileLabel, bubbleView, dateLabel].forEach(addSubview(_:))
         

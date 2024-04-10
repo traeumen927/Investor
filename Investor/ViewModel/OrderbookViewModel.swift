@@ -20,6 +20,11 @@ class OrderbookViewModel {
     // MARK: 선택한 코인
     private var marketInfo: MarketInfo
     
+    
+    // MARK: - Place for Output
+    // MARK: 실시간 호가 정보
+    let orderbookSubject = PublishSubject<Orderbook>()
+    
     init(marketInfo: MarketInfo) {
         self.marketInfo = marketInfo
         
@@ -30,9 +35,6 @@ class OrderbookViewModel {
             }).disposed(by: disposeBag)
     }
     
-    private func fetchOrderbook() {
-        
-    }
     
     // MARK: WebSocketDelegate에서 발생하는 WebSocket Event 처리
     private func didReceiveEvent(event: WebSocketEvent) {
@@ -59,7 +61,7 @@ class OrderbookViewModel {
             // MARK: 이진(binary) 데이터를 받음
         case .binary(let data):
             if let orderbook: Orderbook = Orderbook.parseData(data) {
-                print(orderbook)
+                self.orderbookSubject.onNext(orderbook)
             }
             
             // MARK: 핑 메세지를 받음

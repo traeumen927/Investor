@@ -92,11 +92,14 @@ class ChartViewController: UIViewController {
     
     
     private func layout() {
+        self.view.backgroundColor = ThemeColor.background1
+        
         [candleSegment, priceLabel, changeLabel, candleChart].forEach(self.view.addSubview(_:))
         
         candleSegment.snp.makeConstraints { make in
-            make.top.leading.equalToSuperview().offset(12)
-            make.trailing.equalToSuperview().offset(-12)
+            make.top.equalToSuperview().offset(12)
+            make.trailing.equalToSuperview().offset(-8)
+            make.leading.greaterThanOrEqualToSuperview().offset(-8)
         }
         
         priceLabel.snp.makeConstraints { make in
