@@ -26,7 +26,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
         // MARK: tabBarController
         let tabBarController = UITabBarController()
-        tabBarController.tabBar.tintColor = ThemeColor.tint1
+        tabBarController.tabBar.tintColor = ThemeColor.tintLight
         tabBarController.tabBar.unselectedItemTintColor = ThemeColor.tintDisable
         tabBarController.viewControllers = [wrapInNavigationController(viewController: marketViewController),
                                             wrapInNavigationController(viewController: settingViewController)]

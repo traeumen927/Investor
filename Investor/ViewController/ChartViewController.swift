@@ -44,11 +44,11 @@ class ChartViewController: UIViewController {
         
         chart.xAxis.labelPosition = .bottom
         chart.xAxis.drawGridLinesEnabled = false
-        chart.xAxis.labelTextColor = ThemeColor.tint2
+        chart.xAxis.labelTextColor = ThemeColor.tintDark
         
         
         chart.leftAxis.drawGridLinesEnabled = false
-        chart.leftAxis.labelTextColor = ThemeColor.tint2
+        chart.leftAxis.labelTextColor = ThemeColor.tintDark
         
         chart.doubleTapToZoomEnabled = false
         chart.highlightPerTapEnabled = false
@@ -64,6 +64,12 @@ class ChartViewController: UIViewController {
         let items = CandleType.allCases.map { $0.displayName }
         let view = UISegmentedControl(items: items)
         view.selectedSegmentIndex = 0
+        
+        view.selectedSegmentTintColor = ThemeColor.primary1
+        view.backgroundColor = ThemeColor.background2
+        view.setTitleTextAttributes([NSAttributedString.Key.foregroundColor: ThemeColor.tintLight], for: .selected)
+        view.setTitleTextAttributes([NSAttributedString.Key.foregroundColor: ThemeColor.tintDark], for: .normal)
+        
         return view
     }()
     
@@ -86,11 +92,14 @@ class ChartViewController: UIViewController {
     
     
     private func layout() {
+        self.view.backgroundColor = ThemeColor.background1
+        
         [candleSegment, priceLabel, changeLabel, candleChart].forEach(self.view.addSubview(_:))
         
         candleSegment.snp.makeConstraints { make in
-            make.top.leading.equalToSuperview().offset(12)
-            make.trailing.equalToSuperview().offset(-12)
+            make.top.equalToSuperview().offset(12)
+            make.trailing.equalToSuperview().offset(-8)
+            make.leading.greaterThanOrEqualToSuperview().offset(-8)
         }
         
         priceLabel.snp.makeConstraints { make in

@@ -24,7 +24,7 @@ class MarketViewController: UIViewController {
         view.placeholder = "코인명을 검색해주세요."
         view.showsCancelButton = true
         view.searchTextField.textColor = ThemeColor.primary1
-        view.searchTextField.backgroundColor = ThemeColor.background
+        view.searchTextField.backgroundColor = ThemeColor.background1
         view.returnKeyType = .search
         view.searchTextField.autocorrectionType = .no
         view.searchTextField.spellCheckingType = .no
@@ -58,7 +58,7 @@ class MarketViewController: UIViewController {
     }
     
     private func layout() {
-        self.view.backgroundColor = ThemeColor.background
+        self.view.backgroundColor = ThemeColor.background1
         
         // MARK: 검색창 배치
         self.navigationItem.titleView = self.searchBar

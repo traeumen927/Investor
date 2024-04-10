@@ -24,6 +24,7 @@ class ChatViewController: UIViewController {
         view.dataSource = self
         view.register(ChatCell.self, forCellReuseIdentifier: ChatCell.cellId)
         view.separatorStyle = .none
+        view.backgroundColor = .clear
         
         return view
     }()
@@ -52,7 +53,7 @@ class ChatViewController: UIViewController {
     }
     
     private func layout() {
-        self.view.backgroundColor = ThemeColor.background
+        self.view.backgroundColor = ThemeColor.background1
         self.title = "\(self.viewModel.marketInfo.koreanName) 종목토론방"
         
         [tableView, textView].forEach(self.view.addSubview(_:))
@@ -122,6 +123,10 @@ class ChatViewController: UIViewController {
     // MARK: 종목토론방 이탈시 채팅 리스너 제거
     override func viewWillDisappear(_ animated: Bool) {
         self.viewModel.removeListener()
+    }
+    
+    deinit {
+        print("deinit \(String(describing: self))")
     }
 }
 

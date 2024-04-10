@@ -26,7 +26,7 @@ class ChatItemView: UIView {
     private let profileLabel: UILabel = {
         let label = UILabel()
         label.numberOfLines = 1
-        label.textColor = ThemeColor.tint2
+        label.textColor = ThemeColor.tintDark
         label.text = "익명의 토론자"
         label.font = UIFont.systemFont(ofSize: 14, weight: .regular)
         return label
@@ -45,7 +45,7 @@ class ChatItemView: UIView {
     private let messageLabel: UILabel = {
         let label = UILabel()
         label.numberOfLines = 0
-        label.textColor = ThemeColor.tint1
+        label.textColor = ThemeColor.tintLight
         label.text = "......"
         label.font = UIFont.systemFont(ofSize: 16, weight: .regular)
         return label
@@ -72,6 +72,8 @@ class ChatItemView: UIView {
     }
     
     private func layout() {
+        self.backgroundColor = ThemeColor.background1
+        
         bubbleView.addSubview(messageLabel)
         [profileView, profileLabel, bubbleView, dateLabel].forEach(addSubview(_:))
         

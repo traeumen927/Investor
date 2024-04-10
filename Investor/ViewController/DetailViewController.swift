@@ -22,6 +22,17 @@ class DetailViewController: UIViewController {
         let items = self.pages.map { $0.title ?? "page" }
         let view = UISegmentedControl(items: items)
         view.selectedSegmentIndex = 0
+        view.selectedSegmentTintColor = ThemeColor.primary1
+        view.backgroundColor = ThemeColor.background2
+        view.setTitleTextAttributes([NSAttributedString.Key.foregroundColor: ThemeColor.tintLight], for: .selected)
+        view.setTitleTextAttributes([NSAttributedString.Key.foregroundColor: ThemeColor.tintDark], for: .normal)
+        return view
+    }()
+    
+    // MARK: SegmentedControl 배경 뷰
+    private lazy var segmentedBackgroundView: UIView = {
+        let view = UIView()
+        view.backgroundColor = ThemeColor.background1
         return view
     }()
     
@@ -53,16 +64,20 @@ class DetailViewController: UIViewController {
     
     private func layout() {
         self.title = self.viewModel.marketTicker.marketInfo.koreanName
-        self.view.backgroundColor = ThemeColor.background
+        self.view.backgroundColor = ThemeColor.background1
         
         // MARK: Page SegmentedControl, viewController 삽입
         self.addChild(pageViewController)
-        [pageSegmentedControl, pageViewController.view].forEach(self.view.addSubview(_:))
+        [segmentedBackgroundView, pageViewController.view].forEach(self.view.addSubview(_:))
+        segmentedBackgroundView.addSubview(pageSegmentedControl)
         pageViewController.didMove(toParent: self)
         
-        self.pageSegmentedControl.snp.makeConstraints { make in
+        self.segmentedBackgroundView.snp.makeConstraints { make in
             make.top.equalTo(self.view.safeAreaLayoutGuide)
             make.leading.trailing.equalToSuperview()
+        }
+        self.pageSegmentedControl.snp.makeConstraints { make in
+            make.top.leading.trailing.bottom.equalToSuperview().inset(8)
         }
         
         self.pageViewController.view.snp.makeConstraints { make in
@@ -72,7 +87,7 @@ class DetailViewController: UIViewController {
     }
     
     private func bind() {
-                
+        
         // MARK: 첫 페이지 설정
         if let firstPage = pages.first {
             pageViewController.setViewControllers([firstPage], direction: .forward, animated: true)

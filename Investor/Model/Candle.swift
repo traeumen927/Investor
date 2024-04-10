@@ -7,6 +7,7 @@
 
 import Foundation
 
+// MARK: 캔들차트 구성요소 모델
 struct Candle: Decodable {
     ///마켓명
     let market: String
