@@ -51,9 +51,6 @@ struct ThemeColor {
     ///대표색상1
     static let primary1 = UIColor(hexString: "191919")
     
-    ///대표색상2
-    static let primary2 = UIColor(hexString: "343a40")
-    
     ///밝은 틴트색상
     static let tintLight = UIColor(hexString: "f8f9fa")
     
@@ -67,7 +64,7 @@ struct ThemeColor {
     static let background1 = UIColor(hexString: "f8f9fa")
     
     ///배경색상2
-    static let background2 = UIColor(hexString: "e0e1dd")
+    static let background2 = UIColor(hexString: "dee2e6")
     
     ///상승색상
     static let positive = UIColor(hexString: "c84a31")

@@ -1,5 +1,5 @@
 //
-//  ChartViewModel.swift
+//  OrderbookViewModel.swift
 //  Investor
 //
 //  Created by 홍정연 on 4/9/24.
@@ -9,35 +9,19 @@ import Foundation
 import RxSwift
 import Starscream
 
-class ChartViewModel {
+class OrderbookViewModel {
     
     private let disposeBag = DisposeBag()
     
     // MARK: 업비트 웹 소켓 서비스
     private let upbitSocketService = UpbitSocketService()
     
-    
     // MARK: - Place for Input
     // MARK: 선택한 코인
-    var marketTicker: MarketTicker
+    private var marketInfo: MarketInfo
     
-    
-    // MARK: - Place for Output
-    // MARK: 캔들 배열
-    let candlesSubject = PublishSubject<[Candle]>()
-    
-    // MARK: 실시간 현재가 Ticker
-    let tickerSubject: BehaviorSubject<TickerProtocol>
-    
-    // MARK: 에러 description Subejct
-    let errorSubject = PublishSubject<String>()
-    
-    
-    init(marketTicker: MarketTicker) {
-        self.marketTicker = marketTicker
-        
-        // MARK: 현재가 할당
-        self.tickerSubject = BehaviorSubject(value: marketTicker.socketTicker ?? marketTicker.apiTicker)
+    init(marketInfo: MarketInfo) {
+        self.marketInfo = marketInfo
         
         // MARK: 웹소켓 이벤트 구독
         upbitSocketService.socketEventSubejct
@@ -46,28 +30,8 @@ class ChartViewModel {
             }).disposed(by: disposeBag)
     }
     
-    // MARK: 캔들 데이터 정보를 불러옴
-    func fetchCandles(candleType: CandleType) {
-        let endpoint: UpbitApiService.EndPoint
+    private func fetchOrderbook() {
         
-        // MARK: 캔들 타입이 분
-        if candleType == .minutes {
-            endpoint = .candlesMinutes(market: self.marketTicker.marketInfo.market, candle: candleType, unit: .minuteOne, count: 30)
-        } else {
-            // MARK: 캔들 타입이 월,주,일
-            endpoint = .candles(market: self.marketTicker.marketInfo.market, candle: candleType, count: 30)
-        }
-        
-        UpbitApiService.request(endpoint: endpoint) { [weak self] (result: Result<[Candle], UpbitApiError>) in
-            guard let self = self else { return }
-            
-            switch result {
-            case .success(let candles):
-                self.candlesSubject.onNext(candles)
-            case .failure(let error):
-                self.errorSubject.onNext(error.message)
-            }
-        }
     }
     
     // MARK: WebSocketDelegate에서 발생하는 WebSocket Event 처리
@@ -82,7 +46,7 @@ class ChartViewModel {
             print("\(className): websocket is connected: \(headers)")
             
             // MARK: 선택된 코인의 실시간 Ticker 웹소켓 요청
-            self.upbitSocketService.subscribeToTicker(symbol: [self.marketTicker.marketInfo.market])
+            self.upbitSocketService.subscribeToOrderBook(symbol: [self.marketInfo.market])
             
             // MARK: 소켓이 연결 해제됨
         case .disconnected(let reason, let code):
@@ -94,8 +58,8 @@ class ChartViewModel {
             
             // MARK: 이진(binary) 데이터를 받음
         case .binary(let data):
-            if let ticker: SocketTicker = SocketTicker.parseData(data) {
-                self.tickerSubject.onNext(ticker)
+            if let orderbook: Orderbook = Orderbook.parseData(data) {
+                print(orderbook)
             }
             
             // MARK: 핑 메세지를 받음

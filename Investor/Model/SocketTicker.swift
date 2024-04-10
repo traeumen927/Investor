@@ -7,8 +7,7 @@
 
 import Foundation
 
-import Foundation
-
+// MARK: 웹소켓 현재가 모델
 struct SocketTicker: Decodable, TickerProtocol {
     ///타입, 현재가 ticker (Socket Ticker Only)
     let type: String

@@ -8,6 +8,7 @@
 import Foundation
 import DGCharts
 
+// MARK: DGChart에서 x축에 배치할 날짜 데이터 포멧 모델
 class DateAxisValueFormatter: NSObject, AxisValueFormatter {
     private var dates: [Date]
     private let dateFormatter: DateFormatter

@@ -65,8 +65,8 @@ class DetailViewController: UIViewController {
         pageViewController.didMove(toParent: self)
         
         self.pageSegmentedControl.snp.makeConstraints { make in
-            make.top.equalTo(self.view.safeAreaLayoutGuide)
-            make.leading.trailing.equalToSuperview()
+            make.top.equalTo(self.view.safeAreaLayoutGuide).offset(8)
+            make.leading.trailing.equalToSuperview().inset(8)
         }
         
         self.pageViewController.view.snp.makeConstraints { make in

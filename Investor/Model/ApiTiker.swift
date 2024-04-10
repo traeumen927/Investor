@@ -7,7 +7,7 @@
 
 import Foundation
 
-
+// MARK: 1회성 현재가 모델
 struct ApiTicker: Decodable, TickerProtocol {
     ///종목 구분 코드 (Api Ticker Only)
     let market: String

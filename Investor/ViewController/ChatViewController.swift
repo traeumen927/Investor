@@ -123,6 +123,10 @@ class ChatViewController: UIViewController {
     override func viewWillDisappear(_ animated: Bool) {
         self.viewModel.removeListener()
     }
+    
+    deinit {
+        print("deinit \(String(describing: self))")
+    }
 }
 
 // MARK: - Place for InputViewDelegate

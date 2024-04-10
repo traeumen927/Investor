@@ -7,6 +7,7 @@
 
 import Foundation
 
+// MARK: 종목토론방 채팅 모델
 struct Chat {
     let sender: String
     let message: String
