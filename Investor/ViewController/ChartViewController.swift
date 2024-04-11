@@ -18,7 +18,7 @@ class ChartViewController: UIViewController {
     // MARK: 현재가 라벨
     private let priceLabel: UILabel = {
         let label = UILabel()
-        label.textColor = ThemeColor.stable
+        label.textColor = ThemeColor.backgroundEven
         label.font = UIFont.systemFont(ofSize: 18, weight: .bold)
         label.text = "₩0"
         return label
@@ -27,7 +27,7 @@ class ChartViewController: UIViewController {
     // MARK: 변동가 라벨
     private let changeLabel: UILabel = {
         let label = UILabel()
-        label.textColor = ThemeColor.stable
+        label.textColor = ThemeColor.backgroundEven
         label.font = UIFont.systemFont(ofSize: 14, weight: .regular)
         label.text = "0%"
         return label
@@ -197,15 +197,15 @@ class ChartViewController: UIViewController {
         
         // MARK: - Place for 차트 스타일 지정
         // MARK: 상승 캔들 색상 및 채우기
-        dataSet.increasingColor = ThemeColor.positive
+        dataSet.increasingColor = ThemeColor.tintRise1
         dataSet.increasingFilled = true
         
         // MARK: 하락 캔들 색상 및 채우기
-        dataSet.decreasingColor = ThemeColor.negative
+        dataSet.decreasingColor = ThemeColor.tintFall1
         dataSet.decreasingFilled = true
         
         // MARK: 보합 캔들 색상
-        dataSet.neutralColor = ThemeColor.stable
+        dataSet.neutralColor = ThemeColor.backgroundEven
         
         // MARK: 그림자 색상을 캔들의 색상과 동일하게 유지
         dataSet.shadowColorSameAsCandle = true

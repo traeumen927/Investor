@@ -8,7 +8,6 @@
 import Foundation
 import Starscream
 import RxSwift
-import Alamofire
 
 class UpbitSocketService {
     

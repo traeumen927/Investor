@@ -62,6 +62,7 @@ class InputView: UIView {
     
     
     private func layout() {
+        self.backgroundColor = ThemeColor.primary1
         self.addSubview(chatView)
         chatView.addSubview(chatText)
         self.addSubview(enterButton)
@@ -70,10 +71,10 @@ class InputView: UIView {
         
         
         chatView.snp.makeConstraints { make in
-            make.top.equalToSuperview().offset(4)
+            make.top.equalToSuperview().offset(8)
             make.leading.equalToSuperview().offset(12)
             make.trailing.equalTo(enterButton.snp.leading).offset(-8)
-            make.bottom.equalToSuperview().offset(-4)
+            make.bottom.equalTo(self.safeAreaLayoutGuide).offset(-8)
         }
         
         chatText.snp.makeConstraints { make in
