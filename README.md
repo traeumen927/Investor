@@ -12,14 +12,28 @@ The target api used https://docs.upbit.com/reference
 
 
 ``` swift
+// MARK: 웹소켓 통신에서 사용하는 구독 타입
+enum SubscriptionType: String {
+    ///현재가
+    case ticker
+    
+    ///호가
+    case orderbook
+    
+    ///내 체결
+    case myTrade
+    
+    ///체결
+    case trade
+}
+```
+
+``` swift
+import Foundation
 import Starscream
 import RxSwift
-import Alamofire
 
 class UpbitSocketService {
-    
-    // MARK: UpbitSocket Service SingleTon
-    static let shared = UpbitSocketService()
     
     private var socket: WebSocket?
     
@@ -42,21 +56,20 @@ class UpbitSocketService {
         socket?.delegate = self
     }
     
-    
-    // MARK: 실시간 코인 정보 요청(Socket.write), 비트코인(원화) -> ["KRW-BTC"] / 모든 마켓에 대한 정보 -> [] (빈배열)
-    func subscribeToTicker(symbol: [String]) {
+    func subscribeTo(type: SubscriptionType, symbol: [String]) {
         guard let socket = self.socket else {
             print("WebSocket is not initialized")
             return
         }
-        let tickerSubscription: [[String: Any]] = [
+        let subscription: [[String: Any]] = [
             ["ticket": uuid.uuidString],
-            ["type": "ticker", "codes": symbol, "isOnlyRealtime": true]
+            ["type": type.rawValue, "codes": symbol]
         ]
-        let jsonData = try! JSONSerialization.data(withJSONObject: tickerSubscription)
+        let jsonData = try! JSONSerialization.data(withJSONObject: subscription)
         socket.write(data: jsonData)
     }
-        
+    
+    
     // MARK: 웹소켓 연결
     func connect() {
         guard let socket = self.socket else {
@@ -80,7 +93,7 @@ class UpbitSocketService {
 // MARK: - Place for WebSocketDelegate
 extension UpbitSocketService: WebSocketDelegate {
     func didReceive(event: WebSocketEvent, client: WebSocketClient) {
-        // MARK: Socket Evnet 방출
+        // MARK: Socket Event 방출
         self.socketEventSubejct.onNext(WebSocketEventWrapper(event: event))
     }
 }
