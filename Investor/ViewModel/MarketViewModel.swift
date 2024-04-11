@@ -76,7 +76,7 @@ class MarketViewModel {
                 self.marketTickerSubject.onNext(marketTickers)
                 
                 // MARK: 현재 조회된 목록의 실시간 Ticker 요청
-                self.upbitSocketService.subscribeToTicker(symbol: marketCodes)
+                self.upbitSocketService.subscribeTo(type: .ticker, symbol: marketCodes)
             case .failure(let error):
                 self.errorSubject.onNext(error.message)
             }

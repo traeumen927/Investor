@@ -70,6 +70,7 @@
 		F1E0A6A72BBD2D3100C2CFCE /* FireStoreService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1E0A6A62BBD2D3100C2CFCE /* FireStoreService.swift */; };
 		F1E0A6A92BBD2D4F00C2CFCE /* TickerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1E0A6A82BBD2D4F00C2CFCE /* TickerProtocol.swift */; };
 		F1EA80132BC6CDCE00AE5F58 /* Orderbook.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1EA80122BC6CDCE00AE5F58 /* Orderbook.swift */; };
+		F1F1A3852BC7B589000CD879 /* SubscriptionType.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1F1A3842BC7B589000CD879 /* SubscriptionType.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -145,6 +146,7 @@
 		F1E0A6A62BBD2D3100C2CFCE /* FireStoreService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FireStoreService.swift; sourceTree = "<group>"; };
 		F1E0A6A82BBD2D4F00C2CFCE /* TickerProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TickerProtocol.swift; sourceTree = "<group>"; };
 		F1EA80122BC6CDCE00AE5F58 /* Orderbook.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Orderbook.swift; sourceTree = "<group>"; };
+		F1F1A3842BC7B589000CD879 /* SubscriptionType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscriptionType.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -353,6 +355,7 @@
 				F1E0A6872BBD285800C2CFCE /* CandleType.swift */,
 				F1E0A6852BBD285800C2CFCE /* ChangeType.swift */,
 				F1E0A6862BBD285800C2CFCE /* UnitType.swift */,
+				F1F1A3842BC7B589000CD879 /* SubscriptionType.swift */,
 			);
 			path = Enum;
 			sourceTree = "<group>";
@@ -556,6 +559,7 @@
 				F1E0A6902BBD28D200C2CFCE /* PercentView.swift in Sources */,
 				F1D5EA382BC5211200578328 /* PageService.swift in Sources */,
 				F1E0A6822BBD284500C2CFCE /* SocketTicker.swift in Sources */,
+				F1F1A3852BC7B589000CD879 /* SubscriptionType.swift in Sources */,
 				F1D5EA3E2BC554F700578328 /* OrderbookViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
