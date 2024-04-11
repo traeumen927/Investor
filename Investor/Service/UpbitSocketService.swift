@@ -33,36 +33,20 @@ class UpbitSocketService {
         socket?.delegate = self
     }
     
-    
-    // MARK: 실시간 코인 정보 요청(Socket.write), 비트코인(원화) -> ["KRW-BTC"] / 모든 마켓에 대한 정보 -> [] (빈배열)
-    func subscribeToTicker(symbol: [String]) {
+    func subscribeTo(type: SubscriptionType, symbol: [String]) {
         guard let socket = self.socket else {
             print("WebSocket is not initialized")
             return
         }
-        let tickerSubscription: [[String: Any]] = [
+        let subscription: [[String: Any]] = [
             ["ticket": uuid.uuidString],
-            ["type": "ticker", "codes": symbol, "isOnlyRealtime": true]
+            ["type": type.rawValue, "codes": symbol]
         ]
-        let jsonData = try! JSONSerialization.data(withJSONObject: tickerSubscription)
+        let jsonData = try! JSONSerialization.data(withJSONObject: subscription)
         socket.write(data: jsonData)
     }
     
-    // MARK: 실시간 호가 정보 요청(Socket.write), 비트코인(원화) -> ["KRW-BTC"] / 모든 마켓에 대한 정보 -> [] (빈배열)
-    func subscribeToOrderBook(symbol: [String]) {
-        guard let socket = self.socket else {
-            print("WebSocket is not initialized")
-            return
-        }
-        let tickerSubscription: [[String: Any]] = [
-            ["ticket": uuid.uuidString],
-            ["type": "orderbook", "codes": symbol],
-            ["format": "DEFAULT"]
-        ]
-        let jsonData = try! JSONSerialization.data(withJSONObject: tickerSubscription)
-        socket.write(data: jsonData)
-    }
-        
+    
     // MARK: 웹소켓 연결
     func connect() {
         guard let socket = self.socket else {
