@@ -81,12 +81,12 @@ struct ThemeColor {
     ///보합색상 배경
     static let backgroundEven = UIColor(hexString: "6c757d")
     
-    ///하락색상
+    ///하락색상1
     static let tintFall1 = UIColor(hexString: "1261c4")
     
-    ///상승색상2
+    ///하락색상2
     static let tintFall2 = UIColor(hexString: "#d2ddf1")
     
-    ///상승색상 배경
+    ///하락색상 배경
     static let backgroundFall = UIColor(hexString: "#eff3fa")
 }

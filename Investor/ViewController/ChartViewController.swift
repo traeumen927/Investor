@@ -87,13 +87,12 @@ class ChartViewController: UIViewController {
         candleSegment.snp.makeConstraints { make in
             make.top.equalToSuperview().offset(12)
             make.trailing.equalToSuperview().offset(-8)
-            make.leading.greaterThanOrEqualToSuperview().offset(-8)
+            make.leading.greaterThanOrEqualTo(self.priceView.snp.trailing).offset(-8)
         }
         
         priceView.snp.makeConstraints { make in
-            make.top.equalTo(self.candleSegment.snp.bottom)
+            make.top.equalToSuperview()
             make.leading.equalToSuperview()
-            make.trailing.equalToSuperview()
         }
         
         candleChart.snp.makeConstraints { make in

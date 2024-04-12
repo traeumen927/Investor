@@ -14,6 +14,7 @@
 		F182FEA02BC03C5500428E05 /* DateAxisValueFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F182FE9F2BC03C5500428E05 /* DateAxisValueFormatter.swift */; };
 		F1D0044B2BC92FE80032D272 /* PriceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1D0044A2BC92FE80032D272 /* PriceView.swift */; };
 		F1D0044F2BC945FF0032D272 /* WebSocketError.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1D0044E2BC945FF0032D272 /* WebSocketError.swift */; };
+		F1D004512BC970940032D272 /* StackChildView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1D004502BC970940032D272 /* StackChildView.swift */; };
 		F1D5EA362BC516B500578328 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F13B73CE2BBE799B00C96F19 /* DetailViewController.swift */; };
 		F1D5EA382BC5211200578328 /* PageService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1D5EA372BC5211200578328 /* PageService.swift */; };
 		F1D5EA3A2BC5248700578328 /* ChartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1D5EA392BC5248700578328 /* ChartViewController.swift */; };
@@ -100,6 +101,7 @@
 		F182FE9F2BC03C5500428E05 /* DateAxisValueFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateAxisValueFormatter.swift; sourceTree = "<group>"; };
 		F1D0044A2BC92FE80032D272 /* PriceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PriceView.swift; sourceTree = "<group>"; };
 		F1D0044E2BC945FF0032D272 /* WebSocketError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebSocketError.swift; sourceTree = "<group>"; };
+		F1D004502BC970940032D272 /* StackChildView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StackChildView.swift; sourceTree = "<group>"; };
 		F1D5EA372BC5211200578328 /* PageService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageService.swift; sourceTree = "<group>"; };
 		F1D5EA392BC5248700578328 /* ChartViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartViewController.swift; sourceTree = "<group>"; };
 		F1D5EA3B2BC5249C00578328 /* ChartViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartViewModel.swift; sourceTree = "<group>"; };
@@ -267,6 +269,7 @@
 				F1E0A69C2BBD2D1500C2CFCE /* ChatItemView.swift */,
 				F1E0A69A2BBD2D1500C2CFCE /* InputView.swift */,
 				F1D0044A2BC92FE80032D272 /* PriceView.swift */,
+				F1D004502BC970940032D272 /* StackChildView.swift */,
 				F1E0A68E2BBD28CF00C2CFCE /* PercentView.swift */,
 				F1E0A68F2BBD28CF00C2CFCE /* SingleCandleView.swift */,
 			);
@@ -571,6 +574,7 @@
 				F1E0A6902BBD28D200C2CFCE /* PercentView.swift in Sources */,
 				F1D5EA382BC5211200578328 /* PageService.swift in Sources */,
 				F1E0A6822BBD284500C2CFCE /* SocketTicker.swift in Sources */,
+				F1D004512BC970940032D272 /* StackChildView.swift in Sources */,
 				F1F1A3852BC7B589000CD879 /* SubscriptionType.swift in Sources */,
 				F1D5EA3E2BC554F700578328 /* OrderbookViewController.swift in Sources */,
 			);

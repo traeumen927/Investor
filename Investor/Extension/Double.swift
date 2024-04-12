@@ -28,8 +28,17 @@ extension Double {
     }
     
     // MARK: 증감율 계산
-    func percentageRelativeTo(_ other: Double) -> Double {
-            guard other != 0 else { return 0 }
-            return (self / other) * 100
-        }
+    func percentageRelativeTo(to other: Double) -> Double {
+        guard other != 0 else { return 0 }
+        return (self / other) * 100
+    }
+    
+    // MARK: 변화율 계산
+    func percentageDifference(to other: Double) -> Double {
+        guard self != 0 else { return 0 }
+        
+        let difference = other - self
+        let percentage = (difference / self) * 100
+        return percentage
+    }
 }
