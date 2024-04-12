@@ -82,7 +82,7 @@ class ChartViewModel {
             print("\(className): websocket is connected: \(headers)")
             
             // MARK: 선택된 코인의 실시간 Ticker 웹소켓 요청
-            self.upbitSocketService.subscribeTo(type: .ticker, symbol: [self.marketTicker.marketInfo.market])
+            self.upbitSocketService.subscribeTo(types: [.ticker], symbol: [self.marketTicker.marketInfo.market])
             
             
             // MARK: 소켓이 연결 해제됨

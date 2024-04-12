@@ -28,10 +28,8 @@ extension Double {
     }
     
     // MARK: 증감율 계산
-    func calculatePercentageChange(from value: Double) -> Double {
-        guard value != 0 else {
-            return 0 // 예외 처리: 분모가 0이면 0을 반환하여 나누기 오류를 방지
+    func percentageRelativeTo(_ other: Double) -> Double {
+            guard other != 0 else { return 0 }
+            return (self / other) * 100
         }
-        return ((value - self) / self) * 100
-    }
 }
