@@ -15,22 +15,10 @@ class ChartViewController: UIViewController {
     private let disposeBag = DisposeBag()
     private let viewModel: ChartViewModel
     
-    // MARK: 현재가 라벨
-    private let priceLabel: UILabel = {
-        let label = UILabel()
-        label.textColor = ThemeColor.stable
-        label.font = UIFont.systemFont(ofSize: 18, weight: .bold)
-        label.text = "₩0"
-        return label
-    }()
-    
-    // MARK: 변동가 라벨
-    private let changeLabel: UILabel = {
-        let label = UILabel()
-        label.textColor = ThemeColor.stable
-        label.font = UIFont.systemFont(ofSize: 14, weight: .regular)
-        label.text = "0%"
-        return label
+    // MARK: 현재가격, 변동률, 증감액을 보여주는 뷰
+    private let priceView: PriceView = {
+       let view = PriceView()
+        return view
     }()
     
     // MARK: 캔들 차트
@@ -94,28 +82,21 @@ class ChartViewController: UIViewController {
     private func layout() {
         self.view.backgroundColor = ThemeColor.background1
         
-        [candleSegment, priceLabel, changeLabel, candleChart].forEach(self.view.addSubview(_:))
+        [candleSegment, priceView, candleChart].forEach(self.view.addSubview(_:))
         
         candleSegment.snp.makeConstraints { make in
             make.top.equalToSuperview().offset(12)
             make.trailing.equalToSuperview().offset(-8)
-            make.leading.greaterThanOrEqualToSuperview().offset(-8)
+            make.leading.greaterThanOrEqualTo(self.priceView.snp.trailing).offset(-8)
         }
         
-        priceLabel.snp.makeConstraints { make in
-            make.top.equalTo(self.candleSegment.snp.bottom).offset(12)
-            make.leading.equalToSuperview().offset(12)
-            make.trailing.equalToSuperview().offset(-12)
-        }
-        
-        changeLabel.snp.makeConstraints { make in
-            make.top.equalTo(priceLabel.snp.bottom).offset(4)
-            make.leading.equalToSuperview().offset(12)
-            make.trailing.equalToSuperview().offset(-12)
+        priceView.snp.makeConstraints { make in
+            make.top.equalToSuperview()
+            make.leading.equalToSuperview()
         }
         
         candleChart.snp.makeConstraints { make in
-            make.top.equalTo(changeLabel.snp.bottom).offset(24)
+            make.top.equalTo(priceView.snp.bottom).offset(12)
             make.leading.equalToSuperview().offset(12)
             make.trailing.equalToSuperview().offset(-12)
             make.bottom.equalTo(self.view.safeAreaLayoutGuide).offset(-48)
@@ -139,7 +120,7 @@ class ChartViewController: UIViewController {
             .observe(on: MainScheduler.instance)
             .subscribe(onNext: { [weak self] ticker in
                 guard let self = self else { return }
-                self.update(ticker: ticker)
+                self.priceView.update(ticker: ticker)
             }).disposed(by: disposeBag)
         
         
@@ -158,8 +139,6 @@ class ChartViewController: UIViewController {
                 guard let _ = self else { return }
                 print(error)
             }).disposed(by: disposeBag)
-        
-    
     }
     
     // MARK: 최초 캔들 configure
@@ -197,15 +176,15 @@ class ChartViewController: UIViewController {
         
         // MARK: - Place for 차트 스타일 지정
         // MARK: 상승 캔들 색상 및 채우기
-        dataSet.increasingColor = ThemeColor.positive
+        dataSet.increasingColor = ThemeColor.tintRise1
         dataSet.increasingFilled = true
         
         // MARK: 하락 캔들 색상 및 채우기
-        dataSet.decreasingColor = ThemeColor.negative
+        dataSet.decreasingColor = ThemeColor.tintFall1
         dataSet.decreasingFilled = true
         
         // MARK: 보합 캔들 색상
-        dataSet.neutralColor = ThemeColor.stable
+        dataSet.neutralColor = ThemeColor.backgroundEven
         
         // MARK: 그림자 색상을 캔들의 색상과 동일하게 유지
         dataSet.shadowColorSameAsCandle = true
@@ -224,24 +203,10 @@ class ChartViewController: UIViewController {
     
     // MARK: 현재가, 변동률 업데이트
     private func update(ticker: TickerProtocol) {
-        // MARK: 상승, 보합, 하락에 대한 색상 업데이트
-        self.setColor(with: ticker.change.color)
         
-        let changePrice = ticker.signed_change_price.formattedStringWithCommaAndDecimal(places: 2)
-        let changeRate = ticker.signed_change_rate * 100
-        
-        // MARK: 현재가 업데이트
-        self.priceLabel.text =  "₩\(ticker.trade_price.formattedStringWithCommaAndDecimal(places: 2))"
-        
-        // MARK: 변동률 업데이트
-        self.changeLabel.text = "\(changeRate.formattedStringWithCommaAndDecimal(places: 2))%(\(changePrice))"
     }
     
-    // MARK: 상승, 보합, 하락에 대한 색상 업데이트
-    private func setColor(with color: UIColor) {
-        self.priceLabel.textColor = color
-        self.changeLabel.textColor = color
-    }
+    
     
     // MARK: viewWillAppear -> 종목토론방 리스너 연결, 웹소켓 연결
     override func viewWillAppear(_ animated: Bool) {

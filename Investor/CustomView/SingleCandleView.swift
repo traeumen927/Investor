@@ -17,7 +17,7 @@ class SingleCandleView: UIView {
     // MARK: 중앙 선(가로)
     private let evenRow: UIView = {
         let view = UIView()
-        view.backgroundColor = ThemeColor.stable
+        view.backgroundColor = ThemeColor.backgroundEven
         return view
     }()
     
@@ -38,14 +38,14 @@ class SingleCandleView: UIView {
     // MARK: 당일 최고점 표시 뷰
     private let riseView: UIView = {
         let view = UIView()
-        view.backgroundColor = ThemeColor.positive
+        view.backgroundColor = ThemeColor.tintRise1
         return view
     }()
     
     // MARK: 당일 최저점 표시 뷰
     private let fallView: UIView = {
         let view = UIView()
-        view.backgroundColor = ThemeColor.negative
+        view.backgroundColor = ThemeColor.tintFall1
         return view
     }()
     

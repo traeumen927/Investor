@@ -15,7 +15,6 @@ extension Decodable {
             let decodedData = try decoder.decode(Self.self, from: data)
             return decodedData
         } catch {
-            print("Error parsing data: \(error)")
             return nil
         }
     }

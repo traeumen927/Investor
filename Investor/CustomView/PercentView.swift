@@ -43,13 +43,13 @@ class PercentView: UIView {
         
         if percentage > 0 {
             // 빨간색 배경
-            backgroundColor = ThemeColor.positive
+            backgroundColor = ThemeColor.tintRise1
         } else if percentage < 0 {
             // 파란색 배경
-            backgroundColor = ThemeColor.negative
+            backgroundColor = ThemeColor.tintFall1
         } else {
             // 회색 배경
-            backgroundColor = ThemeColor.stable
+            backgroundColor = ThemeColor.backgroundEven
         }
     }
 }

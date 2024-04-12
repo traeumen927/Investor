@@ -16,11 +16,11 @@ enum ChangeType: String, Codable {
     var color: UIColor {
         switch self {
         case .even:
-            return ThemeColor.stable
+            return ThemeColor.backgroundEven
         case .rise:
-            return ThemeColor.positive
+            return ThemeColor.tintRise1
         case .fall:
-            return ThemeColor.negative
+            return ThemeColor.tintFall1
         }
     }
     

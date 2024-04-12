@@ -25,6 +25,9 @@ class OrderbookViewModel {
     // MARK: 실시간 호가 정보
     let orderbookSubject = PublishSubject<Orderbook>()
     
+    // MARK: 실시간 현재가 정보
+    let tickerSubject = PublishSubject<SocketTicker>()
+    
     init(marketInfo: MarketInfo) {
         self.marketInfo = marketInfo
         
@@ -47,9 +50,9 @@ class OrderbookViewModel {
         case .connected(let headers):
             print("\(className): websocket is connected: \(headers)")
             
-            // MARK: 선택된 코인의 실시간 Ticker 웹소켓 요청
-            self.upbitSocketService.subscribeTo(type: .orderbook, symbol: [self.marketInfo.market])
-            
+            // MARK: 선택된 코인의 실시간 현재가 웹소켓 요청
+            self.upbitSocketService.subscribeTo(types: [.ticker, .orderbook], symbol: [self.marketInfo.market])
+
             // MARK: 소켓이 연결 해제됨
         case .disconnected(let reason, let code):
             print("\(className): websocket is disconnected: \(reason) with code: \(code)")
@@ -60,9 +63,23 @@ class OrderbookViewModel {
             
             // MARK: 이진(binary) 데이터를 받음
         case .binary(let data):
-            if let orderbook: Orderbook = Orderbook.parseData(data) {
-                self.orderbookSubject.onNext(orderbook)
+            
+            // MARK: 웹소켓 에러 발생
+            if let socketError: WebSocketError = WebSocketError.parseData(data) {
+                print("\(socketError.error.name): \(socketError.error.message)")
+                return
+            } else {
+                // MARK: 실시간 현재가 정보
+                if let ticker: SocketTicker = SocketTicker.parseData(data) {
+                    self.tickerSubject.onNext(ticker)
+                    return
+                }
+                // MARK: 실시간 호가 정보
+                if let orderbook: Orderbook = Orderbook.parseData(data) {
+                    self.orderbookSubject.onNext(orderbook)
+                }
             }
+            
             
             // MARK: 핑 메세지를 받음
         case .ping(_):

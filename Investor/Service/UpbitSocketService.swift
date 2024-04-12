@@ -8,7 +8,6 @@
 import Foundation
 import Starscream
 import RxSwift
-import Alamofire
 
 class UpbitSocketService {
     
@@ -33,16 +32,24 @@ class UpbitSocketService {
         socket?.delegate = self
     }
     
-    func subscribeTo(type: SubscriptionType, symbol: [String]) {
+    
+    // MARK: 웹소켓 요청
+    func subscribeTo(types: [SubscriptionType], symbol: [String]) {
         guard let socket = self.socket else {
             print("WebSocket is not initialized")
             return
         }
+        
         let subscription: [[String: Any]] = [
-            ["ticket": uuid.uuidString],
-            ["type": type.rawValue, "codes": symbol]
+            ["ticket": uuid.uuidString]
         ]
-        let jsonData = try! JSONSerialization.data(withJSONObject: subscription)
+        
+        // MARK: 웹소켓 요청이 복수이면 그만큼 Type 필드를 추가함
+        let typeSubscriptions = types.map { type -> [String: Any] in
+            return ["type": type.rawValue, "codes": symbol]
+        }
+        
+        let jsonData = try! JSONSerialization.data(withJSONObject: subscription + typeSubscriptions)
         socket.write(data: jsonData)
     }
     

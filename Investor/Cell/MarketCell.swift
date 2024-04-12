@@ -37,7 +37,7 @@ class MarketCell: UICollectionViewCell {
     private let changePriceLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont.systemFont(ofSize: 12, weight: .regular)
-        label.textColor = ThemeColor.stable
+        label.textColor = ThemeColor.backgroundEven
         label.numberOfLines = 0
         label.textAlignment = .right
         return label
