@@ -18,10 +18,10 @@ extension Double {
     }
     
     // MARK: 통화를 천의 자리마다 쉼표 표시 + 소수점 자릿수 제한
-    func formattedStringWithCommaAndDecimal(places: Int) -> String {
+    func formattedStringWithCommaAndDecimal(places: Int, removeZero: Bool = true) -> String {
         let formatter = NumberFormatter()
         formatter.numberStyle = .decimal
-        formatter.minimumFractionDigits = 0
+        formatter.minimumFractionDigits = removeZero ? 0 : places
         formatter.maximumFractionDigits = places
         
         return formatter.string(from: NSNumber(value: self)) ?? "\(self)"

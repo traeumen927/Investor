@@ -69,7 +69,7 @@ class PriceView: UIView {
         self.priceLabel.text =  "₩\(ticker.trade_price.formattedStringWithCommaAndDecimal(places: 2))"
         
         // MARK: 변동률 업데이트
-        self.changeLabel.text = "\(changeRate.formattedStringWithCommaAndDecimal(places: 2))%(\(changePrice))"
+        self.changeLabel.text = "\(changeRate.formattedStringWithCommaAndDecimal(places: 3))%(\(changePrice))"
     }
     
     // MARK: 상승, 보합, 하락에 대한 색상 업데이트

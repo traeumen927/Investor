@@ -168,7 +168,7 @@ class OrderbookCell: UITableViewCell {
         let rate = openingPrice.percentageDifference(to: price)
         
         // MARK: 개장가 대미 변동률
-        self.rateLabel.text = "\(rate.formattedStringWithCommaAndDecimal(places: 2))%"
+        self.rateLabel.text = "\(rate.formattedStringWithCommaAndDecimal(places: 3))%"
         
         if rate == 0 {
             self.priceLabel.textColor = ThemeColor.tintEven

@@ -10,7 +10,7 @@ import Foundation
 // MARK: 웹소켓 현재가 모델
 struct SocketTicker: Decodable, TickerProtocol {
     ///타입, 현재가 ticker (Socket Ticker Only)
-    let type: String
+    let type: SubscriptionType?
     ///마켓코드 (ex. KRW-BTC) (Socket Ticker Only)
     let code: String
     ///시가
@@ -114,7 +114,8 @@ struct SocketTicker: Decodable, TickerProtocol {
     
     init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        type = try container.decode(String.self, forKey: .type)
+        let typeString = try container.decode(String.self, forKey: .type)
+        type = SubscriptionType(rawValue: typeString)
         code = try container.decode(String.self, forKey: .code)
         opening_price = try container.decode(Double.self, forKey: .opening_price)
         high_price = try container.decode(Double.self, forKey: .high_price)
