@@ -1,38 +1,28 @@
 //
-//  SubscriptionType.swift
+//  SocketType.swift
 //  Investor
 //
-//  Created by 홍정연 on 4/11/24.
+//  Created by 홍정연 on 4/14/24.
 //
 
 import Foundation
 
-// MARK: 웹소켓 통신에서 사용하는 구독 타입
-enum SubscriptionType: String {
-    ///현재가
-    case ticker
-    
-    ///호가
-    case orderbook
-    
-    ///내 체결
-    case myTrade
-    
-    ///체결
-    case trade
+enum SocketType: String, Codable {
+    case even = "EVEN"
+    case rise = "RISE"
+    case fall = "FALL"
+
     
     init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
         let rawValue = try container.decode(String.self)
         switch rawValue {
-        case "ticker":
-            self = .ticker
-        case "orderbook":
-            self = .orderbook
-        case "myTrade":
-            self = .myTrade
-        case "trade":
-            self = .trade
+        case "EVEN":
+            self = .even
+        case "RISE":
+            self = .rise
+        case "FALL":
+            self = .fall
         default:
             throw DecodingError.dataCorruptedError(in: container, debugDescription: "Invalid change type: \(rawValue)")
         }

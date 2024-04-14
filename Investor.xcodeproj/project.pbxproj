@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		F12C8AA52BCC037700C4E99E /* Trade.swift in Sources */ = {isa = PBXBuildFile; fileRef = F12C8AA42BCC037700C4E99E /* Trade.swift */; };
+		F12C8AA72BCC058300C4E99E /* SocketType.swift in Sources */ = {isa = PBXBuildFile; fileRef = F12C8AA62BCC058300C4E99E /* SocketType.swift */; };
 		F13B73D12BBE79BC00C96F19 /* DetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F13B73D02BBE79BC00C96F19 /* DetailViewModel.swift */; };
 		F13B73D22BBE868100C96F19 /* ChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1E0A6942BBD2D0800C2CFCE /* ChatViewController.swift */; };
 		F13B73D32BBE868400C96F19 /* ChatViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1E0A6A32BBD2D2400C2CFCE /* ChatViewModel.swift */; };
@@ -97,6 +98,7 @@
 
 /* Begin PBXFileReference section */
 		F12C8AA42BCC037700C4E99E /* Trade.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Trade.swift; sourceTree = "<group>"; };
+		F12C8AA62BCC058300C4E99E /* SocketType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocketType.swift; sourceTree = "<group>"; };
 		F13B73CE2BBE799B00C96F19 /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		F13B73D02BBE79BC00C96F19 /* DetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewModel.swift; sourceTree = "<group>"; };
 		F13B73D42BBE89B000C96F19 /* OrderbookCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OrderbookCell.swift; sourceTree = "<group>"; };
@@ -287,8 +289,8 @@
 				F1E0A67B2BBD283700C2CFCE /* MarketTicker.swift */,
 				F1E0A6792BBD283700C2CFCE /* ApiTiker.swift */,
 				F1E0A6782BBD283700C2CFCE /* SocketTicker.swift */,
-				F12C8AA42BCC037700C4E99E /* Trade.swift */,
 				F1EA80122BC6CDCE00AE5F58 /* Orderbook.swift */,
+				F12C8AA42BCC037700C4E99E /* Trade.swift */,
 				F182FE9F2BC03C5500428E05 /* DateAxisValueFormatter.swift */,
 				F1D0044E2BC945FF0032D272 /* WebSocketError.swift */,
 			);
@@ -371,6 +373,7 @@
 				F1E0A6852BBD285800C2CFCE /* ChangeType.swift */,
 				F1E0A6862BBD285800C2CFCE /* UnitType.swift */,
 				F1F1A3842BC7B589000CD879 /* SubscriptionType.swift */,
+				F12C8AA62BCC058300C4E99E /* SocketType.swift */,
 			);
 			path = Enum;
 			sourceTree = "<group>";
@@ -556,6 +559,7 @@
 				F1E0A6762BBD257700C2CFCE /* SettingViewModel.swift in Sources */,
 				F1E0A6A92BBD2D4F00C2CFCE /* TickerProtocol.swift in Sources */,
 				F1E0A67F2BBD283E00C2CFCE /* Chat.swift in Sources */,
+				F12C8AA72BCC058300C4E99E /* SocketType.swift in Sources */,
 				F1E0A5F42BBD1F8500C2CFCE /* SceneDelegate.swift in Sources */,
 				F1E0A6882BBD285A00C2CFCE /* CandleType.swift in Sources */,
 				F1D5EA362BC516B500578328 /* DetailViewController.swift in Sources */,

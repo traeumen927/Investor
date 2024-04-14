@@ -9,7 +9,7 @@ import Foundation
 
 struct Orderbook: Decodable {
     ///타입
-    let type: String
+    let type: SubscriptionType?
     ///마켓 코드 (ex. KRW-BTC)
     let code: String
     ///호가 매도 총 잔량
@@ -33,7 +33,8 @@ struct Orderbook: Decodable {
     
     init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        type = try container.decode(String.self, forKey: .type)
+        let typeString = try container.decode(String.self, forKey: .type)
+        type = SubscriptionType(rawValue: typeString)
         code = try container.decode(String.self, forKey: .code)
         total_ask_size = try container.decode(Double.self, forKey: .total_ask_size)
         total_bid_size = try container.decode(Double.self, forKey: .total_bid_size)
