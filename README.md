@@ -5,9 +5,10 @@ The target api used https://docs.upbit.com/reference
 
 
 <p align="center">
-  <img src="https://github.com/traeumen927/Investor/assets/18188727/75f4ea7b-0a19-4caa-b27f-56ef2b74d454" width="30%">
-  <img src="https://github.com/traeumen927/Investor/assets/18188727/e04324e2-d987-4e9c-8c32-d55792aea568" width="30%">
-  <img src="https://github.com/traeumen927/Investor/assets/18188727/a5eb5917-7338-4fa0-99ac-3e308d219189" width="30%">
+  <img src="https://github.com/traeumen927/Investor/assets/18188727/1bcabff7-ce7c-4721-8267-456bf9c73f27" width="24%">
+  <img src="https://github.com/traeumen927/Investor/assets/18188727/dc60b287-f799-4ab1-929e-150efa9a4067" width="24%">
+  <img src="https://github.com/traeumen927/Investor/assets/18188727/1821ba48-c51b-4d6c-bfc8-3843fbc953ac" width="24%">
+  <img src="https://github.com/traeumen927/Investor/assets/18188727/e00289e5-5284-4267-934c-7aae2b641bc9" width="24%">
 </p>
 
 
