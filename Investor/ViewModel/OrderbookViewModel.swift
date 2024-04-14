@@ -28,6 +28,21 @@ class OrderbookViewModel {
     // MARK: 실시간 현재가 정보
     let tickerSubject = PublishSubject<SocketTicker>()
     
+    // MARK: 실시간 체결 정보
+    private let tradeSubject = PublishSubject<Trade>()
+    
+    // MARK: 최대 10개의 값을 저장하고 방출하는 체결 Observable
+    lazy var tradeListObservable: Observable<[Trade]> = {
+        return tradeSubject
+            .scan([]) { (buffer, trade) in
+                // 최대 10개를 유지하기 위해 초과하는 경우 과거 데이터를 삭제
+                var updatedBuffer = Array(buffer.suffix(9))
+                updatedBuffer.append(trade)
+                return updatedBuffer
+            }
+    }()
+    
+    
     init(marketInfo: MarketInfo) {
         self.marketInfo = marketInfo
         
@@ -51,7 +66,8 @@ class OrderbookViewModel {
             print("\(className): websocket is connected: \(headers)")
             
             // MARK: 선택된 코인의 실시간 현재가 웹소켓 요청
-            self.upbitSocketService.subscribeTo(types: [.ticker, .orderbook], symbol: [self.marketInfo.market])
+            self.upbitSocketService.subscribeTo(types: [.ticker, .orderbook, .trade],
+                                                symbol: [self.marketInfo.market])
 
             // MARK: 소켓이 연결 해제됨
         case .disconnected(let reason, let code):
@@ -77,6 +93,11 @@ class OrderbookViewModel {
                 // MARK: 실시간 호가 정보
                 if let orderbook: Orderbook = Orderbook.parseData(data) {
                     self.orderbookSubject.onNext(orderbook)
+                }
+                
+                // MARK: 실시간 체결 정보
+                if let trade: Trade = Trade.parseData(data) {
+                    self.tradeSubject.onNext(trade)
                 }
             }
             

@@ -17,7 +17,7 @@ struct Trade: Decodable {
     ///체결량
     let trade_volume: Double
     ///매수/매도 구분 ASK/BID
-    let ask_bid: String
+    let ask_bid: AbType?
     ///전일 종가
     let prev_closing_price: Double
     ///전일 대비
@@ -62,7 +62,8 @@ struct Trade: Decodable {
         code = try container.decode(String.self, forKey: .code)
         trade_price = try container.decode(Double.self, forKey: .trade_price)
         trade_volume = try container.decode(Double.self, forKey: .trade_volume)
-        ask_bid = try container.decode(String.self, forKey: .ask_bid)
+        let ask_bidString = try container.decode(String.self, forKey: .ask_bid)
+        ask_bid = AbType(rawValue: ask_bidString)
         prev_closing_price = try container.decode(Double.self, forKey: .prev_closing_price)
         let changeString = try container.decode(String.self, forKey: .change)
         change = ChangeType(rawValue: changeString) ?? .even
