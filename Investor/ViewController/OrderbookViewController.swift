@@ -33,31 +33,15 @@ class OrderbookViewController: UIViewController {
         return view
     }()
     
-    // MARK: 부가정보, 체결량이 보여질 가로 스택뷰
+
+    // MARK: 부가정보가 보여질 세로 스택뷰
     private let stackView: UIStackView = {
         let view = UIStackView()
-        view.axis = .horizontal
-        view.spacing = 0
-        return view
-    }()
-    
-    // MARK: 부가정보가 보여질 세로 스택뷰
-    private let tickerStackView: UIStackView = {
-        let view = UIStackView()
         view.axis = .vertical
         view.spacing = 0
         return view
     }()
-    
-    
-    // MARK: 체결량이 보여질 세로 스택뷰
-    private let tradeStackView: UIStackView = {
-        let view = UIStackView()
-        view.axis = .vertical
-        view.spacing = 0
-        return view
-    }()
-    
+
     // MARK: 호가창 tableView
     private lazy var tableView: UITableView = {
         let view = UITableView()
@@ -100,35 +84,24 @@ class OrderbookViewController: UIViewController {
     private func layout() {
         self.view.backgroundColor = ThemeColor.background1
         
-        // MARK: 현재가뷰, 가로스택뷰, 호가테이블뷰
-        [priceView, stackView, tableView].forEach(self.view.addSubview(_:))
-        
-        // MARK: 부가정보 세로 스택뷰, 체결 세로 스택뷰
-        [tickerStackView, tradeStackView].forEach(self.stackView.addArrangedSubview(_:))
+        // MARK: 현재가뷰, 호가테이블뷰, 가로스택뷰
+        [stackView, tableView].forEach(self.view.addSubview(_:))
+
         
         // MARK: 24시간 누적 거래량, 24시간 누적 거래대금, 52주 신고가, 52주 신저가, 시가(전일종가), 당일 고가, 당일 저가
-        [tradeVolumeView, tradePriceView, highest52PriceView, lowest52PriceView, openingPriceView, highPriceView, lowPriceView].forEach(self.tickerStackView.addArrangedSubview(_:))
-        
-        priceView.snp.makeConstraints { make in
-            make.top.leading.equalToSuperview()
-        }
+        [priceView, tradeVolumeView, tradePriceView, highest52PriceView, lowest52PriceView, openingPriceView, highPriceView, lowPriceView].forEach(self.stackView.addArrangedSubview(_:))
         
         stackView.snp.makeConstraints { make in
-            make.top.equalTo(self.priceView.snp.bottom)
-            make.leading.trailing.equalToSuperview()
-        }
-        
-        tickerStackView.snp.makeConstraints { make in
+            make.top.equalTo(self.view.safeAreaLayoutGuide)
+            make.leading.equalToSuperview()
             make.width.equalToSuperview().multipliedBy(0.5)
         }
         
-        tradeStackView.snp.makeConstraints { make in
-            make.width.equalToSuperview().multipliedBy(0.5)
-        }
         
         tableView.snp.makeConstraints { make in
-            make.top.equalTo(self.stackView.snp.bottom)
-            make.leading.trailing.bottom.equalToSuperview()
+            make.top.equalTo(self.stackView.snp.bottom).offset(4)
+            make.leading.trailing.equalToSuperview()
+            make.bottom.equalTo(self.view.safeAreaLayoutGuide)
         }
     }
     

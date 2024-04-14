@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		F12C8AA52BCC037700C4E99E /* Trade.swift in Sources */ = {isa = PBXBuildFile; fileRef = F12C8AA42BCC037700C4E99E /* Trade.swift */; };
 		F13B73D12BBE79BC00C96F19 /* DetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F13B73D02BBE79BC00C96F19 /* DetailViewModel.swift */; };
 		F13B73D22BBE868100C96F19 /* ChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1E0A6942BBD2D0800C2CFCE /* ChatViewController.swift */; };
 		F13B73D32BBE868400C96F19 /* ChatViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1E0A6A32BBD2D2400C2CFCE /* ChatViewModel.swift */; };
@@ -95,6 +96,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		F12C8AA42BCC037700C4E99E /* Trade.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Trade.swift; sourceTree = "<group>"; };
 		F13B73CE2BBE799B00C96F19 /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		F13B73D02BBE79BC00C96F19 /* DetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewModel.swift; sourceTree = "<group>"; };
 		F13B73D42BBE89B000C96F19 /* OrderbookCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OrderbookCell.swift; sourceTree = "<group>"; };
@@ -285,6 +287,7 @@
 				F1E0A67B2BBD283700C2CFCE /* MarketTicker.swift */,
 				F1E0A6792BBD283700C2CFCE /* ApiTiker.swift */,
 				F1E0A6782BBD283700C2CFCE /* SocketTicker.swift */,
+				F12C8AA42BCC037700C4E99E /* Trade.swift */,
 				F1EA80122BC6CDCE00AE5F58 /* Orderbook.swift */,
 				F182FE9F2BC03C5500428E05 /* DateAxisValueFormatter.swift */,
 				F1D0044E2BC945FF0032D272 /* WebSocketError.swift */,
@@ -558,6 +561,7 @@
 				F1D5EA362BC516B500578328 /* DetailViewController.swift in Sources */,
 				F1E0A6A72BBD2D3100C2CFCE /* FireStoreService.swift in Sources */,
 				F1D5EA3C2BC5249C00578328 /* ChartViewModel.swift in Sources */,
+				F12C8AA52BCC037700C4E99E /* Trade.swift in Sources */,
 				F1D0044F2BC945FF0032D272 /* WebSocketError.swift in Sources */,
 				F1E0A6932BBD291C00C2CFCE /* UpbitApiService.swift in Sources */,
 				F1E0A68D2BBD28B400C2CFCE /* MarketCell.swift in Sources */,
