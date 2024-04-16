@@ -80,6 +80,7 @@
 		F1F1A3872BC7BEA9000CD879 /* ChatCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1F1A3862BC7BEA8000CD879 /* ChatCell.swift */; };
 		F1F420252BCE544D003B19D2 /* Favorite.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1F420242BCE544D003B19D2 /* Favorite.swift */; };
 		F1F420272BCE54D9003B19D2 /* RealmService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1F420262BCE54D9003B19D2 /* RealmService.swift */; };
+		F1F4202A2BCE650E003B19D2 /* Toast in Frameworks */ = {isa = PBXBuildFile; productRef = F1F420292BCE650E003B19D2 /* Toast */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -174,6 +175,7 @@
 			files = (
 				F1E0A6412BBD20FE00C2CFCE /* FirebaseFirestore in Frameworks */,
 				F1E0A6282BBD206F00C2CFCE /* SnapKit in Frameworks */,
+				F1F4202A2BCE650E003B19D2 /* Toast in Frameworks */,
 				F1E0A6472BBD21AF00C2CFCE /* RxCocoa in Frameworks */,
 				F1E0A6252BBD205900C2CFCE /* RealmSwift in Frameworks */,
 				F1E0A63E2BBD20BB00C2CFCE /* DGCharts in Frameworks */,
@@ -416,6 +418,7 @@
 				F1E0A6432BBD211300C2CFCE /* Starscream */,
 				F1E0A6462BBD21AF00C2CFCE /* RxCocoa */,
 				F1E0A6482BBD21AF00C2CFCE /* RxSwift */,
+				F1F420292BCE650E003B19D2 /* Toast */,
 			);
 			productName = Investor;
 			productReference = F1E0A5EE2BBD1F8500C2CFCE /* Investor.app */;
@@ -498,6 +501,7 @@
 				F1E0A63F2BBD20FE00C2CFCE /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
 				F1E0A6422BBD211300C2CFCE /* XCRemoteSwiftPackageReference "Starscream" */,
 				F1E0A6452BBD21AF00C2CFCE /* XCRemoteSwiftPackageReference "RxSwift" */,
+				F1F420282BCE650E003B19D2 /* XCRemoteSwiftPackageReference "Toast-Swift" */,
 			);
 			productRefGroup = F1E0A5EF2BBD1F8500C2CFCE /* Products */;
 			projectDirPath = "";
@@ -999,6 +1003,14 @@
 				minimumVersion = 6.6.0;
 			};
 		};
+		F1F420282BCE650E003B19D2 /* XCRemoteSwiftPackageReference "Toast-Swift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/scalessec/Toast-Swift.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.1.1;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -1061,6 +1073,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = F1E0A6452BBD21AF00C2CFCE /* XCRemoteSwiftPackageReference "RxSwift" */;
 			productName = RxSwift;
+		};
+		F1F420292BCE650E003B19D2 /* Toast */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = F1F420282BCE650E003B19D2 /* XCRemoteSwiftPackageReference "Toast-Swift" */;
+			productName = Toast;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
