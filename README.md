@@ -4,7 +4,7 @@
 
 사용한 Upbit APi: https://docs.upbit.com/reference
  
-<br/><br/><br/>
+<br/>
  
 ## 주요 라이브러리
 이 애플리케이션은 다음과 같은 주요 라이브러리를 사용하고 있습니다:
@@ -19,12 +19,8 @@
 - **RxSwift**
 - **Toast**
 
-<br/><br/><br/>
+<br/>
 
-## 아키텍쳐
-이 애플리케이션은 MVVM(Model-View-ViewModel) 아키텍처를 따르고 있습니다.
-
-<br/><br/><br/>
 
 ## Upbit Rest Api와 WebSocket을 이용한 실시간 데이터 활용한 현재가/차트/호가 페이지
 <p align="center">
@@ -33,7 +29,7 @@
   <img src="https://github.com/traeumen927/Investor/assets/18188727/d52219de-1124-4763-a6c3-704fa8574847" width="33%">
 </p>
 
-<br/><br/><br/>
+<br/>
 
 ## Realm을 이용한 즐겨찾기 필터링/추가 및 삭제
 <p align="center">
@@ -42,7 +38,7 @@
   <img src="https://github.com/traeumen927/Investor/assets/18188727/87b8cc79-7708-494f-8731-a35d2b6532ca" width="33%">
 </p>
 
-<br/><br/><br/>
+<br/>
 
 ## Firebase Firestore를 이용한 실시간 익명 종목토론방
 공식문서: https://firebase.google.com/docs/firestore/quickstart?hl=ko
