@@ -32,6 +32,19 @@ class MarketViewController: UIViewController {
     }()
     
     
+    // MARK: 원화마켓, 즐겨찾기 SegmentedControl
+    private lazy var marketSegmentedControl: UISegmentedControl = {
+        let items = ["원화마켓", "즐겨찾기"]
+        let view = UISegmentedControl(items: items)
+        view.selectedSegmentIndex = 0
+        view.selectedSegmentTintColor = ThemeColor.primary1
+        view.backgroundColor = ThemeColor.background2
+        view.setTitleTextAttributes([NSAttributedString.Key.foregroundColor: ThemeColor.tintLight], for: .selected)
+        view.setTitleTextAttributes([NSAttributedString.Key.foregroundColor: ThemeColor.tintDark], for: .normal)
+        return view
+    }()
+    
+    
     // MARK: 거래 가능 코인 목록
     private lazy var collectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
@@ -63,11 +76,17 @@ class MarketViewController: UIViewController {
         // MARK: 검색창 배치
         self.navigationItem.titleView = self.searchBar
         
+        // MARK: 세그먼티드컨트롤, 컬렉션뷰 배치
+        [marketSegmentedControl, collectionView].forEach(self.view.addSubview(_:))
         
-        // MARK: 컬렉션뷰 배치
-        self.view.addSubview(collectionView)
+        marketSegmentedControl.snp.makeConstraints { make in
+            make.top.equalTo(self.view.safeAreaLayoutGuide).offset(8)
+            make.leading.equalToSuperview().offset(8)
+            make.trailing.lessThanOrEqualToSuperview().offset(-8)
+        }
+        
         collectionView.snp.makeConstraints { make in
-            make.top.equalTo(self.view.safeAreaLayoutGuide)
+            make.top.equalTo(self.marketSegmentedControl.snp.bottom).offset(16)
             make.bottom.equalTo(self.view.safeAreaLayoutGuide)
             make.leading.trailing.equalToSuperview()
         }
@@ -92,12 +111,21 @@ class MarketViewController: UIViewController {
                 self.collectionView.reloadData()
             }).disposed(by: disposeBag)
         
+        // MARK: 세그먼트컨트롤의 인덱스 구독 -> 선택된 pageViewController 이동
+        marketSegmentedControl.rx.selectedSegmentIndex
+            .subscribe(onNext: { [weak self] index in
+                guard let self = self else { return }
+                // MARK: 0: 전체표시, 1: 즐겨찾기 표시
+                self.viewModel.isDisplayAllMarket.accept(index == 0 ? true : false)
+            })
+            .disposed(by: disposeBag)
+        
         
         // MARK: Upbit Api Error 구독
         self.viewModel.errorSubject
             .subscribe(onNext: { [weak self] error in
-                guard let _ = self else { return }
-                print(error)
+                guard let self = self else { return }
+                self.view.makeToast(error, duration: 2.0, position: .bottom)
             }).disposed(by: disposeBag)
         
         
@@ -135,11 +163,13 @@ class MarketViewController: UIViewController {
     // MARK: 웹소켓 연결
     override func viewWillAppear(_ animated: Bool) {
         self.viewModel.connectWebSocket()
+        self.viewModel.addListenerFavorite()
     }
     
     // MARK: 웹소켓 연결 해제
     override func viewWillDisappear(_ animated: Bool) {
         self.viewModel.disconnectWebSocket()
+        self.viewModel.removeListenerFavorite()
     }
 }
 

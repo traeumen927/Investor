@@ -9,13 +9,22 @@ import RxSwift
 import RxCocoa
 import Alamofire
 import Starscream
+import RealmSwift
 
 class MarketViewModel {
     
     private let disposeBag = DisposeBag()
     
+    // MARK: 즐겨찾기 Market Code 리스너
+    private var favoriteToken: NotificationToken?
+    
     // MARK: 업비트 웹 소켓 서비스
     private let upbitSocketService = UpbitSocketService()
+    
+    // MARK: - Place for Input
+    // MARK: 전체원화마켓 or 즐겨찾기 표시 flag
+    let isDisplayAllMarket: BehaviorRelay<Bool> = BehaviorRelay(value: true)
+    
     
     // MARK: - Place for Output
     // MARK: 거래 가능 마켓 + 요청당시 Ticker
@@ -23,6 +32,9 @@ class MarketViewModel {
     
     // MARK: 실시간 현재가 Ticker
     let socketTickerSubject = PublishSubject<SocketTicker>()
+    
+    // MARK: 즐겨찾기한 마켓 코드 목록
+    let favoritedCodeSubject: BehaviorRelay<[String]> = BehaviorRelay(value: [])
     
     // MARK: 에러 description Subejct
     let errorSubject = PublishSubject<String>()
@@ -32,19 +44,38 @@ class MarketViewModel {
         // MARK: 웹소켓 이벤트 구독
         upbitSocketService.socketEventSubejct
             .subscribe(onNext: { [weak self] eventWrapper in
-                self?.didReceiveEvent(event: eventWrapper.event)
+                guard let self = self else { return }
+                self.didReceiveEvent(event: eventWrapper.event)
+            }).disposed(by: disposeBag)
+        
+        // MARK: 마켓전체 or 즐겨찾기 표시 여부 구독
+        isDisplayAllMarket
+            .distinctUntilChanged()
+            .observe(on: ConcurrentDispatchQueueScheduler(qos: .background))
+            .subscribe(onNext: { [weak self] isDisplayAll in
+                guard let self = self else { return }
+                self.fetchAllMarkets(with: isDisplayAll ? nil : self.favoritedCodeSubject.value)
             }).disposed(by: disposeBag)
     }
     
     // MARK: 현재 업비트에서 거래 가능한 목록 불러오기
-    private func fetchAllMarkets() {
+    private func fetchAllMarkets(with favoriteCodes: [String]?) {
         UpbitApiService.request(endpoint: .allMarkets) { [weak self] (result: Result<[MarketInfo], UpbitApiError>) in
             guard let self = self else { return }
             switch result {
             case .success(let markets):
                 // MARK: 원화 마켓 정보
                 let krwMarkets = markets.filter { $0.market.hasPrefix("KRW-")}
-                self.fetchMarketTicker(with: krwMarkets)
+                if let favoriteCodes = favoriteCodes {
+                    if favoriteCodes.count > 0 {
+                        let favoriteMarket = krwMarkets.filter { favoriteCodes.contains($0.market)}
+                        self.fetchMarketTicker(with: favoriteMarket)
+                    } else {
+                        self.marketTickerSubject.onNext([])
+                    }
+                } else {
+                    self.fetchMarketTicker(with: krwMarkets)
+                }
             case .failure(let error):
                 self.errorSubject.onNext(error.message)
             }
@@ -93,6 +124,19 @@ class MarketViewModel {
         self.upbitSocketService.disconnect()
     }
     
+    // MARK: 즐겨찾기 리스너 연결
+    func addListenerFavorite() {
+        self.favoriteToken = RealmService.shared.observe(Favorite.self, orderBy: "timeStamp", completion: { favorits in
+            // MARK: 즐겨찾기한 코드 목록
+            self.favoritedCodeSubject.accept(favorits.map( { $0.code } ))
+        })
+    }
+    
+    // MARK: 즐겨찾기 리스너 해제
+    func removeListenerFavorite() {
+        self.favoriteToken?.invalidate()
+    }
+    
     // MARK: WebSocketDelegate에서 발생하는 WebSocket Event 처리
     private func didReceiveEvent(event: WebSocketEvent) {
         
@@ -105,7 +149,7 @@ class MarketViewModel {
             print("\(className): websocket is connected: \(headers)")
             
             // MARK: 현재 거래 가능한 마켓 조회
-            self.fetchAllMarkets()
+            self.fetchAllMarkets(with: isDisplayAllMarket.value ? nil : favoritedCodeSubject.value)
             
             // MARK: 소켓이 연결 해제됨
         case .disconnected(let reason, let code):
