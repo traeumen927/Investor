@@ -1,15 +1,60 @@
 # Investor
-Coin trading app using Swift-based Upbit’s REST API and websocket service
 
-The target api used https://docs.upbit.com/reference
+업비트 Open Api를 활용한 Swift 기반의 코인 거래 어플리케이션입니다.
 
+사용한 Upbit APi: https://docs.upbit.com/reference
+ 
+<br/><br/><br/>
+ 
+## 주요 라이브러리
+이 애플리케이션은 다음과 같은 주요 라이브러리를 사용하고 있습니다:
+
+- **Realm**
+- **Snapkit**
+- **Alamofire**
+- **Kingfisher**
+- **DGCharts**
+- **Firebase**
+- **Starscream**
+- **RxSwift**
+- **Toast**
+
+<br/><br/><br/>
+
+## 아키텍쳐
+이 애플리케이션은 MVVM(Model-View-ViewModel) 아키텍처를 따르고 있습니다.
+
+<br/><br/><br/>
+
+## Upbit Rest Api와 WebSocket을 이용한 실시간 데이터 활용한 현재가/차트/호가 페이지
+<p align="center">
+  <img src="https://github.com/traeumen927/Investor/assets/18188727/f968bbe7-80cd-48f0-a150-825daa9dfa79" width="33%">
+  <img src="https://github.com/traeumen927/Investor/assets/18188727/2d993b13-f3f5-43b8-b391-67ec3f6c95b5" width="33%">
+  <img src="https://github.com/traeumen927/Investor/assets/18188727/d52219de-1124-4763-a6c3-704fa8574847" width="33%">
+</p>
+
+<br/><br/><br/>
+
+## Realm을 이용한 즐겨찾기 필터링/추가 및 삭제
+<p align="center">
+  <img src="https://github.com/traeumen927/Investor/assets/18188727/90e39e6d-dbeb-4d66-a2fb-a12b929f07ff" width="33%">
+  <img src="https://github.com/traeumen927/Investor/assets/18188727/df5f21b3-3fb0-4af9-80f2-bfc47160fecc" width="33%">
+  <img src="https://github.com/traeumen927/Investor/assets/18188727/87b8cc79-7708-494f-8731-a35d2b6532ca" width="33%">
+</p>
+
+<br/><br/><br/>
+
+## Firebase Firestore를 이용한 실시간 익명 종목토론방
+공식문서: https://firebase.google.com/docs/firestore/quickstart?hl=ko
 
 <p align="center">
-  <img src="https://github.com/traeumen927/Investor/assets/18188727/e00289e5-5284-4267-934c-7aae2b641bc9" width="24%">
-  <img src="https://github.com/traeumen927/Investor/assets/18188727/dc60b287-f799-4ab1-929e-150efa9a4067" width="24%">
-  <img src="https://github.com/traeumen927/Investor/assets/18188727/1bcabff7-ce7c-4721-8267-456bf9c73f27" width="24%">
-  <img src="https://github.com/traeumen927/Investor/assets/18188727/1821ba48-c51b-4d6c-bfc8-3843fbc953ac" width="24%">
+  <img src="https://github.com/traeumen927/Investor/assets/18188727/3f10b95a-6361-45f1-bb82-131db6b3e500" width="33%">
+  <img src="https://github.com/traeumen927/Investor/assets/18188727/02955417-99d2-4949-a7fd-56ec6ae9414e" width="33%">
+  <img src="https://github.com/traeumen927/Investor/assets/18188727/c6b6ce88-508b-4d5b-8efa-b38319bc6857" width="33%">
 </p>
+
+
+
 
 
 ``` swift
