@@ -24,18 +24,18 @@
 
 ## Upbit Rest Api와 WebSocket을 이용한 실시간 데이터 활용한 현재가/차트/호가 페이지
 <p align="center">
-  <img src="https://github.com/traeumen927/Investor/assets/18188727/f968bbe7-80cd-48f0-a150-825daa9dfa79" width="33%">
-  <img src="https://github.com/traeumen927/Investor/assets/18188727/2d993b13-f3f5-43b8-b391-67ec3f6c95b5" width="33%">
-  <img src="https://github.com/traeumen927/Investor/assets/18188727/d52219de-1124-4763-a6c3-704fa8574847" width="33%">
+  <img src="https://github.com/traeumen927/Investor/assets/18188727/f968bbe7-80cd-48f0-a150-825daa9dfa79" width="30%">
+  <img src="https://github.com/traeumen927/Investor/assets/18188727/2d993b13-f3f5-43b8-b391-67ec3f6c95b5" width="30%">
+  <img src="https://github.com/traeumen927/Investor/assets/18188727/d52219de-1124-4763-a6c3-704fa8574847" width="30%">
 </p>
 
 <br/>
 
 ## Realm을 이용한 즐겨찾기 필터링/추가 및 삭제
 <p align="center">
-  <img src="https://github.com/traeumen927/Investor/assets/18188727/90e39e6d-dbeb-4d66-a2fb-a12b929f07ff" width="33%">
-  <img src="https://github.com/traeumen927/Investor/assets/18188727/df5f21b3-3fb0-4af9-80f2-bfc47160fecc" width="33%">
-  <img src="https://github.com/traeumen927/Investor/assets/18188727/87b8cc79-7708-494f-8731-a35d2b6532ca" width="33%">
+  <img src="https://github.com/traeumen927/Investor/assets/18188727/90e39e6d-dbeb-4d66-a2fb-a12b929f07ff" width="30%">
+  <img src="https://github.com/traeumen927/Investor/assets/18188727/df5f21b3-3fb0-4af9-80f2-bfc47160fecc" width="30%">
+  <img src="https://github.com/traeumen927/Investor/assets/18188727/87b8cc79-7708-494f-8731-a35d2b6532ca" width="30%">
 </p>
 
 <br/>
@@ -44,9 +44,9 @@
 공식문서: https://firebase.google.com/docs/firestore/quickstart?hl=ko
 
 <p align="center">
-  <img src="https://github.com/traeumen927/Investor/assets/18188727/3f10b95a-6361-45f1-bb82-131db6b3e500" width="33%">
-  <img src="https://github.com/traeumen927/Investor/assets/18188727/02955417-99d2-4949-a7fd-56ec6ae9414e" width="33%">
-  <img src="https://github.com/traeumen927/Investor/assets/18188727/c6b6ce88-508b-4d5b-8efa-b38319bc6857" width="33%">
+  <img src="https://github.com/traeumen927/Investor/assets/18188727/3f10b95a-6361-45f1-bb82-131db6b3e500" width="30%">
+  <img src="https://github.com/traeumen927/Investor/assets/18188727/02955417-99d2-4949-a7fd-56ec6ae9414e" width="30%">
+  <img src="https://github.com/traeumen927/Investor/assets/18188727/c6b6ce88-508b-4d5b-8efa-b38319bc6857" width="30%">
 </p>
 
 
