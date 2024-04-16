@@ -8,6 +8,7 @@
 import UIKit
 import SnapKit
 import RxSwift
+import Toast
 
 class DetailViewController: UIViewController {
     
@@ -116,6 +117,17 @@ class DetailViewController: UIViewController {
                 guard let self = self else { return }
                 self.viewModel.barButtonTappedSubject.onNext(())
             }).disposed(by: disposeBag)
+        
+        
+        // MARK: 즐겨찾기 메세지 구독
+        self.viewModel.fovoriteMessageSubejct
+            .observe(on: MainScheduler.instance)
+            .subscribe(onNext: { [weak self] message in
+                guard let self = self else { return }
+                // MARK: 즐겨찾기 업데이트 관련 메세지 표시
+                self.view.makeToast(message, duration: 2.0, position: .bottom)
+            }).disposed(by: disposeBag)
+        
             
         
         
