@@ -57,6 +57,9 @@ struct ThemeColor {
     ///짙은 틴트색상
     static let tintDark = UIColor(hexString: "212529")
     
+    ///즐겨찾기색상
+    static let tintFavorite = UIColor(hexString: "e9c46a")
+    
     ///비활성화색상
     static let tintDisable = UIColor(hexString: "495057")
     

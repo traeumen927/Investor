@@ -8,6 +8,7 @@
 import UIKit
 import SnapKit
 import RxSwift
+import Toast
 
 class DetailViewController: UIViewController {
     
@@ -16,6 +17,12 @@ class DetailViewController: UIViewController {
     
     // MARK: pageViewController 구성요소
     private var pages: [UIViewController]
+    
+    // MARK: 즐겨찾기 버튼
+    private var favoriteBarButton: UIBarButtonItem = {
+        let button = UIBarButtonItem()
+        return button
+    }()
     
     // MARK: 페이지 Index SegmentedControl
     private lazy var pageSegmentedControl: UISegmentedControl = {
@@ -65,6 +72,7 @@ class DetailViewController: UIViewController {
     private func layout() {
         self.title = self.viewModel.marketTicker.marketInfo.koreanName
         self.view.backgroundColor = ThemeColor.background1
+        self.navigationItem.rightBarButtonItem = favoriteBarButton
         
         // MARK: Page SegmentedControl, viewController 삽입
         self.addChild(pageViewController)
@@ -84,14 +92,43 @@ class DetailViewController: UIViewController {
             make.top.equalTo(self.pageSegmentedControl.snp.bottom)
             make.leading.trailing.bottom.equalToSuperview()
         }
-    }
-    
-    private func bind() {
         
         // MARK: 첫 페이지 설정
         if let firstPage = pages.first {
             pageViewController.setViewControllers([firstPage], direction: .forward, animated: true)
         }
+    }
+    
+    private func bind() {
+        
+        // MARK: 즐겨찾기 여부 구독
+        self.viewModel.isFavoriteSubject
+            .observe(on: MainScheduler.instance)
+            .subscribe(onNext: { [weak self] isFavorite in
+                guard let self = self else { return }
+                // MARK: 즐겨찾기 여부에 따라 버튼 이미지 변경
+                self.favoriteBarButton.image = isFavorite ? UIImage(systemName: "star.fill")?.withTintColor(ThemeColor.tintFavorite, renderingMode: .alwaysOriginal) : UIImage(systemName: "star")?.withTintColor(ThemeColor.tintLight, renderingMode: .alwaysOriginal)
+            }).disposed(by: disposeBag)
+        
+        
+        // MARK: 즐겨찾기 버튼 tap 이벤트 구독
+        self.favoriteBarButton.rx.tap
+            .subscribe(onNext: {[weak self] in
+                guard let self = self else { return }
+                self.viewModel.barButtonTappedSubject.onNext(())
+            }).disposed(by: disposeBag)
+        
+        
+        // MARK: 즐겨찾기 메세지 구독
+        self.viewModel.fovoriteMessageSubejct
+            .observe(on: MainScheduler.instance)
+            .subscribe(onNext: { [weak self] message in
+                guard let self = self else { return }
+                // MARK: 즐겨찾기 업데이트 관련 메세지 표시
+                self.view.makeToast(message, duration: 2.0, position: .bottom)
+            }).disposed(by: disposeBag)
+        
+            
         
         
         // MARK: 세그먼트컨트롤의 인덱스 구독 -> 선택된 pageViewController 이동
