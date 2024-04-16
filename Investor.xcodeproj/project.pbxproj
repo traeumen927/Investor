@@ -78,6 +78,8 @@
 		F1EA80132BC6CDCE00AE5F58 /* Orderbook.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1EA80122BC6CDCE00AE5F58 /* Orderbook.swift */; };
 		F1F1A3852BC7B589000CD879 /* SubscriptionType.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1F1A3842BC7B589000CD879 /* SubscriptionType.swift */; };
 		F1F1A3872BC7BEA9000CD879 /* ChatCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1F1A3862BC7BEA8000CD879 /* ChatCell.swift */; };
+		F1F420252BCE544D003B19D2 /* Favorite.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1F420242BCE544D003B19D2 /* Favorite.swift */; };
+		F1F420272BCE54D9003B19D2 /* RealmService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1F420262BCE54D9003B19D2 /* RealmService.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -161,6 +163,8 @@
 		F1EA80122BC6CDCE00AE5F58 /* Orderbook.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Orderbook.swift; sourceTree = "<group>"; };
 		F1F1A3842BC7B589000CD879 /* SubscriptionType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscriptionType.swift; sourceTree = "<group>"; };
 		F1F1A3862BC7BEA8000CD879 /* ChatCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatCell.swift; sourceTree = "<group>"; };
+		F1F420242BCE544D003B19D2 /* Favorite.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Favorite.swift; sourceTree = "<group>"; };
+		F1F420262BCE54D9003B19D2 /* RealmService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmService.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -296,6 +300,7 @@
 				F12C8AA42BCC037700C4E99E /* Trade.swift */,
 				F182FE9F2BC03C5500428E05 /* DateAxisValueFormatter.swift */,
 				F1D0044E2BC945FF0032D272 /* WebSocketError.swift */,
+				F1F420242BCE544D003B19D2 /* Favorite.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -333,6 +338,7 @@
 				F1E0A6832BBD284C00C2CFCE /* UpbitApiService.swift */,
 				F1E0A6842BBD284C00C2CFCE /* UpbitSocketService.swift */,
 				F1D5EA372BC5211200578328 /* PageService.swift */,
+				F1F420262BCE54D9003B19D2 /* RealmService.swift */,
 			);
 			path = Service;
 			sourceTree = "<group>";
@@ -550,6 +556,7 @@
 				F1E0A6722BBD254C00C2CFCE /* MarketViewModel.swift in Sources */,
 				F1D0044B2BC92FE80032D272 /* PriceView.swift in Sources */,
 				F1E0A6632BBD23E800C2CFCE /* Decodable.swift in Sources */,
+				F1F420272BCE54D9003B19D2 /* RealmService.swift in Sources */,
 				F1E0A6A12BBD2D1500C2CFCE /* ChatItemView.swift in Sources */,
 				F13B73D32BBE868400C96F19 /* ChatViewModel.swift in Sources */,
 				F1EA80132BC6CDCE00AE5F58 /* Orderbook.swift in Sources */,
@@ -570,6 +577,7 @@
 				F1D5EA3C2BC5249C00578328 /* ChartViewModel.swift in Sources */,
 				F12C8AA52BCC037700C4E99E /* Trade.swift in Sources */,
 				F1D0044F2BC945FF0032D272 /* WebSocketError.swift in Sources */,
+				F1F420252BCE544D003B19D2 /* Favorite.swift in Sources */,
 				F1E0A6932BBD291C00C2CFCE /* UpbitApiService.swift in Sources */,
 				F12C8AA92BCC074F00C4E99E /* AbType.swift in Sources */,
 				F1E0A68D2BBD28B400C2CFCE /* MarketCell.swift in Sources */,
