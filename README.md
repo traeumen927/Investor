@@ -22,7 +22,7 @@
 <br/>
 
 
-## Upbit Rest Api와 WebSocket을 이용한 실시간 데이터 활용한 현재가/차트/호가 페이지
+## Upbit Rest Api와 WebSocket의 실시간 데이터 활용한 현재가/차트/호가 페이지
 <p align="center">
   <img src="https://github.com/traeumen927/Investor/assets/18188727/f968bbe7-80cd-48f0-a150-825daa9dfa79" width="30%">
   <img src="https://github.com/traeumen927/Investor/assets/18188727/2d993b13-f3f5-43b8-b391-67ec3f6c95b5" width="30%">
