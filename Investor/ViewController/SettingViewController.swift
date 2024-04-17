@@ -22,6 +22,7 @@ class SettingViewController: UIViewController {
     
     private func layout() {
         self.view.backgroundColor = ThemeColor.background1
+        self.title = "설정"
     }
     
 

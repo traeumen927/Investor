@@ -19,9 +19,13 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         let marketViewController = MarketViewController()
         marketViewController.tabBarItem = UITabBarItem(title: "거래소", image: UIImage(systemName: "bitcoinsign"), tag: 0)
         
+        // MARK: 자산 viewController
+        let accountViewController = AccountViewController()
+        accountViewController.tabBarItem = UITabBarItem(title: "투자내역", image: UIImage(systemName: "chart.pie"), tag: 1)
+        
         // MARK: 설정 viewController
         let settingViewController = SettingViewController()
-        settingViewController.tabBarItem = UITabBarItem(title: "설정", image: UIImage(systemName: "gear"), tag: 1)
+        settingViewController.tabBarItem = UITabBarItem(title: "설정", image: UIImage(systemName: "gear"), tag: 2)
         
         
         // MARK: tabBarController
@@ -29,6 +33,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         tabBarController.tabBar.tintColor = ThemeColor.tintLight
         tabBarController.tabBar.unselectedItemTintColor = ThemeColor.tintDisable
         tabBarController.viewControllers = [wrapInNavigationController(viewController: marketViewController),
+                                            wrapInNavigationController(viewController: accountViewController),
                                             wrapInNavigationController(viewController: settingViewController)]
         
         
