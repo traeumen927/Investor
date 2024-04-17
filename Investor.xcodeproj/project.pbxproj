@@ -24,6 +24,8 @@
 		F1D5EA3C2BC5249C00578328 /* ChartViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1D5EA3B2BC5249C00578328 /* ChartViewModel.swift */; };
 		F1D5EA3E2BC554F700578328 /* OrderbookViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1D5EA3D2BC554F700578328 /* OrderbookViewController.swift */; };
 		F1D5EA402BC5550800578328 /* OrderbookViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1D5EA3F2BC5550800578328 /* OrderbookViewModel.swift */; };
+		F1DA88DD2BCFAC65005E8E22 /* UpbitApiError.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1DA88DC2BCFAC65005E8E22 /* UpbitApiError.swift */; };
+		F1DA88E02BCFAD49005E8E22 /* SwiftJWT in Frameworks */ = {isa = PBXBuildFile; productRef = F1DA88DF2BCFAD49005E8E22 /* SwiftJWT */; };
 		F1E0A5F22BBD1F8500C2CFCE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1E0A5F12BBD1F8500C2CFCE /* AppDelegate.swift */; };
 		F1E0A5F42BBD1F8500C2CFCE /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1E0A5F32BBD1F8500C2CFCE /* SceneDelegate.swift */; };
 		F1E0A5FB2BBD1F8600C2CFCE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F1E0A5FA2BBD1F8600C2CFCE /* Assets.xcassets */; };
@@ -116,6 +118,7 @@
 		F1D5EA3B2BC5249C00578328 /* ChartViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartViewModel.swift; sourceTree = "<group>"; };
 		F1D5EA3D2BC554F700578328 /* OrderbookViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderbookViewController.swift; sourceTree = "<group>"; };
 		F1D5EA3F2BC5550800578328 /* OrderbookViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderbookViewModel.swift; sourceTree = "<group>"; };
+		F1DA88DC2BCFAC65005E8E22 /* UpbitApiError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpbitApiError.swift; sourceTree = "<group>"; };
 		F1E0A5EE2BBD1F8500C2CFCE /* Investor.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Investor.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F1E0A5F12BBD1F8500C2CFCE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F1E0A5F32BBD1F8500C2CFCE /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -185,6 +188,7 @@
 				F1E0A6302BBD208E00C2CFCE /* Alamofire in Frameworks */,
 				F1E0A6322BBD208E00C2CFCE /* AlamofireDynamic in Frameworks */,
 				F1E0A62A2BBD206F00C2CFCE /* SnapKit-Dynamic in Frameworks */,
+				F1DA88E02BCFAD49005E8E22 /* SwiftJWT in Frameworks */,
 				F1E0A62D2BBD207B00C2CFCE /* Kingfisher in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -385,6 +389,7 @@
 				F1E0A6862BBD285800C2CFCE /* UnitType.swift */,
 				F12C8AA82BCC074E00C4E99E /* AbType.swift */,
 				F1F1A3842BC7B589000CD879 /* SubscriptionType.swift */,
+				F1DA88DC2BCFAC65005E8E22 /* UpbitApiError.swift */,
 			);
 			path = Enum;
 			sourceTree = "<group>";
@@ -419,6 +424,7 @@
 				F1E0A6462BBD21AF00C2CFCE /* RxCocoa */,
 				F1E0A6482BBD21AF00C2CFCE /* RxSwift */,
 				F1F420292BCE650E003B19D2 /* Toast */,
+				F1DA88DF2BCFAD49005E8E22 /* SwiftJWT */,
 			);
 			productName = Investor;
 			productReference = F1E0A5EE2BBD1F8500C2CFCE /* Investor.app */;
@@ -502,6 +508,7 @@
 				F1E0A6422BBD211300C2CFCE /* XCRemoteSwiftPackageReference "Starscream" */,
 				F1E0A6452BBD21AF00C2CFCE /* XCRemoteSwiftPackageReference "RxSwift" */,
 				F1F420282BCE650E003B19D2 /* XCRemoteSwiftPackageReference "Toast-Swift" */,
+				F1DA88DE2BCFAD49005E8E22 /* XCRemoteSwiftPackageReference "Swift-JWT" */,
 			);
 			productRefGroup = F1E0A5EF2BBD1F8500C2CFCE /* Products */;
 			projectDirPath = "";
@@ -601,6 +608,7 @@
 				F1D004512BC970940032D272 /* StackChildView.swift in Sources */,
 				F1F1A3852BC7B589000CD879 /* SubscriptionType.swift in Sources */,
 				F1D5EA3E2BC554F700578328 /* OrderbookViewController.swift in Sources */,
+				F1DA88DD2BCFAC65005E8E22 /* UpbitApiError.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -939,6 +947,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		F1DA88DE2BCFAD49005E8E22 /* XCRemoteSwiftPackageReference "Swift-JWT" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Kitura/Swift-JWT.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 4.0.1;
+			};
+		};
 		F1E0A6212BBD205900C2CFCE /* XCRemoteSwiftPackageReference "realm-swift" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/realm/realm-swift.git";
@@ -1014,6 +1030,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		F1DA88DF2BCFAD49005E8E22 /* SwiftJWT */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = F1DA88DE2BCFAD49005E8E22 /* XCRemoteSwiftPackageReference "Swift-JWT" */;
+			productName = SwiftJWT;
+		};
 		F1E0A6222BBD205900C2CFCE /* Realm */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = F1E0A6212BBD205900C2CFCE /* XCRemoteSwiftPackageReference "realm-swift" */;
