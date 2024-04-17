@@ -8,6 +8,7 @@
 import Foundation
 import Alamofire
 
+
 // MARK: Upbit에서 제공하는 코인관련 API Service
 struct UpbitApiService {
     
@@ -24,7 +25,7 @@ struct UpbitApiService {
         return apiKey
     }()
     
-    // MARK: plist파일에서 AccessKey추출(인증 가능한 요청시 필요)
+    // MARK: plist파일에서 AccessKey추출(API 호출의 보안을 유지하기 위해 사용)
     static let secretKey: String = {
         guard let path = Bundle.main.path(forResource: "ApiKey", ofType: "plist"),
               let config = NSDictionary(contentsOfFile: path),
@@ -109,36 +110,3 @@ extension UpbitApiService {
         }
     }
 }  
-
-// MARK: Upbit API 에러 타입
-enum UpbitApiError: Error {
-    case networkError(message: String)
-    case decodingError(message: String)
-    case serverError(message: String)
-    
-    var message: String {
-        switch self {
-        case .networkError(let message), .decodingError(let message), .serverError(let message):
-            return message
-        }
-    }
-    
-    init(afError: AFError) {
-        switch afError {
-        case .sessionTaskFailed(let error):
-            if let urlError = error as? URLError, urlError.code == .notConnectedToInternet {
-                self = .networkError(message: error.localizedDescription)
-            } else {
-                self = .serverError(message: afError.localizedDescription)
-            }
-        case .responseSerializationFailed(let reason):
-            if case .decodingFailed = reason {
-                self = .decodingError(message: afError.localizedDescription)
-            } else {
-                self = .serverError(message: afError.localizedDescription)
-            }
-        default:
-            self = .serverError(message: afError.localizedDescription)
-        }
-    }
-}
