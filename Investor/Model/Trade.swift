@@ -7,6 +7,7 @@
 
 import Foundation
 
+// MARK: 체결
 struct Trade: Decodable {
     ///타입
     let type: SubscriptionType?

@@ -7,6 +7,7 @@
 
 import Foundation
 
+// MARK: 호가
 struct Orderbook: Decodable {
     ///타입
     let type: SubscriptionType?

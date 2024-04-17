@@ -7,7 +7,7 @@
 
 import Foundation
 
-
+// MARK: 거래가능 마켓
 struct MarketInfo: Decodable {
     ///업비트에서 제공중인 시장 정보
     let market: String

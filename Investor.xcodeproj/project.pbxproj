@@ -26,6 +26,10 @@
 		F1D5EA402BC5550800578328 /* OrderbookViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1D5EA3F2BC5550800578328 /* OrderbookViewModel.swift */; };
 		F1DA88DD2BCFAC65005E8E22 /* UpbitApiError.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1DA88DC2BCFAC65005E8E22 /* UpbitApiError.swift */; };
 		F1DA88E02BCFAD49005E8E22 /* SwiftJWT in Frameworks */ = {isa = PBXBuildFile; productRef = F1DA88DF2BCFAD49005E8E22 /* SwiftJWT */; };
+		F1DA88E22BCFB12B005E8E22 /* Payload.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1DA88E12BCFB12B005E8E22 /* Payload.swift */; };
+		F1DA88E42BCFB8E3005E8E22 /* AccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1DA88E32BCFB8E3005E8E22 /* AccountViewController.swift */; };
+		F1DA88E62BCFB8F5005E8E22 /* AccountViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1DA88E52BCFB8F5005E8E22 /* AccountViewModel.swift */; };
+		F1DA88E82BCFBA97005E8E22 /* Account.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1DA88E72BCFBA97005E8E22 /* Account.swift */; };
 		F1E0A5F22BBD1F8500C2CFCE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1E0A5F12BBD1F8500C2CFCE /* AppDelegate.swift */; };
 		F1E0A5F42BBD1F8500C2CFCE /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1E0A5F32BBD1F8500C2CFCE /* SceneDelegate.swift */; };
 		F1E0A5FB2BBD1F8600C2CFCE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F1E0A5FA2BBD1F8600C2CFCE /* Assets.xcassets */; };
@@ -119,6 +123,10 @@
 		F1D5EA3D2BC554F700578328 /* OrderbookViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderbookViewController.swift; sourceTree = "<group>"; };
 		F1D5EA3F2BC5550800578328 /* OrderbookViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderbookViewModel.swift; sourceTree = "<group>"; };
 		F1DA88DC2BCFAC65005E8E22 /* UpbitApiError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpbitApiError.swift; sourceTree = "<group>"; };
+		F1DA88E12BCFB12B005E8E22 /* Payload.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Payload.swift; sourceTree = "<group>"; };
+		F1DA88E32BCFB8E3005E8E22 /* AccountViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountViewController.swift; sourceTree = "<group>"; };
+		F1DA88E52BCFB8F5005E8E22 /* AccountViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountViewModel.swift; sourceTree = "<group>"; };
+		F1DA88E72BCFBA97005E8E22 /* Account.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Account.swift; sourceTree = "<group>"; };
 		F1E0A5EE2BBD1F8500C2CFCE /* Investor.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Investor.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F1E0A5F12BBD1F8500C2CFCE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F1E0A5F32BBD1F8500C2CFCE /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -307,6 +315,8 @@
 				F182FE9F2BC03C5500428E05 /* DateAxisValueFormatter.swift */,
 				F1D0044E2BC945FF0032D272 /* WebSocketError.swift */,
 				F1F420242BCE544D003B19D2 /* Favorite.swift */,
+				F1DA88E12BCFB12B005E8E22 /* Payload.swift */,
+				F1DA88E72BCFBA97005E8E22 /* Account.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -315,6 +325,7 @@
 			isa = PBXGroup;
 			children = (
 				F1E0A6712BBD254C00C2CFCE /* MarketViewModel.swift */,
+				F1DA88E52BCFB8F5005E8E22 /* AccountViewModel.swift */,
 				F13B73D02BBE79BC00C96F19 /* DetailViewModel.swift */,
 				F1D5EA3B2BC5249C00578328 /* ChartViewModel.swift */,
 				F1D5EA3F2BC5550800578328 /* OrderbookViewModel.swift */,
@@ -328,6 +339,7 @@
 			isa = PBXGroup;
 			children = (
 				F1E0A66F2BBD252D00C2CFCE /* MarketViewController.swift */,
+				F1DA88E32BCFB8E3005E8E22 /* AccountViewController.swift */,
 				F13B73CE2BBE799B00C96F19 /* DetailViewController.swift */,
 				F1D5EA392BC5248700578328 /* ChartViewController.swift */,
 				F1D5EA3D2BC554F700578328 /* OrderbookViewController.swift */,
@@ -576,10 +588,12 @@
 				F1E0A6912BBD28D400C2CFCE /* SingleCandleView.swift in Sources */,
 				F1E0A6812BBD284300C2CFCE /* MarketTicker.swift in Sources */,
 				F1D5EA402BC5550800578328 /* OrderbookViewModel.swift in Sources */,
+				F1DA88E62BCFB8F5005E8E22 /* AccountViewModel.swift in Sources */,
 				F1E0A5F22BBD1F8500C2CFCE /* AppDelegate.swift in Sources */,
 				F1E0A6762BBD257700C2CFCE /* SettingViewModel.swift in Sources */,
 				F1E0A6A92BBD2D4F00C2CFCE /* TickerProtocol.swift in Sources */,
 				F1E0A67F2BBD283E00C2CFCE /* Chat.swift in Sources */,
+				F1DA88E82BCFBA97005E8E22 /* Account.swift in Sources */,
 				F12C8AAB2BCC13A500C4E99E /* TradeCell.swift in Sources */,
 				F1E0A5F42BBD1F8500C2CFCE /* SceneDelegate.swift in Sources */,
 				F1E0A6882BBD285A00C2CFCE /* CandleType.swift in Sources */,
@@ -604,6 +618,8 @@
 				F1E0A6922BBD291A00C2CFCE /* UpbitSocketService.swift in Sources */,
 				F1E0A6902BBD28D200C2CFCE /* PercentView.swift in Sources */,
 				F1D5EA382BC5211200578328 /* PageService.swift in Sources */,
+				F1DA88E42BCFB8E3005E8E22 /* AccountViewController.swift in Sources */,
+				F1DA88E22BCFB12B005E8E22 /* Payload.swift in Sources */,
 				F1E0A6822BBD284500C2CFCE /* SocketTicker.swift in Sources */,
 				F1D004512BC970940032D272 /* StackChildView.swift in Sources */,
 				F1F1A3852BC7B589000CD879 /* SubscriptionType.swift in Sources */,

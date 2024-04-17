@@ -7,6 +7,7 @@
 
 import Foundation
 
+// MARK: 웹소켓 에러타입
 struct WebSocketError: Decodable {
     let error: UpbitSocketError
 }
