@@ -27,6 +27,13 @@ extension Double {
         return formatter.string(from: NSNumber(value: self)) ?? "\(self)"
     }
     
+    // MARK: 통화 포맷
+    func formattedStringWithDecimal() -> String {
+        let formatter = NumberFormatter()
+        formatter.numberStyle = .decimal
+        return formatter.string(from: NSNumber(value: self)) ?? "\(self)"
+    }
+    
     // MARK: 증감율 계산
     func percentageRelativeTo(to other: Double) -> Double {
         guard other != 0 else { return 0 }
