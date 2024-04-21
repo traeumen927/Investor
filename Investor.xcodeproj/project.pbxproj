@@ -82,6 +82,8 @@
 		F1E0A6A12BBD2D1500C2CFCE /* ChatItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1E0A69C2BBD2D1500C2CFCE /* ChatItemView.swift */; };
 		F1E0A6A72BBD2D3100C2CFCE /* FireStoreService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1E0A6A62BBD2D3100C2CFCE /* FireStoreService.swift */; };
 		F1E0A6A92BBD2D4F00C2CFCE /* TickerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1E0A6A82BBD2D4F00C2CFCE /* TickerProtocol.swift */; };
+		F1E7CE8D2BD510C300E902CA /* AccountCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1E7CE8C2BD510C300E902CA /* AccountCell.swift */; };
+		F1E7CE8F2BD512F700E902CA /* AutoSizeTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1E7CE8E2BD512F700E902CA /* AutoSizeTableView.swift */; };
 		F1EA80132BC6CDCE00AE5F58 /* Orderbook.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1EA80122BC6CDCE00AE5F58 /* Orderbook.swift */; };
 		F1F1A3852BC7B589000CD879 /* SubscriptionType.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1F1A3842BC7B589000CD879 /* SubscriptionType.swift */; };
 		F1F1A3872BC7BEA9000CD879 /* ChatCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1F1A3862BC7BEA8000CD879 /* ChatCell.swift */; };
@@ -174,6 +176,8 @@
 		F1E0A6A32BBD2D2400C2CFCE /* ChatViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatViewModel.swift; sourceTree = "<group>"; };
 		F1E0A6A62BBD2D3100C2CFCE /* FireStoreService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FireStoreService.swift; sourceTree = "<group>"; };
 		F1E0A6A82BBD2D4F00C2CFCE /* TickerProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TickerProtocol.swift; sourceTree = "<group>"; };
+		F1E7CE8C2BD510C300E902CA /* AccountCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountCell.swift; sourceTree = "<group>"; };
+		F1E7CE8E2BD512F700E902CA /* AutoSizeTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AutoSizeTableView.swift; sourceTree = "<group>"; };
 		F1EA80122BC6CDCE00AE5F58 /* Orderbook.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Orderbook.swift; sourceTree = "<group>"; };
 		F1F1A3842BC7B589000CD879 /* SubscriptionType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscriptionType.swift; sourceTree = "<group>"; };
 		F1F1A3862BC7BEA8000CD879 /* ChatCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatCell.swift; sourceTree = "<group>"; };
@@ -286,6 +290,7 @@
 				F1F1A3862BC7BEA8000CD879 /* ChatCell.swift */,
 				F13B73D42BBE89B000C96F19 /* OrderbookCell.swift */,
 				F12C8AAA2BCC13A500C4E99E /* TradeCell.swift */,
+				F1E7CE8C2BD510C300E902CA /* AccountCell.swift */,
 			);
 			path = Cell;
 			sourceTree = "<group>";
@@ -300,6 +305,7 @@
 				F1D004502BC970940032D272 /* StackChildView.swift */,
 				F1E0A68E2BBD28CF00C2CFCE /* PercentView.swift */,
 				F1E0A68F2BBD28CF00C2CFCE /* SingleCandleView.swift */,
+				F1E7CE8E2BD512F700E902CA /* AutoSizeTableView.swift */,
 			);
 			path = CustomView;
 			sourceTree = "<group>";
@@ -575,6 +581,7 @@
 				F1E0A67D2BBD283A00C2CFCE /* ApiTiker.swift in Sources */,
 				F1E0A6622BBD23E500C2CFCE /* Date.swift in Sources */,
 				F1E0A6612BBD23E300C2CFCE /* CALayer.swift in Sources */,
+				F1E7CE8D2BD510C300E902CA /* AccountCell.swift in Sources */,
 				F13B73D12BBE79BC00C96F19 /* DetailViewModel.swift in Sources */,
 				F1E0A6702BBD252D00C2CFCE /* MarketViewController.swift in Sources */,
 				F1E0A6742BBD256C00C2CFCE /* SettingViewController.swift in Sources */,
@@ -621,6 +628,7 @@
 				F1E0A6642BBD23EA00C2CFCE /* Double.swift in Sources */,
 				F1E0A6922BBD291A00C2CFCE /* UpbitSocketService.swift in Sources */,
 				F1E0A6902BBD28D200C2CFCE /* PercentView.swift in Sources */,
+				F1E7CE8F2BD512F700E902CA /* AutoSizeTableView.swift in Sources */,
 				F1D5EA382BC5211200578328 /* PageService.swift in Sources */,
 				F1DA88E42BCFB8E3005E8E22 /* AccountViewController.swift in Sources */,
 				F1DA88E22BCFB12B005E8E22 /* Payload.swift in Sources */,
