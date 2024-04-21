@@ -30,6 +30,7 @@
 		F1DA88E42BCFB8E3005E8E22 /* AccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1DA88E32BCFB8E3005E8E22 /* AccountViewController.swift */; };
 		F1DA88E62BCFB8F5005E8E22 /* AccountViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1DA88E52BCFB8F5005E8E22 /* AccountViewModel.swift */; };
 		F1DA88E82BCFBA97005E8E22 /* Account.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1DA88E72BCFBA97005E8E22 /* Account.swift */; };
+		F1DA88EA2BCFF740005E8E22 /* AccountView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1DA88E92BCFF740005E8E22 /* AccountView.swift */; };
 		F1E0A5F22BBD1F8500C2CFCE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1E0A5F12BBD1F8500C2CFCE /* AppDelegate.swift */; };
 		F1E0A5F42BBD1F8500C2CFCE /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1E0A5F32BBD1F8500C2CFCE /* SceneDelegate.swift */; };
 		F1E0A5FB2BBD1F8600C2CFCE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F1E0A5FA2BBD1F8600C2CFCE /* Assets.xcassets */; };
@@ -127,6 +128,7 @@
 		F1DA88E32BCFB8E3005E8E22 /* AccountViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountViewController.swift; sourceTree = "<group>"; };
 		F1DA88E52BCFB8F5005E8E22 /* AccountViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountViewModel.swift; sourceTree = "<group>"; };
 		F1DA88E72BCFBA97005E8E22 /* Account.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Account.swift; sourceTree = "<group>"; };
+		F1DA88E92BCFF740005E8E22 /* AccountView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountView.swift; sourceTree = "<group>"; };
 		F1E0A5EE2BBD1F8500C2CFCE /* Investor.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Investor.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F1E0A5F12BBD1F8500C2CFCE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F1E0A5F32BBD1F8500C2CFCE /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -292,6 +294,7 @@
 			isa = PBXGroup;
 			children = (
 				F1E0A69C2BBD2D1500C2CFCE /* ChatItemView.swift */,
+				F1DA88E92BCFF740005E8E22 /* AccountView.swift */,
 				F1E0A69A2BBD2D1500C2CFCE /* InputView.swift */,
 				F1D0044A2BC92FE80032D272 /* PriceView.swift */,
 				F1D004502BC970940032D272 /* StackChildView.swift */,
@@ -590,6 +593,7 @@
 				F1D5EA402BC5550800578328 /* OrderbookViewModel.swift in Sources */,
 				F1DA88E62BCFB8F5005E8E22 /* AccountViewModel.swift in Sources */,
 				F1E0A5F22BBD1F8500C2CFCE /* AppDelegate.swift in Sources */,
+				F1DA88EA2BCFF740005E8E22 /* AccountView.swift in Sources */,
 				F1E0A6762BBD257700C2CFCE /* SettingViewModel.swift in Sources */,
 				F1E0A6A92BBD2D4F00C2CFCE /* TickerProtocol.swift in Sources */,
 				F1E0A67F2BBD283E00C2CFCE /* Chat.swift in Sources */,

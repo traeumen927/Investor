@@ -13,7 +13,7 @@ class AccountViewModel {
     
     // MARK: - Place for Output
     // MARK: 내가 보유한 자산 리스트
-    private let accountSubject: BehaviorSubject<[Account]> = BehaviorSubject(value: [])
+    let accountSubject: BehaviorSubject<[Account]> = BehaviorSubject(value: [])
     
     // MARK: 에러 description Subejct
     let errorSubject = PublishSubject<String>()
