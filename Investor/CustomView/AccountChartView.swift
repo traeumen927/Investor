@@ -15,6 +15,11 @@ class AccountChartView: UIView {
         let chart = PieChartView()
         chart.noDataText = "데이터가 없습니다."
         chart.noDataFont = UIFont.systemFont(ofSize: 20, weight: .bold)
+        chart.rotationEnabled = false
+        chart.isUserInteractionEnabled = false
+        chart.rotationAngle = 0
+        chart.drawHoleEnabled = true
+        chart.chartDescription.enabled = false
         return chart
     }()
     
@@ -47,7 +52,24 @@ class AccountChartView: UIView {
         
     }
     
-    func update(with asset: [(Account, SocketTicker?)]) {
-        PieChartData(dataSet: <#T##any ChartData.Element#>)
+    func update(with pieData: [String:Double]) {
+        var entries: [PieChartDataEntry] = []
+        
+        for pieItem in pieData {
+            entries.append(PieChartDataEntry(value: pieItem.value, label: pieItem.key))
+        }
+        
+        let colors = entries.map { entry in
+            guard let label = entry.label else {
+                return ThemeColor.primary1
+            }
+            return UIColor.colorForString(with: label)
+        }
+        
+        let dataSet = PieChartDataSet(entries: entries, label: "")
+        dataSet.drawValuesEnabled = false
+        dataSet.colors = colors
+        
+        self.pieChart.data = PieChartData(dataSet: dataSet)
     }
 }

@@ -93,12 +93,19 @@ class AccountViewController: UIViewController {
             }).disposed(by: disposeBag)
         
         // MARK: 보유자산의 현재가 구독
-        self.viewModel.tickerSubejct
+        self.viewModel.tickerSubject
             .buffer(timeSpan: .milliseconds(500), count: 1, scheduler: MainScheduler.instance)
             .observe(on: MainScheduler.instance)
             .subscribe(onNext: { [weak self] ticker in
                 guard let self = self else { return }
                 self.updateRow(with: ticker)
+            }).disposed(by: disposeBag)
+        
+        self.viewModel.combinedDataSubject
+            .observe(on: MainScheduler.instance)
+            .subscribe(onNext: {[weak self] combinedAccount in
+                guard let self = self else { return }
+                self.accountChartView.update(with: combinedAccount)
             }).disposed(by: disposeBag)
         
         // MARK: 에러메세지 구독
@@ -139,9 +146,6 @@ class AccountViewController: UIViewController {
         
         // MARK: 내 보유자산의 총 손익 업데이트
         self.accountView.update(with: self.assetList)
-        
-        // MARK: 내 보유자산의 파이차트 업데이트
-        self.accountChartView.update(with: self.assetList)
         
         // MARK: 변경 애니메이션 없이 items 업데이트
         UIView.performWithoutAnimation {

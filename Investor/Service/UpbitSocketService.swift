@@ -19,7 +19,7 @@ class UpbitSocketService {
     
     
     // MARK: WebSocket didReceive Event Subject
-    let socketEventSubejct: PublishSubject<WebSocketEventWrapper> = PublishSubject<WebSocketEventWrapper>()
+    let socketEventSubject: PublishSubject<WebSocketEventWrapper> = PublishSubject<WebSocketEventWrapper>()
     
     
     init() {
@@ -78,7 +78,7 @@ class UpbitSocketService {
 extension UpbitSocketService: WebSocketDelegate {
     func didReceive(event: WebSocketEvent, client: WebSocketClient) {
         // MARK: Socket Event 방출
-        self.socketEventSubejct.onNext(WebSocketEventWrapper(event: event))
+        self.socketEventSubject.onNext(WebSocketEventWrapper(event: event))
     }
 }
 

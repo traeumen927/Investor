@@ -30,9 +30,9 @@ extension UIColor {
     
     
     // MARK: SHA-256 기반 String에 매칭된 색상 추출
-    static func colorForUserId(userId: String) -> UIColor {
+    static func colorForString(with string: String) -> UIColor {
         // MARK:  SHA-256 해시 생성
-        let inputData = Data(userId.utf8)
+        let inputData = Data(string.utf8)
         let hashedData = SHA256.hash(data: inputData)
         
         // MARK:  해시된 값을 바이트 배열로 변환하여 RGB 색상 값 생성

@@ -29,7 +29,7 @@ class ChartViewModel {
     // MARK: 실시간 현재가 Ticker
     let tickerSubject: BehaviorSubject<TickerProtocol>
     
-    // MARK: 에러 description Subejct
+    // MARK: 에러 description Subject
     let errorSubject = PublishSubject<String>()
     
     
@@ -40,7 +40,7 @@ class ChartViewModel {
         self.tickerSubject = BehaviorSubject(value: marketTicker.socketTicker ?? marketTicker.apiTicker)
         
         // MARK: 웹소켓 이벤트 구독
-        upbitSocketService.socketEventSubejct
+        upbitSocketService.socketEventSubject
             .subscribe(onNext: { [weak self] eventWrapper in
                 self?.didReceiveEvent(event: eventWrapper.event)
             }).disposed(by: disposeBag)
