@@ -35,13 +35,13 @@ class MarketViewModel {
     // MARK: 즐겨찾기한 마켓 코드 목록
     let favoritedCodeSubject: BehaviorRelay<[String]> = BehaviorRelay(value: [])
     
-    // MARK: 에러 description Subejct
+    // MARK: 에러 description Subject
     let errorSubject = PublishSubject<String>()
     
     
     init() {
         // MARK: 웹소켓 이벤트 구독
-        upbitSocketService.socketEventSubejct
+        upbitSocketService.socketEventSubject
             .subscribe(onNext: { [weak self] eventWrapper in
                 guard let self = self else { return }
                 self.didReceiveEvent(event: eventWrapper.event)

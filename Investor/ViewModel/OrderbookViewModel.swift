@@ -47,7 +47,7 @@ class OrderbookViewModel {
         self.marketInfo = marketInfo
         
         // MARK: 웹소켓 이벤트 구독
-        upbitSocketService.socketEventSubejct
+        upbitSocketService.socketEventSubject
             .subscribe(onNext: { [weak self] eventWrapper in
                 self?.didReceiveEvent(event: eventWrapper.event)
             }).disposed(by: disposeBag)

@@ -35,6 +35,12 @@ class AccountViewController: UIViewController {
         return view
     }()
     
+    // MARK: 보유 자산을 표시하는 파이차트 뷰
+    private var accountChartView: AccountChartView = {
+       let view = AccountChartView()
+        return view
+    }()
+    
     // MARK: 보유 코인목록이 보여질 테이블뷰(contentSize만큼 높이가 설정됨)
     private lazy var tableView: AutoSizeTableView = {
         let view = AutoSizeTableView()
@@ -74,7 +80,7 @@ class AccountViewController: UIViewController {
             make.edges.width.equalToSuperview()
         }
         
-        [accountView, tableView].forEach(self.stackView.addArrangedSubview(_:))
+        [accountView, accountChartView, tableView].forEach(self.stackView.addArrangedSubview(_:))
     }
     
     private func bind() {
@@ -87,12 +93,19 @@ class AccountViewController: UIViewController {
             }).disposed(by: disposeBag)
         
         // MARK: 보유자산의 현재가 구독
-        self.viewModel.tickerSubejct
+        self.viewModel.tickerSubject
             .buffer(timeSpan: .milliseconds(500), count: 1, scheduler: MainScheduler.instance)
             .observe(on: MainScheduler.instance)
             .subscribe(onNext: { [weak self] ticker in
                 guard let self = self else { return }
                 self.updateRow(with: ticker)
+            }).disposed(by: disposeBag)
+        
+        self.viewModel.combinedDataSubject
+            .observe(on: MainScheduler.instance)
+            .subscribe(onNext: {[weak self] combinedAccount in
+                guard let self = self else { return }
+                self.accountChartView.update(with: combinedAccount)
             }).disposed(by: disposeBag)
         
         // MARK: 에러메세지 구독

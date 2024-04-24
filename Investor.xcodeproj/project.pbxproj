@@ -82,6 +82,7 @@
 		F1E0A6A12BBD2D1500C2CFCE /* ChatItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1E0A69C2BBD2D1500C2CFCE /* ChatItemView.swift */; };
 		F1E0A6A72BBD2D3100C2CFCE /* FireStoreService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1E0A6A62BBD2D3100C2CFCE /* FireStoreService.swift */; };
 		F1E0A6A92BBD2D4F00C2CFCE /* TickerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1E0A6A82BBD2D4F00C2CFCE /* TickerProtocol.swift */; };
+		F1E28C9A2BD7873400E3AE7A /* AccountChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1E28C992BD7873400E3AE7A /* AccountChartView.swift */; };
 		F1E7CE8D2BD510C300E902CA /* AccountCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1E7CE8C2BD510C300E902CA /* AccountCell.swift */; };
 		F1E7CE8F2BD512F700E902CA /* AutoSizeTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1E7CE8E2BD512F700E902CA /* AutoSizeTableView.swift */; };
 		F1EA80132BC6CDCE00AE5F58 /* Orderbook.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1EA80122BC6CDCE00AE5F58 /* Orderbook.swift */; };
@@ -176,6 +177,7 @@
 		F1E0A6A32BBD2D2400C2CFCE /* ChatViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatViewModel.swift; sourceTree = "<group>"; };
 		F1E0A6A62BBD2D3100C2CFCE /* FireStoreService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FireStoreService.swift; sourceTree = "<group>"; };
 		F1E0A6A82BBD2D4F00C2CFCE /* TickerProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TickerProtocol.swift; sourceTree = "<group>"; };
+		F1E28C992BD7873400E3AE7A /* AccountChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountChartView.swift; sourceTree = "<group>"; };
 		F1E7CE8C2BD510C300E902CA /* AccountCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountCell.swift; sourceTree = "<group>"; };
 		F1E7CE8E2BD512F700E902CA /* AutoSizeTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AutoSizeTableView.swift; sourceTree = "<group>"; };
 		F1EA80122BC6CDCE00AE5F58 /* Orderbook.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Orderbook.swift; sourceTree = "<group>"; };
@@ -300,6 +302,7 @@
 			children = (
 				F1E0A69C2BBD2D1500C2CFCE /* ChatItemView.swift */,
 				F1DA88E92BCFF740005E8E22 /* AccountView.swift */,
+				F1E28C992BD7873400E3AE7A /* AccountChartView.swift */,
 				F1E0A69A2BBD2D1500C2CFCE /* InputView.swift */,
 				F1D0044A2BC92FE80032D272 /* PriceView.swift */,
 				F1D004502BC970940032D272 /* StackChildView.swift */,
@@ -617,6 +620,7 @@
 				F1E0A6932BBD291C00C2CFCE /* UpbitApiService.swift in Sources */,
 				F12C8AA92BCC074F00C4E99E /* AbType.swift in Sources */,
 				F1E0A68D2BBD28B400C2CFCE /* MarketCell.swift in Sources */,
+				F1E28C9A2BD7873400E3AE7A /* AccountChartView.swift in Sources */,
 				F1D5EA3A2BC5248700578328 /* ChartViewController.swift in Sources */,
 				F1E0A6682BBD23F400C2CFCE /* UIResponder.swift in Sources */,
 				F1E0A69F2BBD2D1500C2CFCE /* InputView.swift in Sources */,

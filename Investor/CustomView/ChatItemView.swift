@@ -125,6 +125,6 @@ class ChatItemView: UIView {
         
         
         // MARK: 프로필 색상을 SHA 256기반으로 Sender에 매칭된 색상으로 설정
-        self.profileView.image = UIImage(systemName: "person.circle.fill")?.withTintColor(UIColor.colorForUserId(userId: chat.sender), renderingMode: .alwaysOriginal)
+        self.profileView.image = UIImage(systemName: "person.circle.fill")?.withTintColor(UIColor.colorForString(with: chat.sender), renderingMode: .alwaysOriginal)
     }
 }

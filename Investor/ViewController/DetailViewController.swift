@@ -120,7 +120,7 @@ class DetailViewController: UIViewController {
         
         
         // MARK: 즐겨찾기 메세지 구독
-        self.viewModel.fovoriteMessageSubejct
+        self.viewModel.fovoriteMessageSubject
             .observe(on: MainScheduler.instance)
             .subscribe(onNext: { [weak self] message in
                 guard let self = self else { return }

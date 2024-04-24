@@ -6,6 +6,7 @@
 //
 
 import RxSwift
+import RxCocoa
 import Starscream
 
 class AccountViewModel {
@@ -20,18 +21,37 @@ class AccountViewModel {
     let accountSubject: BehaviorSubject<[Account]> = BehaviorSubject(value: [])
     
     // MARK: 내가 보유한 자산의 현재가
-    let tickerSubejct = PublishSubject<SocketTicker>()
+    let tickerSubject = PublishSubject<SocketTicker>()
     
-    // MARK: 에러 description Subejct
+    // MARK: 내가 보유한 자산명, 현재가치(balance * trade_price)의 딕셔너리 배열
+    let combinedDataSubject: BehaviorRelay<[String: Double]> = BehaviorRelay(value: [:])
+    
+    // MARK: 에러 description Subject
     let errorSubject = PublishSubject<String>()
     
     init() {
         // MARK: 웹소켓 이벤트 구독
-        upbitSocketService.socketEventSubejct
+        upbitSocketService.socketEventSubject
             .subscribe(onNext: { [weak self] eventWrapper in
                 guard let self = self else { return }
                 self.didReceiveEvent(event: eventWrapper.event)
             }).disposed(by: disposeBag)
+        
+        
+        // FIXME: 자산정보와 실시간 현재가를 combine하여 자산명/현재가치 방출(구매가치가 0인 자산 제외) -> 추후에 거래 가능 자산으로 필터링
+        Observable.combineLatest(accountSubject, tickerSubject) { accounts, ticker in
+            var combinedData = self.combinedDataSubject.value
+            for account in accounts {
+                let currency = "KRW-\(account.currency)"
+                if currency == ticker.code {
+                    let totalPrice = account.balance * ticker.trade_price
+                    combinedData[account.currency] = totalPrice
+                }
+            }
+            return combinedData
+        }
+        .bind(to: combinedDataSubject)
+        .disposed(by: disposeBag)
     }
     
     // MARK: 자산 리스트 + 현재가 조회
@@ -48,7 +68,7 @@ class AccountViewModel {
                 
                 // MARK: 보유 자산의 현재가 조회(웹소켓)
                 upbitSocketService.subscribeTo(types: [.ticker], symbol: markets)
-
+                
             case .failure(let error):
                 self.errorSubject.onNext(error.message)
             }
@@ -69,7 +89,7 @@ class AccountViewModel {
     private func didReceiveEvent(event: WebSocketEvent) {
         
         let className = String(describing: self)
-    
+        
         switch event {
             
             // MARK: 소켓이 연결됨
@@ -90,7 +110,7 @@ class AccountViewModel {
             // MARK: 이진(binary) 데이터를 받음
         case .binary(let data):
             if let ticker: SocketTicker = SocketTicker.parseData(data) {
-                self.tickerSubejct.onNext(ticker)
+                self.tickerSubject.onNext(ticker)
             }
             
             // MARK: 핑 메세지를 받음

@@ -25,7 +25,7 @@ class DetailViewModel {
     let isFavoriteSubject: BehaviorSubject<Bool> = BehaviorSubject(value: false)
     
     // MARK: 즐겨찾기 업데이트 관련 메세지
-    let fovoriteMessageSubejct = PublishSubject<String>()
+    let fovoriteMessageSubject = PublishSubject<String>()
     
     init(marketTicker: MarketTicker) {
         self.marketTicker = marketTicker
@@ -52,17 +52,17 @@ class DetailViewModel {
                     if let favorite = realm.get(Favorite.self, primaryKey: code) {
                         realm.delete(favorite)
                         self.isFavoriteSubject.onNext(false)
-                        fovoriteMessageSubejct.onNext("즐겨찾기에서 제거되었습니다.")
+                        fovoriteMessageSubject.onNext("즐겨찾기에서 제거되었습니다.")
                     }
                     else {
                         self.isFavoriteSubject.onNext(false)
-                        fovoriteMessageSubejct.onNext("즐겨찾기에서 제거되었습니다.")
+                        fovoriteMessageSubject.onNext("즐겨찾기에서 제거되었습니다.")
                     }
                 } else {
                     // MARK: 현재 즐겨찾기중이 아님 -> 즐겨찾기 추가
                     realm.create(Favorite(code: code))
                     self.isFavoriteSubject.onNext(true)
-                    fovoriteMessageSubejct.onNext("즐겨찾기에 추가되었습니다.")
+                    fovoriteMessageSubject.onNext("즐겨찾기에 추가되었습니다.")
                 }
             }).disposed(by: disposeBag)
     }
