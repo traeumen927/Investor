@@ -101,6 +101,7 @@ class AccountViewController: UIViewController {
                 self.updateRow(with: ticker)
             }).disposed(by: disposeBag)
         
+        // MARK: combine된 화폐이름:현재가치 딕셔너리
         self.viewModel.combinedDataSubject
             .observe(on: MainScheduler.instance)
             .subscribe(onNext: {[weak self] combinedAccount in

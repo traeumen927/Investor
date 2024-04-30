@@ -11,6 +11,9 @@ import DGCharts
 
 class AccountChartView: UIView {
     
+    // MARK: Pie Chart DataSet
+    private var entries: [PieChartDataEntry] = []
+    
     private lazy var pieChart: PieChartView = {
         let chart = PieChartView()
         chart.noDataText = "데이터가 없습니다."
@@ -53,20 +56,28 @@ class AccountChartView: UIView {
     }
     
     func update(with pieData: [String:Double]) {
-        var entries: [PieChartDataEntry] = []
         
         for pieItem in pieData {
-            entries.append(PieChartDataEntry(value: pieItem.value, label: pieItem.key))
+            if pieItem.value > 0 {
+                if let existingEntryIndex = entries.firstIndex(where: { $0.label == pieItem.key }) {
+                    // MARK: 이미 존재하는 경우 value를 수정
+                    self.entries[existingEntryIndex].value = pieItem.value
+                } else {
+                    // MARK: 존재하지 않는 경우 새로운 entry 추가
+                    self.entries.append(PieChartDataEntry(value: pieItem.value, label: pieItem.key))
+                }
+            }
         }
         
-        let colors = entries.map { entry in
+        
+        let colors = self.entries.map { entry in
             guard let label = entry.label else {
                 return ThemeColor.primary1
             }
             return UIColor.colorForString(with: label)
         }
         
-        let dataSet = PieChartDataSet(entries: entries, label: "")
+        let dataSet = PieChartDataSet(entries: self.entries, label: "")
         dataSet.drawValuesEnabled = false
         dataSet.colors = colors
         
