@@ -38,14 +38,46 @@ class AccountViewModel {
             }).disposed(by: disposeBag)
         
         
-        // FIXME: 자산정보와 실시간 현재가를 combine하여 자산명/현재가치 방출(구매가치가 0인 자산 제외) -> 추후에 거래 가능 자산으로 필터링
+        
+        accountSubject.subscribe(onNext: { [weak self] accounts in
+            guard let self = self else { return }
+            
+            // MARK: 새로운 데이터를 계산하여 combinedDataSubject에 업데이트
+            var combinedData = Dictionary(uniqueKeysWithValues: accounts.map { account in
+                if account.currency == "KRW" {
+                    // MARK: 원화라면 원화 보유 수량을 자산으로 배치
+                    return (account.currency, account.balance)
+                } else {
+                    // MARK: 코인이라면 보유수량 * 평균 구매가를 자산으로 배치
+                    return (account.currency, account.balance * account.avg_buy_price)
+                }
+            })
+            
+            self.combinedDataSubject.accept(combinedData)
+            
+        }).disposed(by: disposeBag)
+        
+        
+        // MARK: 자산정보와 실시간 현재가를 combine하여 자산명/현재가치 방출
         Observable.combineLatest(accountSubject, tickerSubject) { accounts, ticker in
+            
+            // MARK: 최신 자산 딕셔너리
             var combinedData = self.combinedDataSubject.value
+            
+            // MARK: accounts 배열에 있는 currency들을 모아둘 Set 생성
+            let accountCurrencies = Set(accounts.map { "\($0.currency)" })
+            
+            // MARK: combinedData에서 accounts 배열에 없는 currency에 해당하는 key 제거 (자산의 추가 및 제거시 아이템 최신화)
+            combinedData = combinedData.filter { accountCurrencies.contains($0.key) }
+            
             for account in accounts {
                 let currency = "KRW-\(account.currency)"
                 if currency == ticker.code {
-                    let totalPrice = account.balance * ticker.trade_price
-                    combinedData[account.currency] = totalPrice
+                    // MARK: 해당 currency가 이미 combinedData에 존재하는 경우에만 값을 업데이트
+                    if combinedData.keys.contains(account.currency) {
+                        let totalPrice = account.balance * ticker.trade_price
+                        combinedData[account.currency] = totalPrice
+                    }
                 }
             }
             return combinedData
