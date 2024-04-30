@@ -35,8 +35,8 @@
 ## Upbit Rest Api와 WebSocket의 실시간 데이터를 활용한 투자내역 페이지 (진행중)
 
 <p align="center">
-  <img src="https://github.com/traeumen927/Investor/assets/18188727/e0f4cf31-3d28-4cac-b201-054536016a36" width="30%">
-  <img src="https://github.com/traeumen927/Investor/assets/18188727/7d48e414-6ebb-404e-9477-68a2d31aa6dc" width="30%">
+  <img src="https://github.com/traeumen927/Investor/assets/18188727/936f08d8-e9c6-4546-b620-f5ce7b2db4f8" width="30%">
+  <img src="https://github.com/traeumen927/Investor/assets/18188727/fdf79972-32eb-4aa9-8038-ff991375ecab" width="30%">
 </p>
 
 <br/>
