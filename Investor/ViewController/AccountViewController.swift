@@ -37,7 +37,7 @@ class AccountViewController: UIViewController {
     
     // MARK: 보유 자산을 표시하는 파이차트 뷰
     private var accountChartView: AccountChartView = {
-       let view = AccountChartView()
+        let view = AccountChartView()
         return view
     }()
     
@@ -86,28 +86,26 @@ class AccountViewController: UIViewController {
     private func bind() {
         // MARK: 보유자산 구독
         self.viewModel.accountSubject
+            .distinctUntilChanged { previousAccounts, newAccounts in
+                // MARK: 기존 자산의 종류와 자산별 갯수가 동일하다면 방출x
+                return previousAccounts.elementsEqual(newAccounts) { $0.currency == $1.currency && $0.balance == $1.balance }
+            }
             .observe(on: MainScheduler.instance)
             .subscribe(onNext: { [weak self] accounts in
                 guard let self = self else { return }
                 self.reloadStackView(accounts: accounts)
+                self.accountChartView.bind(with: accounts)
             }).disposed(by: disposeBag)
         
         // MARK: 보유자산의 현재가 구독
         self.viewModel.tickerSubject
-            .buffer(timeSpan: .milliseconds(500), count: 1, scheduler: MainScheduler.instance)
             .observe(on: MainScheduler.instance)
             .subscribe(onNext: { [weak self] ticker in
                 guard let self = self else { return }
                 self.updateRow(with: ticker)
+                self.accountChartView.update(with: ticker)
             }).disposed(by: disposeBag)
         
-        // MARK: combine된 화폐이름:현재가치 딕셔너리
-        self.viewModel.combinedDataSubject
-            .observe(on: MainScheduler.instance)
-            .subscribe(onNext: {[weak self] combinedAccount in
-                guard let self = self else { return }
-                self.accountChartView.update(with: combinedAccount)
-            }).disposed(by: disposeBag)
         
         // MARK: 에러메세지 구독
         self.viewModel.errorSubject
@@ -133,17 +131,15 @@ class AccountViewController: UIViewController {
     }
     
     // MARK: 현재가 기준으로 tableview update
-    private func updateRow(with newTickers: [SocketTicker]) {
+    private func updateRow(with newTicker: SocketTicker) {
         var requiredReloadIndexes: [IndexPath] = []
         
         // MARK: 변경될 티커의 인덱스 조회
-        for newTicker in newTickers {
             if let index = self.assetList.firstIndex(where: { "KRW-" + $0.account.currency == newTicker.code }) {
                 let indexPath = IndexPath(row: index, section: 0)
                 requiredReloadIndexes.append(indexPath)
                 self.assetList[index].ticker = newTicker
             }
-        }
         
         // MARK: 내 보유자산의 총 손익 업데이트
         self.accountView.update(with: self.assetList)
