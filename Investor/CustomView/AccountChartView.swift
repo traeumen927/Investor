@@ -51,6 +51,9 @@ class AccountChartView: UIView {
             make.leading.trailing.equalToSuperview().inset(24)
             make.height.equalTo(300)
         }
+        
+        
+        
     }
     
     // MARK: data binding, 자산 변동 및 자산 페이지 진입 시 호출
@@ -106,11 +109,26 @@ class AccountChartView: UIView {
             return UIColor.colorForString(with: label)
         }
         
+        let formatter = NumberFormatter()
+        formatter.numberStyle = .percent
+        formatter.maximumFractionDigits = 0
+        formatter.multiplier = 1.0
+        formatter.percentSymbol = "%"
+        formatter.zeroSymbol = ""
+        
         let dataSet = PieChartDataSet(entries: entries, label: "")
         dataSet.drawValuesEnabled = false
         dataSet.colors = colors
+        dataSet.valueFormatter = DefaultValueFormatter(formatter: formatter)
         
-        self.pieChart.data = PieChartData(dataSet: dataSet)
+
+        
+        let pieData = PieChartData(dataSet: dataSet)
+        
+        self.pieChart.data = pieData
+        
+        //pieData.setValueFormatter(DefaultValueFormatter(formatter: formatter))
+//        pieData.dataSet?.valueFormatter = DefaultValueFormatter(formatter: formatter)
     }
 }
 

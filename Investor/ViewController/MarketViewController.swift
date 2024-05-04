@@ -129,10 +129,11 @@ class MarketViewController: UIViewController {
             }).disposed(by: disposeBag)
         
         
-        // MARK: 이후 변동되는 실시간 현재가 Ticker 가져오기, 0.3초마다 or 30개의 변동이 있을 때마다 cell 업데이트 진행
+        // MARK: 이후 변동되는 실시간 현재가 Ticker 가져오기, 3초마다 or 30개의 변동이 있을 때마다 cell 업데이트 진행
         self.viewModel.socketTickerSubject
             .observe(on: MainScheduler.instance)
             .buffer(timeSpan: .milliseconds(3000), count: 30, scheduler: MainScheduler.instance)
+            .filter({$0.count > 0})
             .subscribe(onNext: { [weak self] newTickers in
                 guard let self = self else { return }
                 // MARK: 셀 업데이트
