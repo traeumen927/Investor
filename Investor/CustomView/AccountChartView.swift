@@ -109,26 +109,13 @@ class AccountChartView: UIView {
             return UIColor.colorForString(with: label)
         }
         
-        let formatter = NumberFormatter()
-        formatter.numberStyle = .percent
-        formatter.maximumFractionDigits = 0
-        formatter.multiplier = 1.0
-        formatter.percentSymbol = "%"
-        formatter.zeroSymbol = ""
-        
         let dataSet = PieChartDataSet(entries: entries, label: "")
         dataSet.drawValuesEnabled = false
         dataSet.colors = colors
-        dataSet.valueFormatter = DefaultValueFormatter(formatter: formatter)
-        
-
         
         let pieData = PieChartData(dataSet: dataSet)
         
         self.pieChart.data = pieData
-        
-        //pieData.setValueFormatter(DefaultValueFormatter(formatter: formatter))
-//        pieData.dataSet?.valueFormatter = DefaultValueFormatter(formatter: formatter)
     }
 }
 

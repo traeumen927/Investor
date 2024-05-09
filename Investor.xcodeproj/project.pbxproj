@@ -86,6 +86,8 @@
 		F1E7CE8D2BD510C300E902CA /* AccountCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1E7CE8C2BD510C300E902CA /* AccountCell.swift */; };
 		F1E7CE8F2BD512F700E902CA /* AutoSizeTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1E7CE8E2BD512F700E902CA /* AutoSizeTableView.swift */; };
 		F1EA80132BC6CDCE00AE5F58 /* Orderbook.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1EA80122BC6CDCE00AE5F58 /* Orderbook.swift */; };
+		F1F00BC12BECF9DE00AFC48B /* Nimble in Frameworks */ = {isa = PBXBuildFile; productRef = F1F00BC02BECF9DE00AFC48B /* Nimble */; };
+		F1F00BC42BECF9F400AFC48B /* Quick in Frameworks */ = {isa = PBXBuildFile; productRef = F1F00BC32BECF9F400AFC48B /* Quick */; };
 		F1F1A3852BC7B589000CD879 /* SubscriptionType.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1F1A3842BC7B589000CD879 /* SubscriptionType.swift */; };
 		F1F1A3872BC7BEA9000CD879 /* ChatCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1F1A3862BC7BEA8000CD879 /* ChatCell.swift */; };
 		F1F420252BCE544D003B19D2 /* Favorite.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1F420242BCE544D003B19D2 /* Favorite.swift */; };
@@ -192,7 +194,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F1F00BC12BECF9DE00AFC48B /* Nimble in Frameworks */,
 				F1E0A6412BBD20FE00C2CFCE /* FirebaseFirestore in Frameworks */,
+				F1F00BC42BECF9F400AFC48B /* Quick in Frameworks */,
 				F1E0A6282BBD206F00C2CFCE /* SnapKit in Frameworks */,
 				F1F4202A2BCE650E003B19D2 /* Toast in Frameworks */,
 				F1E0A6472BBD21AF00C2CFCE /* RxCocoa in Frameworks */,
@@ -449,6 +453,8 @@
 				F1E0A6482BBD21AF00C2CFCE /* RxSwift */,
 				F1F420292BCE650E003B19D2 /* Toast */,
 				F1DA88DF2BCFAD49005E8E22 /* SwiftJWT */,
+				F1F00BC02BECF9DE00AFC48B /* Nimble */,
+				F1F00BC32BECF9F400AFC48B /* Quick */,
 			);
 			productName = Investor;
 			productReference = F1E0A5EE2BBD1F8500C2CFCE /* Investor.app */;
@@ -533,6 +539,8 @@
 				F1E0A6452BBD21AF00C2CFCE /* XCRemoteSwiftPackageReference "RxSwift" */,
 				F1F420282BCE650E003B19D2 /* XCRemoteSwiftPackageReference "Toast-Swift" */,
 				F1DA88DE2BCFAD49005E8E22 /* XCRemoteSwiftPackageReference "Swift-JWT" */,
+				F1F00BBF2BECF9DE00AFC48B /* XCRemoteSwiftPackageReference "Nimble" */,
+				F1F00BC22BECF9F400AFC48B /* XCRemoteSwiftPackageReference "Quick" */,
 			);
 			productRefGroup = F1E0A5EF2BBD1F8500C2CFCE /* Products */;
 			projectDirPath = "";
@@ -1051,6 +1059,22 @@
 				minimumVersion = 6.6.0;
 			};
 		};
+		F1F00BBF2BECF9DE00AFC48B /* XCRemoteSwiftPackageReference "Nimble" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Quick/Nimble.git";
+			requirement = {
+				branch = main;
+				kind = branch;
+			};
+		};
+		F1F00BC22BECF9F400AFC48B /* XCRemoteSwiftPackageReference "Quick" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Quick/Quick.git";
+			requirement = {
+				branch = main;
+				kind = branch;
+			};
+		};
 		F1F420282BCE650E003B19D2 /* XCRemoteSwiftPackageReference "Toast-Swift" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/scalessec/Toast-Swift.git";
@@ -1126,6 +1150,16 @@
 			isa = XCSwiftPackageProductDependency;
 			package = F1E0A6452BBD21AF00C2CFCE /* XCRemoteSwiftPackageReference "RxSwift" */;
 			productName = RxSwift;
+		};
+		F1F00BC02BECF9DE00AFC48B /* Nimble */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = F1F00BBF2BECF9DE00AFC48B /* XCRemoteSwiftPackageReference "Nimble" */;
+			productName = Nimble;
+		};
+		F1F00BC32BECF9F400AFC48B /* Quick */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = F1F00BC22BECF9F400AFC48B /* XCRemoteSwiftPackageReference "Quick" */;
+			productName = Quick;
 		};
 		F1F420292BCE650E003B19D2 /* Toast */ = {
 			isa = XCSwiftPackageProductDependency;
