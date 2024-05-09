@@ -11,8 +11,11 @@ import DGCharts
 
 class AccountChartView: UIView {
     
-    // MARK: Pie Chart DataSet
-    private var entries: [PieChartDataEntry] = []
+    // MARK: 자산정보 리스트
+    private var accountList: [Account] = []
+    
+    // MARK: PieChart 데이터
+    private var pieData: [String: Double] = [:]
     
     private lazy var pieChart: PieChartView = {
         let chart = PieChartView()
@@ -48,39 +51,73 @@ class AccountChartView: UIView {
             make.leading.trailing.equalToSuperview().inset(24)
             make.height.equalTo(300)
         }
-    }
-    
-    // MARK: data binding
-    func configure(with accounts: [Account]) {
+        
+        
         
     }
     
-    func update(with pieData: [String:Double]) {
+    // MARK: data binding, 자산 변동 및 자산 페이지 진입 시 호출
+    func bind(with accounts: [Account]) {
+        self.accountList = accounts
         
-        for pieItem in pieData {
+        // MARK: 새로운 데이터를 계산하여 combinedDataSubject에 업데이트
+        self.pieData = Dictionary(uniqueKeysWithValues: accounts.map { account in
+            if account.currency == "KRW" {
+                // MARK: 원화라면 원화 보유 수량을 자산으로 배치
+                return (account.currency, account.balance)
+            } else {
+                // MARK: 코인이라면 보유수량 * 평균 구매가를 자산으로 배치
+                return (account.currency, account.balance * account.avg_buy_price)
+            }
+        })
+        
+        // MARK: 업데이트된 자산 내역으로 PieChart reload
+        self.reloadPieChart()
+    }
+    
+    // MARK: 현재가 변동 시 자산가치 업데이트
+    func update(with ticker: SocketTicker) {
+        // MARK: 기존의 자산정보 내에서 일치하는 항목
+        if let account = accountList.first(where: { "KRW-\($0.currency)" == ticker.code}) {
+            // MARK: 자산수량 * 현재가로 업데이트
+            self.pieData[account.currency] = account.balance * ticker.trade_price
+        }
+        
+        // MARK: 업데이트된 자산 내역으로 PieChart reload
+        self.reloadPieChart()
+    }
+    
+    
+    // MARK: PieChart 초기화
+    private func reloadPieChart() {
+        
+        var entries = [PieChartDataEntry]()
+        
+        // MARK: 가치가 높은 순으로 정렬
+        for pieItem in self.pieData.sorted(by: { $0.value > $1.value }) {
+            // MARK: 가치가 0 이상인 경우 PieChart에 삽입
             if pieItem.value > 0 {
-                if let existingEntryIndex = entries.firstIndex(where: { $0.label == pieItem.key }) {
-                    // MARK: 이미 존재하는 경우 value를 수정
-                    self.entries[existingEntryIndex].value = pieItem.value
-                } else {
-                    // MARK: 존재하지 않는 경우 새로운 entry 추가
-                    self.entries.append(PieChartDataEntry(value: pieItem.value, label: pieItem.key))
-                }
+                entries.append(PieChartDataEntry(value: pieItem.value, label: pieItem.key))
             }
         }
         
-        
-        let colors = self.entries.map { entry in
+        // MARK: 각 label의 색상 설정
+        let colors = entries.map { entry in
             guard let label = entry.label else {
                 return ThemeColor.primary1
             }
             return UIColor.colorForString(with: label)
         }
         
-        let dataSet = PieChartDataSet(entries: self.entries, label: "")
+        let dataSet = PieChartDataSet(entries: entries, label: "")
         dataSet.drawValuesEnabled = false
         dataSet.colors = colors
         
-        self.pieChart.data = PieChartData(dataSet: dataSet)
+        let pieData = PieChartData(dataSet: dataSet)
+        
+        self.pieChart.data = pieData
     }
 }
+
+
+
