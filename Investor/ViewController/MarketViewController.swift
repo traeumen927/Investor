@@ -41,6 +41,7 @@ class MarketViewController: UIViewController {
         view.backgroundColor = ThemeColor.background2
         view.setTitleTextAttributes([NSAttributedString.Key.foregroundColor: ThemeColor.tintLight], for: .selected)
         view.setTitleTextAttributes([NSAttributedString.Key.foregroundColor: ThemeColor.tintDark], for: .normal)
+        view.isHidden = true
         return view
     }()
     
@@ -109,6 +110,7 @@ class MarketViewController: UIViewController {
                 guard let self = self else { return }
                 self.marketTickerList = marketTicker
                 self.collectionView.reloadData()
+                self.marketSegmentedControl.isHidden = false
             }).disposed(by: disposeBag)
         
         // MARK: 세그먼트컨트롤의 인덱스 구독 -> 선택된 pageViewController 이동
