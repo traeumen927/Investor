@@ -17,6 +17,7 @@
 		F13B73D32BBE868400C96F19 /* ChatViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1E0A6A32BBD2D2400C2CFCE /* ChatViewModel.swift */; };
 		F13B73D52BBE89B000C96F19 /* OrderbookCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F13B73D42BBE89B000C96F19 /* OrderbookCell.swift */; };
 		F182FEA02BC03C5500428E05 /* DateAxisValueFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F182FE9F2BC03C5500428E05 /* DateAxisValueFormatter.swift */; };
+		F1863D442C5BB85D006EAA03 /* OrderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1863D432C5BB85C006EAA03 /* OrderCell.swift */; };
 		F19CFC3C2C296E3E00BEAFC4 /* InvestorUITests.xctest in Resources */ = {isa = PBXBuildFile; fileRef = F1E0A60E2BBD1F8600C2CFCE /* InvestorUITests.xctest */; };
 		F1B59CB32C296BFD00C85CC0 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = F1B59CB22C296BFD00C85CC0 /* SnapKit */; };
 		F1B59CB62C296C2700C85CC0 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = F1B59CB52C296C2700C85CC0 /* Alamofire */; };
@@ -120,6 +121,7 @@
 		F13B73D02BBE79BC00C96F19 /* DetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewModel.swift; sourceTree = "<group>"; };
 		F13B73D42BBE89B000C96F19 /* OrderbookCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OrderbookCell.swift; sourceTree = "<group>"; };
 		F182FE9F2BC03C5500428E05 /* DateAxisValueFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateAxisValueFormatter.swift; sourceTree = "<group>"; };
+		F1863D432C5BB85C006EAA03 /* OrderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderCell.swift; sourceTree = "<group>"; };
 		F1B59CB82C296CFC00C85CC0 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Platforms/iPhoneOS.platform/Developer/Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 		F1D0044A2BC92FE80032D272 /* PriceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PriceView.swift; sourceTree = "<group>"; };
 		F1D0044E2BC945FF0032D272 /* WebSocketError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebSocketError.swift; sourceTree = "<group>"; };
@@ -300,6 +302,7 @@
 			children = (
 				F1E0A68C2BBD28B100C2CFCE /* MarketCell.swift */,
 				F1F1A3862BC7BEA8000CD879 /* ChatCell.swift */,
+				F1863D432C5BB85C006EAA03 /* OrderCell.swift */,
 				F13B73D42BBE89B000C96F19 /* OrderbookCell.swift */,
 				F12C8AAA2BCC13A500C4E99E /* TradeCell.swift */,
 				F1E7CE8C2BD510C300E902CA /* AccountCell.swift */,
@@ -602,6 +605,7 @@
 				F1F1A3872BC7BEA9000CD879 /* ChatCell.swift in Sources */,
 				F1E0A6722BBD254C00C2CFCE /* MarketViewModel.swift in Sources */,
 				F1D0044B2BC92FE80032D272 /* PriceView.swift in Sources */,
+				F1863D442C5BB85D006EAA03 /* OrderCell.swift in Sources */,
 				F1E0A6632BBD23E800C2CFCE /* Decodable.swift in Sources */,
 				F1F420272BCE54D9003B19D2 /* RealmService.swift in Sources */,
 				F1E0A6A12BBD2D1500C2CFCE /* ChatItemView.swift in Sources */,

@@ -25,6 +25,8 @@ class OrderViewModel {
     // MARK: 실시간 호가 정보
     let orderbookSubject = PublishSubject<Orderbook>()
     
+    // MARK: 실시간 현재가 정보
+    let tickerSubject = PublishSubject<SocketTicker>()
     
     init(marketInfo: MarketInfo) {
         
@@ -71,6 +73,11 @@ class OrderViewModel {
                 print("\(socketError.error.name): \(socketError.error.message)")
                 return
             } else {
+                // MARK: 실시간 현재가 정보
+                if let ticker: SocketTicker = SocketTicker.parseData(data) {
+                    self.tickerSubject.onNext(ticker)
+                    return
+                }
                 // MARK: 실시간 호가 정보
                 if let orderbook: Orderbook = Orderbook.parseData(data) {
                     self.orderbookSubject.onNext(orderbook)
