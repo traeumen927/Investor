@@ -23,18 +23,6 @@ class OrderbookViewController: UIViewController {
     // MARK: 현재가
     private var ticker:SocketTicker?
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
-        self.layout()
-        self.bind()
-    }
-    
-    // MARK: 현재가격, 변동률, 증감액을 보여주는 뷰
-    private let priceView: PriceView = {
-        let view = PriceView()
-        return view
-    }()
     
 
     // MARK: 부가정보가 보여질 세로 스택뷰
@@ -96,6 +84,12 @@ class OrderbookViewController: UIViewController {
     // MARK: 당일 저가
     private lazy var lowPriceView = StackChildView()
     
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        self.layout()
+        self.bind()
+    }
     
     init(viewModel: OrderbookViewModel) {
         self.viewModel = viewModel
@@ -113,12 +107,12 @@ class OrderbookViewController: UIViewController {
 
         
         // MARK: 현재가뷰 24시간 누적 거래량, 24시간 누적 거래대금, 52주 신고가, 52주 신저가, 시가(전일종가), 당일 고가, 당일 저가
-        [priceView, tradeVolumeView, tradePriceView, highest52PriceView, lowest52PriceView, openingPriceView, highPriceView, lowPriceView].forEach(self.stackView.addArrangedSubview(_:))
+        [tradeVolumeView, tradePriceView, highest52PriceView, lowest52PriceView, openingPriceView, highPriceView, lowPriceView].forEach(self.stackView.addArrangedSubview(_:))
         
         stackView.snp.makeConstraints { make in
-            make.top.equalTo(self.view.safeAreaLayoutGuide)
             make.leading.equalToSuperview()
             make.width.equalToSuperview().multipliedBy(0.5)
+            make.bottom.equalTo(self.tradeTableView)
         }
         
         orderbookTableView.snp.makeConstraints { make in
@@ -127,20 +121,20 @@ class OrderbookViewController: UIViewController {
         }
         
         tradeTableView.snp.makeConstraints { make in
+            make.top.equalTo(priceLabel.snp.bottom).offset(10)
             make.leading.equalTo(self.stackView.snp.trailing).offset(12)
             make.trailing.equalToSuperview()
-            make.bottom.equalTo(self.orderbookTableView.snp.top)
             make.height.equalTo(150)
         }
         
         priceLabel.snp.makeConstraints { make in
+            make.top.equalToSuperview().offset(10)
             make.leading.equalTo(self.tradeTableView.snp.leading)
-            make.bottom.equalTo(self.tradeTableView.snp.top)
         }
       
         sizeLabel.snp.makeConstraints { make in
+            make.top.equalToSuperview().offset(10)
             make.trailing.equalTo(self.tradeTableView.snp.trailing).offset(-4)
-            make.bottom.equalTo(self.tradeTableView.snp.top)
         }
     }
     
@@ -179,9 +173,6 @@ class OrderbookViewController: UIViewController {
     private func tickerUpdated(sockerTicker: SocketTicker) {
         // MARK: 현재가 업데이트
         self.ticker = sockerTicker
-        
-        // MARK: 현재가 변동률, 업데이트
-        self.priceView.update(ticker: sockerTicker)
         
         let code = sockerTicker.code.components(separatedBy: "-").last ?? ""
         
