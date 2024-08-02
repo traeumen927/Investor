@@ -23,6 +23,9 @@ class OrderViewController: UIViewController {
     // MARK: 체결정보
     private var tradeList = [Trade]()
     
+    // MARK: 호가창 가운데 정렬 여부
+    private var isAlignCenter:Bool = false
+    
     // MARK: 호가창 tableView
     private lazy var orderbookTableView: UITableView = {
         let view = UITableView()
@@ -81,7 +84,17 @@ class OrderViewController: UIViewController {
                 guard let self = self else { return }
                 self.orderbookUnits = orderbook.orderbook_units
                 self.orderbookTableView.reloadData()
+                // MARK: 최초 1회 가운데 정렬
+                if !isAlignCenter { centerTableView() }
             }).disposed(by: disposeBag)
+    }
+    
+    // MARK: 호가창 테이블뷰의 스크롤을 가운데로 정렬
+    private func centerTableView() {
+        if orderbookUnits.count == 0 { return }
+        let middleIndexPath = IndexPath(row: orderbookUnits.count, section: 0)
+        orderbookTableView.scrollToRow(at: middleIndexPath, at: .middle, animated: false)
+        isAlignCenter = true
     }
     
     // MARK: viewWillAppear -> 종목토론방 리스너 연결, 웹소켓 연결
