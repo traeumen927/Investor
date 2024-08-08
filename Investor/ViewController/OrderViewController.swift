@@ -40,6 +40,15 @@ class OrderViewController: UIViewController {
         return view
     }()
     
+    // MARK: 라디오버튼(구매, 판매)
+    private lazy var orderRadioGroup: RadioGroup = {
+        let view = RadioGroup()
+        let buttonTitles = ["구매", "판매"]
+        let buttonColors = [ThemeColor.tintRise1, ThemeColor.tintFall1]
+        view.configure(buttonTitles: buttonTitles, buttonColors: buttonColors)
+        return view
+    }()
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -60,11 +69,17 @@ class OrderViewController: UIViewController {
     private func layout() {
         self.view.backgroundColor = ThemeColor.background1
         
-        self.view.addSubview(orderbookTableView)
+        [orderbookTableView, orderRadioGroup].forEach(self.view.addSubview(_:))
         
         orderbookTableView.snp.makeConstraints { make in
             make.top.leading.bottom.equalToSuperview()
             make.width.equalToSuperview().multipliedBy(0.45)
+        }
+        
+        orderRadioGroup.snp.makeConstraints { make in
+            make.top.equalToSuperview().offset(4)
+            make.trailing.equalToSuperview().offset(-8)
+            make.leading.equalTo(self.orderbookTableView.snp.trailing).offset(8)
         }
     }
     
@@ -144,7 +159,5 @@ extension OrderViewController: UITableViewDelegate, UITableViewDataSource {
         cell.configure(price: price, ticker: self.ticker, size: size, maxSize: maxSize, isAsk: indexPath.row < orderbookUnits.count)
         
         return cell
-        
-        
     }
 }

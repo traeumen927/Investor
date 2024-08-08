@@ -89,6 +89,7 @@
 		F1EA80132BC6CDCE00AE5F58 /* Orderbook.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1EA80122BC6CDCE00AE5F58 /* Orderbook.swift */; };
 		F1F1A3852BC7B589000CD879 /* SubscriptionType.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1F1A3842BC7B589000CD879 /* SubscriptionType.swift */; };
 		F1F1A3872BC7BEA9000CD879 /* ChatCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1F1A3862BC7BEA8000CD879 /* ChatCell.swift */; };
+		F1F1CE322C64D5D000329B06 /* RadioGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1F1CE312C64D5D000329B06 /* RadioGroup.swift */; };
 		F1F420252BCE544D003B19D2 /* Favorite.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1F420242BCE544D003B19D2 /* Favorite.swift */; };
 		F1F420272BCE54D9003B19D2 /* RealmService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1F420262BCE54D9003B19D2 /* RealmService.swift */; };
 		F1F4202A2BCE650E003B19D2 /* Toast in Frameworks */ = {isa = PBXBuildFile; productRef = F1F420292BCE650E003B19D2 /* Toast */; };
@@ -188,6 +189,7 @@
 		F1EA80122BC6CDCE00AE5F58 /* Orderbook.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Orderbook.swift; sourceTree = "<group>"; };
 		F1F1A3842BC7B589000CD879 /* SubscriptionType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscriptionType.swift; sourceTree = "<group>"; };
 		F1F1A3862BC7BEA8000CD879 /* ChatCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatCell.swift; sourceTree = "<group>"; };
+		F1F1CE312C64D5D000329B06 /* RadioGroup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RadioGroup.swift; sourceTree = "<group>"; };
 		F1F420242BCE544D003B19D2 /* Favorite.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Favorite.swift; sourceTree = "<group>"; };
 		F1F420262BCE54D9003B19D2 /* RealmService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmService.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -322,6 +324,7 @@
 				F1E0A68E2BBD28CF00C2CFCE /* PercentView.swift */,
 				F1E0A68F2BBD28CF00C2CFCE /* SingleCandleView.swift */,
 				F1E7CE8E2BD512F700E902CA /* AutoSizeTableView.swift */,
+				F1F1CE312C64D5D000329B06 /* RadioGroup.swift */,
 			);
 			path = CustomView;
 			sourceTree = "<group>";
@@ -610,6 +613,7 @@
 				F1F420272BCE54D9003B19D2 /* RealmService.swift in Sources */,
 				F1E0A6A12BBD2D1500C2CFCE /* ChatItemView.swift in Sources */,
 				F13B73D32BBE868400C96F19 /* ChatViewModel.swift in Sources */,
+				F1F1CE322C64D5D000329B06 /* RadioGroup.swift in Sources */,
 				F1EA80132BC6CDCE00AE5F58 /* Orderbook.swift in Sources */,
 				F182FEA02BC03C5500428E05 /* DateAxisValueFormatter.swift in Sources */,
 				F1E0A6662BBD23EF00C2CFCE /* UIColor.swift in Sources */,
