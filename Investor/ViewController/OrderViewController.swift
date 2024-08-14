@@ -50,6 +50,20 @@ class OrderViewController: UIViewController {
         return view
     }()
     
+    // MARK: 매수 설정뷰
+    private lazy var askOrderView: OrderView = {
+        let view = OrderView()
+        view.isHidden = true
+        return view
+    }()
+    
+    // MARK: 매도 설정뷰
+    private lazy var bidOrderView: OrderView = {
+        let view = OrderView()
+        view.isHidden = true
+        return view
+    }()
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -70,7 +84,7 @@ class OrderViewController: UIViewController {
     private func layout() {
         self.view.backgroundColor = ThemeColor.background1
         
-        [orderbookTableView, orderRadioGroup].forEach(self.view.addSubview(_:))
+        [orderbookTableView, orderRadioGroup, askOrderView, bidOrderView].forEach(self.view.addSubview(_:))
         
         orderbookTableView.snp.makeConstraints { make in
             make.top.leading.bottom.equalToSuperview()
@@ -81,6 +95,18 @@ class OrderViewController: UIViewController {
             make.top.equalToSuperview().offset(4)
             make.trailing.equalToSuperview().offset(-8)
             make.leading.equalTo(self.orderbookTableView.snp.trailing).offset(8)
+        }
+        
+        askOrderView.snp.makeConstraints { make in
+            make.top.equalTo(self.orderRadioGroup.snp.bottom)
+            make.leading.equalTo(self.orderbookTableView.snp.trailing)
+            make.trailing.equalToSuperview()
+        }
+        
+        bidOrderView.snp.makeConstraints { make in
+            make.top.equalTo(self.orderRadioGroup.snp.bottom)
+            make.leading.equalTo(self.orderbookTableView.snp.trailing)
+            make.trailing.equalToSuperview()
         }
     }
     
@@ -168,7 +194,10 @@ extension OrderViewController: UITableViewDelegate, UITableViewDataSource {
 extension OrderViewController: RadioGroupDelegate {
     func radioGroup(_ radioGroup: RadioGroup, didSelectButtonAtIndex index: Int) {
         print("Selected Button Index: \(index)")
+        
+        askOrderView.isHidden = index == 1
+        bidOrderView.isHidden = index == 0
     }
     
-
+    
 }

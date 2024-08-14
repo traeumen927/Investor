@@ -21,6 +21,7 @@
 		F19CFC3C2C296E3E00BEAFC4 /* InvestorUITests.xctest in Resources */ = {isa = PBXBuildFile; fileRef = F1E0A60E2BBD1F8600C2CFCE /* InvestorUITests.xctest */; };
 		F1B59CB32C296BFD00C85CC0 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = F1B59CB22C296BFD00C85CC0 /* SnapKit */; };
 		F1B59CB62C296C2700C85CC0 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = F1B59CB52C296C2700C85CC0 /* Alamofire */; };
+		F1CB0AF42C6C97BA00A4F3FF /* OrderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1CB0AF32C6C97BA00A4F3FF /* OrderView.swift */; };
 		F1D0044B2BC92FE80032D272 /* PriceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1D0044A2BC92FE80032D272 /* PriceView.swift */; };
 		F1D0044F2BC945FF0032D272 /* WebSocketError.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1D0044E2BC945FF0032D272 /* WebSocketError.swift */; };
 		F1D004512BC970940032D272 /* StackChildView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1D004502BC970940032D272 /* StackChildView.swift */; };
@@ -124,6 +125,7 @@
 		F182FE9F2BC03C5500428E05 /* DateAxisValueFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateAxisValueFormatter.swift; sourceTree = "<group>"; };
 		F1863D432C5BB85C006EAA03 /* OrderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderCell.swift; sourceTree = "<group>"; };
 		F1B59CB82C296CFC00C85CC0 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Platforms/iPhoneOS.platform/Developer/Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
+		F1CB0AF32C6C97BA00A4F3FF /* OrderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderView.swift; sourceTree = "<group>"; };
 		F1D0044A2BC92FE80032D272 /* PriceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PriceView.swift; sourceTree = "<group>"; };
 		F1D0044E2BC945FF0032D272 /* WebSocketError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebSocketError.swift; sourceTree = "<group>"; };
 		F1D004502BC970940032D272 /* StackChildView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StackChildView.swift; sourceTree = "<group>"; };
@@ -325,6 +327,7 @@
 				F1E0A68F2BBD28CF00C2CFCE /* SingleCandleView.swift */,
 				F1E7CE8E2BD512F700E902CA /* AutoSizeTableView.swift */,
 				F1F1CE312C64D5D000329B06 /* RadioGroup.swift */,
+				F1CB0AF32C6C97BA00A4F3FF /* OrderView.swift */,
 			);
 			path = CustomView;
 			sourceTree = "<group>";
@@ -632,6 +635,7 @@
 				F1E0A6882BBD285A00C2CFCE /* CandleType.swift in Sources */,
 				F11A50292C5A63A100AD6F82 /* OrderViewModel.swift in Sources */,
 				F1D5EA362BC516B500578328 /* DetailViewController.swift in Sources */,
+				F1CB0AF42C6C97BA00A4F3FF /* OrderView.swift in Sources */,
 				F1E0A6A72BBD2D3100C2CFCE /* FireStoreService.swift in Sources */,
 				F1D5EA3C2BC5249C00578328 /* ChartViewModel.swift in Sources */,
 				F12C8AA52BCC037700C4E99E /* Trade.swift in Sources */,
