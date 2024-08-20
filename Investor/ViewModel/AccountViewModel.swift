@@ -37,23 +37,26 @@ class AccountViewModel {
     
     // MARK: 자산 리스트 + 현재가 조회
     private func fetchAccountsWithMarkets() {
-        // MARK: 보유 자산 리스트 조회
-        UpbitApiService.request(endpoint: .accounts) { [weak self] (result: Result<[Account], UpbitApiError>) in
-            guard let self = self else { return }
-            switch result {
-            case .success(let accounts):
-                self.accountSubject.onNext(accounts)
+        // MARK: 보유자산 싱글톤 객체
+        let accountManager = AccountManager.shared
+        
+        // MARK: 보유 자산 구독
+        accountManager.accountsObservable
+            .subscribe(onNext: { [weak self] accounts in
+                self?.accountSubject.onNext(accounts)
                 
                 // MARK: 보유 원화를 제외한 마켓 코드 배열
                 let markets = accounts.filter({$0.currency != "KRW"}).map { "KRW-" + $0.currency}
                 
-                // MARK: 보유 자산의 현재가 조회(웹소켓)
-                upbitSocketService.subscribeTo(types: [.ticker], symbol: markets)
-                
-            case .failure(let error):
-                self.errorSubject.onNext(error.message)
-            }
-        }
+                // MARK: 원화를 제외한 보유 자산이 있을 시
+                if !markets.isEmpty {
+                    // MARK: 보유 자산의 현재가 조회(웹소켓)
+                    self?.upbitSocketService.subscribeTo(types: [.ticker], symbol: markets)
+                }
+            }).disposed(by: disposeBag)
+        
+        // MARK: 보유 자산 조회
+        accountManager.fetchAccountsWithMarkets()
     }
     
     // MARK: 웹소켓 연결

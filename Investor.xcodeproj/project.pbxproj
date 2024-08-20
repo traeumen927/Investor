@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		F10C54A12C74C9FB0019D296 /* AccountManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F10C54A02C74C9FB0019D296 /* AccountManager.swift */; };
 		F11A50272C5A635000AD6F82 /* OrderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F11A50262C5A635000AD6F82 /* OrderViewController.swift */; };
 		F11A50292C5A63A100AD6F82 /* OrderViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F11A50282C5A63A100AD6F82 /* OrderViewModel.swift */; };
 		F12C8AA52BCC037700C4E99E /* Trade.swift in Sources */ = {isa = PBXBuildFile; fileRef = F12C8AA42BCC037700C4E99E /* Trade.swift */; };
@@ -114,6 +115,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		F10C54A02C74C9FB0019D296 /* AccountManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountManager.swift; sourceTree = "<group>"; };
 		F11A50262C5A635000AD6F82 /* OrderViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderViewController.swift; sourceTree = "<group>"; };
 		F11A50282C5A63A100AD6F82 /* OrderViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderViewModel.swift; sourceTree = "<group>"; };
 		F12C8AA42BCC037700C4E99E /* Trade.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Trade.swift; sourceTree = "<group>"; };
@@ -233,6 +235,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		F10C549F2C74C9700019D296 /* Singleton */ = {
+			isa = PBXGroup;
+			children = (
+				F10C54A02C74C9FB0019D296 /* AccountManager.swift */,
+			);
+			path = Singleton;
+			sourceTree = "<group>";
+		};
 		F1B59CB72C296CFC00C85CC0 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -267,6 +277,7 @@
 			children = (
 				F1E0A6582BBD22CD00C2CFCE /* Enum */,
 				F1E0A6572BBD22C500C2CFCE /* Protocol */,
+				F10C549F2C74C9700019D296 /* Singleton */,
 				F1E0A6562BBD22BC00C2CFCE /* LifeCycle */,
 				F1E0A6552BBD22B500C2CFCE /* Extension */,
 				F1E0A6532BBD22A500C2CFCE /* Service */,
@@ -624,6 +635,7 @@
 				F1E0A6812BBD284300C2CFCE /* MarketTicker.swift in Sources */,
 				F1D5EA402BC5550800578328 /* OrderbookViewModel.swift in Sources */,
 				F1DA88E62BCFB8F5005E8E22 /* AccountViewModel.swift in Sources */,
+				F10C54A12C74C9FB0019D296 /* AccountManager.swift in Sources */,
 				F1E0A5F22BBD1F8500C2CFCE /* AppDelegate.swift in Sources */,
 				F1DA88EA2BCFF740005E8E22 /* AccountView.swift in Sources */,
 				F1E0A6762BBD257700C2CFCE /* SettingViewModel.swift in Sources */,
