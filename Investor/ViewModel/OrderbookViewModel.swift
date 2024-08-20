@@ -45,7 +45,10 @@ class OrderbookViewModel {
     
     init(marketInfo: MarketInfo) {
         self.marketInfo = marketInfo
-        
+        self.bind()
+    }
+    
+    private func bind() {
         // MARK: 웹소켓 이벤트 구독
         upbitSocketService.socketEventSubject
             .subscribe(onNext: { [weak self] eventWrapper in

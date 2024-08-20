@@ -1,88 +1,62 @@
 //
-//  AccountViewModel.swift
+//  OrderViewModel.swift
 //  Investor
 //
-//  Created by 홍정연 on 4/17/24.
+//  Created by 홍정연 on 4/4/24.
 //
 
+import Foundation
 import RxSwift
-import RxCocoa
 import Starscream
 
-class AccountViewModel {
+class OrderViewModel {
     
     private let disposeBag = DisposeBag()
     
     // MARK: 업비트 웹 소켓 서비스
     private let upbitSocketService = UpbitSocketService()
     
-    // MARK: - Place for Output
-    // MARK: 내가 보유한 자산 리스트
-    let accountSubject: BehaviorSubject<[Account]> = BehaviorSubject(value: [])
+    // MARK: - Place for Input
+    // MARK: 선택한 코인
+    private var marketInfo: MarketInfo
+
     
-    // MARK: 내가 보유한 자산의 현재가
+    // MARK: - Place for Output
+    // MARK: 실시간 호가 정보
+    let orderbookSubject = PublishSubject<Orderbook>()
+    
+    // MARK: 실시간 현재가 정보
     let tickerSubject = PublishSubject<SocketTicker>()
     
-    // MARK: 에러 description Subject
-    let errorSubject = PublishSubject<String>()
+    init(marketInfo: MarketInfo) {
+        
+        self.marketInfo = marketInfo
+        self.bind()
+    }
     
-    init() {
+    private func bind() {
         // MARK: 웹소켓 이벤트 구독
         upbitSocketService.socketEventSubject
             .subscribe(onNext: { [weak self] eventWrapper in
-                guard let self = self else { return }
-                self.didReceiveEvent(event: eventWrapper.event)
+                self?.didReceiveEvent(event: eventWrapper.event)
             }).disposed(by: disposeBag)
-    }
-    
-    // MARK: 자산 리스트 + 현재가 조회
-    private func fetchAccountsWithMarkets() {
-        // MARK: 보유자산 싱글톤 객체
-        let accountManager = AccountManager.shared
-        
-        // MARK: 보유 자산 구독
-        accountManager.accountsObservable
-            .subscribe(onNext: { [weak self] accounts in
-                self?.accountSubject.onNext(accounts)
-                
-                // MARK: 보유 원화를 제외한 마켓 코드 배열
-                let markets = accounts.filter({$0.currency != "KRW"}).map { "KRW-" + $0.currency}
-                
-                // MARK: 원화를 제외한 보유 자산이 있을 시
-                if !markets.isEmpty {
-                    // MARK: 보유 자산의 현재가 조회(웹소켓)
-                    self?.upbitSocketService.subscribeTo(types: [.ticker], symbol: markets)
-                }
-            }).disposed(by: disposeBag)
-        
-        // MARK: 보유 자산 조회
-        accountManager.fetchAccountsWithMarkets()
-    }
-    
-    // MARK: 웹소켓 연결
-    func connectWebSocket() {
-        self.upbitSocketService.connect()
-    }
-    
-    // MARK: 웹소켓 연결 해제
-    func disconnectWebSocket() {
-        self.upbitSocketService.disconnect()
     }
     
     // MARK: WebSocketDelegate에서 발생하는 WebSocket Event 처리
     private func didReceiveEvent(event: WebSocketEvent) {
         
         let className = String(describing: self)
-        
+    
         switch event {
             
             // MARK: 소켓이 연결됨
         case .connected(let headers):
             print("\(className): websocket is connected: \(headers)")
             
-            // MARK: 내 자산정보 + 현재가 조회
-            self.fetchAccountsWithMarkets()
-            
+            // MARK: 선택된 코인의 실시간 현재가 웹소켓 요청
+            self.upbitSocketService.subscribeTo(types: [.ticker, .orderbook],
+                                                symbol: [self.marketInfo.market])
+
             // MARK: 소켓이 연결 해제됨
         case .disconnected(let reason, let code):
             print("\(className): websocket is disconnected: \(reason) with code: \(code)")
@@ -93,9 +67,23 @@ class AccountViewModel {
             
             // MARK: 이진(binary) 데이터를 받음
         case .binary(let data):
-            if let ticker: SocketTicker = SocketTicker.parseData(data) {
-                self.tickerSubject.onNext(ticker)
+            
+            // MARK: 웹소켓 에러 발생
+            if let socketError: WebSocketError = WebSocketError.parseData(data) {
+                print("\(socketError.error.name): \(socketError.error.message)")
+                return
+            } else {
+                // MARK: 실시간 현재가 정보
+                if let ticker: SocketTicker = SocketTicker.parseData(data) {
+                    self.tickerSubject.onNext(ticker)
+                    return
+                }
+                // MARK: 실시간 호가 정보
+                if let orderbook: Orderbook = Orderbook.parseData(data) {
+                    self.orderbookSubject.onNext(orderbook)
+                }
             }
+            
             
             // MARK: 핑 메세지를 받음
         case .ping(_):
@@ -132,5 +120,15 @@ class AccountViewModel {
             print("\(className): peerClosed")
             break
         }
+    }
+    
+    // MARK: 웹소켓 연결
+    func connectWebSocket() {
+        self.upbitSocketService.connect()
+    }
+    
+    // MARK: 웹소켓 해제
+    func disconnectWebSocket() {
+        self.upbitSocketService.disconnect()
     }
 }

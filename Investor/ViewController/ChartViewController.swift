@@ -15,12 +15,6 @@ class ChartViewController: UIViewController {
     private let disposeBag = DisposeBag()
     private let viewModel: ChartViewModel
     
-    // MARK: 현재가격, 변동률, 증감액을 보여주는 뷰
-    private let priceView: PriceView = {
-       let view = PriceView()
-        return view
-    }()
-    
     // MARK: 캔들 차트
     private let candleChart: CandleStickChartView = {
         let chart = CandleStickChartView()
@@ -82,21 +76,17 @@ class ChartViewController: UIViewController {
     private func layout() {
         self.view.backgroundColor = ThemeColor.background1
         
-        [candleSegment, priceView, candleChart].forEach(self.view.addSubview(_:))
+        [candleSegment, candleChart].forEach(self.view.addSubview(_:))
         
         candleSegment.snp.makeConstraints { make in
             make.top.equalToSuperview().offset(12)
             make.trailing.equalToSuperview().offset(-8)
-            make.leading.greaterThanOrEqualTo(self.priceView.snp.trailing).offset(-8)
+            make.leading.greaterThanOrEqualToSuperview().offset(-8)
         }
         
-        priceView.snp.makeConstraints { make in
-            make.top.equalToSuperview()
-            make.leading.equalToSuperview()
-        }
         
         candleChart.snp.makeConstraints { make in
-            make.top.equalTo(priceView.snp.bottom).offset(12)
+            make.top.equalTo(candleSegment.snp.bottom).offset(12)
             make.leading.equalToSuperview().offset(12)
             make.trailing.equalToSuperview().offset(-12)
             make.bottom.equalTo(self.view.safeAreaLayoutGuide).offset(-48)
@@ -120,7 +110,7 @@ class ChartViewController: UIViewController {
             .observe(on: MainScheduler.instance)
             .subscribe(onNext: { [weak self] ticker in
                 guard let self = self else { return }
-                self.priceView.update(ticker: ticker)
+                
             }).disposed(by: disposeBag)
         
         

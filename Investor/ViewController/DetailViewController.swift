@@ -24,6 +24,12 @@ class DetailViewController: UIViewController {
         return button
     }()
     
+    // MARK: 현재가격, 변동률, 증감액을 보여주는 뷰
+    private let priceView: PriceView = {
+        let view = PriceView()
+        return view
+    }()
+    
     // MARK: 페이지 Index SegmentedControl
     private lazy var pageSegmentedControl: UISegmentedControl = {
         let items = self.pages.map { $0.title ?? "page" }
@@ -76,14 +82,20 @@ class DetailViewController: UIViewController {
         
         // MARK: Page SegmentedControl, viewController 삽입
         self.addChild(pageViewController)
-        [segmentedBackgroundView, pageViewController.view].forEach(self.view.addSubview(_:))
+        [priceView, segmentedBackgroundView, pageViewController.view].forEach(self.view.addSubview(_:))
         segmentedBackgroundView.addSubview(pageSegmentedControl)
         pageViewController.didMove(toParent: self)
         
-        self.segmentedBackgroundView.snp.makeConstraints { make in
+        self.priceView.snp.makeConstraints { make in
             make.top.equalTo(self.view.safeAreaLayoutGuide)
             make.leading.trailing.equalToSuperview()
         }
+        
+        self.segmentedBackgroundView.snp.makeConstraints { make in
+            make.top.equalTo(self.priceView.snp.bottom)
+            make.leading.trailing.equalToSuperview()
+        }
+        
         self.pageSegmentedControl.snp.makeConstraints { make in
             make.top.leading.trailing.bottom.equalToSuperview().inset(8)
         }
@@ -128,7 +140,14 @@ class DetailViewController: UIViewController {
                 self.view.makeToast(message, duration: 2.0, position: .bottom)
             }).disposed(by: disposeBag)
         
-            
+        
+        // MARK: 실시간 현재가 구독, 0.25초 마다 이벤트 방출
+        self.viewModel.tickerSubject
+            .throttle(.milliseconds(250), latest: true, scheduler: MainScheduler.instance)
+            .subscribe(onNext: { [weak self] ticker in
+                guard let self = self else { return }
+                self.priceView.update(ticker: ticker)
+            }).disposed(by: disposeBag)
         
         
         // MARK: 세그먼트컨트롤의 인덱스 구독 -> 선택된 pageViewController 이동
@@ -141,6 +160,16 @@ class DetailViewController: UIViewController {
                 }
             })
             .disposed(by: disposeBag)
+    }
+    
+    // MARK: viewWillAppear -> 종목토론방 리스너 연결, 웹소켓 연결
+    override func viewWillAppear(_ animated: Bool) {
+        self.viewModel.connectWebSocket()
+    }
+    
+    // MARK: viewWillDisappear -> 종목토론방 리스너 해제, 웹소켓 해제
+    override func viewWillDisappear(_ animated: Bool) {
+        self.viewModel.disconnectWebSocket()
     }
     
     deinit {

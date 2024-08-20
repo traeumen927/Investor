@@ -12,6 +12,11 @@ struct PageService {
     static func create(marketTicker: MarketTicker) -> [UIViewController] {
         var pages: [UIViewController] = []
         
+        // MARK: 주문페이지
+        let orderViewModel = OrderViewModel(marketInfo: marketTicker.marketInfo)
+        let orderViewController = OrderViewController(viewModel: orderViewModel)
+        orderViewController.title = "주문"
+        
         // MARK: 캔들차트
         let chartViewModel = ChartViewModel(marketTicker: marketTicker)
         let chartViewController = ChartViewController(viewModel: chartViewModel)
@@ -29,6 +34,7 @@ struct PageService {
         let chatViewController = ChatViewController(viewModel: chatViewModel)
         chatViewController.title = "종목토론방"
         
+        pages.append(orderViewController)
         pages.append(chartViewController)
         pages.append(orderbookViewController)
         pages.append(chatViewController)
