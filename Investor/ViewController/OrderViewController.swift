@@ -44,7 +44,7 @@ class OrderViewController: UIViewController {
     private lazy var orderRadioGroup: RadioGroup = {
         let view = RadioGroup()
         view.delegate = self
-        let buttonTitles = ["구매", "판매"]
+        let buttonTitles = ["매수", "매도"]
         let buttonColors = [ThemeColor.tintRise1, ThemeColor.tintFall1]
         view.configure(buttonTitles: buttonTitles, buttonColors: buttonColors)
         return view
@@ -190,7 +190,7 @@ extension OrderViewController: UITableViewDelegate, UITableViewDataSource {
 }
 
 
-// MARK: - Place for 라디오버튼 델리게이트 구현
+// MARK: - Place for 라디오버튼 델리게이트 구현 (index 0: 매수/index 1: 매도)
 extension OrderViewController: RadioGroupDelegate {
     func radioGroup(_ radioGroup: RadioGroup, didSelectButtonAtIndex index: Int) {
         print("Selected Button Index: \(index)")
@@ -198,6 +198,4 @@ extension OrderViewController: RadioGroupDelegate {
         askOrderView.isHidden = index == 1
         bidOrderView.isHidden = index == 0
     }
-    
-    
 }

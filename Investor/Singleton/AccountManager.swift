@@ -7,8 +7,8 @@
 
 import RxSwift
 
-// MARK: 현재 보유 자산을 관리하는 싱글톤 패턴 객체
-class AccountManager {
+// MARK: 현재 보유 자산을 관리하는 싱글톤 패턴 객체  
+ class AccountManager {
     static let shared = AccountManager()
     
     // MARK: 현재 계좌 목록을 저장하는 BehaviorSubject

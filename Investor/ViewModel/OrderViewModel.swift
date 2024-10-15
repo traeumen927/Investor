@@ -28,6 +28,12 @@ class OrderViewModel {
     // MARK: 실시간 현재가 정보
     let tickerSubject = PublishSubject<SocketTicker>()
     
+    // MARK: 원화 보유자산 수량
+    let krwSubject = PublishSubject<Int>()
+    
+    // MARK: 선택마켓 보유자산 수량
+    let marketSubject = PublishSubject<Int>()
+    
     init(marketInfo: MarketInfo) {
         
         self.marketInfo = marketInfo
@@ -40,6 +46,41 @@ class OrderViewModel {
             .subscribe(onNext: { [weak self] eventWrapper in
                 self?.didReceiveEvent(event: eventWrapper.event)
             }).disposed(by: disposeBag)
+    
+        // MARK: 보유자산 조회
+        self.fetchAccounts()
+    }
+    
+    // MARK: 보유자산 조회
+    private func fetchAccounts() {
+        // MARK: 보유자산 싱글톤 객체
+        let accountManager = AccountManager.shared
+        
+        // MARK: 보유 자산 구독
+        accountManager.accountsObservable
+            .subscribe(onNext: { [weak self] accounts in
+                
+                print(accounts)
+                
+                // MARK: 보유 원화 수량
+                if let accountKRW = accounts.first(where: { $0.currency == "KRW" }) {
+                    print("krw \(accountKRW.balance)")
+                } else {
+                    print("krw 0")
+                }
+                
+                // MARK: 보유 선택마켓 수량
+                if let code = self?.marketInfo.market.components(separatedBy: "-").last, let accountMarket = accounts.first(where: { $0.currency == code }) {
+                    print("market \(accountMarket.balance)")
+                    
+                }
+                else {
+                    print("market 0")
+                }
+            }).disposed(by: disposeBag)
+        
+        // MARK: 보유 자산 조회
+        accountManager.fetchAccountsWithMarkets()
     }
     
     // MARK: WebSocketDelegate에서 발생하는 WebSocket Event 처리
