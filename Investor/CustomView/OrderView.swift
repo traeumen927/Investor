@@ -10,6 +10,9 @@ import SnapKit
 
 class OrderView: UIView {
     
+    // MARK: true: 매수창 / false: 매도창
+    private var isAsk:Bool!
+    
     // MARK: 주문가능(매수/매도) 제목 라벨
     private lazy var possibleTitleLable: UILabel = {
         let view = UILabel()
@@ -47,15 +50,15 @@ class OrderView: UIView {
         return view
     }()
     
-    
-    override init(frame: CGRect) {
-        super.init(frame: frame)
-        layout()
+    init(isAsk: Bool) {
+        super.init(frame: .zero)
+        self.isAsk = isAsk
+        defer {self.layout()}
     }
     
     required init?(coder: NSCoder) {
         super.init(coder: coder)
-        layout()
+        self.layout()
     }
     
     private func layout() {
@@ -74,7 +77,7 @@ class OrderView: UIView {
     }
     
     // MARK: 매수/매도 가능 수량 수정
-    private func configure(orderUnit:String) {
+    func configure(accounts: [Account]) {
         
     }
 }

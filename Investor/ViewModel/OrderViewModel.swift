@@ -28,11 +28,8 @@ class OrderViewModel {
     // MARK: 실시간 현재가 정보
     let tickerSubject = PublishSubject<SocketTicker>()
     
-    // MARK: 원화 보유자산 수량
-    let krwSubject = PublishSubject<Int>()
-    
-    // MARK: 선택마켓 보유자산 수량
-    let marketSubject = PublishSubject<Int>()
+    // MARK: 현재 보유 자산 정보
+    let accountsSubject = PublishSubject<[Account]>()
     
     init(marketInfo: MarketInfo) {
         
@@ -60,23 +57,9 @@ class OrderViewModel {
         accountManager.accountsObservable
             .subscribe(onNext: { [weak self] accounts in
                 
-                print(accounts)
+                // MARK: 조회된 보유 자산 방출
+                self?.accountsSubject.onNext(accounts)
                 
-                // MARK: 보유 원화 수량
-                if let accountKRW = accounts.first(where: { $0.currency == "KRW" }) {
-                    print("krw \(accountKRW.balance)")
-                } else {
-                    print("krw 0")
-                }
-                
-                // MARK: 보유 선택마켓 수량
-                if let code = self?.marketInfo.market.components(separatedBy: "-").last, let accountMarket = accounts.first(where: { $0.currency == code }) {
-                    print("market \(accountMarket.balance)")
-                    
-                }
-                else {
-                    print("market 0")
-                }
             }).disposed(by: disposeBag)
         
         // MARK: 보유 자산 조회
