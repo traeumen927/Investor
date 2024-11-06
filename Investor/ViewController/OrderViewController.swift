@@ -52,14 +52,14 @@ class OrderViewController: UIViewController {
     
     // MARK: 매수 설정뷰
     private lazy var askOrderView: OrderView = {
-        let view = OrderView(isAsk: true)
+        let view = OrderView(isAsk: true, marketInfo: self.viewModel.marketInfo)
         view.isHidden = true
         return view
     }()
     
     // MARK: 매도 설정뷰
     private lazy var bidOrderView: OrderView = {
-        let view = OrderView(isAsk: false)
+        let view = OrderView(isAsk: false, marketInfo: self.viewModel.marketInfo)
         view.isHidden = true
         return view
     }()
@@ -140,24 +140,6 @@ class OrderViewController: UIViewController {
                     view.configure(accounts: accounts)
                 }
             }).disposed(by: disposeBag)
-        
-//        print(accounts)
-//        
-//        // MARK: 보유 원화 수량
-//        if let accountKRW = accounts.first(where: { $0.currency == "KRW" }) {
-//            print("krw \(accountKRW.balance)")
-//        } else {
-//            print("krw 0")
-//        }
-//        
-//        // MARK: 보유 선택마켓 수량
-//        if let code = self?.marketInfo.market.components(separatedBy: "-").last, let accountMarket = accounts.first(where: { $0.currency == code }) {
-//            print("market \(accountMarket.balance)")
-//            
-//        }
-//        else {
-//            print("market 0")
-//        }
     }
     
     // MARK: 호가창 테이블뷰의 스크롤을 가운데로 정렬
@@ -222,8 +204,6 @@ extension OrderViewController: UITableViewDelegate, UITableViewDataSource {
 // MARK: - Place for 라디오버튼 델리게이트 구현 (index 0: 매수/index 1: 매도)
 extension OrderViewController: RadioGroupDelegate {
     func radioGroup(_ radioGroup: RadioGroup, didSelectButtonAtIndex index: Int) {
-        print("Selected Button Index: \(index)")
-        
         askOrderView.isHidden = index == 1
         bidOrderView.isHidden = index == 0
     }

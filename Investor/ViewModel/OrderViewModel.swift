@@ -18,7 +18,7 @@ class OrderViewModel {
     
     // MARK: - Place for Input
     // MARK: 선택한 코인
-    private var marketInfo: MarketInfo
+    var marketInfo: MarketInfo
 
     
     // MARK: - Place for Output

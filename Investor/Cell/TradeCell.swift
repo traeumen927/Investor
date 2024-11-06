@@ -60,7 +60,7 @@ class TradeCell: UITableViewCell {
     
     // MARK: 체결정보로 셀 업데이트
     func configure(with trade: Trade) {
-        self.priceLabel.text = "₩\(trade.trade_price.formattedStringWithCommaAndDecimal(places: 2))"
+        self.priceLabel.text = "₩\(trade.trade_price.formattedStringWithCommaAndDecimal(places: 5))"
         self.priceLabel.textColor = trade.change.color
         
         
