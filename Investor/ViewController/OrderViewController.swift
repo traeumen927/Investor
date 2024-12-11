@@ -140,6 +140,14 @@ class OrderViewController: UIViewController {
                     view.configure(accounts: accounts)
                 }
             }).disposed(by: disposeBag)
+        
+        // MARK: 뷰를 선택하여 키보드 닫음
+        let tapGesture = UITapGestureRecognizer()
+        view.addGestureRecognizer(tapGesture)
+        
+        tapGesture.rx.event.subscribe(onNext: { [weak self] _ in
+            self?.view.endEditing(true)
+        }).disposed(by: disposeBag)
     }
     
     // MARK: 호가창 테이블뷰의 스크롤을 가운데로 정렬

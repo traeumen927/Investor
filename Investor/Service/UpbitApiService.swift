@@ -53,9 +53,34 @@ struct UpbitApiService {
                 case .success(let value):
                     completion(.success(value))
                 case .failure(let error):
-                    completion(.failure(UpbitApiError(afError: error)))
+                    let handledError = handleError(response: response, error: error)
+                    completion(.failure(handledError))
                 }
             }
+    }
+    
+    // MARK: 에러 처리 메서드
+    private static func handleError<T>(response: AFDataResponse<T>, error: AFError) -> UpbitApiError {
+        // MARK: 네트워크 연결 문제 확인
+        if let underlyingError = error.underlyingError as? URLError {
+            if underlyingError.code == .notConnectedToInternet {
+                return .networkError
+            }
+        }
+        
+        // MARK: HTTP 상태 코드 확인
+        if let statusCode = response.response?.statusCode {
+            return .serverError(statusCode: statusCode)
+        }
+        
+        // MARK: 데이터 파싱 문제 확인
+        if let underlyingError = error.underlyingError, let decodingError = underlyingError as? DecodingError {
+            print("Decoding Error: \(decodingError.localizedDescription)")
+            return .decodingError
+        }
+        
+        // MARK: 기타 오류
+        return .unknownError
     }
 }
 

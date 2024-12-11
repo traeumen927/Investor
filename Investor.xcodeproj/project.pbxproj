@@ -17,6 +17,7 @@
 		F13B73D22BBE868100C96F19 /* ChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1E0A6942BBD2D0800C2CFCE /* ChatViewController.swift */; };
 		F13B73D32BBE868400C96F19 /* ChatViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1E0A6A32BBD2D2400C2CFCE /* ChatViewModel.swift */; };
 		F13B73D52BBE89B000C96F19 /* OrderbookCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F13B73D42BBE89B000C96F19 /* OrderbookCell.swift */; };
+		F1417DB82CEC6F5B00B7944A /* EdgeTextFeild.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1417DB72CEC6F5B00B7944A /* EdgeTextFeild.swift */; };
 		F182FEA02BC03C5500428E05 /* DateAxisValueFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F182FE9F2BC03C5500428E05 /* DateAxisValueFormatter.swift */; };
 		F1863D442C5BB85D006EAA03 /* OrderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1863D432C5BB85C006EAA03 /* OrderCell.swift */; };
 		F19CFC3C2C296E3E00BEAFC4 /* InvestorUITests.xctest in Resources */ = {isa = PBXBuildFile; fileRef = F1E0A60E2BBD1F8600C2CFCE /* InvestorUITests.xctest */; };
@@ -124,6 +125,7 @@
 		F13B73CE2BBE799B00C96F19 /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		F13B73D02BBE79BC00C96F19 /* DetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewModel.swift; sourceTree = "<group>"; };
 		F13B73D42BBE89B000C96F19 /* OrderbookCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OrderbookCell.swift; sourceTree = "<group>"; };
+		F1417DB72CEC6F5B00B7944A /* EdgeTextFeild.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EdgeTextFeild.swift; sourceTree = "<group>"; };
 		F182FE9F2BC03C5500428E05 /* DateAxisValueFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateAxisValueFormatter.swift; sourceTree = "<group>"; };
 		F1863D432C5BB85C006EAA03 /* OrderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderCell.swift; sourceTree = "<group>"; };
 		F1B59CB82C296CFC00C85CC0 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Platforms/iPhoneOS.platform/Developer/Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
@@ -339,6 +341,7 @@
 				F1E7CE8E2BD512F700E902CA /* AutoSizeTableView.swift */,
 				F1F1CE312C64D5D000329B06 /* RadioGroup.swift */,
 				F1CB0AF32C6C97BA00A4F3FF /* OrderView.swift */,
+				F1417DB72CEC6F5B00B7944A /* EdgeTextFeild.swift */,
 			);
 			path = CustomView;
 			sourceTree = "<group>";
@@ -637,6 +640,7 @@
 				F1DA88E62BCFB8F5005E8E22 /* AccountViewModel.swift in Sources */,
 				F10C54A12C74C9FB0019D296 /* AccountManager.swift in Sources */,
 				F1E0A5F22BBD1F8500C2CFCE /* AppDelegate.swift in Sources */,
+				F1417DB82CEC6F5B00B7944A /* EdgeTextFeild.swift in Sources */,
 				F1DA88EA2BCFF740005E8E22 /* AccountView.swift in Sources */,
 				F1E0A6762BBD257700C2CFCE /* SettingViewModel.swift in Sources */,
 				F1E0A6A92BBD2D4F00C2CFCE /* TickerProtocol.swift in Sources */,

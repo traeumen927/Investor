@@ -34,7 +34,7 @@ import RxSwift
                 self.updateAccounts(accounts)
                 
             case .failure(let error):
-                print("Error fetching accounts: \(error.message)")
+                print("Error fetching accounts: \(error.localizedDescription)")
             }
         }
     }

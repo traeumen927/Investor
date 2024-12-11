@@ -37,14 +37,14 @@ class OrderView: UIView {
     }()
     
     // MARK: 수량 텍스트 필드
-    private lazy var quantityText: UITextField = {
-        let view = UITextField()
+    private lazy var quantityTextFeild: EdgeTextFeild = {
+        let view = EdgeTextFeild(title: "수량", unit: self.marketInfo.market.components(separatedBy: "-").last ?? "")
         return view
     }()
     
     // MARK: 가격 텍스트 필드
-    private lazy var priceText: UITextField = {
-        let view = UITextField()
+    private lazy var priceTextFeild: EdgeTextFeild = {
+        let view = EdgeTextFeild(title: "가격", unit: "KRW")
         return view
     }()
     
@@ -70,15 +70,15 @@ class OrderView: UIView {
     
     private func layout() {
         
+        // MARK: 매수/매도 버튼 타이틀 및 색상 설정
         actionButton.setTitle(isAsk ? "매수" : "매도", for: .normal)
         actionButton.backgroundColor = isAsk ? ThemeColor.tintRise1 : ThemeColor.tintFall1
         
-        [possibleTitleLable, possibleLabel, actionButton].forEach(self.addSubview(_:))
+        [possibleTitleLable, possibleLabel, quantityTextFeild, priceTextFeild, actionButton].forEach(self.addSubview(_:))
         
         possibleTitleLable.snp.makeConstraints { make in
             make.top.equalToSuperview().offset(8)
             make.leading.equalToSuperview().offset(8)
-            make.bottom.equalTo(self.actionButton.snp.top).offset(-8)
         }
         
         possibleLabel.snp.makeConstraints { make in
@@ -87,7 +87,18 @@ class OrderView: UIView {
             make.centerY.equalTo(possibleTitleLable)
         }
         
+        quantityTextFeild.snp.makeConstraints { make in
+            make.top.equalTo(possibleTitleLable.snp.bottom).offset(8)
+            make.leading.trailing.equalToSuperview().inset(8)
+        }
+        
+        priceTextFeild.snp.makeConstraints { make in
+            make.top.equalTo(quantityTextFeild.snp.bottom).offset(4)
+            make.leading.trailing.equalToSuperview().inset(8)
+        }
+        
         actionButton.snp.makeConstraints { make in
+            make.top.equalTo(priceTextFeild.snp.bottom).offset(16)
             make.leading.trailing.bottom.equalToSuperview().inset(8)
             make.height.equalTo(40)
         }
