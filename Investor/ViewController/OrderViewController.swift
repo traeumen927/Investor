@@ -44,7 +44,7 @@ class OrderViewController: UIViewController {
     private lazy var orderRadioGroup: RadioGroup = {
         let view = RadioGroup()
         view.delegate = self
-        let buttonTitles = ["구매", "판매"]
+        let buttonTitles = ["매수", "매도"]
         let buttonColors = [ThemeColor.tintRise1, ThemeColor.tintFall1]
         view.configure(buttonTitles: buttonTitles, buttonColors: buttonColors)
         return view
@@ -52,14 +52,14 @@ class OrderViewController: UIViewController {
     
     // MARK: 매수 설정뷰
     private lazy var askOrderView: OrderView = {
-        let view = OrderView()
+        let view = OrderView(isAsk: true, marketInfo: self.viewModel.marketInfo)
         view.isHidden = true
         return view
     }()
     
     // MARK: 매도 설정뷰
     private lazy var bidOrderView: OrderView = {
-        let view = OrderView()
+        let view = OrderView(isAsk: false, marketInfo: self.viewModel.marketInfo)
         view.isHidden = true
         return view
     }()
@@ -116,6 +116,7 @@ class OrderViewController: UIViewController {
             .throttle(.milliseconds(250), latest: true, scheduler: MainScheduler.instance)
             .subscribe(onNext: { [weak self] ticker in
                 guard let self = self else { return }
+                if self.ticker == nil { self.setPrice(price: ticker.trade_price) }
                 self.ticker = ticker
             }).disposed(by: disposeBag)
         
@@ -129,6 +130,29 @@ class OrderViewController: UIViewController {
                 // MARK: 최초 1회 가운데 정렬
                 if !isAlignCenter { centerTableView() }
             }).disposed(by: disposeBag)
+        
+        
+        
+        
+        // MARK: 보유 자산 구독
+        self.viewModel.accountsSubject
+            .subscribe(onNext: { [weak self] accounts in
+                guard let self = self else { return }
+                [self.askOrderView, self.bidOrderView].forEach { view in
+                    // MARK: 매수/매도뷰 갱신
+                    view.configure(accounts: accounts)
+                }
+            }).disposed(by: disposeBag)
+        
+        // MARK: 뷰를 선택하여 키보드 닫음
+        let tapGesture = UITapGestureRecognizer()
+        // MARK: 터치 이벤트가 테이블뷰로 전달되도록 설정, 미설정시 tableView의 didSelect가 호출되지 않음
+        tapGesture.cancelsTouchesInView = false
+        view.addGestureRecognizer(tapGesture)
+        
+        tapGesture.rx.event.subscribe(onNext: { [weak self] _ in
+            self?.view.endEditing(true)
+        }).disposed(by: disposeBag)
     }
     
     // MARK: 호가창 테이블뷰의 스크롤을 가운데로 정렬
@@ -151,6 +175,12 @@ class OrderViewController: UIViewController {
     
     deinit {
         print("deinit \(String(describing: self))")
+    }
+    
+    // MARK: 화면 최초 진입시, 현재가 선택시 매수/매도 가격 사전설정
+    private func setPrice(price: Double) {
+        self.askOrderView.setPrice(price: price)
+        self.bidOrderView.setPrice(price: price)
     }
 }
 
@@ -185,19 +215,41 @@ extension OrderViewController: UITableViewDelegate, UITableViewDataSource {
         // MARK: 셀 구성
         cell.configure(price: price, ticker: self.ticker, size: size, maxSize: maxSize, isAsk: indexPath.row < orderbookUnits.count)
         
+        // MARK: 실시간 호가 강조 테두리 설정
+        if let tradePrice = ticker?.trade_price, tradePrice == price {
+            cell.layer.borderWidth = 1.0
+            cell.layer.borderColor = ThemeColor.tintEven.cgColor
+        } else {
+            cell.layer.borderWidth = 0.0
+        }
+        
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        // MARK: 선택된 셀의 인덱스 계산
+        let index = indexPath.row < orderbookUnits.count ? indexPath.row : indexPath.row - orderbookUnits.count
+        
+        // MARK: 선택된 호가 정보 가져오기
+        let orderBook = indexPath.row < orderbookUnits.count ? orderbookUnits[orderbookUnits.count - 1 - index] : orderbookUnits[index]
+        
+        // MARK: 매수 또는 매도 호가에 따라 다른 값 설정
+        let price = indexPath.row < orderbookUnits.count ? orderBook.ask_price : orderBook.bid_price
+        let size = indexPath.row < orderbookUnits.count ? orderBook.ask_size : orderBook.bid_size
+        let isAsk = indexPath.row < orderbookUnits.count // 매수(true)인지 매도(false)인지 확인
+        
+        // MARK: 선택된 데이터 출력 (또는 원하는 로직 처리)
+        print("선택된 값 - Price: \(price), Size: \(size), isAsk: \(isAsk)")
+        
+        self.setPrice(price: price)
     }
 }
 
 
-// MARK: - Place for 라디오버튼 델리게이트 구현
+// MARK: - Place for 라디오버튼 델리게이트 구현 (index 0: 매수/index 1: 매도)
 extension OrderViewController: RadioGroupDelegate {
     func radioGroup(_ radioGroup: RadioGroup, didSelectButtonAtIndex index: Int) {
-        print("Selected Button Index: \(index)")
-        
         askOrderView.isHidden = index == 1
         bidOrderView.isHidden = index == 0
     }
-    
-    
 }

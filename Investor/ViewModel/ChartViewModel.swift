@@ -65,7 +65,7 @@ class ChartViewModel {
             case .success(let candles):
                 self.candlesSubject.onNext(candles)
             case .failure(let error):
-                self.errorSubject.onNext(error.message)
+                self.errorSubject.onNext(error.localizedDescription)
             }
         }
     }

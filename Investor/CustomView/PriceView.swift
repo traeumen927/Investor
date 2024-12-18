@@ -62,11 +62,11 @@ class PriceView: UIView {
         // MARK: 상승, 보합, 하락에 대한 색상 업데이트
         self.setColor(with: ticker.change.color)
         
-        let changePrice = ticker.signed_change_price.formattedStringWithCommaAndDecimal(places: 2)
+        let changePrice = ticker.signed_change_price.formattedStringWithCommaAndDecimal(places: 6)
         let changeRate = ticker.signed_change_rate * 100
         
         // MARK: 현재가 업데이트
-        self.priceLabel.text =  "₩\(ticker.trade_price.formattedStringWithCommaAndDecimal(places: 2))"
+        self.priceLabel.text =  "₩\(ticker.trade_price.formattedStringWithCommaAndDecimal(places: 6))"
         
         // MARK: 변동률 업데이트
         self.changeLabel.text = "\(changeRate.formattedStringWithCommaAndDecimal(places: 3))%(\(changePrice))"

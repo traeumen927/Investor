@@ -80,6 +80,7 @@ class ChatViewController: UIViewController {
                 guard let self = self else { return }
                 self.chatList = chatList
                 self.tableView.reloadData()
+                self.scrollToBottom()
             }).disposed(by: disposeBag)
         
         
@@ -95,6 +96,17 @@ class ChatViewController: UIViewController {
         // MARK: 키보드 Hide/Show 구독
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
+    }
+    
+    private func scrollToBottom() {
+        // MARK: 배열이 비어있지 않은지 확인
+        guard !chatList.isEmpty else { return }
+        
+        // MARK: 마지막 인덱스 계산
+        let lastIndex = IndexPath(row: chatList.count - 1, section: 0)
+        
+        // MARK:  마지막 셀로 스크롤
+        tableView.scrollToRow(at: lastIndex, at: .bottom, animated: true)
     }
     
     

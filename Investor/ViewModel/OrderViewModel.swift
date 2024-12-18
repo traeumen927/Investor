@@ -18,7 +18,7 @@ class OrderViewModel {
     
     // MARK: - Place for Input
     // MARK: 선택한 코인
-    private var marketInfo: MarketInfo
+    var marketInfo: MarketInfo
 
     
     // MARK: - Place for Output
@@ -27,6 +27,9 @@ class OrderViewModel {
     
     // MARK: 실시간 현재가 정보
     let tickerSubject = PublishSubject<SocketTicker>()
+    
+    // MARK: 현재 보유 자산 정보
+    let accountsSubject = PublishSubject<[Account]>()
     
     init(marketInfo: MarketInfo) {
         
@@ -40,6 +43,27 @@ class OrderViewModel {
             .subscribe(onNext: { [weak self] eventWrapper in
                 self?.didReceiveEvent(event: eventWrapper.event)
             }).disposed(by: disposeBag)
+    
+        // MARK: 보유자산 조회
+        self.fetchAccounts()
+    }
+    
+    // MARK: 보유자산 조회
+    private func fetchAccounts() {
+        // MARK: 보유자산 싱글톤 객체
+        let accountManager = AccountManager.shared
+        
+        // MARK: 보유 자산 구독
+        accountManager.accountsObservable
+            .subscribe(onNext: { [weak self] accounts in
+                
+                // MARK: 조회된 보유 자산 방출
+                self?.accountsSubject.onNext(accounts)
+                
+            }).disposed(by: disposeBag)
+        
+        // MARK: 보유 자산 조회
+        accountManager.fetchAccountsWithMarkets()
     }
     
     // MARK: WebSocketDelegate에서 발생하는 WebSocket Event 처리

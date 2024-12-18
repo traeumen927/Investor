@@ -92,12 +92,28 @@ class InputView: UIView {
     }
     
     private func bind() {
+        
+        // MARK: 채팅 전송
         self.enterButton.rx.tap.subscribe { [weak self] _ in
             guard let self = self,
                   let question = self.chatText.text else {return}
             self.chatText.text = nil
             self.delegate?.enterPressed(chat: question)
         }.disposed(by: disposeBag)
+        
+        // MARK: 채팅 내역이 비어 있으면 전송버튼 비활성화(공백포함)
+        chatText.rx.text
+            .orEmpty
+            .map { !$0.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty }
+            .bind(to: enterButton.rx.isEnabled)
+            .disposed(by: disposeBag)
+        
+        // MARK: 채팅 내역 유무에 따라 비활성화 색상 적용
+        chatText.rx.text
+            .orEmpty
+            .map { $0.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty ? ThemeColor.tintDisable : UIColor.systemBlue }
+            .bind(to: enterButton.rx.backgroundColor)
+            .disposed(by: disposeBag)
     }
 }
 
