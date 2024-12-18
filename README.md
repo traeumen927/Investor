@@ -1,3 +1,4 @@
+# Investor
 업비트 Open Api를 활용한 Swift 기반의 코인 거래 어플리케이션입니다.
 
 사용한 Upbit APi: https://docs.upbit.com/reference
