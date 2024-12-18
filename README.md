@@ -23,40 +23,67 @@
 
 
 
-## Upbit Rest Api와 WebSocket의 실시간 데이터를 활용한 현재가/차트/호가 페이지
+## Upbit Rest Api와 WebSocket의 실시간 데이터를 활용한 거래소(초기화면) 페이지
+원화마켓 및 즐겨찾기 필터 제공
 <p align="center">
-  <img src="https://github.com/traeumen927/Investor/assets/18188727/062ad57c-59c1-41f1-96ed-a18c51910e04" width="30%">
-  <img src="https://github.com/traeumen927/Investor/assets/18188727/2d993b13-f3f5-43b8-b391-67ec3f6c95b5" width="30%">
-  <img src="https://github.com/traeumen927/Investor/assets/18188727/d52219de-1124-4763-a6c3-704fa8574847" width="30%">
+  <img src="https://github.com/user-attachments/assets/e7a573b6-003b-467b-9ffa-308f1b5824c1" width="30%">
+  <img src="https://github.com/user-attachments/assets/661958bb-b46e-4b7a-8675-287badc39bd7" width="30%">
 </p>
+
 
 <br/>
 
-## Upbit Rest Api와 WebSocket의 실시간 데이터를 활용한 투자내역 페이지 (진행중)
-
+## Upbit Rest Api와 WebSocket의 실시간 데이터를 활용한 투자내역 페이지
+업비트 자산 API, 실시간 호가 API 통해 보유원화, 보유코인 및 가치정보(평가손익 등) 제공
 <p align="center">
-  <img src="https://github.com/traeumen927/Investor/assets/18188727/936f08d8-e9c6-4546-b620-f5ce7b2db4f8" width="30%">
-  <img src="https://github.com/traeumen927/Investor/assets/18188727/fdf79972-32eb-4aa9-8038-ff991375ecab" width="30%">
+  <img src="https://github.com/user-attachments/assets/a7f555f1-f011-410f-8bcb-890012184923" width="30%">
+  <img src="https://github.com/user-attachments/assets/0fb9be6e-7158-4899-a0f7-03a84cdbeca3" width="30%">
 </p>
+
 
 <br/>
 
-## Realm을 이용한 즐겨찾기 필터링/추가 및 삭제
+## 코인상세 > 주문(코인 구매 및 매도)페이지
+업비트 자산 API를 통해 매수, 매도 가능 원화 및 코인정보 연동
 <p align="center">
-  <img src="https://github.com/traeumen927/Investor/assets/18188727/28babaa1-cd45-4e94-9f7e-0c683064ee89" width="30%">
-  <img src="https://github.com/traeumen927/Investor/assets/18188727/df5f21b3-3fb0-4af9-80f2-bfc47160fecc" width="30%">
-  <img src="https://github.com/traeumen927/Investor/assets/18188727/87b8cc79-7708-494f-8731-a35d2b6532ca" width="30%">
+ <img src="https://github.com/user-attachments/assets/0c98ddf3-656c-4ca5-a6e5-79512aca0815" width="30%">
+ <img src="https://github.com/user-attachments/assets/fa14a953-6a09-4dc0-a8c7-b35825e0e19b" width="30%">
 </p>
+
 
 <br/>
 
-## Firebase Firestore를 이용한 실시간 익명 종목토론방
+## 코인상세 > 실시간 차트정보 페이지
+월, 주, 일, 분 캔들 제공
+<p align="center">
+ <img src="https://github.com/user-attachments/assets/dd93ff00-d38b-46c8-b51f-96cb74a89dfd" width="30%">
+ <img src="https://github.com/user-attachments/assets/5d7d42fb-7f21-4385-bbe4-8d9bf0b8a533" width="30%">
+ <img src="https://github.com/user-attachments/assets/92700abc-538b-4457-b541-dbfa0081c4ed" width="30%">
+</p>
+
+
+
+<br/>
+
+## 코인상세 > 실시간 호가 페이지
+
+<p align="center">
+ <img src="https://github.com/user-attachments/assets/1a6573da-7126-42fe-8746-6eaf9a416565" width="30%">
+ <img src="https://github.com/user-attachments/assets/785ca752-d22c-44d7-819a-d15be7e8838a" width="30%">
+ <img src="https://github.com/user-attachments/assets/6f7d3f57-c33a-4888-96d8-790531273065" width="30%">
+</p>
+
+
+<br/>
+
+
+## 코인상세 > Firebase Firestore를 이용한 실시간 익명 종목토론방
 공식문서: https://firebase.google.com/docs/firestore/quickstart?hl=ko
 
 <p align="center">
-  <img src="https://github.com/traeumen927/Investor/assets/18188727/3f10b95a-6361-45f1-bb82-131db6b3e500" width="30%">
-  <img src="https://github.com/traeumen927/Investor/assets/18188727/02955417-99d2-4949-a7fd-56ec6ae9414e" width="30%">
-  <img src="https://github.com/traeumen927/Investor/assets/18188727/c6b6ce88-508b-4d5b-8efa-b38319bc6857" width="30%">
+ <img src="https://github.com/user-attachments/assets/202f1a01-29aa-4c26-919d-0cdbe60a4d39" width="30%">
+ <img src="https://github.com/user-attachments/assets/a6a6ee35-ed84-4e8f-9a41-ae8ac707fc7e" width="30%">
+ <img src="https://github.com/user-attachments/assets/8f2c7564-8385-4c99-824f-7feba613e099" width="30%">
 </p>
 
 
@@ -91,7 +118,7 @@ class UpbitSocketService {
     
     
     // MARK: WebSocket didReceive Event Subject
-    let socketEventSubejct: PublishSubject<WebSocketEventWrapper> = PublishSubject<WebSocketEventWrapper>()
+    let socketEventSubject: PublishSubject<WebSocketEventWrapper> = PublishSubject<WebSocketEventWrapper>()
     
     
     init() {
@@ -150,7 +177,7 @@ class UpbitSocketService {
 extension UpbitSocketService: WebSocketDelegate {
     func didReceive(event: WebSocketEvent, client: WebSocketClient) {
         // MARK: Socket Event 방출
-        self.socketEventSubejct.onNext(WebSocketEventWrapper(event: event))
+        self.socketEventSubject.onNext(WebSocketEventWrapper(event: event))
     }
 }
 
@@ -162,6 +189,7 @@ class WebSocketEventWrapper {
         self.event = event
     }
 }
+
 ```
 
 ``` swift
@@ -199,13 +227,39 @@ struct UpbitApiService {
         AF.request(url, method: .get, parameters: endpoint.parameters, headers: endpoint.headers)
             .validate(statusCode: 200..<300)
             .responseDecodable(of: T.self) { response in
-                switch response.result {    
+                switch response.result {
+                    
                 case .success(let value):
                     completion(.success(value))
                 case .failure(let error):
-                    completion(.failure(UpbitApiError(afError: error)))
+                    let handledError = handleError(response: response, error: error)
+                    completion(.failure(handledError))
                 }
             }
+    }
+    
+    // MARK: 에러 처리 메서드
+    private static func handleError<T>(response: AFDataResponse<T>, error: AFError) -> UpbitApiError {
+        // MARK: 네트워크 연결 문제 확인
+        if let underlyingError = error.underlyingError as? URLError {
+            if underlyingError.code == .notConnectedToInternet {
+                return .networkError
+            }
+        }
+        
+        // MARK: HTTP 상태 코드 확인
+        if let statusCode = response.response?.statusCode {
+            return .serverError(statusCode: statusCode)
+        }
+        
+        // MARK: 데이터 파싱 문제 확인
+        if let underlyingError = error.underlyingError, let decodingError = underlyingError as? DecodingError {
+            print("Decoding Error: \(decodingError.localizedDescription)")
+            return .decodingError
+        }
+        
+        // MARK: 기타 오류
+        return .unknownError
     }
 }
 
@@ -296,39 +350,4 @@ extension UpbitApiService {
         }
     }
 }
-
-
-// MARK: Upbit API 에러 타입
-enum UpbitApiError: Error {
-    case networkError(message: String)
-    case decodingError(message: String)
-    case serverError(message: String)
-    
-    var message: String {
-        switch self {
-        case .networkError(let message), .decodingError(let message), .serverError(let message):
-            return message
-        }
-    }
-    
-    init(afError: AFError) {
-        switch afError {
-        case .sessionTaskFailed(let error):
-            if let urlError = error as? URLError, urlError.code == .notConnectedToInternet {
-                self = .networkError(message: error.localizedDescription)
-            } else {
-                self = .serverError(message: afError.localizedDescription)
-            }
-        case .responseSerializationFailed(let reason):
-            if case .decodingFailed = reason {
-                self = .decodingError(message: afError.localizedDescription)
-            } else {
-                self = .serverError(message: afError.localizedDescription)
-            }
-        default:
-            self = .serverError(message: afError.localizedDescription)
-        }
-    }
-}
-
 ```
