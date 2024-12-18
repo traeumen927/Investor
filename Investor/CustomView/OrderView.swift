@@ -39,6 +39,7 @@ class OrderView: UIView {
     // MARK: 수량 텍스트 필드
     private lazy var quantityTextFeild: EdgeTextFeild = {
         let view = EdgeTextFeild(title: "수량", unit: self.marketInfo.market.components(separatedBy: "-").last ?? "")
+        view.configure(value: 0)
         return view
     }()
     
@@ -129,6 +130,11 @@ class OrderView: UIView {
                 possibleLabel.text = "-"
             }
         }
+    }
+    
+    // MARK: 구매 기준가 설정
+    func setPrice(price: Double) {
+        self.priceTextFeild.configure(value: price)
     }
 }
  

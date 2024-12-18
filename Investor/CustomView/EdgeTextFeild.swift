@@ -41,7 +41,7 @@ class EdgeTextFeild: UIView {
         let view = UITextField()
         view.borderStyle = .none
         view.textColor = ThemeColor.tintDark
-        view.font = .systemFont(ofSize: 16.0, weight: .bold)
+        view.font = .systemFont(ofSize: 12.0, weight: .regular)
         view.keyboardType = .decimalPad
         view.textAlignment = .right
         return view
@@ -106,8 +106,8 @@ class EdgeTextFeild: UIView {
         quantityTextField.setContentHuggingPriority(.defaultLow, for: .horizontal)
     }
     
-    // MARK: 외부에서 기본값 혹은 입력값을 받아와 설정함
+    // MARK: 외부에서 초기값 혹은 선택값을 받아와 설정함
     func configure(value: Double) {
-        self.quantityTextField.text = String(value)
+        self.quantityTextField.text = value.formattedStringWithCommaAndDecimal(places: 6)
     }
 }

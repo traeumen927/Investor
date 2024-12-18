@@ -147,7 +147,7 @@ class OrderbookCell: UITableViewCell {
         self.sizeLabel.textColor = isAsk ? ThemeColor.tintFall1 : ThemeColor.tintRise1
         
         // MARK: 매수/매도 호가
-        self.priceLabel.text = "₩\(price.formattedStringWithCommaAndDecimal(places: 5))"
+        self.priceLabel.text = "₩\(price.formattedStringWithCommaAndDecimal(places: 6))"
         
         // MARK: 매수/매도 잔량
         self.sizeLabel.text = size.formattedStringWithCommaAndDecimal(places: 6)

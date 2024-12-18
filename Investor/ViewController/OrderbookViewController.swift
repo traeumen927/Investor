@@ -186,26 +186,26 @@ class OrderbookViewController: UIViewController {
         
         // MARK: 52주 신고가 업데이트
         highest52PriceView.update(title: "52주최고",
-                                  content: "₩\(sockerTicker.highest_52_week_price.formattedStringWithCommaAndDecimal(places: 5))",
+                                  content: "₩\(sockerTicker.highest_52_week_price.formattedStringWithCommaAndDecimal(places: 6))",
                                   contentColor: ThemeColor.tintRise1)
         
         // MARK: 52주 신저가 업데이트
         lowest52PriceView.update(title: "52주최저",
-                                 content: "₩\(sockerTicker.lowest_52_week_price.formattedStringWithCommaAndDecimal(places: 5))",
+                                 content: "₩\(sockerTicker.lowest_52_week_price.formattedStringWithCommaAndDecimal(places: 6))",
                                  contentColor: ThemeColor.tintFall1)
         
         // MARK: 전일종가 업데이트
         openingPriceView.update(title: "전일종가",
-                                content: "₩\(sockerTicker.prev_closing_price.formattedStringWithCommaAndDecimal(places: 5))")
+                                content: "₩\(sockerTicker.prev_closing_price.formattedStringWithCommaAndDecimal(places: 6))")
         
         // MARK: 당일 고가 업데이트
         highPriceView.update(title: "당일고가",
-                             content: "₩\(sockerTicker.high_price.formattedStringWithCommaAndDecimal(places: 5))",
+                             content: "₩\(sockerTicker.high_price.formattedStringWithCommaAndDecimal(places: 6))",
                              contentColor: ThemeColor.tintRise1)
         
         // MARK: 당일 저가 업데이트
         lowPriceView.update(title: "당일저가",
-                            content: "₩\(sockerTicker.low_price.formattedStringWithCommaAndDecimal(places: 5))",
+                            content: "₩\(sockerTicker.low_price.formattedStringWithCommaAndDecimal(places: 6))",
                             contentColor: ThemeColor.tintFall1)
     }
     
