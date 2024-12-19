@@ -9,6 +9,16 @@ import UIKit
 import SnapKit
 import RxSwift
 
+// MARK: 델리게이트 프로토콜 정의
+protocol OrderViewDelegate: AnyObject {
+    
+    ///매수매도 버튼이 눌림
+    func actionButtonTapped(isAsk:Bool)
+    
+    ///최대 버튼이 눌림
+    func maxButtonTapped(isAsk:Bool)
+}
+
 class OrderViewController: UIViewController {
     
     private let disposeBag = DisposeBag()
@@ -54,6 +64,7 @@ class OrderViewController: UIViewController {
     private lazy var askOrderView: OrderView = {
         let view = OrderView(isAsk: true, marketInfo: self.viewModel.marketInfo)
         view.isHidden = true
+        view.delegate = self
         return view
     }()
     
@@ -61,6 +72,7 @@ class OrderViewController: UIViewController {
     private lazy var bidOrderView: OrderView = {
         let view = OrderView(isAsk: false, marketInfo: self.viewModel.marketInfo)
         view.isHidden = true
+        view.delegate = self
         return view
     }()
     
@@ -251,5 +263,16 @@ extension OrderViewController: RadioGroupDelegate {
     func radioGroup(_ radioGroup: RadioGroup, didSelectButtonAtIndex index: Int) {
         askOrderView.isHidden = index == 1
         bidOrderView.isHidden = index == 0
+    }
+}
+
+// MARK: - Place for 매수/매도 화면 델리게이트 구현
+extension OrderViewController: OrderViewDelegate {
+    func actionButtonTapped(isAsk: Bool) {
+        print("\(isAsk ? "매수" : "매도")")
+    }
+    
+    func maxButtonTapped(isAsk: Bool) {
+        print("\(isAsk ? "매수 최대" : "매도 최대")")
     }
 }

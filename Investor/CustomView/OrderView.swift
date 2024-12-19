@@ -7,11 +7,18 @@
 
 import UIKit
 import SnapKit
+import RxSwift
 
 class OrderView: UIView {
     
+    // MARK: DisposeBag
+    private let disposeBag = DisposeBag()
+    
     // MARK: true: 매수창 / false: 매도창
     private var isAsk:Bool!
+    
+    // MARK: delegate
+    weak var delegate: OrderViewDelegate?
     
     private var marketInfo: MarketInfo!
     
@@ -53,7 +60,19 @@ class OrderView: UIView {
     private lazy var actionButton: UIButton = {
         let view = UIButton()
         view.setTitleColor(.white, for: .normal)
+        view.titleLabel?.font = .systemFont(ofSize: 14, weight: .bold)
         view.layer.cornerRadius = 8
+        return view
+    }()
+    
+    // MARK: 최대버튼(선택가격 기준)
+    private lazy var maxButton: UIButton = {
+        let view = UIButton()
+        view.setTitleColor(.white, for: .normal)
+        view.setTitle("최대", for: .normal)
+        view.titleLabel?.font = .systemFont(ofSize: 14, weight: .bold)
+        view.layer.cornerRadius = 8
+        view.backgroundColor = ThemeColor.tintDark
         return view
     }()
     
@@ -61,12 +80,16 @@ class OrderView: UIView {
         super.init(frame: .zero)
         self.isAsk = isAsk
         self.marketInfo = marketInfo
-        defer {self.layout()}
+        defer {
+            self.layout()
+            self.bind()
+        }
     }
     
     required init?(coder: NSCoder) {
         super.init(coder: coder)
         self.layout()
+        self.bind()
     }
     
     private func layout() {
@@ -75,7 +98,7 @@ class OrderView: UIView {
         actionButton.setTitle(isAsk ? "매수" : "매도", for: .normal)
         actionButton.backgroundColor = isAsk ? ThemeColor.tintRise1 : ThemeColor.tintFall1
         
-        [possibleTitleLable, possibleLabel, quantityTextFeild, priceTextFeild, actionButton].forEach(self.addSubview(_:))
+        [possibleTitleLable, possibleLabel, quantityTextFeild, priceTextFeild, actionButton, maxButton].forEach(self.addSubview(_:))
         
         possibleTitleLable.snp.makeConstraints { make in
             make.top.equalToSuperview().offset(8)
@@ -100,9 +123,35 @@ class OrderView: UIView {
         
         actionButton.snp.makeConstraints { make in
             make.top.equalTo(priceTextFeild.snp.bottom).offset(16)
-            make.leading.trailing.bottom.equalToSuperview().inset(8)
+            make.leading.bottom.equalToSuperview().inset(8)
+            make.trailing.equalTo(maxButton.snp.leading).offset(-4)
             make.height.equalTo(40)
         }
+        
+        maxButton.snp.makeConstraints { make in
+            make.top.equalTo(priceTextFeild.snp.bottom).offset(16)
+            make.trailing.equalToSuperview().offset(-8)
+            make.width.equalTo(60)
+            make.height.equalTo(actionButton.snp.height)
+        }
+    }
+    
+    
+    
+    private func bind() {
+        // MARK: 매수/매도 버튼 탭
+        self.actionButton.rx.tap
+            .subscribe(onNext: {[weak self] in
+                guard let self = self else { return }
+                self.delegate?.actionButtonTapped(isAsk: self.isAsk)
+            }).disposed(by: disposeBag)
+        
+        // MARK: 최대 버튼 탭
+        self.maxButton.rx.tap
+            .subscribe(onNext: {[weak self] in
+                guard let self = self else { return }
+                self.delegate?.maxButtonTapped(isAsk: self.isAsk)
+            }).disposed(by: disposeBag)
     }
     
     // MARK: 매수/매도 가능 수량 수정
@@ -137,4 +186,4 @@ class OrderView: UIView {
         self.priceTextFeild.configure(value: price)
     }
 }
- 
+
